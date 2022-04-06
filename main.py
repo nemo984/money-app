@@ -5,6 +5,7 @@ import time
 icis = IncomeSystem()
 i = income.IncomeUI()
 ireport = report.IncomeReportUI()
+
 icis.add_observer(i)
 icis.add_observer(ireport)
 
@@ -14,8 +15,6 @@ c = IncomeCategory.create(name="Passive-Income")
 def addSomeIncomes():
     for i in range(5):
         icis.add(account, c, 1000 * i + i * 0.64)
-        time.sleep(2)
-
-
+        time.sleep(5)
 
 addSomeIncomes()

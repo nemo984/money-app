@@ -1,8 +1,9 @@
 import abc
+import asyncio
 
 class Observer(abc.ABC):
     @abc.abstractmethod
-    def update(self, data):
+    async def update(self, data):
         pass
 
 class Observable:
@@ -10,8 +11,9 @@ class Observable:
         self._observers = []
     
     def notify(self, data):
-        for observer in self._observers:
-            observer.update(data)
+        async def notify():
+            await asyncio.gather(*[o.update(data) for o in self._observers])
+        asyncio.run(notify())
     
     def add_observer(self, observer: Observer):
         if observer not in self._observers:

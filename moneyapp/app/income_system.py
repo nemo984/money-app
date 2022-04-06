@@ -20,4 +20,16 @@ class IncomeSystem(Observable):
                         frequency_day=frequency)
         income.save()
         self._incomes.append(income)
+        print("Incomes updated: Notifying observers")
+        print(">>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<")
         self.notify(self._incomes)
+
+
+    def get():
+        pass
+
+    def update():
+        pass
+
+    def delete():
+        pass
