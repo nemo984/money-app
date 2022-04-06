@@ -69,9 +69,9 @@ class Reminder(BaseModel):
     created_date = DateTimeField(default=datetime.now)
 
 # if config.config['testing']:
-#     database.init(':memory:')
+    database.init(':memory:')
 # else:
-database.init('local.db')
+# database.init('local.db')
 
 database.create_tables([Account, Category, Expense, Budget, IncomeCategory, Income, Reminder])
 
