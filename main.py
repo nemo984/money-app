@@ -1,10 +1,10 @@
-from moneyapp.ui import income, report
+from moneyapp.ui import income, overview
 from moneyapp.app.income_system import *
 import time
 
 icis = IncomeSystem()
 i = income.IncomeUI()
-ireport = report.IncomeReportUI()
+ireport = overview.IncomeReportUI()
 
 icis.add_observer(i)
 icis.add_observer(ireport)

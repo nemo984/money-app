@@ -1,6 +1,6 @@
 from .helpers import Observable
 from .model import *
-from typing import Optional
+from typing import Optional, List
 
 class IncomeSystem(Observable):
     def __init__(self):
@@ -24,9 +24,10 @@ class IncomeSystem(Observable):
         print(">>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<")
         self.notify(self._incomes)
 
-
-    def get():
-        pass
+    def get(self, account: Account) -> List[Income]:
+        self._incomes = account.incomes_ordered
+        self.notify(self._incomes)
+        return self._incomes
 
     def update():
         pass
