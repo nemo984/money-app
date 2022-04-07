@@ -1,6 +1,7 @@
+from typing import Optional, List
 from .helpers import Observable
 from .model import *
-from typing import Optional, List
+
 
 class ExpenseSystem(Observable):
     def __init__(self):
@@ -15,8 +16,8 @@ class ExpenseSystem(Observable):
         frequency: Optional[int] = None,
         note: Optional[str] = None,
     ):
-        expense = Expense(owner=owner, category=category, 
-                        amount=amount, frequency_day=frequency, note=note)
+        expense = Expense(owner=owner, category=category,
+                          amount=amount, frequency_day=frequency, note=note)
         expense.save()
         self._expenses.append(expense)
         print("Expenses updated: Notifying observers")
@@ -28,8 +29,8 @@ class ExpenseSystem(Observable):
         self.notify(self._expenses)
         return self._expenses
 
-    def update():
+    def update(self):
         pass
 
-    def delete():
+    def delete(self):
         pass

@@ -1,6 +1,6 @@
+from datetime import datetime, timedelta, date
 from peewee import *
 from playhouse.shortcuts import model_to_dict
-from datetime import datetime, timedelta, date
 
 database = SqliteDatabase(None)
 

@@ -1,7 +1,8 @@
+from typing import Optional, List
+from datetime import datetime
 from .helpers import Observable
 from .model import *
-from typing import Optional
-from datetime import datetime
+
 
 class BudgetSystem(Observable):
     def __init__(self):
@@ -16,7 +17,7 @@ class BudgetSystem(Observable):
         end_date: Optional[datetime] = None,
         note: Optional[str] = None,
     ):
-        budget = Budget(owner=owner, category=category, 
+        budget = Budget(owner=owner, category=category,
                         amount=amount, end_date=end_date, note=note)
         budget.save()
         self._budgets.append(budget)
@@ -29,8 +30,8 @@ class BudgetSystem(Observable):
         self.notify(self._budgets)
         return self._budgets
 
-    def update():
+    def update(self):
         pass
 
-    def delete():
+    def delete(self):
         pass

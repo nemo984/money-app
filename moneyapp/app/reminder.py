@@ -1,7 +1,8 @@
 
+from typing import List
 from .helpers import Observable
 from .model import *
-from typing import List
+
 
 class ReminderSystem(Observable):
     def __init__(self):
@@ -14,7 +15,7 @@ class ReminderSystem(Observable):
         heading: str,
         body: str,
     ):
-        reminder = Reminder(account=owner, heading=heading, body=body) 
+        reminder = Reminder(account=owner, heading=heading, body=body)
         reminder.save()
         self._reminders.append(reminder)
         print("Reminder updated: Notifying observers")

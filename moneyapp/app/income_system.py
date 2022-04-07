@@ -1,6 +1,7 @@
+from typing import Optional, List
 from .helpers import Observable
 from .model import *
-from typing import Optional, List
+
 
 class IncomeSystem(Observable):
     def __init__(self):
@@ -15,8 +16,8 @@ class IncomeSystem(Observable):
         note: Optional[str] = None,
         frequency: Optional[int] = None,
     ):
-        income = Income(owner=owner, category=category, 
-                        amount=amount, note=note, 
+        income = Income(owner=owner, category=category,
+                        amount=amount, note=note,
                         frequency_day=frequency)
         income.save()
         self._incomes.append(income)
