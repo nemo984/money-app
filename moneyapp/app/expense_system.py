@@ -25,7 +25,7 @@ class ExpenseSystem(Observable):
         self.notify(self._expenses)
 
     def get(self, account: Account) -> List[Expense]:
-        self._expenses = account.expenses_ordered
+        self._expenses = list(account.expenses_ordered)
         self.notify(self._expenses)
         return self._expenses
 

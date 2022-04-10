@@ -15,7 +15,7 @@ class IncomeSystem(Observable):
         amount: float,
         note: Optional[str] = None,
         frequency: Optional[int] = None,
-    ):
+    ) -> Income:
         income = Income(owner=owner, category=category,
                         amount=amount, note=note,
                         frequency_day=frequency)
@@ -24,14 +24,36 @@ class IncomeSystem(Observable):
         print("Incomes updated: Notifying observers")
         print(">>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<")
         self.notify(self._incomes)
+        return income
 
     def get(self, account: Account) -> List[Income]:
-        self._incomes = account.incomes_ordered
+        self._incomes = list(account.incomes_ordered)
         self.notify(self._incomes)
         return self._incomes
 
-    def update():
-        pass
+    def update(
+        self,
+        income: Income,
+        category: Optional[IncomeCategory] = None,
+        amount: Optional[float] = None,
+        frequency: Optional[int] = None,
+        note: Optional[str] = None,
+    ) -> Income:
 
-    def delete():
-        pass
+        if category:
+            income.category = category
+        if amount:
+            income.amount = amount
+        if frequency:
+            income.frequency_day = frequency
+        if note:
+            income.note = note
+
+        income.save()
+        self.get(income.owner)
+        return income
+
+    def delete(self, income: Income):
+        owner = income.owner
+        income.delete_instance()
+        self.get(owner)

@@ -74,39 +74,3 @@ class Reminder(BaseModel):
 # database.init('local.db')
 
 database.create_tables([Account, Category, Expense, Budget, IncomeCategory, Income, Reminder])
-
-# #TODO: move somewhere else and do proper test? how to do
-# #for formatting output
-# import pprint
-# pp = pprint.PrettyPrinter(depth=4)
-
-# def test_models():
-#     a1 = Account.create(name="John")
-#     c = Category.create(name="Transportation") #This will be predefined?
-#     c2 = Category.create(name="Shopping")
-#     income_c = IncomeCategory.create(name="Full-Time Job")
-#     income_c2 = IncomeCategory.create(name="Passive Income")
-
-#     expenses = [
-#         {'owner': a1, 'category': c, 'amount': 121314.23, 'note': "submarine ride to college fare", 'frequency_day': 1}, #means every 1 day frequency for this expense
-#         {'owner': a1, 'category': c, 'amount': 14914, 'note': "plane back to home fare", 'frequency_day': 7},
-#         {'owner': a1, 'category': c2, 'amount': 32},
-#     ]
-#     Expense.insert_many(expenses).execute()
-
-#     budgets = [
-#         {'owner': a1, 'category': c, 'amount': 100002320.1014, 'note': "save money with public transportation", 'end_date': date.today() + timedelta(days=30)},
-#         {'owner': a1, 'category': c2, 'amount': 149, 'end_date': date.today() + timedelta(days=7)},
-#     ]
-#     Budget.insert_many(budgets).execute()
-
-#     incomes = [
-#         {'owner': a1, 'category': income_c, 'amount': 0.1014, 'note': "My monthly salary!", 'frequency_day': 28},
-#         {'owner': a1, 'category': income_c2, 'amount': 1000000, 'frequency_day': 28},
-#     ]
-#     Income.insert_many(incomes).execute()
-
-#     pp.pprint(model_to_dict(a1, backrefs=True))
-
-# if config.config['testing']:
-#     test_models()
