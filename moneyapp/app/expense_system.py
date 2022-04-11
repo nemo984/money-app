@@ -29,8 +29,27 @@ class ExpenseSystem(Observable):
         self.notify(self._expenses)
         return self._expenses
 
-    def update(self):
-        pass
+    def update(
+        self,
+        expense: Expense,
+        category: Optional[Category] = None,
+        amount: Optional[float] = None,
+        frequency: Optional[int] = None,
+        note: Optional[str] = None,
+    ):
+        if category:
+            expense.category = category
+        if amount:
+            expense.amount = amount
+        if frequency:
+            expense.frequency_day = frequency
+        if note:
+            expense.note = note
+        expense.save()
+        self.get(expense.owner)
+        return expense
 
-    def delete(self):
-        pass
+    def delete(self, expense: Expense):
+        owner = expense.owner
+        expense.delete_instance()
+        self.get(owner)

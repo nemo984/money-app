@@ -30,8 +30,27 @@ class BudgetSystem(Observable):
         self.notify(self._budgets)
         return self._budgets
 
-    def update(self):
-        pass
+    def update(
+        self,
+        budget: Budget,
+        category: Optional[Category] = None,
+        amount: Optional[float] = None,
+        end_date: Optional[datetime] = None,
+        note: Optional[str] = None,
+    ):
+        if category:
+            budget.category = category
+        if amount:
+            budget.amount = amount
+        if end_date:
+            budget.end_date = end_date
+        if note:
+            budget.note = note
+        budget.save()
+        self.get(budget.owner)
+        return budget
 
-    def delete(self):
-        pass
+    def delete(self, budget: Budget):
+        owner = budget.owner
+        budget.delete_instance()
+        self.get(owner)
