@@ -3,7 +3,6 @@ from datetime import datetime
 from .helpers import Observable
 from .model import *
 
-
 class BudgetSystem(Observable):
     def __init__(self):
         super().__init__()
