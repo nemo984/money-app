@@ -16,7 +16,7 @@ class BudgetSystem(Observable):
         amount: float,
         end_date: Optional[datetime] = None,
         note: Optional[str] = None,
-    ):
+    ) -> Budget:
         budget = Budget(owner=owner, category=category,
                         amount=amount, end_date=end_date, note=note)
         budget.save()
@@ -24,6 +24,7 @@ class BudgetSystem(Observable):
         print("Budget updated: Notifying observers")
         print(">>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<")
         self.notify(self._budgets)
+        return budget
 
     def get(self, account: Account) -> List[Budget]:
         self._budgets = account.budgets_ordered
@@ -37,7 +38,7 @@ class BudgetSystem(Observable):
         amount: Optional[float] = None,
         end_date: Optional[datetime] = None,
         note: Optional[str] = None,
-    ):
+    ) -> Budget:
         if category:
             budget.category = category
         if amount:

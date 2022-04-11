@@ -15,7 +15,7 @@ class ExpenseSystem(Observable):
         amount: float,
         frequency: Optional[int] = None,
         note: Optional[str] = None,
-    ):
+    ) -> Expense:
         expense = Expense(owner=owner, category=category,
                           amount=amount, frequency_day=frequency, note=note)
         expense.save()
@@ -23,6 +23,7 @@ class ExpenseSystem(Observable):
         print("Expenses updated: Notifying observers")
         print(">>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<")
         self.notify(self._expenses)
+        return expense
 
     def get(self, account: Account) -> List[Expense]:
         self._expenses = list(account.expenses_ordered)
@@ -36,7 +37,7 @@ class ExpenseSystem(Observable):
         amount: Optional[float] = None,
         frequency: Optional[int] = None,
         note: Optional[str] = None,
-    ):
+    ) -> Expense:
         if category:
             expense.category = category
         if amount:
