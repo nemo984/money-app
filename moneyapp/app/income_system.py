@@ -1,6 +1,6 @@
 from typing import Optional, List
 from .helpers import Observable
-from .model import *
+from .model import Income, IncomeCategory, Account 
 
 
 class IncomeSystem(Observable):

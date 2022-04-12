@@ -1,7 +1,7 @@
 
 from typing import List
 from .helpers import Observable
-from .model import *
+from .model import Reminder, Account
 
 
 class ReminderSystem(Observable):

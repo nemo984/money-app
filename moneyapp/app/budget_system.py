@@ -1,7 +1,7 @@
 from typing import Optional, List
 from datetime import datetime
 from .helpers import Observable
-from .model import *
+from .model import Budget, Category, Account
 
 class BudgetSystem(Observable):
     def __init__(self):
