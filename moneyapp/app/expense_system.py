@@ -20,8 +20,6 @@ class ExpenseSystem(Observable):
                           amount=amount, frequency_day=frequency, note=note)
         expense.save()
         self._expenses.append(expense)
-        print("Expenses updated: Notifying observers")
-        print(">>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<")
         self.notify(self._expenses)
         return expense
 

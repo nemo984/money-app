@@ -18,8 +18,6 @@ class ReminderSystem(Observable):
         reminder = Reminder(owner=owner, heading=heading, message=message)
         reminder.save()
         self._reminders.append(reminder)
-        print("Reminder updated: Notifying observers")
-        print(">>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<")
         self.notify(self._reminders)
         return reminder
 

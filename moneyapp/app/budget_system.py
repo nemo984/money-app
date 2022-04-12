@@ -20,8 +20,6 @@ class BudgetSystem(Observable):
                         amount=amount, end_date=end_date, note=note)
         budget.save()
         self._budgets.append(budget)
-        print("Budget updated: Notifying observers")
-        print(">>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<")
         self.notify(self._budgets)
         return budget
 

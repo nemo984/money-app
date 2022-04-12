@@ -1,4 +1,5 @@
 import unittest
+import os
 import random
 import string
 import decimal
@@ -8,6 +9,7 @@ from datetime import datetime, timedelta
 from app.income_system import IncomeSystem
 from app.budget_system import BudgetSystem
 from app.expense_system import ExpenseSystem
+from app.account import AccountSystem
 from app.reminder import ReminderSystem
 from app.model import Income, Account, IncomeCategory, Expense, Category, Budget
 
@@ -265,6 +267,42 @@ class TestReminderSystem(unittest.TestCase):
             reminder = self.system.read(re)
             self.assertTrue(reminder.read)
 
+script_dir = os.path.dirname(__file__) 
+class TestAccountSystem(unittest.TestCase):
+    def setUp(self):
+        self.system = AccountSystem()
+        @dataclass
+        class AccountTestData:
+            name: str
+            profile_file_path: Optional[str] = None
+
+        self.test_accounts = [
+            AccountTestData(randomString(10)),
+            AccountTestData(randomString(15), os.path.join(os.path.dirname(__file__), "test_images/rabbit.png"))
+        ]
+        self.set_up_test_add()
+
+    def set_up_test_add(self):
+        for ac in self.test_accounts:
+            account = self.system.add(ac.name, ac.profile_file_path)
+            self.assertEqual(ac.name, account.name)
+            if ac.profile_file_path:
+                with open(ac.profile_file_path, 'rb') as file:
+                    self.assertEqual(file.read(), account.profile_image)
+
+    def tearDown(self):
+        self.test_delete()
+    
+    def test_delete(self):
+        accounts = self.system.get()
+        for ac in accounts:
+            self.system.delete(ac)
+        accountsAfter = self.system.get()
+        self.assertEqual(0, len(accountsAfter))
+
+    def test_get(self):
+        accounts = self.system.get()
+        self.assertEqual(len(self.test_accounts), len(accounts))
 
 
 if __name__ == "__main__":
