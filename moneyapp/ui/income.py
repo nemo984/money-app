@@ -6,7 +6,7 @@ from ..app.income_system import IncomeSystem
 
 class IncomeUI(Observer):
     
-    def __init__(self, s: IncomeSystem):
+    def __init__(self, ui, s: IncomeSystem):
         self.ui = 0
         self.system = s
 
@@ -15,3 +15,4 @@ class IncomeUI(Observer):
         for income in incomes:
             print(f"{income.created_date} {income.owner} {income.category} {income.amount} {income.frequency_day} {income.note}")
         print("================")
+    

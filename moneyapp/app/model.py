@@ -64,7 +64,7 @@ class Income(BaseModel):
 class Reminder(BaseModel):
     owner = ForeignKeyField(Account, backref='reminders')
     heading = CharField(max_length=50)
-    body = CharField()
+    message = CharField()
     read = BooleanField(default=False)
     created_date = DateTimeField(default=datetime.now)
 

@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 from app.income_system import IncomeSystem
 from app.budget_system import BudgetSystem
 from app.expense_system import ExpenseSystem
+from app.reminder import ReminderSystem
 from app.model import Income, Account, IncomeCategory, Expense, Category, Budget
 
 
@@ -136,6 +137,7 @@ class TestBudgetSystem(unittest.TestCase):
         for b in self.test_budgets:
             budget = self.system.add(
                 self.owner, b.category, b.amount, b.end_date, b.note)
+
             self.assertEqual(self.owner, budget.owner)
             self.assertEqual(b.category, budget.category)
             self.assertAlmostEqual(b.amount, budget.amount)
@@ -227,6 +229,42 @@ class TestExpenseSystem(unittest.TestCase):
             self.system.delete(e)
         expensesAfter = self.system.get(self.owner)
         self.assertEqual(len(expensesAfter), 0)
+
+class TestReminderSystem(unittest.TestCase):
+
+    def setUp(self):
+        self.system = ReminderSystem()
+        self.owner = Account(name=randomString(10))
+        self.owner.save()
+
+        @dataclass
+        class ReminderTestData:
+            heading: str
+            message: str
+
+        self.test_reminders = []
+        for _ in range(10):
+            self.test_reminders.append(ReminderTestData(randomString(15), randomString(20)))
+        self.test_add()
+    
+    def test_add(self):
+        for re in self.test_reminders:
+            reminder = self.system.add(self.owner, re.heading, re.message)
+            self.assertEqual(self.owner, reminder.owner)
+            self.assertEqual(re.heading, reminder.heading)
+            self.assertEqual(re.message, reminder.message)
+            self.assertFalse(reminder.read)
+
+    def test_get(self):
+        reminders = self.system.get(self.owner)
+        self.assertEqual(len(self.test_reminders), len(reminders))
+
+    def test_read(self):
+        reminders = self.system.get(self.owner)
+        for re in reminders:
+            reminder = self.system.read(re)
+            self.assertTrue(reminder.read)
+
 
 
 if __name__ == "__main__":
