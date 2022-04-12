@@ -11,7 +11,6 @@ from app.budget_system import BudgetSystem
 from app.expense_system import ExpenseSystem
 from app.account import AccountSystem
 from app.reminder import ReminderSystem
-from app.model import Income, Account, IncomeCategory, Expense, Category, Budget
 
 
 def randomString(N):
@@ -19,7 +18,7 @@ def randomString(N):
 
 
 def randomInt(N):
-    return random.randrange(N)
+    return random.randrange(1, N)
 
 
 def randomAmount():
@@ -232,6 +231,7 @@ class TestExpenseSystem(unittest.TestCase):
         expensesAfter = self.system.get(self.owner)
         self.assertEqual(len(expensesAfter), 0)
 
+
 class TestReminderSystem(unittest.TestCase):
 
     def setUp(self):
@@ -246,9 +246,10 @@ class TestReminderSystem(unittest.TestCase):
 
         self.test_reminders = []
         for _ in range(10):
-            self.test_reminders.append(ReminderTestData(randomString(15), randomString(20)))
+            self.test_reminders.append(ReminderTestData(
+                randomString(15), randomString(20)))
         self.test_add()
-    
+
     def test_add(self):
         for re in self.test_reminders:
             reminder = self.system.add(self.owner, re.heading, re.message)
@@ -264,13 +265,17 @@ class TestReminderSystem(unittest.TestCase):
     def test_read(self):
         reminders = self.system.get(self.owner)
         for re in reminders:
-            reminder = self.system.read(re)
+            reminder = self.system.update(re)
             self.assertTrue(reminder.read)
 
-script_dir = os.path.dirname(__file__) 
+
+script_dir = os.path.dirname(__file__)
+
+
 class TestAccountSystem(unittest.TestCase):
     def setUp(self):
         self.system = AccountSystem()
+
         @dataclass
         class AccountTestData:
             name: str
@@ -278,7 +283,8 @@ class TestAccountSystem(unittest.TestCase):
 
         self.test_accounts = [
             AccountTestData(randomString(10)),
-            AccountTestData(randomString(15), os.path.join(os.path.dirname(__file__), "test_images/rabbit.png"))
+            AccountTestData(randomString(15), os.path.join(
+                os.path.dirname(__file__), "test_images/rabbit.png"))
         ]
         self.set_up_test_add()
 
@@ -292,7 +298,7 @@ class TestAccountSystem(unittest.TestCase):
 
     def tearDown(self):
         self.test_delete()
-    
+
     def test_delete(self):
         accounts = self.system.get()
         for ac in accounts:

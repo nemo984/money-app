@@ -26,7 +26,7 @@ class ReminderSystem(Observable):
         self.notify(self._reminders)
         return self._reminders
 
-    def read(self, reminder: Reminder) -> Reminder:
+    def update(self, reminder: Reminder) -> Reminder:
         owner = reminder.owner
         reminder.read = True
         reminder.save()
