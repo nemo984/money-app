@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import *
 import sys
 import os
-from moneyapp import MainApp
+from moneyapp import AccountWindow
 
 
 
@@ -34,7 +34,6 @@ from moneyapp import MainApp
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-
-    window = MainApp()
+    window = AccountWindow()
     window.show()
     sys.exit(app.exec_())
