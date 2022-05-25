@@ -10,16 +10,18 @@ from .expense import ExpenseUI
 from .uipy.Mono import Ui_MainWindow
 import os
 
-class MoneyAppUI:
+class MoneyAppUI(QMainWindow):
     def __init__(
         self,
-        main_window,
         income_system: IncomeSystem,
         budget_system: BudgetSystem,
         expense_system: ExpenseSystem,
+        parent = None
     ):
+        super(MoneyAppUI, self).__init__(parent)
+        self.parent = parent
         self.ui = Ui_MainWindow()
-        self.ui.setupUi(main_window)
+        self.ui.setupUi(self)
         budget_ui = BudgetUI(budget_system)
         income_ui = IncomeUI(1, income_system)
         expense_ui = ExpenseUI(expense_system)

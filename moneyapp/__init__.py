@@ -16,21 +16,20 @@ import os
 import pickle
 from .app.account import AccountSystem
 
-class MainApp(QMainWindow):
-    def __init__(self, parent=None):
-        super(MainApp, self).__init__(parent)
+class MainApp:
+    def __init__(self, account_id=None, parent=None):
         self.parent = parent
         self.income_system = IncomeSystem()
         self.budget_system = BudgetSystem()
         self.expense_system = ExpenseSystem()
-        self.ui = MoneyAppUI(self, self.income_system, self.budget_system, self.expense_system)
+        self.ui = MoneyAppUI(self.income_system, self.budget_system, self.expense_system)
+
+    def show(self):
+        self.ui.show()
 
     # def closeEvent(self, event):
     #     if self.parent:
     #         self.parent.close()
-        
-
-
 
 class AccountWindow(QMainWindow):
     def __init__(self, parent=None):
