@@ -31,6 +31,9 @@ class AccountSystem(Observable):
         self.notify(self._accounts)
         return self._accounts
 
+    def getByID(self, id) -> Account:
+        return Account.get(Account.id == id)
+
     def update(
         self,
         account: Account,

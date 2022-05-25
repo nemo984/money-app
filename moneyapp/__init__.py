@@ -22,7 +22,7 @@ class MainApp:
         self.income_system = IncomeSystem()
         self.budget_system = BudgetSystem()
         self.expense_system = ExpenseSystem()
-        self.ui = MoneyAppUI(self.income_system, self.budget_system, self.expense_system)
+        self.ui = MoneyAppUI(account_id, self.income_system, self.budget_system, self.expense_system)
 
     def show(self):
         self.ui.show()
@@ -57,7 +57,7 @@ class AccountWindow(QMainWindow):
         if account_id == -1:
             return False
         #TODO: pass in with account_id, last_tab
-        self.dialog = MainApp(parent=self)
+        self.dialog = MainApp(account_id=account_id, parent=self)
         self.dialog.show()
         self.hide()
         return True
@@ -170,7 +170,7 @@ class LoginPopUp(QDialog):
         if self.account.login(self.pwd_lineEdit.text().strip()):
             save_staySignIn(self.account.id, -1, self.stayLoggedIn)
             #also pass in the account details
-            self.dialog = MainApp(parent=self)
+            self.dialog = MainApp(account_id=self.account.id, parent=self)
             self.dialog.show()
             self.hide()
             self.parent.hide()

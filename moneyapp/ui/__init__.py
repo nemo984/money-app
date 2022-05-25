@@ -4,6 +4,7 @@ from PySide6.QtGui import *
 from ..app.budget_system import BudgetSystem
 from ..app.income_system import IncomeSystem
 from ..app.expense_system import ExpenseSystem
+from ..app.account import AccountSystem
 from .budget import BudgetUI
 from .income import IncomeUI
 from .expense import ExpenseUI
@@ -13,6 +14,7 @@ import os
 class MoneyAppUI(QMainWindow):
     def __init__(
         self,
+        account_id: int,
         income_system: IncomeSystem,
         budget_system: BudgetSystem,
         expense_system: ExpenseSystem,
@@ -29,6 +31,12 @@ class MoneyAppUI(QMainWindow):
         budget_system.add_observer(budget_ui)
         income_system.add_observer(income_ui)
         expense_system.add_observer(expense_ui)
+
+        account = AccountSystem().getByID(account_id)
+        self.ui.name_label.setText(account.name)
+        qimg = QImage.fromData(account.profile_image)
+        pixmap = QPixmap.fromImage(qimg)
+        self.ui.profileImg_label.setPixmap(pixmap)
 
         self.ui.Overview_btn.clicked.connect(self.switch_tab)
         self.ui.Overview_btn.setStyleSheet("""
@@ -53,8 +61,6 @@ class MoneyAppUI(QMainWindow):
         self.prev_tab = self.ui.Overview_btn
 
         self.ui.add_Budget.clicked.connect(self.Add_budget)
-        pixmap = QPixmap()
-        self.ui.profile_label.setPixmap(QPixmap(os.getcwd() + "/rabbit.png"))
 
     def switch_tab(self):
         tabs = {"Overview":0, "Budget":1, "Income":2, "Expense":3, "Analysis":4}
@@ -79,6 +85,8 @@ class MoneyAppUI(QMainWindow):
         """)
         self.prev_tab = self.sender()
 
+
+    #in budget.py
     def Add_budget(self):
         self.dialog = QDialog(self)
         self.pop.setupUi(self.dialog)
