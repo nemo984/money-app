@@ -16,12 +16,17 @@ import os
 import pickle
 
 class MainApp(QMainWindow):
-    def __init__(self):
-        QMainWindow.__init__(self)
+    def __init__(self, parent=None):
+        super(MainApp, self).__init__(parent)
+        self.parent = parent
         self.income_system = IncomeSystem()
         self.budget_system = BudgetSystem()
         self.expense_system = ExpenseSystem()
         self.ui = MoneyAppUI(self, self.income_system, self.budget_system, self.expense_system)
+
+    # def closeEvent(self, event):
+    #     if self.parent:
+    #         self.parent.close()
 
 class AccountWindow(QMainWindow):
     def __init__(self, parent=None):
@@ -48,7 +53,7 @@ class AccountWindow(QMainWindow):
         if account_id == -1:
             return False
         #TODO: pass in with account_id, last_tab
-        self.dialog = MainApp()
+        self.dialog = MainApp(parent=self)
         self.dialog.show()
         self.hide()
         return True
@@ -151,7 +156,7 @@ class LoginPopUp(QDialog):
         if self.account.login(self.pwd_lineEdit.text().strip()):
             save_staySignIn(self.account.id, -1, self.stayLoggedIn)
             #also pass in the account details
-            self.dialog = MainApp()
+            self.dialog = MainApp(parent=self)
             self.dialog.show()
             self.hide()
             self.parent.hide()
