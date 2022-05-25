@@ -20,7 +20,8 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QDateEdit, QFrame,
     QListWidget, QListWidgetItem, QMainWindow, QPushButton,
     QScrollArea, QSizePolicy, QStackedWidget, QVBoxLayout,
     QWidget)
-from .resource_rc import *
+import resource_rc
+import resource_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -277,12 +278,26 @@ class Ui_MainWindow(object):
         self.frame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_19 = QVBoxLayout(self.frame)
         self.verticalLayout_19.setObjectName(u"verticalLayout_19")
+        self.verticalLayout_19.setContentsMargins(-1, -1, -1, 0)
         self.widget_8 = QWidget(self.frame)
         self.widget_8.setObjectName(u"widget_8")
         self.widget_8.setMinimumSize(QSize(0, 0))
         self.widget_8.setMaximumSize(QSize(16777215, 16777215))
         self.verticalLayout_11 = QVBoxLayout(self.widget_8)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
+        self.comboBox = QComboBox(self.widget_8)
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.setObjectName(u"comboBox")
+        self.comboBox.setMinimumSize(QSize(100, 0))
+        self.comboBox.setMaximumSize(QSize(50, 16777215))
+
+        self.verticalLayout_11.addWidget(self.comboBox, 0, Qt.AlignLeft)
+
         self.pie_widdget = QWidget(self.widget_8)
         self.pie_widdget.setObjectName(u"pie_widdget")
         self.pie_widdget.setMinimumSize(QSize(445, 369))
@@ -304,11 +319,15 @@ class Ui_MainWindow(object):
         self.frame_4.setFrameShadow(QFrame.Raised)
         self.verticalLayout_8 = QVBoxLayout(self.frame_4)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
+        self.verticalLayout_8.setContentsMargins(20, 0, 0, 0)
         self.widget_5 = QWidget(self.frame_4)
         self.widget_5.setObjectName(u"widget_5")
         self.verticalLayout_9 = QVBoxLayout(self.widget_5)
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
-        self.Notification_widdget = QWidget(self.widget_5)
+
+        self.verticalLayout_8.addWidget(self.widget_5, 0, Qt.AlignLeft)
+
+        self.Notification_widdget = QWidget(self.frame_4)
         self.Notification_widdget.setObjectName(u"Notification_widdget")
         self.Notification_widdget.setMinimumSize(QSize(445, 207))
         self.Notification_widdget.setMaximumSize(QSize(445, 207))
@@ -330,10 +349,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_20.addWidget(self.label_6)
 
 
-        self.verticalLayout_9.addWidget(self.Notification_widdget)
-
-
-        self.verticalLayout_8.addWidget(self.widget_5, 0, Qt.AlignLeft)
+        self.verticalLayout_8.addWidget(self.Notification_widdget)
 
         self.frame_3 = QFrame(self.page)
         self.frame_3.setObjectName(u"frame_3")
@@ -1090,6 +1106,13 @@ class Ui_MainWindow(object):
         self.Analysis_btn.setText(QCoreApplication.translate("MainWindow", u"Analysis", None))
         self.MenuButton.setText("")
         self.tab_level.setText(QCoreApplication.translate("MainWindow", u"Overview", None))
+        self.comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"All-Time", None))
+        self.comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Daily", None))
+        self.comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Weekly", None))
+        self.comboBox.setItemText(3, QCoreApplication.translate("MainWindow", u"Monthly", None))
+        self.comboBox.setItemText(4, QCoreApplication.translate("MainWindow", u"Yearly", None))
+        self.comboBox.setItemText(5, "")
+
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Notification", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Expense", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"  Budget", None))

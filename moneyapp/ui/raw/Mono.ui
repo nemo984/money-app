@@ -502,6 +502,9 @@ background-color:transparent;
             <enum>QFrame::Raised</enum>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_19">
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <item>
              <widget class="QWidget" name="widget_8" native="true">
               <property name="minimumSize">
@@ -517,6 +520,52 @@ background-color:transparent;
                </size>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_11">
+               <item alignment="Qt::AlignLeft">
+                <widget class="QComboBox" name="comboBox">
+                 <property name="minimumSize">
+                  <size>
+                   <width>100</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>50</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>All-Time</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Daily</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Weekly</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Monthly</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Yearly</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </item>
+                </widget>
+               </item>
                <item>
                 <widget class="QWidget" name="pie_widdget" native="true">
                  <property name="minimumSize">
@@ -572,32 +621,62 @@ background-color:transparent;
             <enum>QFrame::Raised</enum>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_8">
+            <property name="leftMargin">
+             <number>20</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <item alignment="Qt::AlignLeft">
              <widget class="QWidget" name="widget_5" native="true">
-              <layout class="QVBoxLayout" name="verticalLayout_9">
-               <item>
-                <widget class="QWidget" name="Notification_widdget" native="true">
-                 <property name="minimumSize">
-                  <size>
-                   <width>445</width>
-                   <height>207</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>445</width>
-                   <height>207</height>
-                  </size>
-                 </property>
-                 <widget class="QFrame" name="frame_8">
-                  <property name="geometry">
-                   <rect>
-                    <x>10</x>
-                    <y>0</y>
-                    <width>141</width>
-                    <height>41</height>
-                   </rect>
-                  </property>
+              <layout class="QVBoxLayout" name="verticalLayout_9"/>
+             </widget>
+            </item>
+            <item>
+             <widget class="QWidget" name="Notification_widdget" native="true">
+              <property name="minimumSize">
+               <size>
+                <width>445</width>
+                <height>207</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>445</width>
+                <height>207</height>
+               </size>
+              </property>
+              <widget class="QFrame" name="frame_8">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>0</y>
+                 <width>141</width>
+                 <height>41</height>
+                </rect>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_20">
+                <item>
+                 <widget class="QLabel" name="label_6">
                   <property name="font">
                    <font>
                     <pointsize>12</pointsize>
@@ -605,32 +684,13 @@ background-color:transparent;
                     <bold>true</bold>
                    </font>
                   </property>
-                  <property name="frameShape">
-                   <enum>QFrame::StyledPanel</enum>
+                  <property name="text">
+                   <string>Notification</string>
                   </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Raised</enum>
-                  </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_20">
-                   <item>
-                    <widget class="QLabel" name="label_6">
-                     <property name="font">
-                      <font>
-                       <pointsize>12</pointsize>
-                       <weight>75</weight>
-                       <bold>true</bold>
-                      </font>
-                     </property>
-                     <property name="text">
-                      <string>Notification</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
                  </widget>
-                </widget>
-               </item>
-              </layout>
+                </item>
+               </layout>
+              </widget>
              </widget>
             </item>
            </layout>
