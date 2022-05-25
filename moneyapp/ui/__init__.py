@@ -24,7 +24,7 @@ class MoneyAppUI(QMainWindow):
         self.parent = parent
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        budget_ui = BudgetUI(budget_system)
+        budget_ui = BudgetUI(self.ui, budget_system, self)
         income_ui = IncomeUI(1, income_system)
         expense_ui = ExpenseUI(expense_system)
         
@@ -60,7 +60,6 @@ class MoneyAppUI(QMainWindow):
         self.ui.Budget_btn.clicked.connect(self.switch_tab)
         self.prev_tab = self.ui.Overview_btn
 
-        self.ui.add_Budget.clicked.connect(self.Add_budget)
 
     def switch_tab(self):
         tabs = {"Overview":0, "Budget":1, "Income":2, "Expense":3, "Analysis":4}
@@ -84,22 +83,6 @@ class MoneyAppUI(QMainWindow):
         }
         """)
         self.prev_tab = self.sender()
-
-
-    #in budget.py
-    def Add_budget(self):
-        self.dialog = QDialog(self)
-        self.pop.setupUi(self.dialog)
-        self.pop.create_budget.clicked.connect(self.close_dia)
-        self.dialog.show()
-    
-    def close_dia(self):
-        date = self.pop.date_entry.text()
-        head = self.pop.name_entry.text()
-        amount = int(self.pop.amount_entry.text())       
-        b = BudgetItem(self.ui.verticalLayout_19, head, amount, date)
-        b.add()
-        self.dialog.close()
 
     def closeEvent(self, event):
         if self.parent:

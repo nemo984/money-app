@@ -20,8 +20,7 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QDateEdit, QFrame,
     QListWidget, QListWidgetItem, QMainWindow, QPushButton,
     QScrollArea, QSizePolicy, QStackedWidget, QVBoxLayout,
     QWidget)
-import resource_rc
-import resource_rc
+from .resource_rc import * 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -447,10 +446,10 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 898, 522))
         self.verticalLayout_24 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_24.setObjectName(u"verticalLayout_24")
-        self.widget_7 = QWidget(self.scrollAreaWidgetContents)
-        self.widget_7.setObjectName(u"widget_7")
+        self.budget_list = QWidget(self.scrollAreaWidgetContents)
+        self.budget_list.setObjectName(u"budget_list")
 
-        self.verticalLayout_24.addWidget(self.widget_7)
+        self.verticalLayout_24.addWidget(self.budget_list)
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
@@ -1088,7 +1087,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

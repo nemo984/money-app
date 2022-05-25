@@ -46,7 +46,7 @@ border-radius: 10px;
        <string>Cancel</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="addExpense_btn">
+     <widget class="QPushButton" name="confirm_btn">
       <property name="geometry">
        <rect>
         <x>290</x>
@@ -56,7 +56,7 @@ border-radius: 10px;
        </rect>
       </property>
       <property name="text">
-       <string>Add Expanse</string>
+       <string>Confirm</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_5">
@@ -64,13 +64,14 @@ border-radius: 10px;
        <rect>
         <x>210</x>
         <y>10</y>
-        <width>131</width>
-        <height>16</height>
+        <width>141</width>
+        <height>21</height>
        </rect>
       </property>
       <property name="font">
        <font>
         <pointsize>11</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -78,7 +79,7 @@ border-radius: 10px;
        <string>Note(Optional)</string>
       </property>
      </widget>
-     <widget class="QTextEdit" name="textEdit">
+     <widget class="QTextEdit" name="note_entry">
       <property name="geometry">
        <rect>
         <x>210</x>
@@ -116,6 +117,7 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -132,6 +134,7 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -141,7 +144,7 @@ border-radius: 10px;
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox">
+        <widget class="QComboBox" name="category_comboBox">
          <item>
           <property name="text">
            <string>Food</string>
@@ -199,6 +202,7 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -208,13 +212,14 @@ border-radius: 10px;
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit"/>
+        <widget class="QLineEdit" name="amount_entry"/>
        </item>
        <item>
         <widget class="QLabel" name="label_7">
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -224,13 +229,14 @@ border-radius: 10px;
         </widget>
        </item>
        <item>
-        <widget class="QDateEdit" name="dateEdit_2"/>
+        <widget class="QDateEdit" name="startDate_entry"/>
        </item>
        <item>
         <widget class="QLabel" name="label_4">
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -240,7 +246,7 @@ border-radius: 10px;
         </widget>
        </item>
        <item>
-        <widget class="QDateEdit" name="dateEdit"/>
+        <widget class="QDateEdit" name="endDate_entry"/>
        </item>
       </layout>
      </widget>

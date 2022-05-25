@@ -465,7 +465,7 @@ background-color:transparent;
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="page">
           <widget class="QFrame" name="frame">
@@ -897,7 +897,7 @@ background-color:transparent;
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_24">
                    <item>
-                    <widget class="QWidget" name="widget_7" native="true"/>
+                    <widget class="QWidget" name="budget_list" native="true"/>
                    </item>
                   </layout>
                  </widget>
