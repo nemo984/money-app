@@ -167,7 +167,8 @@ class Ui_MainWindow(object):
         self.back_btn.setStyleSheet(u"")
         self.warning_label = QLabel(self.create_page)
         self.warning_label.setObjectName(u"warning_label")
-        self.warning_label.setGeometry(QRect(200, 200, 181, 21))
+        self.warning_label.setGeometry(QRect(260, 270, 291, 21))
+        self.warning_label.setStyleSheet(u"color: red;")
         self.stackedWidget.addWidget(self.create_page)
 
         self.verticalLayout.addWidget(self.stackedWidget)
@@ -176,7 +177,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

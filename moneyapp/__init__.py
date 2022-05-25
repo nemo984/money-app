@@ -66,7 +66,7 @@ class AccountWindow(QMainWindow):
         print(accounts)
         for acc in accounts:
             item = QListWidgetItem()
-            account = AccountItem(id=acc.id, name=acc.name, last_login=str(acc.created_date), 
+            account = AccountItem(id=acc.id, name=acc.name, created_date=acc.created_date, last_login=acc.created_date, 
                                   hash_pwd=acc.password, imageBlob=acc.profile_image)
             item.setSizeHint(account.size())
             self.ui.account_listWidget.addItem(item)
@@ -115,7 +115,7 @@ class AccountWindow(QMainWindow):
 
         createdAccount = self.system.add(name=name, password=password, profile_image_path=self.imageFilePath)
         #use account details from the createdAccount
-        accountItem = AccountItem(id=createdAccount.id, name=name, last_login=str(createdAccount.created_date), 
+        accountItem = AccountItem(id=createdAccount.id, name=name, created_date=createdAccount.created_date, last_login=createdAccount.created_date, 
                                   hash_pwd=createdAccount.password, imageFilePath=self.imageFilePath)
         self.add_account(accountItem)
         self.login_tab()
@@ -127,14 +127,15 @@ class AccountWindow(QMainWindow):
         self.ui.profile_label.setPixmap(QPixmap())
 
 class AccountItem(QWidget):
-    def __init__(self, id, name, last_login, hash_pwd, imageFilePath = None, imageBlob=None):
+    def __init__(self, id, name, created_date, last_login, hash_pwd, imageFilePath = None, imageBlob=None):
         super(AccountItem, self).__init__()
         self.id = id
         self.hash_pwd = hash_pwd
         self.wid = Ui_account_form()
         self.wid.setupUi(self)
         self.wid.name_label.setText(name)
-        self.wid.date_label.setText(last_login)
+        self.wid.last_login_label.setText(created_date.strftime("%m/%d/%Y, %H:%M:%S"))
+        self.wid.created_date_label.setText(last_login.strftime("%m/%d/%Y, %H:%M:%S"))
         if imageFilePath is not None:
             self.wid.profile_label.setPixmap(QPixmap(imageFilePath))
         if imageBlob is not None:
@@ -174,6 +175,7 @@ class LoginPopUp(QDialog):
         else:
             QMessageBox.warning(
                 self, 'Error', 'Incorrect password')
+
 
 
 def load_id():

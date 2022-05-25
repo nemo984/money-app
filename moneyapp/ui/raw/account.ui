@@ -59,7 +59,7 @@ background-color: #FFFFFF;
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="login_page">
        <property name="styleSheet">
@@ -329,11 +329,14 @@ background-color: #FFFFFF;
        <widget class="QLabel" name="warning_label">
         <property name="geometry">
          <rect>
-          <x>200</x>
-          <y>200</y>
-          <width>181</width>
+          <x>260</x>
+          <y>270</y>
+          <width>291</width>
           <height>21</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: red;</string>
         </property>
         <property name="text">
          <string/>
