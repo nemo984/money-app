@@ -60,6 +60,7 @@ class Income(BaseModel):
     frequency_day = IntegerField(null=True)
     note = TextField(null=True)
     created_date = DateTimeField(default=datetime.now)
+    updated_date = DateTimeField()
 
 class Reminder(BaseModel):
     owner = ForeignKeyField(Account, backref='reminders')
@@ -67,6 +68,11 @@ class Reminder(BaseModel):
     message = CharField()
     read = BooleanField(default=False)
     created_date = DateTimeField(default=datetime.now)
+
+class AccountMonthlyIncome(BaseModel):
+    owner = ForeignKeyField(Account, backref='monthly_incomes')
+    amount = DecimalField(14,2)
+    month = IntegerField()
 
 # if config.config['testing']:
     database.init(':memory:')
