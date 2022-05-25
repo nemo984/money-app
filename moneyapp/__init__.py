@@ -28,6 +28,9 @@ class MainApp(QMainWindow):
     # def closeEvent(self, event):
     #     if self.parent:
     #         self.parent.close()
+        
+
+
 
 class AccountWindow(QMainWindow):
     def __init__(self, parent=None):

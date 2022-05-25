@@ -1,5 +1,6 @@
 from PySide6 import QtWidgets
 from PySide6.QtWidgets import *
+from PySide6.QtGui import *
 from ..app.budget_system import BudgetSystem
 from ..app.income_system import IncomeSystem
 from ..app.expense_system import ExpenseSystem
@@ -7,6 +8,7 @@ from .budget import BudgetUI
 from .income import IncomeUI
 from .expense import ExpenseUI
 from .uipy.Mono import Ui_MainWindow
+import os
 
 class MoneyAppUI:
     def __init__(
@@ -26,5 +28,71 @@ class MoneyAppUI:
         income_system.add_observer(income_ui)
         expense_system.add_observer(expense_ui)
 
+        self.ui.Overview_btn.clicked.connect(self.switch_tab)
+        self.ui.Overview_btn.setStyleSheet("""
+        QPushButton {
+            background-color: #2B5DD1;
+            color: #FFFFFF;
+            border-style: outset;
+            padding: 2px;
+            font: bold 20px;
+            border-width: 6px;
+            border-radius: 10px;
+            border-color: #2752B8;
+        }
+        QPushButton:hover {
+            background-color: lightgreen;
+        }
+        """)
+        self.ui.Expense_btn.clicked.connect(self.switch_tab)
+        self.ui.Income_btn.clicked.connect(self.switch_tab)
+        self.ui.Analysis_btn.clicked.connect(self.switch_tab)
+        self.ui.Budget_btn.clicked.connect(self.switch_tab)
+        self.prev_tab = self.ui.Overview_btn
+
+        self.ui.add_Budget.clicked.connect(self.Add_budget)
+        pixmap = QPixmap()
+        self.ui.profile_label.setPixmap(QPixmap(os.getcwd() + "/rabbit.png"))
+
+    def switch_tab(self):
+        tabs = {"Overview":0, "Budget":1, "Income":2, "Expense":3, "Analysis":4}
+        self.prev_tab.setStyleSheet("background-color: transparent")
+        text = self.sender().text()
+        self.ui.stackedWidget.setCurrentIndex(tabs[text])
+        self.ui.tab_level.setText(text)
+        self.sender().setStyleSheet("""
+        QPushButton {
+            background-color: #2B5DD1;
+            color: #FFFFFF;
+            border-style: outset;
+            padding: 2px;
+            font: bold 20px;
+            border-width: 6px;
+            border-radius: 10px;
+            border-color: #2752B8;
+        }
+        QPushButton:hover {
+            background-color: lightgreen;
+        }
+        """)
+        self.prev_tab = self.sender()
+
+    def Add_budget(self):
+        self.dialog = QDialog(self)
+        self.pop.setupUi(self.dialog)
+        self.pop.create_budget.clicked.connect(self.close_dia)
+        self.dialog.show()
+    
+    def close_dia(self):
+        date = self.pop.date_entry.text()
+        head = self.pop.name_entry.text()
+        amount = int(self.pop.amount_entry.text())       
+        b = BudgetItem(self.ui.verticalLayout_19, head, amount, date)
+        b.add()
+        self.dialog.close()
+
+    def closeEvent(self, event):
+        if self.parent:
+            self.parent.close()
 
 

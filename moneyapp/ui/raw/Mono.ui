@@ -142,12 +142,30 @@ background-color:transparent;
             </property>
             <layout class="QGridLayout" name="gridLayout">
              <item row="0" column="0" rowspan="2">
-              <widget class="QLabel" name="label_3">
+              <widget class="QLabel" name="profile_label">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>70</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>70</width>
+                 <height>70</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>70</width>
+                 <height>70</height>
+                </size>
+               </property>
                <property name="text">
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap>:/black/icon/White/image.svg</pixmap>
+                <pixmap resource="resource.qrc">:/black/icon/White/image.svg</pixmap>
                </property>
               </widget>
              </item>
@@ -181,7 +199,7 @@ background-color:transparent;
                 <string/>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="resource.qrc">
                  <normaloff>:/black/icon/White/settings.svg</normaloff>:/black/icon/White/settings.svg</iconset>
                </property>
                <property name="iconSize">
@@ -236,7 +254,7 @@ background-color:transparent;
                 <string>Overview</string>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="resource.qrc">
                  <normaloff>:/black/icon/White/home.svg</normaloff>:/black/icon/White/home.svg</iconset>
                </property>
                <property name="iconSize">
@@ -252,6 +270,7 @@ background-color:transparent;
                <property name="font">
                 <font>
                  <pointsize>16</pointsize>
+                 <weight>50</weight>
                  <bold>false</bold>
                 </font>
                </property>
@@ -259,7 +278,7 @@ background-color:transparent;
                 <string>Budget</string>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="resource.qrc">
                  <normaloff>:/black/icon/White/dollar-sign.svg</normaloff>:/black/icon/White/dollar-sign.svg</iconset>
                </property>
                <property name="iconSize">
@@ -275,6 +294,7 @@ background-color:transparent;
                <property name="font">
                 <font>
                  <pointsize>16</pointsize>
+                 <weight>50</weight>
                  <bold>false</bold>
                 </font>
                </property>
@@ -282,7 +302,7 @@ background-color:transparent;
                 <string>Income</string>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="resource.qrc">
                  <normaloff>:/black/icon/White/plus-circle.svg</normaloff>:/black/icon/White/plus-circle.svg</iconset>
                </property>
                <property name="iconSize">
@@ -304,7 +324,7 @@ background-color:transparent;
                 <string>Expense</string>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="resource.qrc">
                  <normaloff>:/black/icon/White/minus-circle.svg</normaloff>:/black/icon/White/minus-circle.svg</iconset>
                </property>
                <property name="iconSize">
@@ -320,6 +340,7 @@ background-color:transparent;
                <property name="font">
                 <font>
                  <pointsize>16</pointsize>
+                 <weight>50</weight>
                  <bold>false</bold>
                 </font>
                </property>
@@ -327,7 +348,7 @@ background-color:transparent;
                 <string>Analysis</string>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="resource.qrc">
                  <normaloff>:/black/icon/White/bar-chart.svg</normaloff>:/black/icon/White/bar-chart.svg</iconset>
                </property>
                <property name="iconSize">
@@ -404,7 +425,7 @@ background-color:transparent;
                 <string/>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="resource.qrc">
                  <normaloff>:/Blue/icon/Blue/menu.svg</normaloff>:/Blue/icon/Blue/menu.svg</iconset>
                </property>
                <property name="iconSize">
@@ -416,10 +437,11 @@ background-color:transparent;
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="label">
+              <widget class="QLabel" name="tab_level">
                <property name="font">
                 <font>
                  <pointsize>18</pointsize>
+                 <weight>75</weight>
                  <bold>true</bold>
                 </font>
                </property>
@@ -440,7 +462,7 @@ background-color:transparent;
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>5</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="page">
           <widget class="QFrame" name="frame">
@@ -567,15 +589,16 @@ background-color:transparent;
                  <widget class="QFrame" name="frame_8">
                   <property name="geometry">
                    <rect>
-                    <x>20</x>
-                    <y>10</y>
-                    <width>121</width>
-                    <height>31</height>
+                    <x>10</x>
+                    <y>0</y>
+                    <width>141</width>
+                    <height>41</height>
                    </rect>
                   </property>
                   <property name="font">
                    <font>
                     <pointsize>12</pointsize>
+                    <weight>75</weight>
                     <bold>true</bold>
                    </font>
                   </property>
@@ -591,6 +614,7 @@ background-color:transparent;
                      <property name="font">
                       <font>
                        <pointsize>12</pointsize>
+                       <weight>75</weight>
                        <bold>true</bold>
                       </font>
                      </property>
@@ -652,7 +676,7 @@ background-color:transparent;
                    <rect>
                     <x>20</x>
                     <y>0</y>
-                    <width>101</width>
+                    <width>111</width>
                     <height>41</height>
                    </rect>
                   </property>
@@ -668,6 +692,7 @@ background-color:transparent;
                      <property name="font">
                       <font>
                        <pointsize>12</pointsize>
+                       <weight>75</weight>
                        <bold>true</bold>
                       </font>
                      </property>
@@ -745,6 +770,7 @@ background-color:transparent;
                      <property name="font">
                       <font>
                        <pointsize>12</pointsize>
+                       <weight>75</weight>
                        <bold>true</bold>
                       </font>
                      </property>
@@ -802,8 +828,8 @@ background-color:transparent;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>906</width>
-                    <height>535</height>
+                    <width>898</width>
+                    <height>522</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_24">
@@ -837,6 +863,7 @@ background-color:transparent;
                  <property name="font">
                   <font>
                    <pointsize>12</pointsize>
+                   <weight>75</weight>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -920,6 +947,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="income_yearly">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -954,6 +982,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="income_monthly">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -985,6 +1014,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="income_daily">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1016,6 +1046,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="income_weekly">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1141,6 +1172,7 @@ background-color:#A7F0AE;
                 <widget class="QDateEdit" name="income_date">
                  <property name="font">
                   <font>
+                   <weight>75</weight>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -1150,6 +1182,7 @@ background-color:#A7F0AE;
                 <widget class="QLabel" name="income_list_header">
                  <property name="font">
                   <font>
+                   <weight>75</weight>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -1197,7 +1230,7 @@ background-color:#A7F0AE;
                 <string/>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="resource.qrc">
                  <normaloff>:/black/icon/White/plus.svg</normaloff>:/black/icon/White/plus.svg</iconset>
                </property>
               </widget>
@@ -1280,6 +1313,7 @@ background-color:#A7F0AE;
                 <widget class="QDateEdit" name="expense_date">
                  <property name="font">
                   <font>
+                   <weight>75</weight>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -1289,6 +1323,7 @@ background-color:#A7F0AE;
                 <widget class="QLabel" name="expense_list_header">
                  <property name="font">
                   <font>
+                   <weight>75</weight>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -1336,7 +1371,7 @@ background-color:#A7F0AE;
                 <string/>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="resource.qrc">
                  <normaloff>:/black/icon/White/plus.svg</normaloff>:/black/icon/White/plus.svg</iconset>
                </property>
               </widget>
@@ -1398,6 +1433,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="expense_yearly">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1432,6 +1468,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="expense_monthly">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1463,6 +1500,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="expense_daily">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1494,6 +1532,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="expense_weekly">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1804,7 +1843,7 @@ border-radius: 10px;
              <property name="geometry">
               <rect>
                <x>50</x>
-               <y>260</y>
+               <y>250</y>
                <width>271</width>
                <height>31</height>
               </rect>
@@ -1820,7 +1859,7 @@ border-radius: 10px;
              <property name="geometry">
               <rect>
                <x>50</x>
-               <y>330</y>
+               <y>320</y>
                <width>271</width>
                <height>31</height>
               </rect>
@@ -1852,7 +1891,7 @@ border-radius: 10px;
              <property name="geometry">
               <rect>
                <x>50</x>
-               <y>400</y>
+               <y>390</y>
                <width>271</width>
                <height>31</height>
               </rect>
@@ -1869,13 +1908,14 @@ border-radius: 10px;
               <rect>
                <x>80</x>
                <y>80</y>
-               <width>181</width>
+               <width>191</width>
                <height>21</height>
               </rect>
              </property>
              <property name="font">
               <font>
                <pointsize>12</pointsize>
+               <weight>75</weight>
                <bold>true</bold>
               </font>
              </property>
@@ -1927,13 +1967,14 @@ border-radius: 10px;
               <rect>
                <x>560</x>
                <y>80</y>
-               <width>181</width>
+               <width>231</width>
                <height>21</height>
               </rect>
              </property>
              <property name="font">
               <font>
                <pointsize>12</pointsize>
+               <weight>75</weight>
                <bold>true</bold>
               </font>
              </property>
@@ -1944,8 +1985,8 @@ border-radius: 10px;
             <widget class="QPushButton" name="upload_pic_btn">
              <property name="geometry">
               <rect>
-               <x>560</x>
-               <y>410</y>
+               <x>580</x>
+               <y>370</y>
                <width>111</width>
                <height>41</height>
               </rect>
@@ -1960,12 +2001,13 @@ border-radius: 10px;
                <x>80</x>
                <y>200</y>
                <width>181</width>
-               <height>21</height>
+               <height>31</height>
               </rect>
              </property>
              <property name="font">
               <font>
                <pointsize>12</pointsize>
+               <weight>75</weight>
                <bold>true</bold>
               </font>
              </property>
@@ -1977,62 +2019,10 @@ border-radius: 10px;
              <property name="geometry">
               <rect>
                <x>50</x>
-               <y>140</y>
+               <y>130</y>
                <width>271</width>
                <height>31</height>
               </rect>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_10">
-             <property name="geometry">
-              <rect>
-               <x>50</x>
-               <y>230</y>
-               <width>121</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>New password:</string>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_11">
-             <property name="geometry">
-              <rect>
-               <x>50</x>
-               <y>300</y>
-               <width>121</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Confirm password:</string>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_12">
-             <property name="geometry">
-              <rect>
-               <x>50</x>
-               <y>370</y>
-               <width>111</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Current password:</string>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_13">
-             <property name="geometry">
-              <rect>
-               <x>50</x>
-               <y>110</y>
-               <width>101</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>New username:</string>
              </property>
             </widget>
            </widget>
