@@ -14,6 +14,7 @@ from typing import List
 import sys
 import os
 import pickle
+from .app.account import AccountSystem
 
 class MainApp(QMainWindow):
     def __init__(self, parent=None):
@@ -38,6 +39,7 @@ class AccountWindow(QMainWindow):
         self.ui.back_btn.clicked.connect(self.login_tab)
         self.ui.upload_btn.clicked.connect(self.upload_pic)
         self.ui.create_btn_2.clicked.connect(self.create_account)
+        self.system = AccountSystem()
         self.imageFilePath = None
         if self.staySignIn():
             return
@@ -60,12 +62,16 @@ class AccountWindow(QMainWindow):
 
     def load_accounts(self):
         #mock accounts
-        for i in range(5):
+        accounts = self.system.get()
+        print(accounts)
+        for acc in accounts:
             item = QListWidgetItem()
-            account = AccountItem(i, "Johnny Rol", "5/2/5", str(i), os.getcwd() + "/rabbit.png")
+            account = AccountItem(id=acc.id, name=acc.name, last_login=str(acc.created_date), 
+                                  hash_pwd=acc.password, imageBlob=acc.profile_image)
             item.setSizeHint(account.size())
             self.ui.account_listWidget.addItem(item)
             self.ui.account_listWidget.setItemWidget(item, account)
+
 
     def add_account(self, account):
         item = QListWidgetItem()
@@ -107,9 +113,10 @@ class AccountWindow(QMainWindow):
             self.ui.warning_label.setText("Passwords do not match")
             return
 
-        #createdAccount = self.system.create_account()
+        createdAccount = self.system.add(name=name, password=password, profile_image_path=self.imageFilePath)
         #use account details from the createdAccount
-        accountItem = AccountItem(11, name, password, password, self.imageFilePath)
+        accountItem = AccountItem(id=createdAccount.id, name=name, last_login=str(createdAccount.created_date), 
+                                  hash_pwd=createdAccount.password, imageFilePath=self.imageFilePath)
         self.add_account(accountItem)
         self.login_tab()
 
@@ -120,7 +127,7 @@ class AccountWindow(QMainWindow):
         self.ui.profile_label.setPixmap(QPixmap())
 
 class AccountItem(QWidget):
-    def __init__(self, id, name, last_login, hash_pwd, imageFilePath = None):
+    def __init__(self, id, name, last_login, hash_pwd, imageFilePath = None, imageBlob=None):
         super(AccountItem, self).__init__()
         self.id = id
         self.hash_pwd = hash_pwd
@@ -130,6 +137,10 @@ class AccountItem(QWidget):
         self.wid.date_label.setText(last_login)
         if imageFilePath is not None:
             self.wid.profile_label.setPixmap(QPixmap(imageFilePath))
+        if imageBlob is not None:
+            qimg = QImage.fromData(imageBlob)
+            pixmap = QPixmap.fromImage(qimg)
+            self.wid.profile_label.setPixmap(pixmap)
 
     def get_id(self):
         return self.id

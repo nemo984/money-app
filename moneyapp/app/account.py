@@ -12,6 +12,7 @@ class AccountSystem(Observable):
     def add(
         self,
         name: str,
+        password: str,
         profile_image_path: Optional[str] = None
     ) -> Account:
         image = None
@@ -19,7 +20,7 @@ class AccountSystem(Observable):
             with open(profile_image_path, 'rb') as file:
                 image = file.read()
 
-        account = Account(name=name, profile_image=image)
+        account = Account(name=name, password=password, profile_image=image)
         account.save()
         self._accounts.append(account)
         self.notify(self._accounts)

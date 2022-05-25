@@ -10,6 +10,7 @@ class BaseModel(Model):
 
 class Account(BaseModel):
     name = CharField(unique=True)
+    password = CharField(max_length=30)
     profile_image = BlobField(null=True)
     created_date = DateTimeField(default=datetime.now)
 
@@ -75,8 +76,8 @@ class AccountMonthlyIncome(BaseModel):
     month = IntegerField()
 
 # if config.config['testing']:
-    database.init(':memory:')
+    # database.init(':memory:')
 # else:
-# database.init('local.db')
+database.init('local2.db')
 
 database.create_tables([Account, Category, Expense, Budget, IncomeCategory, Income, Reminder])
