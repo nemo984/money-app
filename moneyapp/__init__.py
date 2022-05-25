@@ -175,15 +175,17 @@ class LoginPopUp(QDialog):
             QMessageBox.warning(
                 self, 'Error', 'Incorrect password')
 
+
 def load_id():
     try:
         with open('signin.pickle', 'rb') as f:
             return pickle.load(f) 
     except FileNotFoundError:
-        save_staySignIn(False, -1, -1)
+        save_staySignIn()
         return [False, -1, -1]
 
-def save_staySignIn(account_id: int, last_tab: int, staySignInChecked: bool = None):
+def save_staySignIn(staySignInChecked: bool = False, account_id: int = -1, last_tab: int = -1):
     staySignInChecked = load_id()[0] if staySignInChecked is None else staySignInChecked
+    print([staySignInChecked, account_id, last_tab])
     with open('signin.pickle', 'wb') as fobj:
         pickle.dump([staySignInChecked, account_id, last_tab], fobj)
