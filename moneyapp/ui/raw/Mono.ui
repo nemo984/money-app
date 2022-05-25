@@ -147,7 +147,7 @@ background-color:transparent;
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap resource="resource.qrc">:/black/icon/White/image.svg</pixmap>
+                <pixmap>:/black/icon/White/image.svg</pixmap>
                </property>
               </widget>
              </item>
@@ -181,7 +181,7 @@ background-color:transparent;
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="resource.qrc">
+                <iconset>
                  <normaloff>:/black/icon/White/settings.svg</normaloff>:/black/icon/White/settings.svg</iconset>
                </property>
                <property name="iconSize">
@@ -236,7 +236,7 @@ background-color:transparent;
                 <string>Overview</string>
                </property>
                <property name="icon">
-                <iconset resource="resource.qrc">
+                <iconset>
                  <normaloff>:/black/icon/White/home.svg</normaloff>:/black/icon/White/home.svg</iconset>
                </property>
                <property name="iconSize">
@@ -259,7 +259,7 @@ background-color:transparent;
                 <string>Budget</string>
                </property>
                <property name="icon">
-                <iconset resource="resource.qrc">
+                <iconset>
                  <normaloff>:/black/icon/White/dollar-sign.svg</normaloff>:/black/icon/White/dollar-sign.svg</iconset>
                </property>
                <property name="iconSize">
@@ -282,7 +282,7 @@ background-color:transparent;
                 <string>Income</string>
                </property>
                <property name="icon">
-                <iconset resource="resource.qrc">
+                <iconset>
                  <normaloff>:/black/icon/White/plus-circle.svg</normaloff>:/black/icon/White/plus-circle.svg</iconset>
                </property>
                <property name="iconSize">
@@ -304,7 +304,7 @@ background-color:transparent;
                 <string>Expense</string>
                </property>
                <property name="icon">
-                <iconset resource="resource.qrc">
+                <iconset>
                  <normaloff>:/black/icon/White/minus-circle.svg</normaloff>:/black/icon/White/minus-circle.svg</iconset>
                </property>
                <property name="iconSize">
@@ -327,7 +327,7 @@ background-color:transparent;
                 <string>Analysis</string>
                </property>
                <property name="icon">
-                <iconset resource="resource.qrc">
+                <iconset>
                  <normaloff>:/black/icon/White/bar-chart.svg</normaloff>:/black/icon/White/bar-chart.svg</iconset>
                </property>
                <property name="iconSize">
@@ -404,7 +404,7 @@ background-color:transparent;
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="resource.qrc">
+                <iconset>
                  <normaloff>:/Blue/icon/Blue/menu.svg</normaloff>:/Blue/icon/Blue/menu.svg</iconset>
                </property>
                <property name="iconSize">
@@ -1197,7 +1197,7 @@ background-color:#A7F0AE;
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="resource.qrc">
+                <iconset>
                  <normaloff>:/black/icon/White/plus.svg</normaloff>:/black/icon/White/plus.svg</iconset>
                </property>
               </widget>
@@ -1336,7 +1336,7 @@ background-color:#A7F0AE;
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="resource.qrc">
+                <iconset>
                  <normaloff>:/black/icon/White/plus.svg</normaloff>:/black/icon/White/plus.svg</iconset>
                </property>
               </widget>
@@ -1804,7 +1804,7 @@ border-radius: 10px;
              <property name="geometry">
               <rect>
                <x>50</x>
-               <y>250</y>
+               <y>260</y>
                <width>271</width>
                <height>31</height>
               </rect>
@@ -1820,7 +1820,7 @@ border-radius: 10px;
              <property name="geometry">
               <rect>
                <x>50</x>
-               <y>320</y>
+               <y>330</y>
                <width>271</width>
                <height>31</height>
               </rect>
@@ -1852,7 +1852,7 @@ border-radius: 10px;
              <property name="geometry">
               <rect>
                <x>50</x>
-               <y>390</y>
+               <y>400</y>
                <width>271</width>
                <height>31</height>
               </rect>
@@ -1977,10 +1977,62 @@ border-radius: 10px;
              <property name="geometry">
               <rect>
                <x>50</x>
-               <y>130</y>
+               <y>140</y>
                <width>271</width>
                <height>31</height>
               </rect>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_10">
+             <property name="geometry">
+              <rect>
+               <x>50</x>
+               <y>230</y>
+               <width>121</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>New password:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_11">
+             <property name="geometry">
+              <rect>
+               <x>50</x>
+               <y>300</y>
+               <width>121</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Confirm password:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_12">
+             <property name="geometry">
+              <rect>
+               <x>50</x>
+               <y>370</y>
+               <width>111</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Current password:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_13">
+             <property name="geometry">
+              <rect>
+               <x>50</x>
+               <y>110</y>
+               <width>101</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>New username:</string>
              </property>
             </widget>
            </widget>
