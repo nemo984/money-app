@@ -3,32 +3,42 @@ from .model import ActionHistory, Account
 from .helpers import Observable
 
 class HistorySystem(Observable):
-    def __init__(self):
+    def __init__(self, owner: Account):
         super().__init__()
+        self.owner = owner
         self._history = []
 
     def add(
         self,
-        owner: Account,
         action: str,
         action_type: str,
         description: str
     ) -> ActionHistory:
-        history = ActionHistory(owner=owner, action=action, action_type=action_type, description=description)
+        history = ActionHistory(owner=self.owner, action=action, action_type=action_type, description=description)
         history.save()
         self._history.append(history)
         self.notify(self._history)
         return history
 
-    def get(self, owner: Account) -> List[ActionHistory]:
-        if not self._history:
-            self._history = list(owner.history)
+    def get(self) -> List[ActionHistory]:
+        self._history = list(self.owner.history)
+        self.notify(self._history)
         return self._history
 
     def filter(self, query: str):
+        if query == "":
+            return self.get()
+
         filtered_history = []
         for history in self._history:
             s = f"{history.created_date}{history.action}{history.action_type}{history.description}"
             if query in s:
                 filtered_history.append(history)
+        self.notify(filtered_history)
         return filtered_history
+
+    def delete(self, history_id):
+        print(history_id)
+        history = ActionHistory.get(ActionHistory.id == history_id)
+        history.delete_instance()
+        history.get()
