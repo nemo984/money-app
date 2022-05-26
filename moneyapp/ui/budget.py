@@ -31,7 +31,7 @@ class BudgetUI(Observer):
         start_date =self.pop.startDate_entry.text()
         end_date = self.pop.endDate_entry.text()
         head = self.pop.name_entry.text()
-        amount = int(self.pop.amount_entry.text())
+        amount = float(self.pop.amount_entry.text())
         index = self.pop.category_comboBox.currentIndex()
         note = self.pop.note_entry.toPlainText()
         b = BudgetItem(self.ui.verticalLayout_24, head, amount, start_date,end_date,index,note)
@@ -56,6 +56,8 @@ class BudgetItem(QWidget):
         self.index = index
         self.amount = amount
         self.note = note
+        self.s_date = start_date
+        self.e_date = end_date
 
         self.wid.setupUi(self)
         self.wid.hearde.setText(head)
@@ -64,6 +66,7 @@ class BudgetItem(QWidget):
         self.wid.start_date.setText("Start Date:"+start_date)
         self.wid.progressBar.setValue(0)
         self.wid.progressBar.setMaximum(amount)
+        self.wid.label_9.setText("Until you reach"+"฿{:,.2f}".format(amount))
         self.wid.more_btn.clicked.connect(self.option)
 
     def option(self):
@@ -74,7 +77,7 @@ class BudgetItem(QWidget):
         self.delete_b = QAction('Delete', self)
         self.delete_b.setData('Delete')
         self.delete_b.triggered.connect(self.delete)
-        
+
         menu.addAction(self.edit)
         menu.addAction(self.delete_b)
         menu.exec(QCursor.pos())
@@ -99,8 +102,9 @@ class BudgetItem(QWidget):
         amount = self.pop.amount_entry.text()
         self.wid.hearde.setText(head)
         self.wid.amount.setText("฿{:,.2f}".format(float(amount)))
-        self.wid.end_date.setText("End Date:"+end_date)
-        self.wid.start_date.setText("Start Date:"+start_date)
+        self.wid.label_9.setText("Until you reach"+"฿{:,.2f}".format(amount))
+        #self.wid.end_date.setText("End Date:"+end_date)
+        #self.wid.start_date.setText("Start Date:"+start_date)
         self.amount = self.pop.amount_entry.text()
         self.note = self.pop.note_entry.toPlainText()
         self.dialog.close()
