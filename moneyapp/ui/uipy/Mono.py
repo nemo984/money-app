@@ -443,7 +443,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 906, 535))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 898, 522))
         self.verticalLayout_24 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_24.setObjectName(u"verticalLayout_24")
         self.budget_list = QWidget(self.scrollAreaWidgetContents)
@@ -921,28 +921,27 @@ class Ui_MainWindow(object):
         self.frame_15.setObjectName(u"frame_15")
         self.frame_15.setFrameShape(QFrame.StyledPanel)
         self.frame_15.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_18 = QVBoxLayout(self.frame_15)
-        self.verticalLayout_18.setObjectName(u"verticalLayout_18")
         self.searchHistory_lineEdit = QLineEdit(self.frame_15)
         self.searchHistory_lineEdit.setObjectName(u"searchHistory_lineEdit")
+        self.searchHistory_lineEdit.setGeometry(QRect(20, 20, 221, 21))
         sizePolicy5 = QSizePolicy(QSizePolicy.Ignored, QSizePolicy.Fixed)
         sizePolicy5.setHorizontalStretch(0)
         sizePolicy5.setVerticalStretch(0)
         sizePolicy5.setHeightForWidth(self.searchHistory_lineEdit.sizePolicy().hasHeightForWidth())
         self.searchHistory_lineEdit.setSizePolicy(sizePolicy5)
-
-        self.verticalLayout_18.addWidget(self.searchHistory_lineEdit)
-
-        self.historyList = QListWidget(self.frame_15)
-        self.historyList.setObjectName(u"historyList")
-        sizePolicy6 = QSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
-        sizePolicy6.setHorizontalStretch(0)
-        sizePolicy6.setVerticalStretch(0)
-        sizePolicy6.setHeightForWidth(self.historyList.sizePolicy().hasHeightForWidth())
-        self.historyList.setSizePolicy(sizePolicy6)
-
-        self.verticalLayout_18.addWidget(self.historyList)
-
+        self.scrollArea_4 = QScrollArea(self.frame_15)
+        self.scrollArea_4.setObjectName(u"scrollArea_4")
+        self.scrollArea_4.setGeometry(QRect(450, 220, 871, 231))
+        self.scrollArea_4.setWidgetResizable(True)
+        self.scrollAreaWidgetContents_5 = QWidget()
+        self.scrollAreaWidgetContents_5.setObjectName(u"scrollAreaWidgetContents_5")
+        self.scrollAreaWidgetContents_5.setGeometry(QRect(0, 0, 871, 231))
+        self.verticalLayout_39 = QVBoxLayout(self.scrollAreaWidgetContents_5)
+        self.verticalLayout_39.setObjectName(u"verticalLayout_39")
+        self.scrollArea_4.setWidget(self.scrollAreaWidgetContents_5)
+        self.history_list = QWidget(self.frame_15)
+        self.history_list.setObjectName(u"history_list")
+        self.history_list.setGeometry(QRect(20, 50, 871, 281))
 
         self.gridLayout_2.addWidget(self.frame_15, 0, 0, 1, 1)
 
@@ -969,11 +968,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_15.setObjectName(u"verticalLayout_15")
         self.incomeDownBtn = QPushButton(self.frame_18)
         self.incomeDownBtn.setObjectName(u"incomeDownBtn")
-        sizePolicy7 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Ignored)
-        sizePolicy7.setHorizontalStretch(0)
-        sizePolicy7.setVerticalStretch(0)
-        sizePolicy7.setHeightForWidth(self.incomeDownBtn.sizePolicy().hasHeightForWidth())
-        self.incomeDownBtn.setSizePolicy(sizePolicy7)
+        sizePolicy6 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Ignored)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.incomeDownBtn.sizePolicy().hasHeightForWidth())
+        self.incomeDownBtn.setSizePolicy(sizePolicy6)
 
         self.verticalLayout_15.addWidget(self.incomeDownBtn)
 
@@ -988,8 +987,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
         self.expenseDownBtn = QPushButton(self.frame_24)
         self.expenseDownBtn.setObjectName(u"expenseDownBtn")
-        sizePolicy7.setHeightForWidth(self.expenseDownBtn.sizePolicy().hasHeightForWidth())
-        self.expenseDownBtn.setSizePolicy(sizePolicy7)
+        sizePolicy6.setHeightForWidth(self.expenseDownBtn.sizePolicy().hasHeightForWidth())
+        self.expenseDownBtn.setSizePolicy(sizePolicy6)
 
         self.verticalLayout_16.addWidget(self.expenseDownBtn)
 
@@ -1004,8 +1003,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_17.setObjectName(u"verticalLayout_17")
         self.budgetDownBtn = QPushButton(self.frame_23)
         self.budgetDownBtn.setObjectName(u"budgetDownBtn")
-        sizePolicy7.setHeightForWidth(self.budgetDownBtn.sizePolicy().hasHeightForWidth())
-        self.budgetDownBtn.setSizePolicy(sizePolicy7)
+        sizePolicy6.setHeightForWidth(self.budgetDownBtn.sizePolicy().hasHeightForWidth())
+        self.budgetDownBtn.setSizePolicy(sizePolicy6)
 
         self.verticalLayout_17.addWidget(self.budgetDownBtn)
 
@@ -1099,7 +1098,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

@@ -5,6 +5,7 @@ from ..app.budget_system import BudgetSystem
 from ..app.income_system import IncomeSystem
 from ..app.expense_system import ExpenseSystem
 from ..app.account import AccountSystem
+from ..app.history import HistorySystem
 from .budget import BudgetUI
 from .income import IncomeUI
 from .expense import ExpenseUI
@@ -18,6 +19,7 @@ class MoneyAppUI(QMainWindow):
         income_system: IncomeSystem,
         budget_system: BudgetSystem,
         expense_system: ExpenseSystem,
+        history_system: HistorySystem,
         parent = None
     ):
         super(MoneyAppUI, self).__init__(parent)
@@ -27,12 +29,15 @@ class MoneyAppUI(QMainWindow):
         budget_ui = BudgetUI(self.ui, budget_system, self)
         income_ui = IncomeUI(1, income_system)
         expense_ui = ExpenseUI(self.ui,expense_system,self)
+        history_ui = ExpenseUI(self.ui,history_system,self)
         
         budget_system.add_observer(budget_ui)
         income_system.add_observer(income_ui)
         expense_system.add_observer(expense_ui)
+        history_system.add_observer(history_ui)
 
         account = AccountSystem().getByID(account_id)
+        history_system.get(account)
         self.ui.name_label.setText(account.name)
         qimg = QImage.fromData(account.profile_image)
         pixmap = QPixmap.fromImage(qimg)
