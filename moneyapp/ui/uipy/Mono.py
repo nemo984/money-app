@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mono.ui'
+## Form generated from reading UI file 'Mono.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.2
 ##
@@ -443,7 +443,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 898, 522))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 906, 535))
         self.verticalLayout_24 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_24.setObjectName(u"verticalLayout_24")
         self.budget_list = QWidget(self.scrollAreaWidgetContents)
@@ -751,9 +751,21 @@ class Ui_MainWindow(object):
         self.add_expense_button.setGeometry(QRect(880, 180, 31, 31))
         self.add_expense_button.setStyleSheet(u"")
         self.add_expense_button.setIcon(icon7)
-        self.expense_list = QListWidget(self.frame_20)
+        self.scrollArea_3 = QScrollArea(self.frame_20)
+        self.scrollArea_3.setObjectName(u"scrollArea_3")
+        self.scrollArea_3.setGeometry(QRect(0, 0, 871, 231))
+        self.scrollArea_3.setWidgetResizable(True)
+        self.scrollAreaWidgetContents_3 = QWidget()
+        self.scrollAreaWidgetContents_3.setObjectName(u"scrollAreaWidgetContents_3")
+        self.scrollAreaWidgetContents_3.setGeometry(QRect(0, 0, 871, 231))
+        self.verticalLayout_38 = QVBoxLayout(self.scrollAreaWidgetContents_3)
+        self.verticalLayout_38.setObjectName(u"verticalLayout_38")
+        self.expense_list = QWidget(self.scrollAreaWidgetContents_3)
         self.expense_list.setObjectName(u"expense_list")
-        self.expense_list.setGeometry(QRect(10, 10, 861, 201))
+
+        self.verticalLayout_38.addWidget(self.expense_list)
+
+        self.scrollArea_3.setWidget(self.scrollAreaWidgetContents_3)
 
         self.verticalLayout_25.addWidget(self.frame_20)
 
@@ -1087,7 +1099,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

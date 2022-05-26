@@ -17,8 +17,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QLabel, QPushButton, QSizePolicy,
     QWidget)
-import resource_rc
-
+from .resource_rc import *
 class Ui_expense_form(object):
     def setupUi(self, expense_form):
         if not expense_form.objectName():

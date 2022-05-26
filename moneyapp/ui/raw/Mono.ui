@@ -273,7 +273,6 @@ background-color:transparent;
                <property name="font">
                 <font>
                  <pointsize>16</pointsize>
-                 <weight>50</weight>
                  <bold>false</bold>
                 </font>
                </property>
@@ -297,7 +296,6 @@ background-color:transparent;
                <property name="font">
                 <font>
                  <pointsize>16</pointsize>
-                 <weight>50</weight>
                  <bold>false</bold>
                 </font>
                </property>
@@ -343,7 +341,6 @@ background-color:transparent;
                <property name="font">
                 <font>
                  <pointsize>16</pointsize>
-                 <weight>50</weight>
                  <bold>false</bold>
                 </font>
                </property>
@@ -444,7 +441,6 @@ background-color:transparent;
                <property name="font">
                 <font>
                  <pointsize>18</pointsize>
-                 <weight>75</weight>
                  <bold>true</bold>
                 </font>
                </property>
@@ -465,7 +461,7 @@ background-color:transparent;
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="page">
           <widget class="QFrame" name="frame">
@@ -664,7 +660,6 @@ background-color:transparent;
                <property name="font">
                 <font>
                  <pointsize>12</pointsize>
-                 <weight>75</weight>
                  <bold>true</bold>
                 </font>
                </property>
@@ -680,7 +675,6 @@ background-color:transparent;
                   <property name="font">
                    <font>
                     <pointsize>12</pointsize>
-                    <weight>75</weight>
                     <bold>true</bold>
                    </font>
                   </property>
@@ -755,7 +749,6 @@ background-color:transparent;
                      <property name="font">
                       <font>
                        <pointsize>12</pointsize>
-                       <weight>75</weight>
                        <bold>true</bold>
                       </font>
                      </property>
@@ -833,7 +826,6 @@ background-color:transparent;
                      <property name="font">
                       <font>
                        <pointsize>12</pointsize>
-                       <weight>75</weight>
                        <bold>true</bold>
                       </font>
                      </property>
@@ -891,8 +883,8 @@ background-color:transparent;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>898</width>
-                    <height>522</height>
+                    <width>906</width>
+                    <height>535</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_24">
@@ -926,7 +918,6 @@ background-color:transparent;
                  <property name="font">
                   <font>
                    <pointsize>12</pointsize>
-                   <weight>75</weight>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -1010,7 +1001,6 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="income_yearly">
                     <property name="font">
                      <font>
-                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1045,7 +1035,6 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="income_monthly">
                     <property name="font">
                      <font>
-                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1077,7 +1066,6 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="income_daily">
                     <property name="font">
                      <font>
-                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1109,7 +1097,6 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="income_weekly">
                     <property name="font">
                      <font>
-                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1235,7 +1222,6 @@ background-color:#A7F0AE;
                 <widget class="QDateEdit" name="income_date">
                  <property name="font">
                   <font>
-                   <weight>75</weight>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -1245,7 +1231,6 @@ background-color:#A7F0AE;
                 <widget class="QLabel" name="income_list_header">
                  <property name="font">
                   <font>
-                   <weight>75</weight>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -1376,7 +1361,6 @@ background-color:#A7F0AE;
                 <widget class="QDateEdit" name="expense_date">
                  <property name="font">
                   <font>
-                   <weight>75</weight>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -1386,7 +1370,6 @@ background-color:#A7F0AE;
                 <widget class="QLabel" name="expense_list_header">
                  <property name="font">
                   <font>
-                   <weight>75</weight>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -1438,15 +1421,33 @@ background-color:#A7F0AE;
                  <normaloff>:/black/icon/White/plus.svg</normaloff>:/black/icon/White/plus.svg</iconset>
                </property>
               </widget>
-              <widget class="QListWidget" name="expense_list">
+              <widget class="QScrollArea" name="scrollArea_3">
                <property name="geometry">
                 <rect>
-                 <x>10</x>
-                 <y>10</y>
-                 <width>861</width>
-                 <height>201</height>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>871</width>
+                 <height>231</height>
                 </rect>
                </property>
+               <property name="widgetResizable">
+                <bool>true</bool>
+               </property>
+               <widget class="QWidget" name="scrollAreaWidgetContents_3">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>871</width>
+                  <height>231</height>
+                 </rect>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_38">
+                 <item>
+                  <widget class="QWidget" name="expense_list" native="true"/>
+                 </item>
+                </layout>
+               </widget>
               </widget>
              </widget>
             </item>
@@ -1496,7 +1497,6 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="expense_yearly">
                     <property name="font">
                      <font>
-                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1531,7 +1531,6 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="expense_monthly">
                     <property name="font">
                      <font>
-                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1563,7 +1562,6 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="expense_daily">
                     <property name="font">
                      <font>
-                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1595,7 +1593,6 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="expense_weekly">
                     <property name="font">
                      <font>
-                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1978,7 +1975,6 @@ border-radius: 10px;
              <property name="font">
               <font>
                <pointsize>12</pointsize>
-               <weight>75</weight>
                <bold>true</bold>
               </font>
              </property>
@@ -2037,7 +2033,6 @@ border-radius: 10px;
              <property name="font">
               <font>
                <pointsize>12</pointsize>
-               <weight>75</weight>
                <bold>true</bold>
               </font>
              </property>
@@ -2070,7 +2065,6 @@ border-radius: 10px;
              <property name="font">
               <font>
                <pointsize>12</pointsize>
-               <weight>75</weight>
                <bold>true</bold>
               </font>
              </property>

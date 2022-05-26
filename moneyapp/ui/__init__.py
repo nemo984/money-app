@@ -26,7 +26,7 @@ class MoneyAppUI(QMainWindow):
         self.ui.setupUi(self)
         budget_ui = BudgetUI(self.ui, budget_system, self)
         income_ui = IncomeUI(1, income_system)
-        expense_ui = ExpenseUI(expense_system)
+        expense_ui = ExpenseUI(self.ui,expense_system,self)
         
         budget_system.add_observer(budget_ui)
         income_system.add_observer(income_ui)

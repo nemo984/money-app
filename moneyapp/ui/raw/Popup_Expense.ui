@@ -46,19 +46,6 @@ border-radius: 10px;
        <string>Cancel</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="addExpense_btn">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>260</y>
-        <width>101</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Add Expanse</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_5">
       <property name="geometry">
        <rect>
@@ -102,7 +89,7 @@ border-radius: 10px;
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox">
+        <widget class="QComboBox" name="category_comboBox">
          <item>
           <property name="text">
            <string>Food</string>
@@ -169,7 +156,7 @@ border-radius: 10px;
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox_2">
+        <widget class="QComboBox" name="budget_comboBox">
          <item>
           <property name="text">
            <string>None</string>
@@ -191,7 +178,7 @@ border-radius: 10px;
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit"/>
+        <widget class="QLineEdit" name="amount_entry"/>
        </item>
        <item>
         <widget class="QLabel" name="label_4">
@@ -207,11 +194,11 @@ border-radius: 10px;
         </widget>
        </item>
        <item>
-        <widget class="QDateEdit" name="dateEdit"/>
+        <widget class="QDateEdit" name="date_entry"/>
        </item>
       </layout>
      </widget>
-     <widget class="QTextEdit" name="textEdit">
+     <widget class="QTextEdit" name="note_entry">
       <property name="geometry">
        <rect>
         <x>210</x>
@@ -232,6 +219,19 @@ border-radius: 10px;
       </property>
       <property name="text">
        <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="confirm_btn">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>260</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Confirm</string>
       </property>
      </widget>
     </widget>
