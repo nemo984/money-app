@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>434</width>
+    <width>433</width>
     <height>386</height>
    </rect>
   </property>
@@ -44,19 +44,6 @@ border-radius: 10px;
       </property>
       <property name="text">
        <string>Cancel</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="addExpense_btn">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>330</y>
-        <width>101</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Add Expanse</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_5">
@@ -101,7 +88,7 @@ border-radius: 10px;
        <string/>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -120,63 +107,12 @@ border-radius: 10px;
           </font>
          </property>
          <property name="text">
-          <string>Category</string>
+          <string>Name</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox">
-         <item>
-          <property name="text">
-           <string>Food</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Entertainment</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Transport</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Education</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Healthcare</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Bill</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Saving</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Investment</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Shopping</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Utilities/Other</string>
-          </property>
-         </item>
-        </widget>
+        <widget class="QLineEdit" name="name_entry"/>
        </item>
        <item>
         <widget class="QLabel" name="label_2">
@@ -187,15 +123,30 @@ border-radius: 10px;
           </font>
          </property>
          <property name="text">
-          <string>Budget(Optional)</string>
+          <string>Category</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox_2">
+        <widget class="QComboBox" name="category_comboBox">
          <item>
           <property name="text">
-           <string>None</string>
+           <string>Full-time</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Part-time</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Passive</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Other</string>
           </property>
          </item>
         </widget>
@@ -214,7 +165,7 @@ border-radius: 10px;
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit"/>
+        <widget class="QLineEdit" name="amount_entry"/>
        </item>
        <item>
         <widget class="QLabel" name="label_7">
@@ -225,12 +176,12 @@ border-radius: 10px;
           </font>
          </property>
          <property name="text">
-          <string>Amount</string>
+          <string>Recurrence</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox_3">
+        <widget class="QComboBox" name="recurence_comboBox">
          <item>
           <property name="text">
            <string>one-time</string>
@@ -272,9 +223,22 @@ border-radius: 10px;
         </widget>
        </item>
        <item>
-        <widget class="QDateEdit" name="dateEdit"/>
+        <widget class="QDateEdit" name="date_entry"/>
        </item>
       </layout>
+     </widget>
+     <widget class="QPushButton" name="confirm_btn">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>330</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Confirm</string>
+      </property>
      </widget>
     </widget>
    </item>

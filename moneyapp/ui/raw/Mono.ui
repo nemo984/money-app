@@ -461,7 +461,7 @@ background-color:transparent;
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="page">
           <widget class="QFrame" name="frame">
@@ -1282,15 +1282,33 @@ background-color:#A7F0AE;
                  <normaloff>:/black/icon/White/plus.svg</normaloff>:/black/icon/White/plus.svg</iconset>
                </property>
               </widget>
-              <widget class="QListWidget" name="income_list">
+              <widget class="QScrollArea" name="scrollArea_4">
                <property name="geometry">
                 <rect>
-                 <x>10</x>
-                 <y>10</y>
-                 <width>861</width>
-                 <height>201</height>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>871</width>
+                 <height>231</height>
                 </rect>
                </property>
+               <property name="widgetResizable">
+                <bool>true</bool>
+               </property>
+               <widget class="QWidget" name="scrollAreaWidgetContents_4">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>871</width>
+                  <height>231</height>
+                 </rect>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_39">
+                 <item>
+                  <widget class="QWidget" name="income_list" native="true"/>
+                 </item>
+                </layout>
+               </widget>
               </widget>
              </widget>
             </item>

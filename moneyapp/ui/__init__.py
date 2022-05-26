@@ -1,3 +1,4 @@
+import pickle
 from PySide6 import QtWidgets
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
@@ -11,6 +12,7 @@ from .expense import ExpenseUI
 from .uipy.Mono import Ui_MainWindow
 import os
 
+
 class MoneyAppUI(QMainWindow):
     def __init__(
         self,
@@ -18,16 +20,16 @@ class MoneyAppUI(QMainWindow):
         income_system: IncomeSystem,
         budget_system: BudgetSystem,
         expense_system: ExpenseSystem,
-        parent = None
+        parent=None
     ):
         super(MoneyAppUI, self).__init__(parent)
         self.parent = parent
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         budget_ui = BudgetUI(self.ui, budget_system, self)
-        income_ui = IncomeUI(1, income_system)
-        expense_ui = ExpenseUI(self.ui,expense_system,self)
-        
+        income_ui = IncomeUI(self.ui,  income_system, self)
+        expense_ui = ExpenseUI(self.ui, expense_system, self)
+
         budget_system.add_observer(budget_ui)
         income_system.add_observer(income_ui)
         expense_system.add_observer(expense_ui)
@@ -75,7 +77,8 @@ class MoneyAppUI(QMainWindow):
         self.prev_tab = self.sender()
 
     def switch_tab(self):
-        tabs = {"Overview":0, "Budget":1, "Income":2, "Expense":3, "Analysis":4}
+        tabs = {"Overview": 0, "Budget": 1,
+                "Income": 2, "Expense": 3, "Analysis": 4}
         self.prev_tab.setStyleSheet("background-color: transparent")
         text = self.sender().text()
         if text in tabs:
@@ -110,17 +113,20 @@ _staySignInChecked = "staySignInChecked"
 _account_id = "account_id"
 _last_tab = "last_tab"
 
-import pickle
+
 def load_id():
     try:
         with open('signin.pickle', 'rb') as f:
             return pickle.load(f)
     except FileNotFoundError:
         save_staySignIn()
-        return {_staySignInChecked:False, _account_id:-1, _last_tab: -1}
+        return {_staySignInChecked: False, _account_id: -1, _last_tab: -1}
+
 
 def save_staySignIn(staySignInChecked: bool = False, account_id: int = -1, last_tab: int = -1):
-    staySignInChecked = load_id()[0] if staySignInChecked is None else staySignInChecked
+    staySignInChecked = load_id(
+    )[0] if staySignInChecked is None else staySignInChecked
     with open('signin.pickle', 'wb') as fobj:
-        d = {_staySignInChecked:staySignInChecked, _account_id:account_id, _last_tab: last_tab}
+        d = {_staySignInChecked: staySignInChecked,
+             _account_id: account_id, _last_tab: last_tab}
         pickle.dump(d, fobj)
