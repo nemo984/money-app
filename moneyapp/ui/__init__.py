@@ -61,6 +61,12 @@ class MoneyAppUI(QMainWindow):
         self.prev_tab = self.ui.Overview_btn
 
         self.ui.setting_btn.clicked.connect(self.setting)
+        self.ui.logout_btn.clicked.connect(self.logout)
+
+    def logout(self):
+        save_staySignIn()
+        self.close()
+        self.parent.show()
 
     def setting(self):
         self.prev_tab.setStyleSheet("background-color: transparent")
@@ -100,3 +106,21 @@ class MoneyAppUI(QMainWindow):
             self.parent.close()
 
 
+_staySignInChecked = "staySignInChecked"
+_account_id = "account_id"
+_last_tab = "last_tab"
+
+import pickle
+def load_id():
+    try:
+        with open('signin.pickle', 'rb') as f:
+            return pickle.load(f)
+    except FileNotFoundError:
+        save_staySignIn()
+        return {_staySignInChecked:False, _account_id:-1, _last_tab: -1}
+
+def save_staySignIn(staySignInChecked: bool = False, account_id: int = -1, last_tab: int = -1):
+    staySignInChecked = load_id()[0] if staySignInChecked is None else staySignInChecked
+    with open('signin.pickle', 'wb') as fobj:
+        d = {_staySignInChecked:staySignInChecked, _account_id:account_id, _last_tab: last_tab}
+        pickle.dump(d, fobj)
