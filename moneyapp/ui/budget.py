@@ -56,10 +56,12 @@ class BudgetItem(QWidget):
 
     def option(self):
         menu = QMenu()
-        menu.addAction('Edit')
+        Edit = menu.addAction('Edit')
         delete = menu.addAction('Delete')
-        #delete.triggered.connect(lambda: )
         menu.exec(QCursor.pos())
+
+    def hi(self):
+        print("hi")
 
     def add(self):
         self.layout.insertWidget(0,self)
