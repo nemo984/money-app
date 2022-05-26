@@ -109,7 +109,6 @@ class IncomeItem(QWidget):
         #self.Edit = menu.addAction('Edit')
         self.edit = QAction('Edit', self)
         self.edit.setData('Edit')
-        self.edit.triggered.connect(self.edit_income)
         self.delete_b = QAction('Delete', self)
         self.delete_b.setData('Delete')
         self.delete_b.triggered.connect(self.delete)
@@ -119,8 +118,6 @@ class IncomeItem(QWidget):
 
     def hi(self):
         print("hi")
-
-    def edit_income(self):
 
     def add(self):
         self.layout.insertWidget(0, self)
