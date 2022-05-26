@@ -119,6 +119,7 @@ class Ui_Dialog(object):
         font1.setBold(False)
         self.startDate_entry.setFont(font1)
         self.startDate_entry.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
+        self.startDate_entry.setCalendarPopup(True)
 
         self.verticalLayout.addWidget(self.startDate_entry)
 
@@ -131,6 +132,7 @@ class Ui_Dialog(object):
         self.endDate_entry = QDateEdit(self.layoutWidget)
         self.endDate_entry.setObjectName(u"endDate_entry")
         self.endDate_entry.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
+        self.endDate_entry.setCalendarPopup(True)
 
         self.verticalLayout.addWidget(self.endDate_entry)
 
