@@ -21,18 +21,25 @@ class IncomeUI(Observer):
         self.dialog = QDialog(self.parent)
         self.pop.setupUi(self.dialog)
         self.pop.confirm_btn.clicked.connect(self.close_dia)
+        self.pop.cancel_btn.clicked.connect(self.close)
+
         self.dialog.show()
 
     def close_dia(self):
         date = self.pop.date_entry.text()
         name = self.pop.name_entry.text()
         category = str(self.pop.category_comboBox.currentText())
-        # str(combobox1.currentText())
         amount = int(self.pop.amount_entry.text())
         recurrence = str(self.pop.recurence_comboBox.currentText())
+        note = self.pop.note_entry.toPlainText()
+        index_cat = self.pop.category_comboBox.currentIndex()
+        index_rec = self.pop.recurence_comboBox.currentIndex()
         inc = IncomeItem(self.ui.verticalLayout_39, date,
-                         name, category, amount, recurrence)
+                         name, category, amount, recurrence, note, index_cat, index_rec)
         inc.add()
+        self.dialog.close()
+
+    def close(self):
         self.dialog.close()
 
     # Income: 100 / frequency_day
@@ -91,10 +98,17 @@ class IncomeUI(Observer):
 
 
 class IncomeItem(QWidget):
-    def __init__(self, lay: QVBoxLayout, date, name, category, amount, recurrence):
+    def __init__(self, lay: QVBoxLayout, date, name, category, amount, recurrence, note, index_cat, index_rec):
         super(IncomeItem, self).__init__()
         self.layout = lay
         self.wid = Ui_income_form()
+        self.pop = Ui_Dialog()
+        self.index_cat = index_cat
+        self.index_rec = index_rec
+        self.name = name
+        self.amount = amount
+        self.note = note
+
         self.wid.setupUi(self)
         self.wid.date_label.setText(date)
         self.wid.name_label.setText(name)
@@ -106,18 +120,48 @@ class IncomeItem(QWidget):
 
     def option(self):
         menu = QMenu()
-        #self.Edit = menu.addAction('Edit')
         self.edit = QAction('Edit', self)
         self.edit.setData('Edit')
+        self.edit.triggered.connect(self.edit_income)
         self.delete_b = QAction('Delete', self)
         self.delete_b.setData('Delete')
         self.delete_b.triggered.connect(self.delete)
+
         menu.addAction(self.edit)
         menu.addAction(self.delete_b)
         menu.exec(QCursor.pos())
 
-    def hi(self):
-        print("hi")
+    def edit_income(self):
+        self.dialog = QDialog(self)
+        self.pop.setupUi(self.dialog)
+        self.pop.name_entry.setText(self.name)
+        self.pop.amount_entry.setText(str(self.amount))
+        self.pop.category_comboBox.setCurrentIndex(self.index_cat)
+        self.pop.recurence_comboBox.setCurrentIndex(self.index_rec)
+        self.pop.note_entry.setPlainText(self.note)
+        self.pop.confirm_btn.clicked.connect(self.confirm_edit)
+        self.pop.cancel_btn.clicked.connect(self.cancel)
+        self.dialog.show()
+
+    def confirm_edit(self):
+        date = self.pop.date_entry.text()
+        amount = self.pop.amount_entry.text()
+        category = str(self.pop.category_comboBox.currentText())
+        recurrence = str(self.pop.recurence_comboBox.currentText())
+        self.wid.amount_label.setText("฿{:,.2f}".format(float(amount)))
+        self.wid.date_label.setText(date)
+        self.wid.category_label.setText(category)
+        self.wid.recurrence_label.setText(recurrence)
+        self.name = self.pop.name_entry.text()
+        self.amount = self.pop.amount_entry.text()
+        self.note = self.pop.note_entry.toPlainText()
+        self.category = str(self.pop.category_comboBox.currentText())
+        self.index_cat = self.pop.category_comboBox.currentIndex()
+        self.index_rec = self.pop.recurence_comboBox.currentIndex()
+        self.dialog.close()
+
+    def cancel(self):
+        self.dialog.close()
 
     def add(self):
         self.layout.insertWidget(0, self)
