@@ -24,20 +24,20 @@ class ExpenseUI(Observer):
         self.dialog.show()
 
     def close_dia(self):
-        date =self.pop.date_entry.text()
+        date = self.pop.date_entry.text()
         category = str(self.pop.category_comboBox.currentText())
-        #str(combobox1.currentText())
+        # str(combobox1.currentText())
         amount = int(self.pop.amount_entry.text())
-        ex = ExpenseItem(self.ui.verticalLayout_38, date,category,amount)
+        ex = ExpenseItem(self.ui.verticalLayout_38, date, category, amount)
         ex.add()
         self.dialog.close()
-
 
     async def update(self, incomes: List[Expense]):
         pass
 
+
 class ExpenseItem(QWidget):
-    def __init__(self, lay: QVBoxLayout, date,category,amount):
+    def __init__(self, lay: QVBoxLayout, date, category, amount):
         super(ExpenseItem, self).__init__()
         self.layout = lay
         self.wid = Ui_expense_form()
@@ -45,20 +45,27 @@ class ExpenseItem(QWidget):
         self.wid.date_label.setText(date)
         self.wid.category_label.setText(category)
         self.wid.amount_label.setText("฿{:,.2f}".format(amount))
-        
+
         self.wid.option_btn.clicked.connect(self.option)
 
     def option(self):
         menu = QMenu()
-        Edit = menu.addAction('Edit')
-        delete = menu.addAction('Delete')
+        #self.Edit = menu.addAction('Edit')
+        self.edit = QAction('Edit', self)
+        self.edit.setData('Edit')
+        self.edit.triggered.connect(self.hi)
+        self.delete_b = QAction('Delete', self)
+        self.delete_b.setData('Delete')
+        self.delete_b.triggered.connect(self.delete)
+        menu.addAction(self.edit)
+        menu.addAction(self.delete_b)
         menu.exec(QCursor.pos())
 
     def hi(self):
         print("hi")
 
     def add(self):
-        self.layout.insertWidget(0,self)
+        self.layout.insertWidget(0, self)
 
     def delete(self):
         self.layout.removeWidget(self)
