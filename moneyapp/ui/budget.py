@@ -1,4 +1,5 @@
 from typing import List
+from unicodedata import category
 from ..app.helpers import Observer
 from ..app.model import Budget
 from ..app.budget_system import BudgetSystem
@@ -35,12 +36,14 @@ class BudgetUI(Observer):
         head = self.pop.name_entry.text()
         amount = float(self.pop.amount_entry.text())
         index = self.pop.category_comboBox.currentIndex()
+        c = self.pop.category_comboBox.currentText()
         note = self.pop.note_entry.toPlainText()
         b = BudgetItem(self.ui.verticalLayout_24, head, amount,
                        start_date, end_date, index, note)
         b.add()
         self.dialog.close()
         self.history_system.add(action="Budget", action_type="Create", description="You created a budget")
+        BudgetSystem.add(c,amount,end_date,note)
         
 
     def close(self):
