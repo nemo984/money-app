@@ -1,24 +1,23 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-# Form generated from reading UI file 'Popup_Income.ui'
+## Form generated from reading UI file 'Popup_Income.ui'
 ##
-# Created by: Qt User Interface Compiler version 6.2.2
+## Created by: Qt User Interface Compiler version 6.2.2
 ##
-# WARNING! All changes made in this file will be lost when recompiling UI file!
+## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-                            QMetaObject, QObject, QPoint, QRect,
-                            QSize, QTime, QUrl, Qt)
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
 from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-                           QFont, QFontDatabase, QGradient, QIcon,
-                           QImage, QKeySequence, QLinearGradient, QPainter,
-                           QPalette, QPixmap, QRadialGradient, QTransform)
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QDateEdit, QDialog,
-                               QFrame, QLabel, QLineEdit, QPushButton,
-                               QSizePolicy, QTextEdit, QVBoxLayout, QWidget)
-
+    QFrame, QLabel, QLineEdit, QPushButton,
+    QSizePolicy, QTextEdit, QVBoxLayout, QWidget)
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -26,14 +25,14 @@ class Ui_Dialog(object):
             Dialog.setObjectName(u"Dialog")
         Dialog.resize(433, 386)
         Dialog.setStyleSheet(u"#addExpense_btn{\n"
-                             "background-color:#A7F0AE;\n"
-                             "border-radius: 10px;\n"
-                             "}\n"
-                             "#cancel_btn{\n"
-                             "background-color:#A7F0AE;\n"
-                             "border-radius: 10px;\n"
-                             "}\n"
-                             "")
+"background-color:#A7F0AE;\n"
+"border-radius: 10px;\n"
+"}\n"
+"#cancel_btn{\n"
+"background-color:#A7F0AE;\n"
+"border-radius: 10px;\n"
+"}\n"
+"")
         self.verticalLayout_2 = QVBoxLayout(Dialog)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.frame = QFrame(Dialog)
@@ -123,6 +122,8 @@ class Ui_Dialog(object):
 
         self.date_entry = QDateEdit(self.layoutWidget)
         self.date_entry.setObjectName(u"date_entry")
+        self.date_entry.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
+        self.date_entry.setCalendarPopup(True)
 
         self.verticalLayout.addWidget(self.date_entry)
 
@@ -132,48 +133,33 @@ class Ui_Dialog(object):
 
         self.verticalLayout_2.addWidget(self.frame)
 
+
         self.retranslateUi(Dialog)
 
         QMetaObject.connectSlotsByName(Dialog)
     # setupUi
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(
-            QCoreApplication.translate("Dialog", u"Dialog", None))
-        self.cancel_btn.setText(
-            QCoreApplication.translate("Dialog", u"Cancel", None))
-        self.label_5.setText(QCoreApplication.translate(
-            "Dialog", u"Note(Optional)", None))
+        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
+        self.cancel_btn.setText(QCoreApplication.translate("Dialog", u"Cancel", None))
+        self.label_5.setText(QCoreApplication.translate("Dialog", u"Note(Optional)", None))
         self.label_6.setText("")
         self.label.setText(QCoreApplication.translate("Dialog", u"Name", None))
-        self.label_2.setText(QCoreApplication.translate(
-            "Dialog", u"Category", None))
-        self.category_comboBox.setItemText(
-            0, QCoreApplication.translate("Dialog", u"Full-time", None))
-        self.category_comboBox.setItemText(
-            1, QCoreApplication.translate("Dialog", u"Part-time", None))
-        self.category_comboBox.setItemText(
-            2, QCoreApplication.translate("Dialog", u"Passive", None))
-        self.category_comboBox.setItemText(
-            3, QCoreApplication.translate("Dialog", u"Other", None))
+        self.label_2.setText(QCoreApplication.translate("Dialog", u"Category", None))
+        self.category_comboBox.setItemText(0, QCoreApplication.translate("Dialog", u"Full-time", None))
+        self.category_comboBox.setItemText(1, QCoreApplication.translate("Dialog", u"Part-time", None))
+        self.category_comboBox.setItemText(2, QCoreApplication.translate("Dialog", u"Passive", None))
+        self.category_comboBox.setItemText(3, QCoreApplication.translate("Dialog", u"Other", None))
 
-        self.label_3.setText(
-            QCoreApplication.translate("Dialog", u"Amount", None))
-        self.label_7.setText(QCoreApplication.translate(
-            "Dialog", u"Recurrence", None))
-        self.recurence_comboBox.setItemText(
-            0, QCoreApplication.translate("Dialog", u"one-time", None))
-        self.recurence_comboBox.setItemText(
-            1, QCoreApplication.translate("Dialog", u"daily", None))
-        self.recurence_comboBox.setItemText(
-            2, QCoreApplication.translate("Dialog", u"weekly", None))
-        self.recurence_comboBox.setItemText(
-            3, QCoreApplication.translate("Dialog", u"monthly", None))
-        self.recurence_comboBox.setItemText(
-            4, QCoreApplication.translate("Dialog", u"yearly", None))
+        self.label_3.setText(QCoreApplication.translate("Dialog", u"Amount", None))
+        self.label_7.setText(QCoreApplication.translate("Dialog", u"Recurrence", None))
+        self.recurence_comboBox.setItemText(0, QCoreApplication.translate("Dialog", u"one-time", None))
+        self.recurence_comboBox.setItemText(1, QCoreApplication.translate("Dialog", u"daily", None))
+        self.recurence_comboBox.setItemText(2, QCoreApplication.translate("Dialog", u"weekly", None))
+        self.recurence_comboBox.setItemText(3, QCoreApplication.translate("Dialog", u"monthly", None))
+        self.recurence_comboBox.setItemText(4, QCoreApplication.translate("Dialog", u"yearly", None))
 
-        self.label_4.setText(
-            QCoreApplication.translate("Dialog", u"Date", None))
-        self.confirm_btn.setText(
-            QCoreApplication.translate("Dialog", u"Confirm", None))
+        self.label_4.setText(QCoreApplication.translate("Dialog", u"Date", None))
+        self.confirm_btn.setText(QCoreApplication.translate("Dialog", u"Confirm", None))
     # retranslateUi
+

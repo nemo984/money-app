@@ -1,6 +1,6 @@
 from typing import Optional, List
 from .helpers import Observable
-from .model import Expense, Category, Account
+from .model import Expense, Account
 
 
 class ExpenseSystem(Observable):
@@ -11,13 +11,13 @@ class ExpenseSystem(Observable):
 
     def add(
         self,
-        category: Category,
+        category: str,
         amount: float,
-        frequency: Optional[int] = None,
+        date,
         note: Optional[str] = None,
     ) -> Expense:
-        expense = Expense(owner=self.owner, category=category,
-                          amount=amount, frequency_day=frequency, note=note)
+        expense = Expense(owner=self.owner, category=category, date=date
+                          ,amount=amount, note=note)
         expense.save()
         self._expenses.append(expense)
         self.notify(self._expenses)
@@ -31,17 +31,17 @@ class ExpenseSystem(Observable):
     def update(
         self,
         expense: Expense,
-        category: Optional[Category] = None,
+        date,
+        category: Optional[str] = None,
         amount: Optional[float] = None,
-        frequency: Optional[int] = None,
         note: Optional[str] = None,
     ) -> Expense:
+        if date:
+            expense.date = date
         if category:
             expense.category = category
         if amount:
             expense.amount = amount
-        if frequency:
-            expense.frequency_day = frequency
         if note:
             expense.note = note
         expense.save()

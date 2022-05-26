@@ -57,9 +57,6 @@ class AccountWindow(QMainWindow):
         d = load_id()
         account_id = d[_account_id]
         staySignInChecked = d[_staySignInChecked]
-        print(d[_account_id])
-        print(d[_staySignInChecked])
-        print(d[_last_tab])
         if not d[_staySignInChecked]:
             return False
         self.ui.staySignIn_checkBox.setChecked(True)
@@ -195,8 +192,10 @@ _last_tab = "last_tab"
 def load_id():
     try:
         with open('signin.pickle', 'rb') as f:
-            return pickle.load(f)
-    except FileNotFoundError:
+            d = pickle.load(f)
+            AccountSystem().getByID(d[_account_id])
+            return d
+    except Exception:
         save_staySignIn()
         return {_staySignInChecked:False, _account_id:-1, _last_tab: -1}
 

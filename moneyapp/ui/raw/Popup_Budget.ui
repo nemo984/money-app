@@ -71,6 +71,7 @@ border-radius: 10px;
       <property name="font">
        <font>
         <pointsize>11</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -116,6 +117,7 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -132,6 +134,7 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -199,6 +202,7 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -215,6 +219,7 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -227,11 +232,15 @@ border-radius: 10px;
         <widget class="QDateEdit" name="startDate_entry">
          <property name="font">
           <font>
+           <weight>50</weight>
            <bold>false</bold>
           </font>
          </property>
          <property name="locale">
           <locale language="English" country="UnitedStates"/>
+         </property>
+         <property name="calendarPopup">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -240,6 +249,7 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -252,6 +262,9 @@ border-radius: 10px;
         <widget class="QDateEdit" name="endDate_entry">
          <property name="locale">
           <locale language="English" country="UnitedStates"/>
+         </property>
+         <property name="calendarPopup">
+          <bool>true</bool>
          </property>
         </widget>
        </item>

@@ -46,7 +46,10 @@ class Ui_Form(object):
         self.progressBar = QProgressBar(self.Budget_lay)
         self.progressBar.setObjectName(u"progressBar")
         self.progressBar.setGeometry(QRect(20, 80, 761, 31))
+        self.progressBar.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
         self.progressBar.setValue(24)
+        self.progressBar.setTextVisible(True)
+        self.progressBar.setInvertedAppearance(False)
         self.hearde = QLabel(self.Budget_lay)
         self.hearde.setObjectName(u"hearde")
         self.hearde.setGeometry(QRect(20, 10, 71, 21))
@@ -75,7 +78,7 @@ class Ui_Form(object):
         self.more_btn.setIconSize(QSize(24, 24))
         self.start_date = QLabel(self.Budget_lay)
         self.start_date.setObjectName(u"start_date")
-        self.start_date.setGeometry(QRect(20, 110, 201, 20))
+        self.start_date.setGeometry(QRect(20, 110, 121, 20))
 
         self.retranslateUi(Form)
 

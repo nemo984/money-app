@@ -16,51 +16,44 @@ class Account(BaseModel):
 
     @property
     def expenses_ordered(self):
-        return self.expenses.order_by(Expense.created_date.desc())
+        return self.expenses.order_by(Expense.date.desc())
 
     @property
     def budgets_ordered(self):
-        return self.budgets.order_by(Budget.created_date.desc())
+        return self.budgets.order_by(Budget.start_date.desc())
 
     @property
     def incomes_ordered(self):
-        return self.incomes.order_by(Income.created_date.desc())
+        return self.incomes.order_by(Income.date.desc())
 
     @property
     def reminders_ordered(self):
         return self.reminders.order_by(Reminder.created_date.desc())
 
-class Category(BaseModel):
-    name = CharField(unique=True, max_length=20)
-    logo = BlobField(null=True)
-
 class Expense(BaseModel):
     owner = ForeignKeyField(Account, backref = 'expenses')
-    category = ForeignKeyField(Category)
+    budget = ForeignKeyField(Account, backref='expenses')
+    category = CharField()
     amount = DecimalField(14,2)
-    frequency_day = IntegerField(null=True)
     note = TextField(null=True)
-    created_date = DateTimeField(default=datetime.now)
+    date = DateTimeField(default=datetime.now)
 
 class Budget(BaseModel):
     owner = ForeignKeyField(Account, backref='budgets')
-    category = ForeignKeyField(Category)
+    category = CharField()
     amount = DecimalField(14,2)
     note = TextField(null=True)
-    created_date = DateTimeField(default=datetime.now)
+    start_date = DateTimeField(default=datetime.now)
     end_date = DateTimeField(null=True)
-
-class IncomeCategory(BaseModel):
-    name = CharField(unique=True, max_length=20)
-    logo = BlobField(null=True)
 
 class Income(BaseModel):
     owner = ForeignKeyField(Account, backref='incomes')
-    category = ForeignKeyField(IncomeCategory)
+    name = CharField()
+    category = CharField()
     amount = DecimalField(14,2)
     frequency_day = IntegerField(null=True)
     note = TextField(null=True)
-    created_date = DateTimeField(default=datetime.now)
+    date = DateTimeField(default=datetime.now)
     updated_date = DateTimeField()
 
 class Reminder(BaseModel):
@@ -87,4 +80,4 @@ class ActionHistory(BaseModel):
 # else:
 database.init('local2.db')
 
-database.create_tables([Account, Category, Expense, Budget, IncomeCategory, Income, Reminder, ActionHistory])
+database.create_tables([Account, Expense, Budget, Income, Reminder, ActionHistory])

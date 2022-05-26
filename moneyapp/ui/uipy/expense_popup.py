@@ -44,7 +44,7 @@ class Ui_Dialog(object):
         self.cancel_btn.setGeometry(QRect(20, 260, 101, 31))
         self.label_5 = QLabel(self.frame)
         self.label_5.setObjectName(u"label_5")
-        self.label_5.setGeometry(QRect(210, 10, 131, 16))
+        self.label_5.setGeometry(QRect(210, 10, 141, 21))
         font = QFont()
         font.setPointSize(11)
         font.setBold(True)
@@ -107,6 +107,8 @@ class Ui_Dialog(object):
 
         self.date_entry = QDateEdit(self.layoutWidget)
         self.date_entry.setObjectName(u"date_entry")
+        self.date_entry.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
+        self.date_entry.setCalendarPopup(True)
 
         self.verticalLayout.addWidget(self.date_entry)
 

@@ -51,13 +51,14 @@ border-radius: 10px;
        <rect>
         <x>210</x>
         <y>10</y>
-        <width>131</width>
-        <height>16</height>
+        <width>141</width>
+        <height>21</height>
        </rect>
       </property>
       <property name="font">
        <font>
         <pointsize>11</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -80,6 +81,7 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -147,6 +149,7 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -169,6 +172,7 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -185,6 +189,7 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -194,7 +199,14 @@ border-radius: 10px;
         </widget>
        </item>
        <item>
-        <widget class="QDateEdit" name="date_entry"/>
+        <widget class="QDateEdit" name="date_entry">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
+         <property name="calendarPopup">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
