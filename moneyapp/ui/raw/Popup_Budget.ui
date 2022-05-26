@@ -71,7 +71,6 @@ border-radius: 10px;
       <property name="font">
        <font>
         <pointsize>11</pointsize>
-        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -117,7 +116,6 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -134,7 +132,6 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -202,7 +199,6 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -219,7 +215,6 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -229,14 +224,22 @@ border-radius: 10px;
         </widget>
        </item>
        <item>
-        <widget class="QDateEdit" name="startDate_entry"/>
+        <widget class="QDateEdit" name="startDate_entry">
+         <property name="font">
+          <font>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_4">
          <property name="font">
           <font>
            <pointsize>11</pointsize>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -246,7 +249,11 @@ border-radius: 10px;
         </widget>
        </item>
        <item>
-        <widget class="QDateEdit" name="endDate_entry"/>
+        <widget class="QDateEdit" name="endDate_entry">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

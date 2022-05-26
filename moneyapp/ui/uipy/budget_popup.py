@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'Popup_budget.ui'
+## Form generated from reading UI file 'Popup_Budget.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.2
 ##
@@ -115,6 +115,10 @@ class Ui_Dialog(object):
 
         self.startDate_entry = QDateEdit(self.layoutWidget)
         self.startDate_entry.setObjectName(u"startDate_entry")
+        font1 = QFont()
+        font1.setBold(False)
+        self.startDate_entry.setFont(font1)
+        self.startDate_entry.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
 
         self.verticalLayout.addWidget(self.startDate_entry)
 
@@ -126,6 +130,7 @@ class Ui_Dialog(object):
 
         self.endDate_entry = QDateEdit(self.layoutWidget)
         self.endDate_entry.setObjectName(u"endDate_entry")
+        self.endDate_entry.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
 
         self.verticalLayout.addWidget(self.endDate_entry)
 

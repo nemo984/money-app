@@ -93,6 +93,10 @@ class BudgetItem(QWidget):
         self.pop.category_comboBox.setCurrentIndex(self.index)
         self.pop.note_entry.setPlainText(self.note)
         self.pop.confirm_btn.clicked.connect(self.confirm_edit)
+        s_date = QDate.fromString(self.s_date,"dd/M/yyyy")
+        e_date = QDate.fromString(self.e_date,"dd/M/yyyy")
+        self.pop.startDate_entry.setDate(s_date)
+        self.pop.endDate_entry.setDate(e_date)
         self.dialog.show()
 
     def confirm_edit(self):
@@ -102,11 +106,12 @@ class BudgetItem(QWidget):
         amount = self.pop.amount_entry.text()
         self.wid.hearde.setText(head)
         self.wid.amount.setText("฿{:,.2f}".format(float(amount)))
-        self.wid.label_9.setText("Until you reach"+"฿{:,.2f}".format(amount))
+        self.wid.label_9.setText("Until you reach"+"฿{:,.2f}".format(float(amount)))
         #self.wid.end_date.setText("End Date:"+end_date)
         #self.wid.start_date.setText("Start Date:"+start_date)
         self.amount = self.pop.amount_entry.text()
         self.note = self.pop.note_entry.toPlainText()
+        self.index = self.pop.category_comboBox.currentIndex()
         self.dialog.close()
 
     def add(self):
