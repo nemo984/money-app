@@ -15,8 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QLabel, QProgressBar, QSizePolicy,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QLabel, QProgressBar, QPushButton,
+    QSizePolicy, QWidget)
+from .resource_rc import *
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -32,6 +33,9 @@ class Ui_Form(object):
 "#progressBar{\n"
 "background-color:#C4C4C4;\n"
 "border-radius: 10px;\n"
+"}\n"
+"#more_btn{\n"
+"background-color:transparent;\n"
 "}")
         self.Budget_lay = QWidget(Form)
         self.Budget_lay.setObjectName(u"Budget_lay")
@@ -59,9 +63,19 @@ class Ui_Form(object):
         self.label_9 = QLabel(self.Budget_lay)
         self.label_9.setObjectName(u"label_9")
         self.label_9.setGeometry(QRect(100, 50, 221, 16))
-        self.date = QLabel(self.Budget_lay)
-        self.date.setObjectName(u"date")
-        self.date.setGeometry(QRect(680, 110, 81, 20))
+        self.end_date = QLabel(self.Budget_lay)
+        self.end_date.setObjectName(u"end_date")
+        self.end_date.setGeometry(QRect(680, 110, 81, 20))
+        self.more_btn = QPushButton(self.Budget_lay)
+        self.more_btn.setObjectName(u"more_btn")
+        self.more_btn.setGeometry(QRect(740, 10, 51, 31))
+        icon = QIcon()
+        icon.addFile(u":/black/icon/White/more-vertical.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.more_btn.setIcon(icon)
+        self.more_btn.setIconSize(QSize(24, 24))
+        self.start_date = QLabel(self.Budget_lay)
+        self.start_date.setObjectName(u"start_date")
+        self.start_date.setGeometry(QRect(20, 110, 81, 20))
 
         self.retranslateUi(Form)
 
@@ -73,6 +87,8 @@ class Ui_Form(object):
         self.hearde.setText(QCoreApplication.translate("Form", u"Monthly", None))
         self.amount.setText(QCoreApplication.translate("Form", u"THB xx,xxx", None))
         self.label_9.setText(QCoreApplication.translate("Form", u"Until you reach THB xx,xxx", None))
-        self.date.setText(QCoreApplication.translate("Form", u"Date", None))
+        self.end_date.setText(QCoreApplication.translate("Form", u"Date", None))
+        self.more_btn.setText("")
+        self.start_date.setText(QCoreApplication.translate("Form", u"Date", None))
     # retranslateUi
 

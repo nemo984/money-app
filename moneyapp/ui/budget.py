@@ -5,6 +5,7 @@ from ..app.budget_system import BudgetSystem
 from .uipy.budget_popup import Ui_Dialog
 from .uipy.budget_wid import Ui_Form
 from PySide6.QtWidgets import *
+from PySide6.QtGui import *
 
 class BudgetUI(Observer):
     
@@ -24,30 +25,41 @@ class BudgetUI(Observer):
 
     def close_dia(self):
         start_date =self.pop.startDate_entry.text()
+        end_date = self.pop.endDate_entry.text()
         head = self.pop.name_entry.text()
-        amount = int(self.pop.amount_entry.text())     
-        b = BudgetItem(self.ui.verticalLayout_24, head, amount, start_date)
+        amount = int(self.pop.amount_entry.text())
+        b = BudgetItem(self.ui.verticalLayout_24, head, amount, start_date,end_date)
         b.add()
         self.dialog.close()
 
     #def delete_bud(self):
-        
+    
+    
         
     async def update(self, budgets: List[Budget]):
         pass
 
 
 class BudgetItem(QWidget):
-    def __init__(self, lay: QVBoxLayout, head, amount, date):
+    def __init__(self, lay: QVBoxLayout, head, amount, start_date,end_date):
         super(BudgetItem, self).__init__()
         self.layout = lay
         self.wid = Ui_Form()
         self.wid.setupUi(self)
         self.wid.hearde.setText(head)
         self.wid.amount.setText("THB"+str(amount))
-        self.wid.date.setText(date)
+        self.wid.end_date.setText(end_date)
+        self.wid.start_date.setText(start_date)
         self.wid.progressBar.setValue(0)
         self.wid.progressBar.setMaximum(amount)
+        self.wid.more_btn.clicked.connect(self.option)
+
+    def option(self):
+        menu = QMenu()
+        menu.addAction('Edit')
+        delete = menu.addAction('Delete')
+        #delete.triggered.connect(lambda: )
+        menu.exec(QCursor.pos())
 
     def add(self):
         self.layout.insertWidget(0,self)
