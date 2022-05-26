@@ -24,7 +24,7 @@ class Account(BaseModel):
 
     @property
     def incomes_ordered(self):
-        return self.incomes.order_by(Income.created_date.desc())
+        return self.incomes.order_by(Income.date.desc())
 
     @property
     def reminders_ordered(self):
@@ -46,17 +46,14 @@ class Budget(BaseModel):
     start_date = DateTimeField(default=datetime.now)
     end_date = DateTimeField(null=True)
 
-class IncomeCategory(BaseModel):
-    name = CharField(unique=True, max_length=20)
-    logo = BlobField(null=True)
-
 class Income(BaseModel):
     owner = ForeignKeyField(Account, backref='incomes')
-    category = ForeignKeyField(IncomeCategory)
+    name = CharField()
+    category = CharField()
     amount = DecimalField(14,2)
     frequency_day = IntegerField(null=True)
     note = TextField(null=True)
-    created_date = DateTimeField(default=datetime.now)
+    date = DateTimeField(default=datetime.now)
     updated_date = DateTimeField()
 
 class Reminder(BaseModel):
@@ -83,4 +80,4 @@ class ActionHistory(BaseModel):
 # else:
 database.init('local2.db')
 
-database.create_tables([Account, Expense, Budget, IncomeCategory, Income, Reminder, ActionHistory])
+database.create_tables([Account, Expense, Budget, Income, Reminder, ActionHistory])

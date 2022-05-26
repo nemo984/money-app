@@ -1,7 +1,6 @@
 from typing import Optional, List
 from .helpers import Observable
-from .model import Income, IncomeCategory, Account 
-
+from .model import Income, Account 
 
 class IncomeSystem(Observable):
     def __init__(self, owner):
@@ -11,12 +10,14 @@ class IncomeSystem(Observable):
 
     def add(
         self,
-        category: IncomeCategory,
+        name: str,
+        category: str,
         amount: float,
+        date,
         note: Optional[str] = None,
         frequency: Optional[int] = None,
     ) -> Income:
-        income = Income(owner=self.owner, category=category,
+        income = Income(owner=self.owner, name=name, category=category, date=date,
                         amount=amount, note=note,
                         frequency_day=frequency)
         income.save()
@@ -32,12 +33,14 @@ class IncomeSystem(Observable):
     def update(
         self,
         income: Income,
-        category: Optional[IncomeCategory] = None,
+        name: Optional[str] = None,
+        category: Optional[str] = None,
         amount: Optional[float] = None,
         frequency: Optional[int] = None,
         note: Optional[str] = None,
     ) -> Income:
-
+        if name:
+            income.name = name
         if category:
             income.category = category
         if amount:
