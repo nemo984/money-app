@@ -25,7 +25,7 @@ class BudgetSystem(Observable):
         return budget
 
     def get(self) -> List[Budget]:
-        self._budgets = self.owner.budgets_ordered
+        self._budgets = list(self.owner.budgets_ordered)
         self.notify(self._budgets)
         return self._budgets
 
