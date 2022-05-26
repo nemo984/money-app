@@ -1,7 +1,7 @@
 from typing import List
-from ..app.model import History
+from ..app.model import ActionHistory
 from ..app.history import HistorySystem
-from .uipy.history_wid import Ui_Form
+from .uipy.history_wid import Ui_history_form
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 
@@ -11,7 +11,6 @@ class HistoryUI:
         self.ui = ui
         self.parent = parent
         self.system = s
-        history = self.system.get()
 
         
     async def update(self, histories):
@@ -31,7 +30,7 @@ class HistoryItem(QWidget):
     def __init__(self, lay: QVBoxLayout, date, action, action_type, description):
         super(HistoryItem, self).__init__()
         self.layout = lay
-        self.wid = Ui_Form()
+        self.wid = Ui_history_form()
         self.wid.setupUi(self)
         self.wid.date_label.setText(date)
         self.wid.action_label.setText(action)

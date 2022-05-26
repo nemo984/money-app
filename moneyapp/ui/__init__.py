@@ -10,6 +10,8 @@ from ..app.history import HistorySystem
 from .budget import BudgetUI
 from .income import IncomeUI
 from .expense import ExpenseUI
+from .history import HistoryUI
+from .setting import SettingUI
 from .uipy.Mono import Ui_MainWindow
 import os
 
@@ -22,6 +24,7 @@ class MoneyAppUI(QMainWindow):
         budget_system: BudgetSystem,
         expense_system: ExpenseSystem,
         history_system: HistorySystem,
+        account_system: AccountSystem,
         parent = None
     ):
         super(MoneyAppUI, self).__init__(parent)
@@ -31,7 +34,8 @@ class MoneyAppUI(QMainWindow):
         budget_ui = BudgetUI(self.ui, budget_system, self)
         income_ui = IncomeUI(self.ui, income_system, self)
         expense_ui = ExpenseUI(self.ui,expense_system,self)
-        history_ui = ExpenseUI(self.ui,history_system,self)
+        history_ui = HistoryUI(self.ui,history_system,self)
+        setting_ui = SettingUI(self.ui, account_system, self)
         
         budget_system.add_observer(budget_ui)
         income_system.add_observer(income_ui)
@@ -68,7 +72,6 @@ class MoneyAppUI(QMainWindow):
         self.prev_tab = self.ui.Overview_btn
 
         self.ui.setting_btn.clicked.connect(self.setting)
-        self.ui.logout_btn.clicked.connect(self.logout)
 
     def logout(self):
         save_staySignIn()
@@ -113,11 +116,9 @@ class MoneyAppUI(QMainWindow):
         if self.parent:
             self.parent.close()
 
-
 _staySignInChecked = "staySignInChecked"
 _account_id = "account_id"
 _last_tab = "last_tab"
-
 
 def load_id():
     try:
@@ -125,8 +126,7 @@ def load_id():
             return pickle.load(f)
     except FileNotFoundError:
         save_staySignIn()
-        return {_staySignInChecked: False, _account_id: -1, _last_tab: -1}
-
+        return {_staySignInChecked:False, _account_id:-1, _last_tab: -1}
 
 def save_staySignIn(staySignInChecked: bool = False, account_id: int = -1, last_tab: int = -1):
     staySignInChecked = load_id(
