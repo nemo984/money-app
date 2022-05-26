@@ -75,9 +75,16 @@ class AccountMonthlyIncome(BaseModel):
     amount = DecimalField(14,2)
     month = IntegerField()
 
+class ActionHistory(BaseModel):
+    owner = ForeignKeyField(Account, backref='history')
+    created_date = DateTimeField(default=datetime.now)
+    action_type = CharField()
+    action = CharField(max_length=20)
+    description = CharField(max_length=70)    
+
 # if config.config['testing']:
     # database.init(':memory:')
 # else:
 database.init('local2.db')
 
-database.create_tables([Account, Category, Expense, Budget, IncomeCategory, Income, Reminder])
+database.create_tables([Account, Category, Expense, Budget, IncomeCategory, Income, Reminder, ActionHistory])
