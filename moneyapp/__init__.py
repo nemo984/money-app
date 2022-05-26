@@ -45,13 +45,18 @@ class AccountWindow(QMainWindow):
         self.imageFilePath = None
         if self.staySignIn():
             return
+
         self.load_accounts()
         self.show()
 
     def staySignIn(self):
-        staySignInChecked, account_id, last_tab = load_id()
-        print(load_id())
-        if not staySignInChecked:
+        d = load_id()
+        account_id = d[_account_id]
+        staySignInChecked = d[_staySignInChecked]
+        print(d[_account_id])
+        print(d[_staySignInChecked])
+        print(d[_last_tab])
+        if not d[_staySignInChecked]:
             return False
         self.ui.staySignIn_checkBox.setChecked(True)
         if account_id == -1:
@@ -168,7 +173,7 @@ class LoginPopUp(QDialog):
 
     def handleLogin(self):
         if self.account.login(self.pwd_lineEdit.text().strip()):
-            save_staySignIn(self.account.id, -1, self.stayLoggedIn)
+            save_staySignIn(account_id=self.account.id, last_tab=-1, staySignInChecked=self.stayLoggedIn)
             #also pass in the account details
             self.dialog = MainApp(account_id=self.account.id, parent=self)
             self.dialog.show()
@@ -179,17 +184,20 @@ class LoginPopUp(QDialog):
                 self, 'Error', 'Incorrect password')
 
 
+_staySignInChecked = "staySignInChecked"
+_account_id = "account_id"
+_last_tab = "last_tab"
 
 def load_id():
     try:
         with open('signin.pickle', 'rb') as f:
-            return pickle.load(f) 
+            return pickle.load(f)
     except FileNotFoundError:
         save_staySignIn()
-        return [False, -1, -1]
+        return {_staySignInChecked:False, _account_id:-1, _last_tab: -1}
 
 def save_staySignIn(staySignInChecked: bool = False, account_id: int = -1, last_tab: int = -1):
     staySignInChecked = load_id()[0] if staySignInChecked is None else staySignInChecked
-    print([staySignInChecked, account_id, last_tab])
     with open('signin.pickle', 'wb') as fobj:
-        pickle.dump([staySignInChecked, account_id, last_tab], fobj)
+        d = {_staySignInChecked:staySignInChecked, _account_id:account_id, _last_tab: last_tab}
+        pickle.dump(d, fobj)
