@@ -29,15 +29,25 @@ class BudgetSystem(Observable):
         self.notify(self._budgets)
         return self._budgets
 
+    def getByID(self, budget_id) -> Budget:
+        try:
+            budget = Budget.get(Budget.id == budget_id)
+            return budget
+        except:
+            return None
+
     def update(
         self,
-        budget: Budget,
+        budget_id: Budget,
         category: Optional[str] = None,
         amount: Optional[float] = None,
         start_date: Optional[datetime] = None,
         end_date: Optional[datetime] = None,
         note: Optional[str] = None,
     ) -> Budget:
+        budget = self.getByID(budget_id)
+        if budget is None:
+            return
         if start_date:
             budget.start_date = start_date
         if category:
@@ -53,6 +63,8 @@ class BudgetSystem(Observable):
         return budget
 
     def delete(self, budget_id: int):
-        budget = Budget.get(Budget.id == budget_id)
+        budget = self.getByID(budget_id)
+        if budget is None:
+            return
         budget.delete_instance()
         self.get()
