@@ -43,7 +43,7 @@ class BudgetUI(Observer):
         b.add()
         self.dialog.close()
         self.history_system.add(action="Budget", action_type="Create", description="You created a budget")
-        BudgetSystem.add(c,amount,end_date,note)
+        self.system.add(c,amount,end_date,note)
         
 
     def close(self):
