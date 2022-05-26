@@ -45,6 +45,7 @@ class BudgetItem(QWidget):
         super(BudgetItem, self).__init__()
         self.layout = lay
         self.wid = Ui_Form()
+        self.pop = Ui_Dialog()
         self.wid.setupUi(self)
         self.wid.hearde.setText(head)
         self.wid.amount.setText("฿{:,.2f}".format(amount))
@@ -71,7 +72,9 @@ class BudgetItem(QWidget):
         print("hi")
 
     def edit_budget(self):
-        print("test")
+        self.dialog = QDialog(self)
+        self.pop.setupUi(self.dialog)
+        self.dialog.show()
 
     def add(self):
         self.layout.insertWidget(0,self)
