@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'Mono.ui'
+## Form generated from reading UI file 'mono.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.2
 ##
@@ -20,7 +20,7 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QDateEdit, QFrame,
     QListWidget, QListWidgetItem, QMainWindow, QPushButton,
     QScrollArea, QSizePolicy, QStackedWidget, QVBoxLayout,
     QWidget)
-from .resource_rc import * 
+from .resource_rc import *
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -1087,7 +1087,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

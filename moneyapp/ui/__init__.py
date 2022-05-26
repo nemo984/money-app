@@ -60,12 +60,23 @@ class MoneyAppUI(QMainWindow):
         self.ui.Budget_btn.clicked.connect(self.switch_tab)
         self.prev_tab = self.ui.Overview_btn
 
+        self.ui.setting_btn.clicked.connect(self.setting)
+
+    def setting(self):
+        self.prev_tab.setStyleSheet("background-color: transparent")
+        self.ui.stackedWidget.setCurrentIndex(5)
+        self.ui.tab_level.setText("Setting")
+        self.prev_tab = self.sender()
 
     def switch_tab(self):
         tabs = {"Overview":0, "Budget":1, "Income":2, "Expense":3, "Analysis":4}
         self.prev_tab.setStyleSheet("background-color: transparent")
         text = self.sender().text()
-        self.ui.stackedWidget.setCurrentIndex(tabs[text])
+        if text in tabs:
+            self.ui.stackedWidget.setCurrentIndex(tabs[text])
+        else:
+            self.ui.stackedWidget.setCurrentIndex(5)
+
         self.ui.tab_level.setText(text)
         self.sender().setStyleSheet("""
         QPushButton {
