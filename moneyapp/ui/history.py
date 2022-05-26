@@ -28,15 +28,8 @@ class HistoryUI:
 
     def clear_layout(self):
         for history in self.current:
-            history.delete()
+            history.clear()
         self.current = []
-
-
-def clearLayout(layout):
-  while layout.count():
-    child = layout.takeAt(0)
-    if child.widget():
-      child.widget().deleteLater()
 
 class HistoryItem(QWidget):
     def __init__(self, id, history_system, lay: QVBoxLayout, date, action, action_type, description):
@@ -74,4 +67,8 @@ class HistoryItem(QWidget):
     def delete(self):
         self.layout.removeWidget(self)
         self.history_system.delete(self.id)
+        self.deleteLater()
+
+    def clear(self):
+        self.layout.removeWidget(self)
         self.deleteLater()

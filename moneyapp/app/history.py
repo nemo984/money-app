@@ -25,20 +25,24 @@ class HistorySystem(Observable):
         self.notify(self._history)
         return self._history
 
+
     def filter(self, query: str):
         if query == "":
             return self.get()
 
         filtered_history = []
         for history in self._history:
-            s = f"{history.created_date}{history.action}{history.action_type}{history.description}"
+            date = history.created_date.strftime("%m/%d/%Y, %H:%M:%S")
+            s = f"{date}{history.action}{history.action_type}{history.description}"
             if query in s:
                 filtered_history.append(history)
         self.notify(filtered_history)
         return filtered_history
 
     def delete(self, history_id):
-        print(history_id)
-        history = ActionHistory.get(ActionHistory.id == history_id)
-        history.delete_instance()
-        history.get()
+        try:
+            history = ActionHistory.get(ActionHistory.id == history_id)
+            history.delete_instance()
+            history.get()
+        except:
+            pass
