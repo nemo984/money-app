@@ -50,13 +50,13 @@ class Ui_Form(object):
         self.progressBar.setValue(24)
         self.progressBar.setTextVisible(True)
         self.progressBar.setInvertedAppearance(False)
-        self.hearde = QLabel(self.Budget_lay)
-        self.hearde.setObjectName(u"hearde")
-        self.hearde.setGeometry(QRect(20, 10, 71, 21))
+        self.category_label = QLabel(self.Budget_lay)
+        self.category_label.setObjectName(u"category_label")
+        self.category_label.setGeometry(QRect(630, 20, 91, 21))
         font = QFont()
         font.setPointSize(12)
         font.setBold(True)
-        self.hearde.setFont(font)
+        self.category_label.setFont(font)
         self.amount = QLabel(self.Budget_lay)
         self.amount.setObjectName(u"amount")
         self.amount.setGeometry(QRect(20, 45, 121, 21))
@@ -79,6 +79,9 @@ class Ui_Form(object):
         self.start_date = QLabel(self.Budget_lay)
         self.start_date.setObjectName(u"start_date")
         self.start_date.setGeometry(QRect(20, 110, 121, 20))
+        self.name_label = QLabel(self.Budget_lay)
+        self.name_label.setObjectName(u"name_label")
+        self.name_label.setGeometry(QRect(20, 20, 491, 16))
 
         self.retranslateUi(Form)
 
@@ -87,11 +90,12 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.hearde.setText(QCoreApplication.translate("Form", u"Monthly", None))
+        self.category_label.setText(QCoreApplication.translate("Form", u"Bus", None))
         self.amount.setText(QCoreApplication.translate("Form", u"THB xx,xxx", None))
         self.label_9.setText(QCoreApplication.translate("Form", u"Until you reach THB xx,xxx", None))
         self.end_date.setText(QCoreApplication.translate("Form", u"Date", None))
         self.more_btn.setText("")
         self.start_date.setText(QCoreApplication.translate("Form", u"Date", None))
+        self.name_label.setText(QCoreApplication.translate("Form", u"Name", None))
     # retranslateUi
 

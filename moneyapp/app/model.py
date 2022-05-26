@@ -40,6 +40,7 @@ class Expense(BaseModel):
 
 class Budget(BaseModel):
     owner = ForeignKeyField(Account, backref='budgets')
+    name = CharField()
     category = CharField()
     amount = DecimalField(14,2)
     note = TextField(null=True)

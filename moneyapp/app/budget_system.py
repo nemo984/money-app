@@ -11,13 +11,14 @@ class BudgetSystem(Observable):
 
     def add(
         self,
+        name: str,
         category: str,
         amount: float,
         start_date: Optional[datetime] = None,
         end_date: Optional[datetime] = None,
         note: Optional[str] = None,
     ) -> Budget:
-        budget = Budget(owner=self.owner, category=category,
+        budget = Budget(owner=self.owner, category=category, name=name,
                         amount=amount, start_date=start_date, end_date=end_date, note=note)
         budget.save()
         self._budgets.append(budget)
@@ -39,6 +40,7 @@ class BudgetSystem(Observable):
     def update(
         self,
         budget_id: Budget,
+        name: Optional[str] = None,
         category: Optional[str] = None,
         amount: Optional[float] = None,
         start_date: Optional[datetime] = None,
@@ -48,6 +50,8 @@ class BudgetSystem(Observable):
         budget = self.getByID(budget_id)
         if budget is None:
             return
+        if name:
+            budget.name = name
         if start_date:
             budget.start_date = start_date
         if category:

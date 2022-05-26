@@ -84,12 +84,12 @@ background-color:transparent;
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="hearde">
+   <widget class="QLabel" name="category_label">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>71</width>
+      <x>630</x>
+      <y>20</y>
+      <width>91</width>
       <height>21</height>
      </rect>
     </property>
@@ -101,7 +101,7 @@ background-color:transparent;
      </font>
     </property>
     <property name="text">
-     <string>Monthly</string>
+     <string>Bus</string>
     </property>
    </widget>
    <widget class="QLabel" name="amount">
@@ -182,6 +182,19 @@ background-color:transparent;
     </property>
     <property name="text">
      <string>Date</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="name_label">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>491</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Name</string>
     </property>
    </widget>
   </widget>
