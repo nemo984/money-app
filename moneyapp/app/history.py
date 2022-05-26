@@ -1,7 +1,8 @@
 from typing import List
 from .model import ActionHistory, Account
+from .helpers import Observable
 
-class HistorySystem():
+class HistorySystem(Observable):
     def __init__(self):
         super().__init__()
         self._history = []
@@ -16,6 +17,7 @@ class HistorySystem():
         history = ActionHistory(owner=owner, action=action, action_type=action_type, description=description)
         history.save()
         self._history.append(history)
+        self.notify(self._history)
         return history
 
     def get(self, owner: Account) -> List[ActionHistory]:

@@ -17,7 +17,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QLabel, QPushButton, QSizePolicy,
     QWidget)
-import resource_rc
+from .resource_rc import *
 
 class Ui_history_form(object):
     def setupUi(self, history_form):
@@ -32,21 +32,21 @@ class Ui_history_form(object):
 "}")
         self.date_label = QLabel(history_form)
         self.date_label.setObjectName(u"date_label")
-        self.date_label.setGeometry(QRect(10, 10, 121, 31))
+        self.date_label.setGeometry(QRect(10, 10, 161, 31))
         font = QFont()
         font.setPointSize(12)
         self.date_label.setFont(font)
         self.type_label = QLabel(history_form)
         self.type_label.setObjectName(u"type_label")
-        self.type_label.setGeometry(QRect(160, 10, 121, 31))
+        self.type_label.setGeometry(QRect(180, 10, 91, 31))
         self.type_label.setFont(font)
         self.action_label = QLabel(history_form)
         self.action_label.setObjectName(u"action_label")
-        self.action_label.setGeometry(QRect(310, 10, 121, 31))
+        self.action_label.setGeometry(QRect(280, 10, 91, 31))
         self.action_label.setFont(font)
         self.description_label = QLabel(history_form)
         self.description_label.setObjectName(u"description_label")
-        self.description_label.setGeometry(QRect(460, 10, 351, 31))
+        self.description_label.setGeometry(QRect(380, 10, 461, 31))
         self.description_label.setFont(font)
         self.option_btn = QPushButton(history_form)
         self.option_btn.setObjectName(u"option_btn")

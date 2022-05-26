@@ -4,6 +4,7 @@ from PySide6.QtGui import *
 from .app.budget_system import BudgetSystem
 from .app.income_system import IncomeSystem
 from .app.expense_system import ExpenseSystem
+from .app.history import HistorySystem
 from .ui import MoneyAppUI
 from .ui.uipy.account import Ui_MainWindow 
 from .ui.uipy.account_wid import Ui_account_form
@@ -22,7 +23,8 @@ class MainApp:
         self.income_system = IncomeSystem()
         self.budget_system = BudgetSystem()
         self.expense_system = ExpenseSystem()
-        self.ui = MoneyAppUI(account_id, self.income_system, self.budget_system, self.expense_system)
+        self.history_system = HistorySystem()
+        self.ui = MoneyAppUI(account_id, self.income_system, self.budget_system, self.expense_system, self.history_system)
 
     def show(self):
         self.ui.show()
