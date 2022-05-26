@@ -10,10 +10,11 @@ from PySide6.QtGui import *
 
 class ExpenseUI(Observer):
 
-    def __init__(self, ui, s: ExpenseSystem, parent):
+    def __init__(self, ui, s: ExpenseSystem, history_system, parent):
         self.ui = ui
         self.parent = parent
         self.system = s
+        self.history_system = history_system
         self.pop = Ui_Dialog()
         self.ui.add_expense_button.clicked.connect(self.add_expense)
 

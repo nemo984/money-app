@@ -57,9 +57,6 @@ class AccountWindow(QMainWindow):
         d = load_id()
         account_id = d[_account_id]
         staySignInChecked = d[_staySignInChecked]
-        print(d[_account_id])
-        print(d[_staySignInChecked])
-        print(d[_last_tab])
         if not d[_staySignInChecked]:
             return False
         self.ui.staySignIn_checkBox.setChecked(True)

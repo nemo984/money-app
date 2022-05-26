@@ -38,9 +38,9 @@ class MoneyAppUI(QMainWindow):
         self.ui.profileImg_label.setPixmap(pixmap)
 
         budget_ui = BudgetUI(self.ui, account, budget_system, history_system, self)
-        income_ui = IncomeUI(self.ui, income_system, self)
-        expense_ui = ExpenseUI(self.ui,expense_system,self)
-        history_ui = HistoryUI(self.ui,history_system,self)
+        income_ui = IncomeUI(self.ui, income_system, history_system, self)
+        expense_ui = ExpenseUI(self.ui,expense_system, history_system, self)
+        history_ui = HistoryUI(self.ui,history_system, self)
         setting_ui = SettingUI(self.ui, account_system, self)
         
         budget_system.add_observer(budget_ui)
@@ -49,6 +49,9 @@ class MoneyAppUI(QMainWindow):
         history_system.add_observer(history_ui)
 
         history_system.get()
+        budget_system.get()
+        expense_system.get()
+        income_system.get()
 
         self.ui.Overview_btn.clicked.connect(self.switch_tab)
         self.ui.Overview_btn.setStyleSheet("""
