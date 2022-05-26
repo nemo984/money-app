@@ -14,7 +14,7 @@ class HistoryUI:
         self.current = []
         
     async def update(self, histories):
-        history_layout = self.ui.verticalLayout_391
+        history_layout = self.ui.verticalLayout_39
         self.clear_layout()
         for history in histories:
             item = QListWidgetItem()
