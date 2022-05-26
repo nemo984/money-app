@@ -2,7 +2,6 @@ from ..app.account import AccountSystem
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 
-
 class SettingUI:
     def __init__(self, ui, s: AccountSystem, parent):
         self.ui = ui

@@ -65,7 +65,7 @@ border-radius: 10px;
        <string>Note(Optional)</string>
       </property>
      </widget>
-     <widget class="QTextEdit" name="textEdit">
+     <widget class="QTextEdit" name="note_entry">
       <property name="geometry">
        <rect>
         <x>210</x>

@@ -4,27 +4,27 @@ from .helpers import Observable
 from .model import Budget, Category, Account
 
 class BudgetSystem(Observable):
-    def __init__(self):
+    def __init__(self, owner: Account):
         super().__init__()
+        self.owner = owner
         self._budgets = []
 
     def add(
         self,
-        owner: Account,
         category: Category,
         amount: float,
         end_date: Optional[datetime] = None,
         note: Optional[str] = None,
     ) -> Budget:
-        budget = Budget(owner=owner, category=category,
+        budget = Budget(owner=self.owner, category=category,
                         amount=amount, end_date=end_date, note=note)
         budget.save()
         self._budgets.append(budget)
         self.notify(self._budgets)
         return budget
 
-    def get(self, account: Account) -> List[Budget]:
-        self._budgets = account.budgets_ordered
+    def get(self) -> List[Budget]:
+        self._budgets = self.owner.budgets_ordered
         self.notify(self._budgets)
         return self._budgets
 
@@ -45,10 +45,10 @@ class BudgetSystem(Observable):
         if note:
             budget.note = note
         budget.save()
-        self.get(budget.owner)
+        self.get()
         return budget
 
     def delete(self, budget: Budget):
         owner = budget.owner
         budget.delete_instance()
-        self.get(owner)
+        self.get()

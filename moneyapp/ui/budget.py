@@ -8,15 +8,12 @@ from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from PySide6.QtCore import *
 
+
 class BudgetUI(Observer):
-    
-    def __init__(self, ui, s: BudgetSystem, parent):
+    def __init__(self, ui, account, budget_system: BudgetSystem, history_system, parent):
         self.ui = ui
-        self.parent = parent
-        self.system = s
         self.pop = Ui_Dialog()
         self.ui.add_Budget.clicked.connect(self.add_budget)
-
 
     def add_budget(self):
         self.dialog = QDialog(self.parent)
@@ -28,27 +25,28 @@ class BudgetUI(Observer):
         self.dialog.show()
 
     def close_dia(self):
-        start_date =self.pop.startDate_entry.text()
+        start_date = self.pop.startDate_entry.text()
         end_date = self.pop.endDate_entry.text()
         head = self.pop.name_entry.text()
         amount = float(self.pop.amount_entry.text())
         index = self.pop.category_comboBox.currentIndex()
         note = self.pop.note_entry.toPlainText()
-        b = BudgetItem(self.ui.verticalLayout_24, head, amount, start_date,end_date,index,note)
+        b = BudgetItem(self.ui.verticalLayout_24, head, amount,
+                       start_date, end_date, index, note)
         b.add()
         self.dialog.close()
+        self.history_system.add(action="Budget", action_type="Create", description="You created a budget")
+        
 
     def close(self):
         self.dialog.close()
-    
-    
-        
+
     async def update(self, budgets: List[Budget]):
         pass
 
 
 class BudgetItem(QWidget):
-    def __init__(self, lay: QVBoxLayout, head, amount, start_date,end_date,index,note):
+    def __init__(self, lay: QVBoxLayout, head, amount, start_date, end_date, index, note):
         super(BudgetItem, self).__init__()
         self.layout = lay
         self.wid = Ui_Form()
@@ -100,7 +98,7 @@ class BudgetItem(QWidget):
         self.dialog.show()
 
     def confirm_edit(self):
-        start_date =self.pop.startDate_entry.text()
+        start_date = self.pop.startDate_entry.text()
         end_date = self.pop.endDate_entry.text()
         head = self.pop.name_entry.text()
         amount = self.pop.amount_entry.text()
@@ -115,7 +113,7 @@ class BudgetItem(QWidget):
         self.dialog.close()
 
     def add(self):
-        self.layout.insertWidget(0,self)
+        self.layout.insertWidget(0, self)
 
     def delete(self):
         self.layout.removeWidget(self)

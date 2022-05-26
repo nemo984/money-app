@@ -20,12 +20,13 @@ from .app.account import AccountSystem
 class MainApp:
     def __init__(self, account_id=None, parent=None):
         self.parent = parent
-        self.income_system = IncomeSystem()
-        self.budget_system = BudgetSystem()
-        self.expense_system = ExpenseSystem()
-        self.history_system = HistorySystem()
         self.account_system = AccountSystem()
-        self.ui = MoneyAppUI(account_id, self.income_system, self.budget_system, self.expense_system, self.history_system, self.account_system)
+        account = self.account_system.getByID(account_id)
+        self.income_system = IncomeSystem(owner=account)
+        self.budget_system = BudgetSystem(owner=account)
+        self.expense_system = ExpenseSystem(owner=account)
+        self.history_system = HistorySystem(owner=account)
+        self.ui = MoneyAppUI(account, self.income_system, self.budget_system, self.expense_system, self.history_system, self.account_system)
 
     def show(self):
         self.ui.show()
