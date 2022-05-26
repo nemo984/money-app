@@ -4,19 +4,19 @@ from .model import Income, IncomeCategory, Account
 
 
 class IncomeSystem(Observable):
-    def __init__(self):
+    def __init__(self, owner):
         super().__init__()
+        self.owner = owner
         self._incomes = []
 
     def add(
         self,
-        owner: Account,
         category: IncomeCategory,
         amount: float,
         note: Optional[str] = None,
         frequency: Optional[int] = None,
     ) -> Income:
-        income = Income(owner=owner, category=category,
+        income = Income(owner=self.owner, category=category,
                         amount=amount, note=note,
                         frequency_day=frequency)
         income.save()
@@ -24,8 +24,8 @@ class IncomeSystem(Observable):
         self.notify(self._incomes)
         return income
 
-    def get(self, account: Account) -> List[Income]:
-        self._incomes = list(account.incomes_ordered)
+    def get(self) -> List[Income]:
+        self._incomes = list(self.owner.incomes_ordered)
         self.notify(self._incomes)
         return self._incomes
 
@@ -48,10 +48,9 @@ class IncomeSystem(Observable):
             income.note = note
 
         income.save()
-        self.get(income.owner)
+        self.get()
         return income
 
     def delete(self, income: Income):
-        owner = income.owner
         income.delete_instance()
-        self.get(owner)
+        self.get()

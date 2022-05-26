@@ -9,10 +9,12 @@ from PySide6.QtGui import *
 
 class BudgetUI(Observer):
     
-    def __init__(self, ui, s: BudgetSystem, parent):
+    def __init__(self, ui, account, budget_system: BudgetSystem, history_system, parent):
         self.ui = ui
+        self.account = account
         self.parent = parent
-        self.system = s
+        self.system = budget_system
+        self.history_system = history_system
         self.pop = Ui_Dialog()
         self.ui.add_Budget.clicked.connect(self.add_budget)
 
@@ -31,10 +33,7 @@ class BudgetUI(Observer):
         b = BudgetItem(self.ui.verticalLayout_24, head, amount, start_date,end_date)
         b.add()
         self.dialog.close()
-
-    #def delete_bud(self):
-    
-    
+        self.history_system.add(action="Budget", action_type="Create", description="You created a budget")
         
     async def update(self, budgets: List[Budget]):
         pass

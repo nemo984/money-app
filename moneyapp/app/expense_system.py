@@ -4,27 +4,27 @@ from .model import Expense, Category, Account
 
 
 class ExpenseSystem(Observable):
-    def __init__(self):
+    def __init__(self, owner):
         super().__init__()
+        self.owner = owner
         self._expenses = []
 
     def add(
         self,
-        owner: Account,
         category: Category,
         amount: float,
         frequency: Optional[int] = None,
         note: Optional[str] = None,
     ) -> Expense:
-        expense = Expense(owner=owner, category=category,
+        expense = Expense(owner=self.owner, category=category,
                           amount=amount, frequency_day=frequency, note=note)
         expense.save()
         self._expenses.append(expense)
         self.notify(self._expenses)
         return expense
 
-    def get(self, account: Account) -> List[Expense]:
-        self._expenses = list(account.expenses_ordered)
+    def get(self) -> List[Expense]:
+        self._expenses = list(self.owner.expenses_ordered)
         self.notify(self._expenses)
         return self._expenses
 
@@ -45,10 +45,10 @@ class ExpenseSystem(Observable):
         if note:
             expense.note = note
         expense.save()
-        self.get(expense.owner)
+        self.get()
         return expense
 
     def delete(self, expense: Expense):
         owner = expense.owner
         expense.delete_instance()
-        self.get(owner)
+        self.get()
