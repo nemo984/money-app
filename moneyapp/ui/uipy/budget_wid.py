@@ -65,7 +65,7 @@ class Ui_Form(object):
         self.label_9.setGeometry(QRect(150, 50, 221, 16))
         self.end_date = QLabel(self.Budget_lay)
         self.end_date.setObjectName(u"end_date")
-        self.end_date.setGeometry(QRect(680, 110, 81, 20))
+        self.end_date.setGeometry(QRect(640, 110, 131, 20))
         self.more_btn = QPushButton(self.Budget_lay)
         self.more_btn.setObjectName(u"more_btn")
         self.more_btn.setGeometry(QRect(740, 10, 51, 31))
@@ -75,7 +75,7 @@ class Ui_Form(object):
         self.more_btn.setIconSize(QSize(24, 24))
         self.start_date = QLabel(self.Budget_lay)
         self.start_date.setObjectName(u"start_date")
-        self.start_date.setGeometry(QRect(20, 110, 81, 20))
+        self.start_date.setGeometry(QRect(20, 110, 121, 20))
 
         self.retranslateUi(Form)
 
