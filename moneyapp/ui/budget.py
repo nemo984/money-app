@@ -39,11 +39,11 @@ class BudgetUI(Observer):
         c = self.pop.category_comboBox.currentText()
         note = self.pop.note_entry.toPlainText()
         b = BudgetItem(self.ui.verticalLayout_24, head, amount,
-                       start_date, end_date, index, note)
+                       start_date, end_date, index, note,self.history_system)
         b.add()
         self.dialog.close()
         self.history_system.add(action="Budget", action_type="Create", description="You created a budget")
-        #self.system.add(c,amount,start_date,end_date,note)
+        self.system.add(c,amount,start_date,end_date,note)
         
 
     def close(self):
@@ -54,7 +54,7 @@ class BudgetUI(Observer):
 
 
 class BudgetItem(QWidget):
-    def __init__(self, lay: QVBoxLayout, head, amount, start_date, end_date, index, note):
+    def __init__(self, lay: QVBoxLayout, head, amount, start_date, end_date, index, note,history_system):
         super(BudgetItem, self).__init__()
         self.layout = lay
         self.wid = Ui_Form()
@@ -64,6 +64,7 @@ class BudgetItem(QWidget):
         self.note = note
         self.s_date = start_date
         self.e_date = end_date
+        self.history_system = history_system
 
         self.wid.setupUi(self)
         self.wid.hearde.setText(head)
@@ -87,9 +88,7 @@ class BudgetItem(QWidget):
         menu.addAction(self.edit)
         menu.addAction(self.delete_b)
         menu.exec(QCursor.pos())
-
-    def hi(self):
-        print("hi")
+        
 
     def edit_budget(self):
         self.dialog = QDialog(self)
@@ -106,6 +105,7 @@ class BudgetItem(QWidget):
         s_date = self.pop.startDate_entry.text()
         e_date = self.pop.endDate_entry.text()
         self.dialog.show()
+        
 
     def confirm_edit(self):
         start_date = self.pop.startDate_entry.text()
@@ -121,7 +121,8 @@ class BudgetItem(QWidget):
         self.note = self.pop.note_entry.toPlainText()
         self.index = self.pop.category_comboBox.currentIndex()
         self.dialog.close()
-        #self.history_system.add(action="Budget", action_type="Update", description="You Edit a budget")
+        self.history_system.add(action="Budget", action_type="Update", description="You Updated a budget")
+        
 
     def add(self):
         self.layout.insertWidget(0, self)
@@ -129,3 +130,4 @@ class BudgetItem(QWidget):
     def delete(self):
         self.layout.removeWidget(self)
         self.deleteLater()
+        self.history_system.add(action="Budget", action_type="Delete", description="You Deleted a budget")
