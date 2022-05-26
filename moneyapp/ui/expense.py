@@ -86,7 +86,7 @@ class ExpenseItem(QWidget):
         self.pop.note_entry.setPlainText(self.note)
         date = QDate.fromString(self.date, "dd/M/yyyy")
         self.pop.date_entry.setDate(date)
-        date = self.pop.date_entry.text()
+        self.date = self.pop.date_entry.text()
         self.pop.confirm_btn.clicked.connect(self.confirm_edit)
         self.pop.cancel_btn.clicked.connect(self.cancel)
         self.dialog.show()
@@ -103,6 +103,7 @@ class ExpenseItem(QWidget):
         self.category = str(self.pop.category_comboBox.currentText())
         self.index_cat = self.pop.category_comboBox.currentIndex()
         self.index_bud = self.pop.budget_comboBox.currentIndex()
+        self.date = self.pop.date_entry.text()
         self.dialog.close()
 
     def cancel(self):

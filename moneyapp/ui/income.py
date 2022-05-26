@@ -6,6 +6,7 @@ from .uipy.income_popup import Ui_Dialog
 from .uipy.income_wid import Ui_income_form
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
+from PySide6.QtCore import *
 
 
 class IncomeUI(Observer):
@@ -21,6 +22,7 @@ class IncomeUI(Observer):
     def add_income(self):
         self.dialog = QDialog(self.parent)
         self.pop.setupUi(self.dialog)
+        self.pop.date_entry.setDateTime(QDateTime.currentDateTime())
         self.pop.confirm_btn.clicked.connect(self.close_dia)
         self.pop.cancel_btn.clicked.connect(self.close)
 
@@ -35,11 +37,10 @@ class IncomeUI(Observer):
         note = self.pop.note_entry.toPlainText()
         index_cat = self.pop.category_comboBox.currentIndex()
         index_rec = self.pop.recurence_comboBox.currentIndex()
-        inc = IncomeItem(self.ui.verticalLayout_39, date,
+        inc = IncomeItem(self.ui.verticalLayout_40, date,
                          name, category, amount, recurrence, note, index_cat, index_rec)
         inc.add()
         self.dialog.close()
-        change.recToInt(recurrence)
 
     def close(self):
         self.dialog.close()
@@ -110,6 +111,7 @@ class IncomeItem(QWidget):
         self.name = name
         self.amount = amount
         self.note = note
+        self.date = date
 
         self.wid.setupUi(self)
         self.wid.date_label.setText(date)
@@ -141,9 +143,9 @@ class IncomeItem(QWidget):
         self.pop.category_comboBox.setCurrentIndex(self.index_cat)
         self.pop.recurence_comboBox.setCurrentIndex(self.index_rec)
         self.pop.note_entry.setPlainText(self.note)
-        #date = QDate.fromString(self.sdate,"dd/M/yyyy")
-        # self.pop.startDate_entry.setDate(date)
-        #date = self.pop.date_entry.text()
+        date = QDate.fromString(self.date, "dd/M/yyyy")
+        self.pop.date_entry.setDate(date)
+        self.date = self.pop.date_entry.text()
         self.pop.confirm_btn.clicked.connect(self.confirm_edit)
         self.pop.cancel_btn.clicked.connect(self.cancel)
         self.dialog.show()
@@ -163,6 +165,7 @@ class IncomeItem(QWidget):
         self.category = str(self.pop.category_comboBox.currentText())
         self.index_cat = self.pop.category_comboBox.currentIndex()
         self.index_rec = self.pop.recurence_comboBox.currentIndex()
+        self.date = self.pop.date_entry.text()
         self.dialog.close()
 
     def cancel(self):
@@ -174,30 +177,3 @@ class IncomeItem(QWidget):
     def delete(self):
         self.layout.removeWidget(self)
         self.deleteLater()
-
-
-class change():
-    # recurrence->one-time=None,daily=1,weekly=7,monthly=30,yearly=365
-    def recToInt(recurrence):
-        if(recurrence == "one-time"):
-            return None
-        elif(recurrence == "Daily"):
-            return 1
-        elif(recurrence == "Weekly"):
-            return 7
-        elif(recurrence == "Monthly"):
-            return 30
-        elif(recurrence == "Yearly"):
-            return 365
-
-    def intTorec(number):
-        if(number == None):
-            return "one-time"
-        elif(number == 1):
-            return "Daily"
-        elif(number == 7):
-            return "Weekly"
-        elif(number == 30):
-            return "Monthly"
-        elif(number == 365):
-            return "Yearly"
