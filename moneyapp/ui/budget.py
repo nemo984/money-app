@@ -23,13 +23,15 @@ class BudgetUI(Observer):
         self.dialog.show()
 
     def close_dia(self):
-        # date = self.pop.date_entry.text()
-        # head = self.pop.name_entry.text()
-        # amount = int(self.pop.amount_entry.text())       
-        # b = BudgetItem(self.ui.verticalLayout_19, head, amount, date)
-        b = BudgetItem(self.ui.verticalLayout_24, "This is the heading", "10 THB", "12/13/14")
+        start_date =self.pop.startDate_entry.text()
+        head = self.pop.name_entry.text()
+        amount = int(self.pop.amount_entry.text())     
+        b = BudgetItem(self.ui.verticalLayout_24, head, amount, start_date)
         b.add()
         self.dialog.close()
+
+    #def delete_bud(self):
+        
         
     async def update(self, budgets: List[Budget]):
         pass
@@ -45,6 +47,7 @@ class BudgetItem(QWidget):
         self.wid.amount.setText("THB"+str(amount))
         self.wid.date.setText(date)
         self.wid.progressBar.setValue(0)
+        self.wid.progressBar.setMaximum(amount)
 
     def add(self):
         self.layout.insertWidget(0,self)
