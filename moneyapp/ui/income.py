@@ -38,6 +38,7 @@ class IncomeUI(Observer):
                          name, category, amount, recurrence, note, index_cat, index_rec)
         inc.add()
         self.dialog.close()
+        change.recToInt(recurrence)
 
     def close(self):
         self.dialog.close()
@@ -139,6 +140,9 @@ class IncomeItem(QWidget):
         self.pop.category_comboBox.setCurrentIndex(self.index_cat)
         self.pop.recurence_comboBox.setCurrentIndex(self.index_rec)
         self.pop.note_entry.setPlainText(self.note)
+        #date = QDate.fromString(self.sdate,"dd/M/yyyy")
+        # self.pop.startDate_entry.setDate(date)
+        #date = self.pop.date_entry.text()
         self.pop.confirm_btn.clicked.connect(self.confirm_edit)
         self.pop.cancel_btn.clicked.connect(self.cancel)
         self.dialog.show()
@@ -169,3 +173,30 @@ class IncomeItem(QWidget):
     def delete(self):
         self.layout.removeWidget(self)
         self.deleteLater()
+
+
+class change():
+    # recurrence->one-time=None,daily=1,weekly=7,monthly=30,yearly=365
+    def recToInt(recurrence):
+        if(recurrence == "one-time"):
+            return None
+        elif(recurrence == "Daily"):
+            return 1
+        elif(recurrence == "Weekly"):
+            return 7
+        elif(recurrence == "Monthly"):
+            return 30
+        elif(recurrence == "Yearly"):
+            return 365
+
+    def intTorec(number):
+        if(number == None):
+            return "one-time"
+        elif(number == 1):
+            return "Daily"
+        elif(number == 7):
+            return "Weekly"
+        elif(number == 30):
+            return "Monthly"
+        elif(number == 365):
+            return "Yearly"

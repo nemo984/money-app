@@ -6,6 +6,7 @@ from .uipy.expense_popup import Ui_Dialog
 from .uipy.expense_wid import Ui_expense_form
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
+from PySide6.QtCore import *
 
 
 class ExpenseUI(Observer):
@@ -20,6 +21,7 @@ class ExpenseUI(Observer):
     def add_expense(self):
         self.dialog = QDialog(self.parent)
         self.pop.setupUi(self.dialog)
+        self.pop.date_entry.setDateTime(QDateTime.currentDateTime())
         self.pop.confirm_btn.clicked.connect(self.close_dia)
         self.pop.cancel_btn.clicked.connect(self.close)
         self.dialog.show()
@@ -53,6 +55,7 @@ class ExpenseItem(QWidget):
         self.index_bud = index_bud
         self.amount = amount
         self.note = note
+        self.date = date
 
         self.wid.setupUi(self)
         self.wid.date_label.setText(date)
@@ -80,6 +83,9 @@ class ExpenseItem(QWidget):
         self.pop.category_comboBox.setCurrentIndex(self.index_cat)
         self.pop.budget_comboBox.setCurrentIndex(self.index_bud)
         self.pop.note_entry.setPlainText(self.note)
+        date = QDate.fromString(self.date, "dd/M/yyyy")
+        self.pop.date_entry.setDate(date)
+        date = self.pop.date_entry.text()
         self.pop.confirm_btn.clicked.connect(self.confirm_edit)
         self.pop.cancel_btn.clicked.connect(self.cancel)
         self.dialog.show()
