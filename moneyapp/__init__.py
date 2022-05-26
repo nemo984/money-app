@@ -192,8 +192,10 @@ _last_tab = "last_tab"
 def load_id():
     try:
         with open('signin.pickle', 'rb') as f:
-            return pickle.load(f)
-    except FileNotFoundError:
+            d = pickle.load(f)
+            AccountSystem().getByID(d[_account_id])
+            return d
+    except Exception:
         save_staySignIn()
         return {_staySignInChecked:False, _account_id:-1, _last_tab: -1}
 
