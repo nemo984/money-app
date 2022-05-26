@@ -52,7 +52,7 @@ class BudgetSystem(Observable):
         self.get()
         return budget
 
-    def delete(self, budget: Budget):
-        owner = budget.owner
+    def delete(self, budget_id: int):
+        budget = Budget.get(Budget.id == budget_id)
         budget.delete_instance()
         self.get()

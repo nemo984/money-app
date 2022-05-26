@@ -40,9 +40,6 @@ class HistorySystem(Observable):
         return filtered_history
 
     def delete(self, history_id):
-        try:
-            history = ActionHistory.get(ActionHistory.id == history_id)
-            history.delete_instance()
-            history.get()
-        except:
-            pass
+        history = ActionHistory.get(ActionHistory.id == history_id)
+        history.delete_instance()
+        self.get()

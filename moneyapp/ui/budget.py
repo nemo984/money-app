@@ -20,6 +20,8 @@ class BudgetUI(Observer):
         self.pop = Ui_Dialog()
         self.ui.add_Budget.clicked.connect(self.add_budget)
         self.parent = parent
+        self.budgets = []
+        self.budgets_layout = self.ui.verticalLayout_24
 
     def add_budget(self):
         self.dialog = QDialog(self.parent)
@@ -38,24 +40,40 @@ class BudgetUI(Observer):
         index = self.pop.category_comboBox.currentIndex()
         c = self.pop.category_comboBox.currentText()
         note = self.pop.note_entry.toPlainText()
-        b = BudgetItem(self.ui.verticalLayout_24, head, amount,
-                       start_date, end_date, index, note,self.history_system)
-        b.add()
         self.dialog.close()
+        budget = self.system.add(category=c, amount=amount, start_date=start_date, end_date=end_date)
+        b = BudgetItem(id=budget.id, budget_system=self.system, history_system=self.history_system, lay=self.budgets_layout)
+        b.add()
         self.history_system.add(action="Budget", action_type="Create", description="You created a budget")
-        self.system.add(c,amount,start_date,end_date,note)
         
 
     def close(self):
         self.dialog.close()
 
     async def update(self, budgets: List[Budget]):
-        pass
+        self.clear_layout()
+        for budget in budgets:
+            item = QListWidgetItem()
+            budget = BudgetItem(id=budget.id, budget_system=self.system, history_system=self.history_system, lay=self.budgets_layout, head=budget.category, index=budget_category_dropdown[budget.category], 
+                                amount=budget.amount, start_date=budget.start_date, end_date=budget.end_date,
+                                note=budget.note)
+            budget.add()
+            self.budgets.append(budget)
 
+    def clear_layout(self):
+        for budget in self.budgets:
+            budget.clear()
+        self.budgets = []
+
+
+budget_category_dropdown = {"Food":0, "Entertainment":1, "Transport":2, "Education":3, "Healthcare":4, "Bill":5, "Saving":6, "Investment":7, "Shopping":8, "Utilities/Other":9}
 
 class BudgetItem(QWidget):
-    def __init__(self, lay: QVBoxLayout, head, amount, start_date, end_date, index, note,history_system):
+    def __init__(self, id, budget_system, history_system, lay: QVBoxLayout, head, amount, start_date, end_date, index, note):
         super(BudgetItem, self).__init__()
+        self.id = id
+        self.budget_system = budget_system
+        self.history_system = history_system
         self.layout = lay
         self.wid = Ui_Form()
         self.pop = Ui_Dialog()
@@ -64,7 +82,6 @@ class BudgetItem(QWidget):
         self.note = note
         self.s_date = start_date
         self.e_date = end_date
-        self.history_system = history_system
 
         self.wid.setupUi(self)
         self.wid.hearde.setText(head)
@@ -123,13 +140,17 @@ class BudgetItem(QWidget):
         self.s_date = self.pop.startDate_entry.text()
         self.e_date = self.pop.endDate_entry.text()
         self.dialog.close()
-        self.history_system.add(action="Budget", action_type="Update", description="You Updated a budget")
+        self.history_system.add(action="Budget", action_type="Update", description="You updated a budget")
         
-
     def add(self):
         self.layout.insertWidget(0, self)
 
     def delete(self):
         self.layout.removeWidget(self)
         self.deleteLater()
-        self.history_system.add(action="Budget", action_type="Delete", description="You Deleted a budget")
+        self.budget_system.delete(self.id)
+        self.history_system.add(action="Budget", action_type="Delete", description="You deleted a budget")
+
+    def clear(self):
+        self.layout.removeWidget(self)
+        self.deleteLater()
