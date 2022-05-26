@@ -96,14 +96,14 @@ class BudgetItem(QWidget):
         self.pop.amount_entry.setText(str(self.amount))
         self.pop.name_entry.setText(self.wid.hearde.text())
         self.pop.category_comboBox.setCurrentIndex(self.index)
-        self.pop.note_entry.setPlainText(self.note)
-        self.pop.confirm_btn.clicked.connect(self.confirm_edit)
+        self.pop.note_entry.setPlainText(self.note)   
         s_date = QDate.fromString(self.s_date,"dd/M/yyyy")
         e_date = QDate.fromString(self.e_date,"dd/M/yyyy")
         self.pop.startDate_entry.setDate(s_date)
         self.pop.endDate_entry.setDate(e_date)
-        s_date = self.pop.startDate_entry.text()
-        e_date = self.pop.endDate_entry.text()
+        self.s_date = self.pop.startDate_entry.text()
+        self.e_date = self.pop.endDate_entry.text()
+        self.pop.confirm_btn.clicked.connect(self.confirm_edit)
         self.dialog.show()
         
 
@@ -120,6 +120,8 @@ class BudgetItem(QWidget):
         self.amount = self.pop.amount_entry.text()
         self.note = self.pop.note_entry.toPlainText()
         self.index = self.pop.category_comboBox.currentIndex()
+        self.s_date = self.pop.startDate_entry.text()
+        self.e_date = self.pop.endDate_entry.text()
         self.dialog.close()
         self.history_system.add(action="Budget", action_type="Update", description="You Updated a budget")
         
