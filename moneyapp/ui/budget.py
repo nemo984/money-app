@@ -43,7 +43,7 @@ class BudgetUI(Observer):
         b.add()
         self.dialog.close()
         self.history_system.add(action="Budget", action_type="Create", description="You created a budget")
-        self.system.add(c,amount,end_date,note)
+        #self.system.add(c,amount,start_date,end_date,note)
         
 
     def close(self):
@@ -121,6 +121,7 @@ class BudgetItem(QWidget):
         self.note = self.pop.note_entry.toPlainText()
         self.index = self.pop.category_comboBox.currentIndex()
         self.dialog.close()
+        #self.history_system.add(action="Budget", action_type="Update", description="You Edit a budget")
 
     def add(self):
         self.layout.insertWidget(0, self)
