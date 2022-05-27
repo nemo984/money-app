@@ -55,7 +55,7 @@ class Income(BaseModel):
     frequency_day = IntegerField(null=True)
     note = TextField(null=True)
     date = DateTimeField(default=datetime.now)
-    updated_date = DateTimeField()
+    updated_date = DateTimeField(null=True)
 
 class Reminder(BaseModel):
     owner = ForeignKeyField(Account, backref='reminders')
