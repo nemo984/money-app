@@ -39,7 +39,7 @@ class MoneyAppUI(QMainWindow):
 
         budget_ui = BudgetUI(self.ui, account, budget_system, history_system, self)
         income_ui = IncomeUI(self.ui, income_system, history_system, self)
-        expense_ui = ExpenseUI(self.ui,expense_system, history_system, self)
+        expense_ui = ExpenseUI(self.ui,expense_system, budget_system, history_system, self)
         history_ui = HistoryUI(self.ui,history_system, self)
         setting_ui = SettingUI(self.ui, account_system, self)
         

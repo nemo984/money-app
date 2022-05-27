@@ -30,10 +30,12 @@ class BudgetSystem(Observable):
         self.notify(self._budgets)
         return self._budgets
 
+    def get_without_notify(self):
+        return self._budgets
+
     def getByID(self, budget_id) -> Budget:
         budget = Budget.get_or_none(Budget.id == budget_id)
         return budget
-
 
     def update(
         self,
