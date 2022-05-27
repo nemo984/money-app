@@ -75,7 +75,7 @@ background-color:transparent;
      <locale language="English" country="UnitedStates"/>
     </property>
     <property name="value">
-     <number>24</number>
+     <number>0</number>
     </property>
     <property name="textVisible">
      <bool>true</bool>
@@ -109,7 +109,7 @@ background-color:transparent;
      <rect>
       <x>20</x>
       <y>45</y>
-      <width>121</width>
+      <width>281</width>
       <height>21</height>
      </rect>
     </property>
@@ -125,10 +125,10 @@ background-color:transparent;
    <widget class="QLabel" name="label_9">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>330</x>
       <y>50</y>
-      <width>221</width>
-      <height>16</height>
+      <width>421</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">

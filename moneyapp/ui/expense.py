@@ -61,10 +61,10 @@ class ExpenseUI(Observer):
         budget = self.budgets[budget] if budget in self.budgets else None
         self.dialog.close()
         expense = self.system.add(
-            category=category, amount=amount, date=date, note=note, budget=budget
+            category=category, amount=amount, date=date, note=note, budget=budget, budget_system=self.budget_system
         )
         ex = ExpenseItem(expense.id, self.lay,
-                         date, category, amount, note, index_cat, self.history_system, self.system, budget)
+                         date, category, amount, note, index_cat, self.history_system, self.system, self.budget_system, budget)
         self.history_system.add(
             action="Expense", action_type="Create", description="You created a new expense")
 
@@ -77,7 +77,7 @@ class ExpenseUI(Observer):
             expense = ExpenseItem(expense_id=expense.id, lay=self.lay, date=expense.date, category=expense.category,
                                   amount=expense.amount, note=expense.note, index_cat=expense_category_dropdown[
                                       expense.category],
-                                  history_system=self.history_system, expense_system=self.system, budget=expense.budget)
+                                  history_system=self.history_system, expense_system=self.system, budget_system=self.budget_system, budget=expense.budget)
             expense.add()
             self.expenses.append(expense)
 
@@ -87,7 +87,7 @@ class ExpenseUI(Observer):
         self.expenses = []
 
     def filter(self, value):
-        
+        pass
 
     def isfloat(self, num):
         try:
@@ -102,7 +102,7 @@ expense_category_dropdown = {"Food": 0, "Entertainment": 1, "Transport": 2, "Edu
 
 
 class ExpenseItem(QWidget):
-    def __init__(self, expense_id, lay: QVBoxLayout, date, category, amount, note, index_cat, history_system, expense_system, budget):
+    def __init__(self, expense_id, lay: QVBoxLayout, date, category, amount, note, index_cat, history_system, expense_system, budget_system, budget):
         super(ExpenseItem, self).__init__()
         self.id = expense_id
         self.layout = lay
@@ -190,7 +190,7 @@ class ExpenseItem(QWidget):
     def delete(self):
         self.layout.removeWidget(self)
         self.deleteLater()
-        self.expense_system.delete(self.id)
+        self.expense_system.delete(self.id, budget_system=self.budget_system)
         self.history_system.add(
             action="Expense", action_type="Delete", description="You deleted your expense")
 

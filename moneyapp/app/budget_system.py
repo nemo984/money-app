@@ -2,6 +2,7 @@ from typing import Optional, List
 from datetime import datetime
 from .helpers import Observable
 from .model import Budget, Account
+import decimal
 
 class BudgetSystem(Observable):
     def __init__(self, owner: Account):
@@ -45,7 +46,7 @@ class BudgetSystem(Observable):
         budget = self.getByID(budget_id)
         if budget is None:
             return
-        budget.amount_used += amount
+        budget.amount_used += decimal.Decimal(amount)
         budget.save()
         self.get()
         return budget
@@ -54,7 +55,7 @@ class BudgetSystem(Observable):
         budget = self.getByID(budget_id)
         if budget is None:
             return
-        budget.amount_used -= amount
+        budget.amount_used -= decimal.Decimal(amount)
         budget.save()
         self.get()
         return budget

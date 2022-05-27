@@ -55,7 +55,7 @@ class BudgetUI(Observer):
         budget = self.system.add(
             category=c, name=name, amount=amount, start_date=start_date, end_date=end_date)
         b = BudgetItem(budget_id=budget.id, budget_system=self.system, history_system=self.history_system, lay=self.budgets_layout, amount=amount, category=c,
-                       end_date=end_date, index=index, note=note, name=name, start_date=start_date)
+                       end_date=end_date, index=index, note=note, name=name, start_date=start_date, amount_used=budget.amount_used)
         self.history_system.add(
             action="Budget", action_type="Create", description="You created a budget")
 
@@ -65,9 +65,10 @@ class BudgetUI(Observer):
     async def update(self, budgets: List[Budget]):
         self.clear_layout()
         for budget in budgets:
+            progress_value = (budget.amount_used / budget.amount) * 100
             budget = BudgetItem(budget_id=budget.id, budget_system=self.system, history_system=self.history_system, lay=self.budgets_layout, name=budget.name,
                                 category=budget.category, index=budget_category_dropdown[budget.category],
-                                amount=budget.amount, start_date=budget.start_date, end_date=budget.end_date,
+                                amount=budget.amount, amount_used=budget.amount_used, start_date=budget.start_date, end_date=budget.end_date,
                                 note=budget.note)
             budget.add()
             self.budgets.append(budget)
@@ -90,7 +91,7 @@ budget_category_dropdown = {"Food": 0, "Entertainment": 1, "Transport": 2, "Educ
 
 
 class BudgetItem(QWidget):
-    def __init__(self, budget_id, budget_system, history_system, lay: QVBoxLayout, category, name, amount, start_date, end_date, index, note):
+    def __init__(self, budget_id, budget_system, history_system, lay: QVBoxLayout, category, name, amount, amount_used, start_date, end_date, index, note,):
         super(BudgetItem, self).__init__()
         self.id = budget_id
         self.budget_system = budget_system
@@ -107,16 +108,14 @@ class BudgetItem(QWidget):
         self.name = name
 
         self.wid.setupUi(self)
-        self.per = self.wid.progressBar.value()
+        self.progress_value = (amount_used / amount) * 100
+        self.wid.progressBar.setValue(self.progress_value)
         self.wid.name_label.setText(self.name)
         self.wid.category_label.setText(self.category)
-        self.wid.amount.setText("฿{:,.2f}".format(amount))
+        self.wid.amount.setText("Total Budget: ฿{:,.2f}".format(amount))
         self.wid.end_date.setText("End Date:"+end_date)
         self.wid.start_date.setText("Start Date:"+start_date)
-        self.wid.progressBar.setMinimum(0)
-        self.wid.progressBar.setValue(0)
-        #self.wid.progressBar.setMaximum(amount)
-        self.wid.label_9.setText("Until you reach"+"฿{:,.2f}".format(amount))
+        self.wid.label_9.setText("You have used "+"฿{:,.2f}".format(amount_used) + ", Remaining: "+"฿{:,.2f}".format(amount - amount_used))
         self.wid.more_btn.clicked.connect(self.option)
 
     def option(self):
