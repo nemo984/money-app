@@ -409,6 +409,13 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents_6 = QWidget()
         self.scrollAreaWidgetContents_6.setObjectName(u"scrollAreaWidgetContents_6")
         self.scrollAreaWidgetContents_6.setGeometry(QRect(0, 0, 387, 331))
+        self.verticalLayout_42 = QVBoxLayout(self.scrollAreaWidgetContents_6)
+        self.verticalLayout_42.setObjectName(u"verticalLayout_42")
+        self.expense_report_list = QWidget(self.scrollAreaWidgetContents_6)
+        self.expense_report_list.setObjectName(u"expense_report_list")
+
+        self.verticalLayout_42.addWidget(self.expense_report_list)
+
         self.scrollArea_6.setWidget(self.scrollAreaWidgetContents_6)
 
         self.verticalLayout_18.addWidget(self.scrollArea_6)

@@ -3,11 +3,17 @@ from ..app.helpers import Observer
 from ..app.model import *
 from .uipy.overview_wid import Ui_Form
 from ..app.expense_system import ExpenseSystem
+from ..app.reminder import ReminderSystem
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from PySide6.QtCore import *
 
 class ReminderUI(Observer):
+    def __init__(self,ui,r: ReminderSystem):
+        self.ui = ui
+        self.lay = self.ui.verticalLayout_42
+        self.riminder_system = r
+        self.reminders = []
     async def update(self, reminders: List[Reminder]):
         pass
 
@@ -28,19 +34,19 @@ class BudgetReportUI(Observer):
 class ExpenseReportUI(Observer):
     def __init__(self,ui,s: ExpenseSystem):
         self.ui = ui
-        self.lay = self.ui.verticalLayout_18
+        self.lay = self.ui.verticalLayout_42
         self.expense_system = s
         self.expenses = []
         self.category = {"Food":u":/category/icon/category/Food.svg", 
-                        "Entertainment":u":/black/icon/White/volume-1.svg", 
-                        "Transport":u":/black/icon/White/briefcase.svg", 
-                        "Education":u":/black/icon/White/book.svg", 
-                        "Healthcare":u":/black/icon/White/volume-1.svg", 
-                        "Bill":u":/black/icon/White/volume-1.svg",
-                        "Saving":u":/black/icon/White/volume-1.svg", 
-                        "Investment":u":/black/icon/White/volume-1.svg", 
-                        "Shopping":u":/black/icon/White/volume-1.svg",
-                        "Utilities/Other":u":/black/icon/White/volume-1.svg"}
+                        "Entertainment":u":/category/icon/category/Entertainment.svg", 
+                        "Transport":u":/category/icon/category/Transport.svg", 
+                        "Education":u":/category/icon/category/Education.svg", 
+                        "Healthcare":u":/category/icon/category/healthcare.svg", 
+                        "Bill":u":/category/icon/category/bill.svg",
+                        "Saving":u":/category/icon/category/Saving.svg", 
+                        "Investment":u":/category/icon/category/Investment.svg", 
+                        "Shopping":u":/category/icon/category/shopping-.svg",
+                        "Utilities/Other":u":/category/icon/category/other.svg"}
         
     async def update(self, expenses: List[Expense]):
         self.clear_layout()
