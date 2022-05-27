@@ -22,6 +22,7 @@ class ExpenseUI(Observer):
         self.lay = self.ui.verticalLayout_38
         self.ui.add_expense_button.clicked.connect(self.add_expense)
         self.parent = parent
+        self.budgets = {}
 
     def add_expense(self):
         self.dialog = QDialog(self.parent)
@@ -31,29 +32,29 @@ class ExpenseUI(Observer):
         self.pop.cancel_btn.clicked.connect(self.close)
         self.pop.category_comboBox.currentTextChanged.connect(self.category_change)
 
-        budgets = self.budget_system.get_without_notify()
-        budgets_name = {f"{b.start_date} {b.name}" for b in budgets}
-        self.pop.budget_comboBox.addItems(budgets_name)
+        self.category_change("Food")
         self.dialog.show()
 
     def category_change(self, value):
         self.pop.budget_comboBox.clear()
         budgets = self.budget_system.getByCategory(value)
-        budgets_name = {f"{b.start_date} {b.name}" for b in budgets}
+        self.budgets = {f"{b.start_date} {b.name}":b for b in budgets}
         self.pop.budget_comboBox.addItem("None")
-        self.pop.budget_comboBox.addItems(budgets_name)
+        self.pop.budget_comboBox.addItems(self.budgets.keys())
 
 
     def close_dia(self):
         date = self.pop.date_entry.text()
         category = str(self.pop.category_comboBox.currentText())
+        budget = str(self.pop.budget_comboBox.currentText())
         amount = int(self.pop.amount_entry.text())
         note = self.pop.note_entry.toPlainText()
         index_cat = self.pop.category_comboBox.currentIndex()
         index_bud = self.pop.budget_comboBox.currentIndex()              
+        budget = self.budgets[budget] if budget in self.budgets else None
         self.dialog.close()
         expense = self.system.add(
-            category = category,amount=amount,date=date,note= note
+            category = category,amount=amount,date=date,note=note,budget=budget
         )
         ex = ExpenseItem(expense.id ,self.ui.verticalLayout_38,
                          date, category, amount, note, index_cat, index_bud, self.history_system,self.system)
@@ -75,7 +76,7 @@ class ExpenseUI(Observer):
     def clear_layout(self):
         for expense in self.expenses:
             expense.clear()
-        self.expense = []
+        self.expenses = []
 
 expense_category_dropdown = {"Food":0, "Entertainment":1, "Transport":2, "Education":3, "Healthcare":4, "Bill":5, "Saving":6, "Investment":7, "Shopping":8, "Utilities/Other":9}
 

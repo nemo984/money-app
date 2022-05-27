@@ -13,8 +13,9 @@ from .expense import ExpenseUI
 from .history import HistoryUI
 from .setting import SettingUI
 from .uipy.Mono import Ui_MainWindow
+from PySide6.QtCore import *
 import os
-
+from datetime import datetime, timedelta
 
 class MoneyAppUI(QMainWindow):
     def __init__(
@@ -52,6 +53,10 @@ class MoneyAppUI(QMainWindow):
         budget_system.get()
         expense_system.get()
         income_system.get()
+
+        now = datetime.today()
+        print( now+ timedelta(days=20))
+        dic = expense_system.get_categories_total(now - timedelta(days=20), now+ timedelta(days=20))
 
         self.ui.Overview_btn.clicked.connect(self.switch_tab)
         self.ui.Overview_btn.setStyleSheet("""

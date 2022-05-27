@@ -17,7 +17,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QLabel, QPushButton, QSizePolicy,
     QWidget)
-from .resource_rc import *
+import resource_rc
+
 class Ui_expense_form(object):
     def setupUi(self, expense_form):
         if not expense_form.objectName():
@@ -37,11 +38,11 @@ class Ui_expense_form(object):
         self.date_label.setFont(font)
         self.category_label = QLabel(expense_form)
         self.category_label.setObjectName(u"category_label")
-        self.category_label.setGeometry(QRect(180, 10, 111, 31))
+        self.category_label.setGeometry(QRect(140, 10, 111, 31))
         self.category_label.setFont(font)
         self.amount_label = QLabel(expense_form)
         self.amount_label.setObjectName(u"amount_label")
-        self.amount_label.setGeometry(QRect(350, 10, 151, 31))
+        self.amount_label.setGeometry(QRect(260, 10, 171, 31))
         self.amount_label.setFont(font)
         self.option_btn = QPushButton(expense_form)
         self.option_btn.setObjectName(u"option_btn")
@@ -52,6 +53,10 @@ class Ui_expense_form(object):
         icon = QIcon()
         icon.addFile(u":/black/icon/White/more-vertical.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.option_btn.setIcon(icon)
+        self.label = QLabel(expense_form)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(430, 15, 361, 21))
+        self.label.setFont(font)
 
         self.retranslateUi(expense_form)
 
@@ -64,5 +69,6 @@ class Ui_expense_form(object):
         self.category_label.setText(QCoreApplication.translate("expense_form", u"Part-Time", None))
         self.amount_label.setText(QCoreApplication.translate("expense_form", u"98765 THB", None))
         self.option_btn.setText("")
+        self.label.setText(QCoreApplication.translate("expense_form", u"TextLabel", None))
     # retranslateUi
 
