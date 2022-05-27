@@ -1338,7 +1338,7 @@ background-color:#A7F0AE;
                 </rect>
                </property>
                <property name="styleSheet">
-                <string notr="true">background-color:transparent;</string>
+                <string notr="true"/>
                </property>
                <property name="widgetResizable">
                 <bool>true</bool>
@@ -1351,6 +1351,9 @@ background-color:#A7F0AE;
                   <width>871</width>
                   <height>231</height>
                  </rect>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color:#FFFFFF;</string>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_40">
                  <item>
@@ -1512,6 +1515,9 @@ background-color:#A7F0AE;
                   <width>871</width>
                   <height>231</height>
                  </rect>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color:#FFFFFF;</string>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_38">
                  <item>

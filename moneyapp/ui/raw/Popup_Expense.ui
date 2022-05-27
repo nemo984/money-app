@@ -14,13 +14,18 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#addExpense_btn{
+   <string notr="true">#confirm_btn{
 background-color:#A7F0AE;
 border-radius: 10px;
+border: 1px solid black;
 }
 #cancel_btn{
 background-color:#A7F0AE;
 border-radius: 10px;
+border: 1px solid black;
+}
+#amount_entry,#note_entry,#budget_comboBox,#category_comboBox,#date_entry{
+border: 1px solid black;
 }
 </string>
   </property>
@@ -58,7 +63,6 @@ border-radius: 10px;
       <property name="font">
        <font>
         <pointsize>11</pointsize>
-        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -81,7 +85,6 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -149,7 +152,6 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -172,7 +174,6 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -189,7 +190,6 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -223,9 +223,9 @@ border-radius: 10px;
      <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
-        <x>180</x>
+        <x>190</x>
         <y>160</y>
-        <width>211</width>
+        <width>201</width>
         <height>21</height>
        </rect>
       </property>

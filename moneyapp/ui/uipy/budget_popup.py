@@ -38,7 +38,7 @@ class Ui_Dialog(object):
 "border-radius: 10px;\n"
 "border: 1px solid black;\n"
 "}\n"
-"#amount_entry,#note_entry,#name_entry,#endDate_entry,#startDate_entry,#category_comboBox{\n"
+"#amount_entry,#note_entry,#name_entry{\n"
 "border: 1px solid black;\n"
 "}\n"
 "")
