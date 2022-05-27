@@ -31,12 +31,16 @@ class ExpenseReportUI(Observer):
         self.lay = self.ui.verticalLayout_18
         self.expense_system = s
         self.expenses = []
+        self.category = ["Food", "Entertainment", "Transport", "Education", "Healthcare", "Bill", "Saving", "Investment", "Shopping","Utilities/Other"]
+
 
     async def update(self, expenses: List[Expense]):
         self.clear_layout()
+        b = self.expense_system.get_categories_total()
         for expense in expenses:
+            amount = b[expense.category] if expense.category in b else 0
             expense = ExpenseReport( expense_id=expense.id ,lay = self.lay , category = expense.category,
-                                amount = expense.amount, expense_system = self.expense_system)
+                                amount=amount, expense_system = self.expense_system)
             expense.add() 
             self.expenses.append(expense)
 
@@ -54,13 +58,9 @@ class ExpenseReport(QWidget):
         self.expense_system = expense_system
         self.amount = amount
         self.category = category
-        b = self.expense_system.get_categories_total()
         self.wid.setupUi(self)
         self.wid.category_label.setText(category)
-        if category in b:
-            self.wid.amount_label.setText("฿{:,.2f}".format(b[category]))          
-        else:
-            self.wid.amount_label.setText("0")
+        self.wid.amount_label.setText("฿{:,.2f}".format(amount))          
         
 
     def clear(self):
