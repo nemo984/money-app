@@ -33,6 +33,10 @@ class BudgetSystem(Observable):
     def get_without_notify(self):
         return self._budgets
 
+    def getByCategory(self, category: str) -> List[Budget]:
+        categories = Budget.select().where(Budget.category == category)
+        return list(categories)
+
     def getByID(self, budget_id) -> Budget:
         budget = Budget.get_or_none(Budget.id == budget_id)
         return budget
