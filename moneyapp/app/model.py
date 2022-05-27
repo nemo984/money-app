@@ -32,7 +32,7 @@ class Account(BaseModel):
 
 class Expense(BaseModel):
     owner = ForeignKeyField(Account, backref = 'expenses')
-    budget = ForeignKeyField(Account, backref='expenses')
+    budget = ForeignKeyField(Account, backref='expenses', null=True)
     category = CharField()
     amount = DecimalField(14,2)
     note = TextField(null=True)
