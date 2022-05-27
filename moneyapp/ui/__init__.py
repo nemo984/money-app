@@ -36,13 +36,15 @@ class MoneyAppUI(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setWindowTitle("Money App")
+        self.account = account
+        self.account_system = account_system
 
         self.ui.name_label.setText(account.name)
         qimg = QImage.fromData(account.profile_image)
         pixmap = QPixmap.fromImage(qimg)
         self.ui.profileImg_label.setPixmap(pixmap)
 
-        budget_ui = BudgetUI(self.ui, account, budget_system, history_system, self)
+        budget_ui = BudgetUI(self.ui, account, budget_system, history_system,reminder_system, self)
         income_ui = IncomeUI(self.ui, income_system, history_system, self)
         expense_ui = ExpenseUI(self.ui,expense_system, budget_system, history_system, self)
         history_ui = HistoryUI(self.ui,history_system, self)
@@ -84,6 +86,9 @@ class MoneyAppUI(QMainWindow):
         self.ui.Income_btn.clicked.connect(self.switch_tab)
         self.ui.Analysis_btn.clicked.connect(self.switch_tab)
         self.ui.Budget_btn.clicked.connect(self.switch_tab)
+        self.ui.logout_btn.clicked.connect(self.logout)
+        self.ui.save_setting_btn.clicked.connect(self.save_setting)
+        self.ui.delete_acc_btn.clicked.connect(self.delete_account)
         self.prev_tab = self.ui.Overview_btn
 
         self.ui.setting_btn.clicked.connect(self.setting)
@@ -130,6 +135,14 @@ class MoneyAppUI(QMainWindow):
     def closeEvent(self, event):
         if self.parent:
             self.parent.close()
+    
+    def delete_account(self):
+        self.account_system.delete(self.account)
+        self.logout()
+
+    def save_setting(self):
+        print("save setting")
+
 
 _staySignInChecked = "staySignInChecked"
 _account_id = "account_id"

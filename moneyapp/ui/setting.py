@@ -7,8 +7,9 @@ class SettingUI:
         self.ui = ui
         self.parent = parent
         self.account_system = s
-        self.ui.logout_btn.clicked.connect(self.close)
-        print(self.ui.logout_btn)
+        #self.ui.logout_btn.clicked.connect(self.close)
+        #print(self.ui.logout_btn)
+        self.ui.logout_btn.clicked.connect(self.close1)
         self.ui.delete_acc_btn.clicked.connect(self.delete_account)
         self.ui.save_setting_btn.clicked.connect(self.save_setting)
 
@@ -18,7 +19,7 @@ class SettingUI:
     def save_setting(self):
         print("save setting")
 
-    def close(self):
+    def close1(self):
         print("Plz close")
         self.parent.logout()
 

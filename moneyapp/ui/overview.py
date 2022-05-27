@@ -1,7 +1,9 @@
+import re
 from typing import List
 from ..app.helpers import Observer
 from ..app.model import *
 from .uipy.overview_wid import Ui_Form
+from .uipy.notification_wid import Ui_Form as Ui_Reminder
 from ..app.expense_system import ExpenseSystem
 from ..app.reminder import ReminderSystem
 from PySide6.QtWidgets import *
@@ -12,12 +14,39 @@ from PySide6.QtCore import *
 class ReminderUI(Observer):
     def __init__(self, ui, r: ReminderSystem):
         self.ui = ui
-        self.lay = self.ui.verticalLayout_42
+        self.lay = self.ui.verticalLayout_41
         self.riminder_system = r
         self.reminders = []
 
     async def update(self, reminders: List[Reminder]):
-        pass
+        self.clear_layout()
+        for reminder in reminders:
+            reminder = ReminderReport(lay=self.lay,reminder_system=self.riminder_system,ui=self.ui)
+            reminder.add()
+            self.reminders.append(reminder)
+
+    def clear_layout(self):
+        for reminder in self.reminders:
+            reminder.clear()
+        self.reminders = []
+
+class ReminderReport(QWidget):
+    def __init__(self, lay: QVBoxLayout, reminder_system,ui):
+        super(ReminderReport, self).__init__()
+        self.layout = lay
+        self.ui = ui
+        self.wid = Ui_Reminder()
+        self.reminder_system = reminder_system
+        self.wid.setupUi(self)
+        print(self,reminder_system.get())
+
+
+    def clear(self):
+        self.layout.removeWidget(self)
+        self.deleteLater()
+
+    def add(self):
+        self.layout.insertWidget(-1, self)
 
 
 class IncomeReportUI(Observer):
