@@ -29,11 +29,20 @@ class ExpenseUI(Observer):
         self.pop.date_entry.setDateTime(QDateTime.currentDateTime())
         self.pop.confirm_btn.clicked.connect(self.close_dia)
         self.pop.cancel_btn.clicked.connect(self.close)
+        self.pop.category_comboBox.currentTextChanged.connect(self.category_change)
 
         budgets = self.budget_system.get_without_notify()
-        budgets_name = [b.name for b in budgets]
+        budgets_name = {f"{b.start_date} {b.name}" for b in budgets}
         self.pop.budget_comboBox.addItems(budgets_name)
         self.dialog.show()
+
+    def category_change(self, value):
+        self.pop.budget_comboBox.clear()
+        budgets = self.budget_system.getByCategory(value)
+        budgets_name = {f"{b.start_date} {b.name}" for b in budgets}
+        self.pop.budget_comboBox.addItem("None")
+        self.pop.budget_comboBox.addItems(budgets_name)
+
 
     def close_dia(self):
         date = self.pop.date_entry.text()
