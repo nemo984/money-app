@@ -40,6 +40,7 @@ class ExpenseUI(Observer):
                          date, category, amount, note, index_cat, index_bud)
         ex.add()
         self.dialog.close()
+        self.history_system.add(action="Expense", action_type="Create", description="You created a expense")
 
     def close(self):
         self.dialog.close()
@@ -47,18 +48,17 @@ class ExpenseUI(Observer):
     async def update(self, expenses: List[Expense]):
         self.clear_layout()
         for expense in expenses:
-            item = QListWidgetItem()
             expense = ExpenseItem( lay = self.lay , date = expense.date, category = expense.category,
-             amount = expense.amount, note = expense.note, index_cat, index_bud)
-            budget.add()
-            self.budgets.append(budget)
+             amount = expense.amount, note = expense.note, index_cat = expense_category_dropdown[expense.category], index_bud = 0)
+            expense.add()
+            self.budgets.append(expense)
 
     def clear_layout(self):
-        for budget in self.budgets:
-            budget.clear()
-        self.budgets = []
+        for expense in self.expenses:
+            expense.clear()
+        self.expenses = []
 
-
+expense_category_dropdown = {"Food":0, "Entertainment":1, "Transport":2, "Education":3, "Healthcare":4, "Bill":5, "Saving":6, "Investment":7, "Shopping":8, "Utilities/Other":9}
 
 class ExpenseItem(QWidget):
     def __init__(self, lay: QVBoxLayout, date, category, amount, note, index_cat, index_bud):
@@ -118,7 +118,10 @@ class ExpenseItem(QWidget):
         self.index_cat = self.pop.category_comboBox.currentIndex()
         self.index_bud = self.pop.budget_comboBox.currentIndex()
         self.date = self.pop.date_entry.text()
+
         self.dialog.close()
+        #self.s.update(budget_id=self.id, name=self.name, amount=float(self.amount), start_date=self.s_date, end_date=self.e_date, note=self.note, category=self.category)
+        self.history_system.add(action="Budget", action_type="Update", description="You updated a budget")
 
     def cancel(self):
         self.dialog.close()

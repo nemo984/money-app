@@ -52,7 +52,6 @@ class BudgetUI(Observer):
     async def update(self, budgets: List[Budget]):
         self.clear_layout()
         for budget in budgets:
-            item = QListWidgetItem()
             budget = BudgetItem(budget_id=budget.id, budget_system=self.system, history_system=self.history_system, lay=self.budgets_layout, name=budget.name, 
                                 category=budget.category, index=budget_category_dropdown[budget.category], 
                                 amount=budget.amount, start_date=budget.start_date, end_date=budget.end_date,
