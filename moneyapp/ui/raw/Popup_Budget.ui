@@ -14,13 +14,22 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#addExpense_btn{
+   <string notr="true">#frame{
+background-color:transparent;
+}
+
+#confirm_btn{
 background-color:#A7F0AE;
 border-radius: 10px;
+border: 1px solid black;
 }
 #cancel_btn{
 background-color:#A7F0AE;
 border-radius: 10px;
+border: 1px solid black;
+}
+#amount_entry,#note_entry,#name_entry,#endDate_entry,#startDate_entry,#category_comboBox{
+border: 1px solid black;
 }
 </string>
   </property>
@@ -71,7 +80,6 @@ border-radius: 10px;
       <property name="font">
        <font>
         <pointsize>11</pointsize>
-        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -117,7 +125,6 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -134,7 +141,6 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -202,7 +208,6 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -219,7 +224,6 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -232,7 +236,6 @@ border-radius: 10px;
         <widget class="QDateEdit" name="startDate_entry">
          <property name="font">
           <font>
-           <weight>50</weight>
            <bold>false</bold>
           </font>
          </property>
@@ -249,7 +252,6 @@ border-radius: 10px;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>

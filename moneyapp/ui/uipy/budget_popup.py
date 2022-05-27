@@ -24,13 +24,22 @@ class Ui_Dialog(object):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
         Dialog.resize(434, 391)
-        Dialog.setStyleSheet(u"#addExpense_btn{\n"
+        Dialog.setStyleSheet(u"#frame{\n"
+"background-color:transparent;\n"
+"}\n"
+"\n"
+"#confirm_btn{\n"
 "background-color:#A7F0AE;\n"
 "border-radius: 10px;\n"
+"border: 1px solid black;\n"
 "}\n"
 "#cancel_btn{\n"
 "background-color:#A7F0AE;\n"
 "border-radius: 10px;\n"
+"border: 1px solid black;\n"
+"}\n"
+"#amount_entry,#note_entry,#name_entry,#endDate_entry,#startDate_entry,#category_comboBox{\n"
+"border: 1px solid black;\n"
 "}\n"
 "")
         self.verticalLayout_2 = QVBoxLayout(Dialog)
