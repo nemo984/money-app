@@ -65,8 +65,7 @@ class ExpenseSystem(Observable):
                  .select(Expense.category, fn.Sum(Expense.amount).alias('total'))
                  .where(Expense.date.between(from_date, end_date))
                  .group_by(Expense.category))
-        for row in rows:
-            print(row.total)
+        return rows
 
     def delete(self, expense_id):
         expense = self.getByID(expense_id)

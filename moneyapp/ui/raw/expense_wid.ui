@@ -107,7 +107,7 @@ background-color:#A7F0AE;</string>
      <normaloff>:/black/icon/White/more-vertical.svg</normaloff>:/black/icon/White/more-vertical.svg</iconset>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="budget_label">
    <property name="geometry">
     <rect>
      <x>430</x>

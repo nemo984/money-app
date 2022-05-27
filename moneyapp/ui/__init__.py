@@ -57,6 +57,8 @@ class MoneyAppUI(QMainWindow):
         now = datetime.today()
         print( now+ timedelta(days=20))
         dic = expense_system.get_categories_total(now - timedelta(days=20), now+ timedelta(days=20))
+        for d in dic:
+            print(dic)
 
         self.ui.Overview_btn.clicked.connect(self.switch_tab)
         self.ui.Overview_btn.setStyleSheet("""
