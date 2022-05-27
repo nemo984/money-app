@@ -95,6 +95,8 @@ class BudgetItem(QWidget):
         self.wid.amount.setText("฿{:,.2f}".format(amount))
         self.wid.end_date.setText("End Date:"+end_date)
         self.wid.start_date.setText("Start Date:"+start_date)
+        self.wid.progressBar.setMinimum(0)
+        self.wid.progressBar.setValue(0)
         #self.wid.progressBar.setMaximum(amount)
         self.wid.label_9.setText("Until you reach"+"฿{:,.2f}".format(amount))
         self.wid.more_btn.clicked.connect(self.option)
@@ -145,7 +147,7 @@ class BudgetItem(QWidget):
             "Until you reach"+"฿{:,.2f}".format(float(self.amount)))
         self.wid.end_date.setText("End Date: " + self.e_date)
         self.wid.start_date.setText("Start Date: " + self.s_date)
-        self.wid.progressBar.setValue(self.per + 20)
+        #self.wid.progressBar.setValue(self.per + 20)
         self.dialog.close()
         self.budget_system.update(budget_id=self.id, name=self.name, amount=float(
             self.amount), start_date=self.s_date, end_date=self.e_date, note=self.note, category=self.category)
