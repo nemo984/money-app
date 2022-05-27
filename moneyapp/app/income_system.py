@@ -34,7 +34,6 @@ class IncomeSystem(Observable):
         income = Income.get_or_none(Income.id == income_id)
         return income
 
-
     def update(
         self,
         income_id: int,

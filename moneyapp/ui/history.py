@@ -38,30 +38,29 @@ class HistoryUI:
         if not file_name:
             return
         incomes = self.system.getByType("Income")
-        for income in incomes:
-            pass
+        self.write(file_name, incomes)
+
 
     def download_expense(self):
         file_name = self.get_save_file()
         if not file_name:
             return
         expenses = self.system.getByType("Expense")
-        for expense in expenses:
-            pass
+        self.write(file_name, expenses)
 
     def download_budget(self):
         file_name = self.get_save_file()
         if not file_name:
             return
         budgets = self.system.getByType("Budget")
-        with open(file_name, 'w') as fp:
+        self.write(file_name, budgets)
+                
+    def write(self, file_name, data):
+        with open(file_name, 'w', newline='', encoding='utf-8') as fp:
             writer = csv.writer(fp)
-            # write row of header names
             writer.writerow(self.header)
-            
-
-        for budget in budgets:
-            pass
+            for d in data:
+                writer.writerow([d.created_date, d.action, d.action_type, d.description])
 
     def get_save_file(self):
         formats = [('Comma Separated values', '*.csv'), ]
