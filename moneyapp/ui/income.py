@@ -10,6 +10,8 @@ from PySide6.QtCore import *
 
 income_category_dropdown = {"Full-time": 0,
                             "Part-time": 1, "Passive": 2, "Other": 3}
+income_recurrence_dropdown2 = {"one-time": 0,
+                              "daily": 1, "weekly": 2, "monthly": 3, "yearly": 4}
 income_recurrence_dropdown = {"one-time": 0,
                               "daily": 1, "weekly": 7, "monthly": 30, "yearly": 365}
 freTorec = {0: "one-time", 1: "daily",
@@ -114,10 +116,12 @@ class IncomeUI(Observer):
         for income in incomes:
             print(income.frequency_day)
             item = QListWidgetItem()
+            print("Category: ", income.category)
+            print("Recurrence: ", income.frequency_day)
             income = IncomeItem(income_id=income.id, income_system=self.system, history_system=self.history_system, lay=self.incomes_layout, date=income.date,
                                 name=income.name, category=income.category, amount=income.amount, recurrence=freTorec[
                                     income.frequency_day], note=income.note,
-                                index_cat=income_category_dropdown[income.category], index_rec=income_recurrence_dropdown[income.frequency_day])
+                                index_cat=income_category_dropdown[income.category], index_rec=income_recurrence_dropdown2[freTorec[income.frequency_day]])
             income.add()
             self.incomes.append(income)
 
