@@ -11,7 +11,9 @@ from PySide6.QtCore import *
 income_category_dropdown = {"Full-time": 0,
                             "Part-time": 1, "Passive": 2, "Other": 3}
 income_recurrence_dropdown = {"one-time": 0,
-                              "daily": 1, "weekly": 2, "monthly": 3, "yearly": 4}
+                              "daily": 1, "weekly": 7, "monthly": 30, "yearly": 365}
+freTorec = {0: "one-time", 1: "daily",
+            7: "weekly", 30: "monthly", 365: "yearly"}
 
 
 class IncomeUI(Observer):
@@ -86,23 +88,23 @@ class IncomeUI(Observer):
     async def update(self, incomes: List[Income]):
         print("Incomes updated: Updating income page UI")
 
-        n = 28
-        total = 0
-        for income in incomes:
-            total += (income.amount * n) / \
-                income.frequency_day  # Total Income per N day
+        # n = 28
+        # total = 0
+        # for income in incomes:
+        #     total += (income.amount * n) / \
+        #         income.frequency_day  # Total Income per N day
 
-            print(f"{income.created_date} {income.owner} {income.category} {income.amount} {income.frequency_day} {income.note}")
+        #     print(f"{income.created_date} {income.owner} {income.category} {income.amount} {income.frequency_day} {income.note}")
 
-        # 1,.., 12
-        for month in range(1, 13):
-            month_total = 0
-            for income in incomes:
-                if income.created_date.month > month:
-                    continue
-                month_total += (income.amount * 28) / income.frequency_day
+        # # 1,.., 12
+        # for month in range(1, 13):
+        #     month_total = 0
+        #     for income in incomes:
+        #         if income.created_date.month > month:
+        #             continue
+        #         month_total += (income.amount * 28) / income.frequency_day
 
-            print(f"Month {month} : {month_total}")
+        #     print(f"Month {month} : {month_total}")
 
         # Month 1 : 32500
         # Month 2 : 52500
@@ -110,10 +112,12 @@ class IncomeUI(Observer):
         print("================")
         self.clear_layout()
         for income in incomes:
+            print(income.frequency_day)
             item = QListWidgetItem()
-            inc = IncomeItem(income_id=income.id, income_system=self.system, history_system=self.history_system, lay=self.incomes_layout, date=income.date,
-                             name=income.name, category=income.category, amount=income.amount, recurrence=income.recurrence, note=income.note,
-                             index_cat=income_category_dropdown[income.category], index_rec=income_recurrence_dropdown[income.recurrence])
+            income = IncomeItem(income_id=income.id, income_system=self.system, history_system=self.history_system, lay=self.incomes_layout, date=income.date,
+                                name=income.name, category=income.category, amount=income.amount, recurrence=freTorec[
+                                    income.frequency_day], note=income.note,
+                                index_cat=income_category_dropdown[income.category], index_rec=income_recurrence_dropdown[income.frequency_day])
             income.add()
             self.incomes.append(income)
 
