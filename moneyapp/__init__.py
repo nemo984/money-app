@@ -5,6 +5,7 @@ from .app.budget_system import BudgetSystem
 from .app.income_system import IncomeSystem
 from .app.expense_system import ExpenseSystem
 from .app.history import HistorySystem
+from .app.reminder import ReminderSystem
 from .ui import MoneyAppUI
 from .ui.uipy.account import Ui_MainWindow 
 from .ui.uipy.account_wid import Ui_account_form
@@ -26,7 +27,8 @@ class MainApp:
         self.budget_system = BudgetSystem(owner=account)
         self.expense_system = ExpenseSystem(owner=account)
         self.history_system = HistorySystem(owner=account)
-        self.ui = MoneyAppUI(account, self.income_system, self.budget_system, self.expense_system, self.history_system, self.account_system)
+        self.reminder_system = ReminderSystem(owner=account)
+        self.ui = MoneyAppUI(account, self.income_system, self.budget_system, self.expense_system, self.history_system, self.account_system, self.reminder_system)
 
     def show(self):
         self.ui.show()
