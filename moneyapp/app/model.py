@@ -30,14 +30,6 @@ class Account(BaseModel):
     def reminders_ordered(self):
         return self.reminders.order_by(Reminder.created_date.desc())
 
-class Expense(BaseModel):
-    owner = ForeignKeyField(Account, backref = 'expenses')
-    budget = ForeignKeyField(Account, backref='expenses')
-    category = CharField()
-    amount = DecimalField(14,2)
-    note = TextField(null=True)
-    date = DateTimeField(default=datetime.now)
-
 class Budget(BaseModel):
     owner = ForeignKeyField(Account, backref='budgets')
     name = CharField()
@@ -47,6 +39,14 @@ class Budget(BaseModel):
     start_date = DateTimeField(default=datetime.now)
     end_date = DateTimeField(null=True)
 
+class Expense(BaseModel):
+    owner = ForeignKeyField(Account, backref = 'expenses')
+    budget = ForeignKeyField(Budget, backref='expenses', null=True)
+    category = CharField()
+    amount = DecimalField(14,2)
+    note = TextField(null=True)
+    date = DateTimeField(default=datetime.now)
+
 class Income(BaseModel):
     owner = ForeignKeyField(Account, backref='incomes')
     name = CharField()
@@ -55,7 +55,7 @@ class Income(BaseModel):
     frequency_day = IntegerField(null=True)
     note = TextField(null=True)
     date = DateTimeField(default=datetime.now)
-    updated_date = DateTimeField()
+    updated_date = DateTimeField(null=True)
 
 class Reminder(BaseModel):
     owner = ForeignKeyField(Account, backref='reminders')

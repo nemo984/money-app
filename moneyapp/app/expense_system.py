@@ -29,11 +29,9 @@ class ExpenseSystem(Observable):
         return self._expenses
 
     def getByID(self, expense_id) -> Expense:
-        try:
-            expense = Expense.get(Expense.id == expense_id)
-            return expense
-        except:
-            return None
+        expense = Expense.get_or_none(Expense.id == expense_id)
+        return expense
+
 
     def update(
         self,

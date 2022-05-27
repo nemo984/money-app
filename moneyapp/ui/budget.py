@@ -54,9 +54,8 @@ class BudgetUI(Observer):
     async def update(self, budgets: List[Budget]):
         self.clear_layout()
         for budget in budgets:
-            item = QListWidgetItem()
-            budget = BudgetItem(budget_id=budget.id, budget_system=self.system, history_system=self.history_system, lay=self.budgets_layout, name=budget.name,
-                                category=budget.category, index=budget_category_dropdown[budget.category],
+            budget = BudgetItem(budget_id=budget.id, budget_system=self.system, history_system=self.history_system, lay=self.budgets_layout, name=budget.name, 
+                                category=budget.category, index=budget_category_dropdown[budget.category], 
                                 amount=budget.amount, start_date=budget.start_date, end_date=budget.end_date,
                                 note=budget.note)
             budget.add()
@@ -152,6 +151,7 @@ class BudgetItem(QWidget):
             self.amount), start_date=self.s_date, end_date=self.e_date, note=self.note, category=self.category)
         self.history_system.add(
             action="Budget", action_type="Update", description="You updated a budget")
+
 
     def add(self):
         self.layout.insertWidget(0, self)

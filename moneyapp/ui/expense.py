@@ -16,7 +16,9 @@ class ExpenseUI(Observer):
         self.parent = parent
         self.system = s
         self.history_system = history_system
+        self.expenses = []
         self.pop = Ui_Dialog()
+        self.lay = self.ui.verticalLayout_38
         self.ui.add_expense_button.clicked.connect(self.add_expense)
         self.parent = parent
 
@@ -34,24 +36,39 @@ class ExpenseUI(Observer):
         amount = int(self.pop.amount_entry.text())
         note = self.pop.note_entry.toPlainText()
         index_cat = self.pop.category_comboBox.currentIndex()
-        index_bud = self.pop.budget_comboBox.currentIndex()
-        ex = ExpenseItem(self.ui.verticalLayout_38,
-                         date, category, amount, note, index_cat, index_bud, self.history_system)
-        ex.add()
+        index_bud = self.pop.budget_comboBox.currentIndex()              
         self.dialog.close()
+        expense = self.system.add(
+            category = category,amount=amount,date=date,note= note
+        )
+        ex = ExpenseItem(expense.id ,self.ui.verticalLayout_38,
+                         date, category, amount, note, index_cat, index_bud, self.history_system,self.system)
         self.history_system.add(
             action="Expense", action_type="Create", description="You created a new expense")
 
     def close(self):
         self.dialog.close()
 
-    async def update(self, expense: List[Expense]):
-        pass
+    async def update(self, expenses: List[Expense]):
+        self.clear_layout()
+        for expense in expenses:
+            expense = ExpenseItem( expense_id=expense.id ,lay = self.lay , date = expense.date, category = expense.category,
+                                amount = expense.amount, note = expense.note, index_cat = expense_category_dropdown[expense.category],
+                                index_bud = 0, history_system=self.history_system, expense_system=self.system)
+            expense.add()
+            self.expenses.append(expense)
 
+    def clear_layout(self):
+        for expense in self.expenses:
+            expense.clear()
+        self.expense = []
+
+expense_category_dropdown = {"Food":0, "Entertainment":1, "Transport":2, "Education":3, "Healthcare":4, "Bill":5, "Saving":6, "Investment":7, "Shopping":8, "Utilities/Other":9}
 
 class ExpenseItem(QWidget):
-    def __init__(self, lay: QVBoxLayout, date, category, amount, note, index_cat, index_bud, history_system):
+    def __init__(self,expense_id, lay: QVBoxLayout, date, category, amount, note, index_cat, index_bud, history_system, expense_system):
         super(ExpenseItem, self).__init__()
+        self.id = expense_id
         self.layout = lay
         self.wid = Ui_expense_form()
         self.pop = Ui_Dialog()
@@ -61,6 +78,7 @@ class ExpenseItem(QWidget):
         self.note = note
         self.date = date
         self.history_system = history_system
+        self.expense_system = expense_system
 
         self.wid.setupUi(self)
         self.wid.date_label.setText(date)
@@ -108,9 +126,12 @@ class ExpenseItem(QWidget):
         self.index_cat = self.pop.category_comboBox.currentIndex()
         self.index_bud = self.pop.budget_comboBox.currentIndex()
         self.date = self.pop.date_entry.text()
+
         self.dialog.close()
         self.history_system.add(
             action="Expense", action_type="Update", description="You updated your expense")
+        self.expense_system.update(
+            expense_id = self.id ,date = self.date,category=self.category,amount=float(self.amount),note=self.note)
 
     def cancel(self):
         self.dialog.close()
@@ -121,5 +142,10 @@ class ExpenseItem(QWidget):
     def delete(self):
         self.layout.removeWidget(self)
         self.deleteLater()
+        self.expense_system.delete(self.id)
         self.history_system.add(
             action="Expense", action_type="Delete", description="You deleted your expense")
+
+    def clear(self):
+        self.layout.removeWidget(self)
+        self.deleteLater()

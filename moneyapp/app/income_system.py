@@ -31,11 +31,9 @@ class IncomeSystem(Observable):
         return self._incomes
         
     def getByID(self, income_id) -> Income:
-        try:
-            income = Income.get(Income.id == income_id)
-            return income
-        except:
-            return None
+        income = Income.get_or_none(Income.id == income_id)
+        return income
+
 
     def update(
         self,
