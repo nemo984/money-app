@@ -19,7 +19,8 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
     QHBoxLayout, QLabel, QLineEdit, QMainWindow,
     QPushButton, QScrollArea, QSizePolicy, QStackedWidget,
     QVBoxLayout, QWidget)
-from .resource_rc import *
+import resource_rc
+import resource_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -409,13 +410,6 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents_6 = QWidget()
         self.scrollAreaWidgetContents_6.setObjectName(u"scrollAreaWidgetContents_6")
         self.scrollAreaWidgetContents_6.setGeometry(QRect(0, 0, 387, 331))
-        self.verticalLayout_42 = QVBoxLayout(self.scrollAreaWidgetContents_6)
-        self.verticalLayout_42.setObjectName(u"verticalLayout_42")
-        self.expense_report_list = QWidget(self.scrollAreaWidgetContents_6)
-        self.expense_report_list.setObjectName(u"expense_report_list")
-
-        self.verticalLayout_42.addWidget(self.expense_report_list)
-
         self.scrollArea_6.setWidget(self.scrollAreaWidgetContents_6)
 
         self.verticalLayout_18.addWidget(self.scrollArea_6)
@@ -645,26 +639,9 @@ class Ui_MainWindow(object):
         self.frame_16.setFrameShadow(QFrame.Raised)
         self.income_pie = QWidget(self.frame_16)
         self.income_pie.setObjectName(u"income_pie")
-        self.income_pie.setGeometry(QRect(10, 39, 271, 251))
+        self.income_pie.setGeometry(QRect(10, 9, 441, 281))
 
         self.horizontalLayout_9.addWidget(self.frame_16)
-
-        self.frame_14 = QFrame(self.income_report_graph)
-        self.frame_14.setObjectName(u"frame_14")
-        self.frame_14.setFrameShape(QFrame.StyledPanel)
-        self.frame_14.setFrameShadow(QFrame.Raised)
-        self.income_line = QWidget(self.frame_14)
-        self.income_line.setObjectName(u"income_line")
-        self.income_line.setGeometry(QRect(10, 40, 271, 251))
-        self.income_dropdown = QComboBox(self.frame_14)
-        self.income_dropdown.addItem("")
-        self.income_dropdown.addItem("")
-        self.income_dropdown.addItem("")
-        self.income_dropdown.addItem("")
-        self.income_dropdown.setObjectName(u"income_dropdown")
-        self.income_dropdown.setGeometry(QRect(210, 10, 69, 22))
-
-        self.horizontalLayout_9.addWidget(self.frame_14)
 
         self.incomeList_frame = QFrame(self.page_3)
         self.incomeList_frame.setObjectName(u"incomeList_frame")
@@ -930,26 +907,9 @@ class Ui_MainWindow(object):
         self.frame_10.setFrameShadow(QFrame.Raised)
         self.expense_line = QWidget(self.frame_10)
         self.expense_line.setObjectName(u"expense_line")
-        self.expense_line.setGeometry(QRect(10, 40, 271, 251))
+        self.expense_line.setGeometry(QRect(10, 10, 441, 281))
 
         self.horizontalLayout_8.addWidget(self.frame_10)
-
-        self.frame_11 = QFrame(self.expense_report_graph)
-        self.frame_11.setObjectName(u"frame_11")
-        self.frame_11.setFrameShape(QFrame.StyledPanel)
-        self.frame_11.setFrameShadow(QFrame.Raised)
-        self.expense_pie = QWidget(self.frame_11)
-        self.expense_pie.setObjectName(u"expense_pie")
-        self.expense_pie.setGeometry(QRect(6, 39, 271, 251))
-        self.expense_dropdown = QComboBox(self.frame_11)
-        self.expense_dropdown.addItem("")
-        self.expense_dropdown.addItem("")
-        self.expense_dropdown.addItem("")
-        self.expense_dropdown.addItem("")
-        self.expense_dropdown.setObjectName(u"expense_dropdown")
-        self.expense_dropdown.setGeometry(QRect(200, 10, 69, 22))
-
-        self.horizontalLayout_8.addWidget(self.frame_11)
 
         self.stackedWidget.addWidget(self.page_4)
         self.page_5 = QWidget()
@@ -1196,11 +1156,6 @@ class Ui_MainWindow(object):
         self.income_daily_value.setText(QCoreApplication.translate("MainWindow", u"13212312313", None))
         self.income_weekly.setText(QCoreApplication.translate("MainWindow", u"Total income weekly:", None))
         self.income_weekly_value.setText(QCoreApplication.translate("MainWindow", u"13215431", None))
-        self.income_dropdown.setItemText(0, QCoreApplication.translate("MainWindow", u"Daily", None))
-        self.income_dropdown.setItemText(1, QCoreApplication.translate("MainWindow", u"Weekly", None))
-        self.income_dropdown.setItemText(2, QCoreApplication.translate("MainWindow", u"Monthly", None))
-        self.income_dropdown.setItemText(3, QCoreApplication.translate("MainWindow", u"Yearly", None))
-
         self.income_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Filter income", None))
         self.income_list_header.setText(QCoreApplication.translate("MainWindow", u"income list", None))
         self.add_income_button.setText("")
@@ -1215,11 +1170,6 @@ class Ui_MainWindow(object):
         self.expense_daily_value.setText(QCoreApplication.translate("MainWindow", u"13212312313", None))
         self.expense_weekly.setText(QCoreApplication.translate("MainWindow", u"Total expense weekly:", None))
         self.expense_weekly_value.setText(QCoreApplication.translate("MainWindow", u"13215431", None))
-        self.expense_dropdown.setItemText(0, QCoreApplication.translate("MainWindow", u"Daily", None))
-        self.expense_dropdown.setItemText(1, QCoreApplication.translate("MainWindow", u"Weekly", None))
-        self.expense_dropdown.setItemText(2, QCoreApplication.translate("MainWindow", u"Monthly", None))
-        self.expense_dropdown.setItemText(3, QCoreApplication.translate("MainWindow", u"Yearly", None))
-
         self.searchHistory_lineEdit.setInputMask("")
         self.searchHistory_lineEdit.setText("")
         self.searchHistory_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Filter history", None))
