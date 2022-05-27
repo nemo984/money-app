@@ -39,7 +39,7 @@ class ExpenseUI(Observer):
         index_bud = self.pop.budget_comboBox.currentIndex()              
         self.dialog.close()
         expense = self.system.add(
-            category, amount, date,note
+            category = category,amount=amount,date=date,note= note
         )
         ex = ExpenseItem(expense.id ,self.ui.verticalLayout_38,
                          date, category, amount, note, index_cat, index_bud, self.history_system,self.system)
