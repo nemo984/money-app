@@ -31,7 +31,8 @@ class ExpenseReportUI(Observer):
         self.lay = self.ui.verticalLayout_18
         self.expense_system = s
         self.expenses = []
-        self.category = ["Food", "Entertainment", "Transport", "Education", "Healthcare", "Bill", "Saving", "Investment", "Shopping","Utilities/Other"]
+        self.category = {"Food", "Entertainment", "Transport", "Education", "Healthcare", "Bill", "Saving", "Investment", "Shopping","Utilities/Other"}
+        
 
 
     async def update(self, expenses: List[Expense]):
@@ -60,6 +61,8 @@ class ExpenseReport(QWidget):
         self.category = category
         self.wid.setupUi(self)
         self.wid.category_label.setText(category)
+        self.wid.icon_label.setPixmap(
+            QPixmap(u":/black/icon/White/volume-1.svg"))
         self.wid.amount_label.setText("฿{:,.2f}".format(amount))          
         
 
