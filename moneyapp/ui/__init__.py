@@ -141,7 +141,9 @@ class MoneyAppUI(QMainWindow):
         self.logout()
 
     def save_setting(self):
-        print("save setting")
+        name = self.ui.lineedit_new_name.text()
+        self.account_system.update(self.account,name)
+        self.ui.name_label.setText(name)
 
 
 _staySignInChecked = "staySignInChecked"
