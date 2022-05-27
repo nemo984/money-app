@@ -8,16 +8,24 @@ from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from PySide6.QtCore import *
 
+income_category_dropdown = {"Full-time": 0,
+                            "Part-time": 1, "Passive": 2, "Other": 3}
+income_recurrence_dropdown = {"one-time": 0,
+                              "daily": 1, "weekly": 2, "monthly": 3, "yearly": 4}
+
 
 class IncomeUI(Observer):
 
-    def __init__(self, ui, s: IncomeSystem, history_system, parent):
+    def __init__(self, ui, income_system: IncomeSystem, history_system, parent):
         self.ui = ui
         self.parent = parent
-        self.system = s
+        self.system = income_system
         self.history_system = history_system
         self.pop = Ui_Dialog()
         self.ui.add_income_button.clicked.connect(self.add_income)
+        self.parent = parent
+        self.incomes = []
+        self.incomes_layout = self.ui.verticalLayout_40
 
     def add_income(self):
         self.dialog = QDialog(self.parent)
@@ -37,10 +45,12 @@ class IncomeUI(Observer):
         note = self.pop.note_entry.toPlainText()
         index_cat = self.pop.category_comboBox.currentIndex()
         index_rec = self.pop.recurence_comboBox.currentIndex()
-        inc = IncomeItem(self.ui.verticalLayout_40, date,
-                         name, category, amount, recurrence, note, index_cat, index_rec)
-        inc.add()
-        self.dialog.close()
+        income = self.system.add(name=name, category=category, amount=amount,
+                                 date=date, note=note, frequency=income_recurrence_dropdown[recurrence])
+        inc = IncomeItem(income_id=income.id, income_system=self.system, history_system=self.history_system, lay=self.incomes_layout, date=date,
+                         name=name, category=category, amount=amount, recurrence=recurrence, note=note, index_cat=index_cat, index_rec=index_rec)
+        self.history_system.add(
+            action="Income", action_type="Create", description="You created a income")
 
     def close(self):
         self.dialog.close()
@@ -98,11 +108,27 @@ class IncomeUI(Observer):
         # Month 2 : 52500
 
         print("================")
+        self.clear_layout()
+        for income in incomes:
+            item = QListWidgetItem()
+            inc = IncomeItem(income_id=income.id, income_system=self.system, history_system=self.history_system, lay=self.incomes_layout, date=income.date,
+                             name=income.name, category=income.category, amount=income.amount, recurrence=income.recurrence, note=income.note,
+                             index_cat=income_category_dropdown[income.category], index_rec=income_recurrence_dropdown[income.recurrence])
+            income.add()
+            self.incomes.append(income)
+
+    def clear_layout(self):
+        for income in self.incomes:
+            income.clear()
+        self.incomes = []
 
 
 class IncomeItem(QWidget):
-    def __init__(self, lay: QVBoxLayout, date, name, category, amount, recurrence, note, index_cat, index_rec):
+    def __init__(self, income_id, income_system, history_system, lay: QVBoxLayout, date, name, category, amount, recurrence, note, index_cat, index_rec):
         super(IncomeItem, self).__init__()
+        self.id = income_id
+        self.budget_system = income_system
+        self.history_system = history_system
         self.layout = lay
         self.wid = Ui_income_form()
         self.pop = Ui_Dialog()
@@ -112,6 +138,7 @@ class IncomeItem(QWidget):
         self.amount = amount
         self.note = note
         self.date = date
+        self.recurrence = recurrence
 
         self.wid.setupUi(self)
         self.wid.date_label.setText(date)
@@ -167,6 +194,13 @@ class IncomeItem(QWidget):
         self.index_rec = self.pop.recurence_comboBox.currentIndex()
         self.date = self.pop.date_entry.text()
         self.dialog.close()
+        self.income_system.update(income_id=self.id, name=self.name, category=self.category, amount=float(
+            self.amount), frequency=income_recurrence_dropdown[self.recurrence], note=self.note)
+
+        self.budget_system.update(budget_id=self.id, name=self.name, amount=float(
+            self.amount), start_date=self.s_date, end_date=self.e_date, note=self.note, category=self.category)
+        self.history_system.add(
+            action="Income", action_type="Update", description="You updated a income")
 
     def cancel(self):
         self.dialog.close()
@@ -175,5 +209,9 @@ class IncomeItem(QWidget):
         self.layout.insertWidget(0, self)
 
     def delete(self):
+        self.layout.removeWidget(self)
+        self.deleteLater()
+
+    def clear(self):
         self.layout.removeWidget(self)
         self.deleteLater()
