@@ -31,10 +31,10 @@ class ExpenseReportUI(Observer):
         self.lay = self.ui.verticalLayout_18
         self.expense_system = s
         self.expenses = []
-        self.category = {"Food":u":/black/icon/White/volume-1.svg", 
+        self.category = {"Food":u":/category/icon/category/Food.svg", 
                         "Entertainment":u":/black/icon/White/volume-1.svg", 
-                        "Transport":u":/black/icon/White/volume-1.svg", 
-                        "Education":u":/black/icon/White/volume-1.svg", 
+                        "Transport":u":/black/icon/White/briefcase.svg", 
+                        "Education":u":/black/icon/White/book.svg", 
                         "Healthcare":u":/black/icon/White/volume-1.svg", 
                         "Bill":u":/black/icon/White/volume-1.svg",
                         "Saving":u":/black/icon/White/volume-1.svg", 

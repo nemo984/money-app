@@ -287,6 +287,18 @@
     <file>icon/White/zoom-in.svg</file>
     <file>icon/White/zoom-out.svg</file>
   </qresource>
+  <qresource prefix="category">
+    <file>icon/category/bill.svg</file>
+    <file>icon/category/Education.svg</file>
+    <file>icon/category/Entertainment.svg</file>
+    <file>icon/category/Food.svg</file>
+    <file>icon/category/healthcare.svg</file>
+    <file>icon/category/Investment.svg</file>
+    <file>icon/category/other.svg</file>
+    <file>icon/category/Saving.svg</file>
+    <file>icon/category/shopping-.svg</file>
+    <file>icon/category/Transport.svg</file>
+  </qresource>
   <qresource prefix="background">
     <file>login_background.jpg</file>
   </qresource>
