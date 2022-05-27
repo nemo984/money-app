@@ -60,12 +60,12 @@ class ExpenseSystem(Observable):
         self.get()
         return expense
 
-    def get_categories_total(self, from_date, end_date):
+    def get_categories_total(self):
         rows = (Expense
-                 .select(Expense.category, fn.Sum(Expense.amount).alias('total'))
-                 .where(Expense.date.between(from_date, end_date))
+                 .select(Expense.category.alias('category'), fn.Sum(Expense.amount).alias('total'))
+                #  .where(Expense.date.between(from_date, to_date))
                  .group_by(Expense.category))
-        return rows
+        return {expense.category:expense.total for expense in rows}
 
     def delete(self, expense_id):
         expense = self.getByID(expense_id)
