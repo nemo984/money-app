@@ -33,6 +33,7 @@ class MoneyAppUI(QMainWindow):
         self.parent = parent
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.setWindowTitle("Money App")
 
         self.ui.name_label.setText(account.name)
         qimg = QImage.fromData(account.profile_image)

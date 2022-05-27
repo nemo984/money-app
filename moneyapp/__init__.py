@@ -40,6 +40,7 @@ class AccountWindow(QMainWindow):
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.setWindowTitle("Login")
         self.ui.login_btn.clicked.connect(self.login)
         self.ui.create_btn.clicked.connect(self.create_tab)
         self.ui.back_btn.clicked.connect(self.login_tab)
