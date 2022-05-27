@@ -8,12 +8,14 @@ from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from PySide6.QtCore import *
 
+
 class ReminderUI(Observer):
-    def __init__(self,ui,r: ReminderSystem):
+    def __init__(self, ui, r: ReminderSystem):
         self.ui = ui
         self.lay = self.ui.verticalLayout_42
         self.riminder_system = r
         self.reminders = []
+
     async def update(self, reminders: List[Reminder]):
         pass
 
@@ -32,55 +34,79 @@ class BudgetReportUI(Observer):
 
 
 class ExpenseReportUI(Observer):
-    def __init__(self,ui,s: ExpenseSystem):
+    def __init__(self, ui, s: ExpenseSystem):
         self.ui = ui
         self.lay = self.ui.verticalLayout_42
         self.expense_system = s
         self.expenses = []
-        self.category = {"Food":u":/category/icon/category/Food.svg", 
-                        "Entertainment":u":/category/icon/category/Entertainment.svg", 
-                        "Transport":u":/category/icon/category/Transport.svg", 
-                        "Education":u":/category/icon/category/Education.svg", 
-                        "Healthcare":u":/category/icon/category/healthcare.svg", 
-                        "Bill":u":/category/icon/category/bill.svg",
-                        "Saving":u":/category/icon/category/Saving.svg", 
-                        "Investment":u":/category/icon/category/Investment.svg", 
-                        "Shopping":u":/category/icon/category/shopping-.svg",
-                        "Utilities/Other":u":/category/icon/category/other.svg"}
-        
+        self.category = [("Food", ":/category/icon/category/Food.svg"),
+                         ("Entertainment", ":/category/icon/category/Entertainment.svg"),
+                         ("Transport", ":/category/icon/category/Transport.svg"),
+                         ("Education", ":/category/icon/category/Education.svg"),
+                         ("Healthcare", ":/category/icon/category/healthcare.svg"),
+                         ("Bill", ":/category/icon/category/bill.svg"),
+                         ("Saving", ":/category/icon/category/Saving.svg"),
+                         ("Investment", ":/category/icon/category/Investment.svg"),
+                         ("Shopping", ":/category/icon/category/shopping-.svg"),
+                         ("Utilities/Other", ":/category/icon/category/other.svg")]
+
     async def update(self, expenses: List[Expense]):
         self.clear_layout()
         b = self.expense_system.get_categories_total()
-        for category, icon_path in self.category.items():
-            amount = b[category] if category in b else 0
-            expense = ExpenseReport(lay = self.lay , category = category, icon_path=icon_path,
-                                amount=amount, expense_system = self.expense_system)
-            expense.add() 
+        i = 0
+        while i < len(self.category):
+            expenses_categories = []
+            for j in range(3):
+                if i >= len(self.category):
+                    break
+                category = self.category[i][0]
+                amount = b[category] if category in b else 0
+                expenses_categories.append((category, self.category[i][1], amount))
+                i += 1
+            
+            print(expenses_categories)
+
+            expense = ExpenseReport(lay=self.lay, expense_system=self.expense_system, expense_categories=expenses_categories)
+            expense.add()
             self.expenses.append(expense)
+
 
     def clear_layout(self):
         for expense in self.expenses:
             expense.clear()
         self.expenses = []
 
+
 class ExpenseReport(QWidget):
-    def __init__(self, lay: QVBoxLayout, icon_path, category, amount, expense_system):
+    # (category, amount, icon_path)
+    def __init__(self, lay: QVBoxLayout, expense_system, expense_categories):
         super(ExpenseReport, self).__init__()
         self.layout = lay
         self.wid = Ui_Form()
         self.expense_system = expense_system
-        self.amount = amount
-        self.category = category
         self.wid.setupUi(self)
-        self.wid.category_label.setText(category)
-        self.wid.icon_label.setPixmap(QPixmap(icon_path))
-        self.wid.amount_label.setText("฿{:,.2f}".format(amount))          
-        
+        self.wid.category_label.setText(expense_categories[0][0])
+        self.wid.icon_label.setPixmap(QPixmap(expense_categories[0][1]))
+        self.wid.amount_label.setText(
+            "฿{:,.2f}".format(expense_categories[0][2]))
+
+        if len(expense_categories) < 2:
+            return
+        self.wid.category_label_2.setText(expense_categories[1][0])
+        self.wid.icon_label_2.setPixmap(QPixmap(expense_categories[1][1]))
+        self.wid.amount_label_2.setText(
+            "฿{:,.2f}".format(expense_categories[1][2]))
+
+        if len(expense_categories) < 3:
+            return
+        self.wid.category_label_3.setText(expense_categories[2][0])
+        self.wid.icon_label_3.setPixmap(QPixmap(expense_categories[2][1]))
+        self.wid.amount_label_3.setText(
+            "฿{:,.2f}".format(expense_categories[2][2]))
 
     def clear(self):
         self.layout.removeWidget(self)
         self.deleteLater()
 
     def add(self):
-        self.layout.insertWidget(0,self)
-
+        self.layout.insertWidget(-1, self)
