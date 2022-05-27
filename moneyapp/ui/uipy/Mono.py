@@ -409,6 +409,13 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents_6 = QWidget()
         self.scrollAreaWidgetContents_6.setObjectName(u"scrollAreaWidgetContents_6")
         self.scrollAreaWidgetContents_6.setGeometry(QRect(0, 0, 387, 331))
+        self.verticalLayout_42 = QVBoxLayout(self.scrollAreaWidgetContents_6)
+        self.verticalLayout_42.setObjectName(u"verticalLayout_42")
+        self.widget_7 = QWidget(self.scrollAreaWidgetContents_6)
+        self.widget_7.setObjectName(u"widget_7")
+
+        self.verticalLayout_42.addWidget(self.widget_7)
+
         self.scrollArea_6.setWidget(self.scrollAreaWidgetContents_6)
 
         self.verticalLayout_18.addWidget(self.scrollArea_6)
@@ -476,7 +483,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 906, 535))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 100, 30))
         self.verticalLayout_24 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_24.setObjectName(u"verticalLayout_24")
         self.budget_list = QWidget(self.scrollAreaWidgetContents)
