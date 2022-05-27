@@ -11,10 +11,11 @@ from PySide6.QtCore import *
 
 class ExpenseUI(Observer):
 
-    def __init__(self, ui, s: ExpenseSystem, history_system, parent):
+    def __init__(self, ui, s: ExpenseSystem, budget_system, history_system, parent):
         self.ui = ui
         self.parent = parent
         self.system = s
+        self.budget_system = budget_system
         self.history_system = history_system
         self.expenses = []
         self.pop = Ui_Dialog()
@@ -28,6 +29,10 @@ class ExpenseUI(Observer):
         self.pop.date_entry.setDateTime(QDateTime.currentDateTime())
         self.pop.confirm_btn.clicked.connect(self.close_dia)
         self.pop.cancel_btn.clicked.connect(self.close)
+
+        budgets = self.budget_system.get_without_notify()
+        budgets_name = [b.name for b in budgets]
+        self.pop.budget_comboBox.addItems(budgets_name)
         self.dialog.show()
 
     def close_dia(self):
