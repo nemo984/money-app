@@ -34,7 +34,7 @@ class HistoryUI:
 
     def download_income(self):
         file_name = self.get_save_file()
-        if not saveFilePath:
+        if not file_name:
             return
         incomes = self.system.getByType("Income")
         for income in incomes:
@@ -42,7 +42,7 @@ class HistoryUI:
 
     def download_expense(self):
         file_name = self.get_save_file()
-        if not saveFilePath:
+        if not file_name:
             return
         expenses = self.system.getByType("Expense")
         for expense in expenses:
@@ -50,11 +50,11 @@ class HistoryUI:
 
     def download_budget(self):
         file_name = self.get_save_file()
-        if not saveFilePath:
+        if not file_name:
             return
         budgets = self.system.getByType("Budget")
         with open(file_name, 'w') as fp:
-            a = csv.writer(fp)
+            writer = csv.writer(fp)
             # write row of header names
             writer.writerows(budgets)
 
