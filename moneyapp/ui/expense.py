@@ -17,9 +17,8 @@ class ExpenseUI(Observer):
         self.system = s
         self.history_system = history_system
         self.pop = Ui_Dialog()
-        self.lay = self.ui.verticalLayout_38
-        self.expenses = []
         self.ui.add_expense_button.clicked.connect(self.add_expense)
+        self.parent = parent
 
     def add_expense(self):
         self.dialog = QDialog(self.parent)
@@ -37,31 +36,21 @@ class ExpenseUI(Observer):
         index_cat = self.pop.category_comboBox.currentIndex()
         index_bud = self.pop.budget_comboBox.currentIndex()
         ex = ExpenseItem(self.ui.verticalLayout_38,
-                         date, category, amount, note, index_cat, index_bud)
+                         date, category, amount, note, index_cat, index_bud, self.history_system)
         ex.add()
         self.dialog.close()
+        self.history_system.add(
+            action="Expense", action_type="Create", description="You created a new expense")
 
     def close(self):
         self.dialog.close()
 
-    async def update(self, expenses: List[Expense]):
-        self.clear_layout()
-        for expense in expenses:
-            item = QListWidgetItem()
-            expense = ExpenseItem( lay = self.lay , date = expense.date, category = expense.category,
-             amount = expense.amount, note = expense.note, index_cat, index_bud)
-            budget.add()
-            self.budgets.append(budget)
-
-    def clear_layout(self):
-        for budget in self.budgets:
-            budget.clear()
-        self.budgets = []
-
+    async def update(self, expense: List[Expense]):
+        pass
 
 
 class ExpenseItem(QWidget):
-    def __init__(self, lay: QVBoxLayout, date, category, amount, note, index_cat, index_bud):
+    def __init__(self, lay: QVBoxLayout, date, category, amount, note, index_cat, index_bud, history_system):
         super(ExpenseItem, self).__init__()
         self.layout = lay
         self.wid = Ui_expense_form()
@@ -71,6 +60,7 @@ class ExpenseItem(QWidget):
         self.amount = amount
         self.note = note
         self.date = date
+        self.history_system = history_system
 
         self.wid.setupUi(self)
         self.wid.date_label.setText(date)
@@ -119,6 +109,8 @@ class ExpenseItem(QWidget):
         self.index_bud = self.pop.budget_comboBox.currentIndex()
         self.date = self.pop.date_entry.text()
         self.dialog.close()
+        self.history_system.add(
+            action="Expense", action_type="Update", description="You updated your expense")
 
     def cancel(self):
         self.dialog.close()
@@ -129,3 +121,5 @@ class ExpenseItem(QWidget):
     def delete(self):
         self.layout.removeWidget(self)
         self.deleteLater()
+        self.history_system.add(
+            action="Expense", action_type="Delete", description="You deleted your expense")
