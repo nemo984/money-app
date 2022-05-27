@@ -35,16 +35,18 @@ class BudgetUI(Observer):
         start_date = self.pop.startDate_entry.text()
         end_date = self.pop.endDate_entry.text()
         name = self.pop.name_entry.text()
+        print(self.pop.amount_entry.text())
         amount = float(self.pop.amount_entry.text())
         index = self.pop.category_comboBox.currentIndex()
         c = self.pop.category_comboBox.currentText()
         note = self.pop.note_entry.toPlainText()
         self.dialog.close()
-        budget = self.system.add(category=c, name=name, amount=amount, start_date=start_date, end_date=end_date)
+        budget = self.system.add(
+            category=c, name=name, amount=amount, start_date=start_date, end_date=end_date)
         b = BudgetItem(budget_id=budget.id, budget_system=self.system, history_system=self.history_system, lay=self.budgets_layout, amount=amount, category=c,
                        end_date=end_date, index=index, note=note, name=name, start_date=start_date)
-        self.history_system.add(action="Budget", action_type="Create", description="You created a budget")
-        
+        self.history_system.add(
+            action="Budget", action_type="Create", description="You created a budget")
 
     def close(self):
         self.dialog.close()
@@ -65,7 +67,9 @@ class BudgetUI(Observer):
         self.budgets = []
 
 
-budget_category_dropdown = {"Food":0, "Entertainment":1, "Transport":2, "Education":3, "Healthcare":4, "Bill":5, "Saving":6, "Investment":7, "Shopping":8, "Utilities/Other":9}
+budget_category_dropdown = {"Food": 0, "Entertainment": 1, "Transport": 2, "Education": 3,
+                            "Healthcare": 4, "Bill": 5, "Saving": 6, "Investment": 7, "Shopping": 8, "Utilities/Other": 9}
+
 
 class BudgetItem(QWidget):
     def __init__(self, budget_id, budget_system, history_system, lay: QVBoxLayout, category, name, amount, start_date, end_date, index, note):
@@ -107,7 +111,6 @@ class BudgetItem(QWidget):
         menu.addAction(self.edit)
         menu.addAction(self.delete_b)
         menu.exec(QCursor.pos())
-        
 
     def edit_budget(self):
         self.dialog = QDialog(self)
@@ -115,16 +118,16 @@ class BudgetItem(QWidget):
         self.pop.amount_entry.setText(str(self.amount))
         self.pop.name_entry.setText(self.wid.name_label.text())
         self.pop.category_comboBox.setCurrentIndex(self.index)
-        self.pop.note_entry.setPlainText(self.note)   
-        s_date = QDate.fromString(self.s_date,"dd/M/yyyy")
-        e_date = QDate.fromString(self.e_date,"dd/M/yyyy")
+        self.pop.note_entry.setPlainText(self.note)
+        s_date = QDate.fromString(self.s_date, "dd/M/yyyy")
+        e_date = QDate.fromString(self.e_date, "dd/M/yyyy")
         self.pop.startDate_entry.setDate(s_date)
         self.pop.endDate_entry.setDate(e_date)
         self.s_date = self.pop.startDate_entry.text()
         self.e_date = self.pop.endDate_entry.text()
         self.pop.confirm_btn.clicked.connect(self.confirm_edit)
         self.dialog.show()
-        
+
     def confirm_edit(self):
         self.name = self.pop.name_entry.text()
         self.amount = self.pop.amount_entry.text()
@@ -138,14 +141,18 @@ class BudgetItem(QWidget):
         self.wid.name_label.setText(self.name)
         self.wid.category_label.setText(self.category)
         self.wid.amount.setText("฿{:,.2f}".format(float(self.amount)))
-        self.wid.label_9.setText("Until you reach"+"฿{:,.2f}".format(float(self.amount)))
-        self.wid.end_date.setText("End Date: "+ self.e_date)
-        self.wid.start_date.setText("Start Date: "+ self.s_date)
+        self.wid.label_9.setText(
+            "Until you reach"+"฿{:,.2f}".format(float(self.amount)))
+        self.wid.end_date.setText("End Date: " + self.e_date)
+        self.wid.start_date.setText("Start Date: " + self.s_date)
 
         self.dialog.close()
-        self.budget_system.update(budget_id=self.id, name=self.name, amount=float(self.amount), start_date=self.s_date, end_date=self.e_date, note=self.note, category=self.category)
-        self.history_system.add(action="Budget", action_type="Update", description="You updated a budget")
-        
+        self.budget_system.update(budget_id=self.id, name=self.name, amount=float(
+            self.amount), start_date=self.s_date, end_date=self.e_date, note=self.note, category=self.category)
+        self.history_system.add(
+            action="Budget", action_type="Update", description="You updated a budget")
+
+
     def add(self):
         self.layout.insertWidget(0, self)
 
@@ -153,7 +160,8 @@ class BudgetItem(QWidget):
         self.layout.removeWidget(self)
         self.deleteLater()
         self.budget_system.delete(self.id)
-        self.history_system.add(action="Budget", action_type="Delete", description="You deleted a budget")
+        self.history_system.add(
+            action="Budget", action_type="Delete", description="You deleted a budget")
 
     def clear(self):
         self.layout.removeWidget(self)
