@@ -25,6 +25,7 @@ class BudgetUI(Observer):
     def add_budget(self):
         self.dialog = QDialog(self.parent)
         self.pop.setupUi(self.dialog)
+        self.dialog.setWindowTitle("Add budget")
         self.pop.startDate_entry.setDateTime(QDateTime.currentDateTime())
         self.pop.endDate_entry.setDateTime(QDateTime.currentDateTime())
         self.pop.confirm_btn.clicked.connect(self.close_dia)
@@ -35,6 +36,11 @@ class BudgetUI(Observer):
         start_date = self.pop.startDate_entry.text()
         end_date = self.pop.endDate_entry.text()
         name = self.pop.name_entry.text()
+
+        if(self.isfloat(self.pop.amount_entry.text()) == False):
+            self.pop.warning_label.setText(
+                "Input in amount section is not a number")
+
         amount = float(self.pop.amount_entry.text())
         index = self.pop.category_comboBox.currentIndex()
         c = self.pop.category_comboBox.currentText()
@@ -53,8 +59,8 @@ class BudgetUI(Observer):
     async def update(self, budgets: List[Budget]):
         self.clear_layout()
         for budget in budgets:
-            budget = BudgetItem(budget_id=budget.id, budget_system=self.system, history_system=self.history_system, lay=self.budgets_layout, name=budget.name, 
-                                category=budget.category, index=budget_category_dropdown[budget.category], 
+            budget = BudgetItem(budget_id=budget.id, budget_system=self.system, history_system=self.history_system, lay=self.budgets_layout, name=budget.name,
+                                category=budget.category, index=budget_category_dropdown[budget.category],
                                 amount=budget.amount, start_date=budget.start_date, end_date=budget.end_date,
                                 note=budget.note)
             budget.add()
@@ -64,6 +70,13 @@ class BudgetUI(Observer):
         for budget in self.budgets:
             budget.clear()
         self.budgets = []
+
+    def isfloat(self, num):
+        try:
+            float(num)
+            return True
+        except ValueError:
+            return False
 
 
 budget_category_dropdown = {"Food": 0, "Entertainment": 1, "Transport": 2, "Education": 3,
@@ -87,7 +100,6 @@ class BudgetItem(QWidget):
         self.category = category
         self.name = name
 
-        
         self.wid.setupUi(self)
         self.per = self.wid.progressBar.value()
         self.wid.name_label.setText(self.name)
@@ -95,7 +107,7 @@ class BudgetItem(QWidget):
         self.wid.amount.setText("฿{:,.2f}".format(amount))
         self.wid.end_date.setText("End Date:"+end_date)
         self.wid.start_date.setText("Start Date:"+start_date)
-        #self.wid.progressBar.setMaximum(amount)
+        # self.wid.progressBar.setMaximum(amount)
         self.wid.label_9.setText("Until you reach"+"฿{:,.2f}".format(amount))
         self.wid.more_btn.clicked.connect(self.option)
 
@@ -115,6 +127,7 @@ class BudgetItem(QWidget):
     def edit_budget(self):
         self.dialog = QDialog(self)
         self.pop.setupUi(self.dialog)
+        self.dialog.setWindowTitle("Edit budget")
         self.pop.amount_entry.setText(str(self.amount))
         self.pop.name_entry.setText(self.wid.name_label.text())
         self.pop.category_comboBox.setCurrentIndex(self.index)
@@ -151,7 +164,6 @@ class BudgetItem(QWidget):
             self.amount), start_date=self.s_date, end_date=self.e_date, note=self.note, category=self.category)
         self.history_system.add(
             action="Budget", action_type="Update", description="You updated a budget")
-
 
     def add(self):
         self.layout.insertWidget(0, self)

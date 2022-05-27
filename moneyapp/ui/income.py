@@ -34,6 +34,7 @@ class IncomeUI(Observer):
     def add_income(self):
         self.dialog = QDialog(self.parent)
         self.pop.setupUi(self.dialog)
+        self.dialog.setWindowTitle("Add income")
         self.pop.date_entry.setDateTime(QDateTime.currentDateTime())
         self.pop.confirm_btn.clicked.connect(self.close_dia)
         self.pop.cancel_btn.clicked.connect(self.close)
@@ -42,8 +43,17 @@ class IncomeUI(Observer):
 
     def close_dia(self):
         date = self.pop.date_entry.text()
+
+        if not self.pop.name_entry.text():
+            self.pop.warning_label.setText("No input in name section")
+
         name = self.pop.name_entry.text()
         category = str(self.pop.category_comboBox.currentText())
+
+        if(self.isfloat(self.pop.amount_entry.text()) == False):
+            self.pop.warning_label.setText(
+                "Input in amount section is not a number")
+
         amount = int(self.pop.amount_entry.text())
         recurrence = str(self.pop.recurence_comboBox.currentText())
         note = self.pop.note_entry.toPlainText()
@@ -131,6 +141,13 @@ class IncomeUI(Observer):
             income.clear()
         self.incomes = []
 
+    def isfloat(self, num):
+        try:
+            float(num)
+            return True
+        except ValueError:
+            return False
+
 
 class IncomeItem(QWidget):
     def __init__(self, income_id, income_system, history_system, lay: QVBoxLayout, date, name, category, amount, recurrence, note, index_cat, index_rec):
@@ -174,6 +191,7 @@ class IncomeItem(QWidget):
     def edit_income(self):
         self.dialog = QDialog(self)
         self.pop.setupUi(self.dialog)
+        self.dialog.setWindowTitle("Edit income")
         self.pop.name_entry.setText(self.name)
         self.pop.amount_entry.setText(str(self.amount))
         self.pop.category_comboBox.setCurrentIndex(self.index_cat)

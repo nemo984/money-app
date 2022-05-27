@@ -27,10 +27,12 @@ class ExpenseUI(Observer):
     def add_expense(self):
         self.dialog = QDialog(self.parent)
         self.pop.setupUi(self.dialog)
+        self.dialog.setWindowTitle("Add expense")
         self.pop.date_entry.setDateTime(QDateTime.currentDateTime())
         self.pop.confirm_btn.clicked.connect(self.close_dia)
         self.pop.cancel_btn.clicked.connect(self.close)
-        self.pop.category_comboBox.currentTextChanged.connect(self.category_change)
+        self.pop.category_comboBox.currentTextChanged.connect(
+            self.category_change)
 
         self.category_change("Food")
         self.dialog.show()
@@ -38,7 +40,7 @@ class ExpenseUI(Observer):
     def category_change(self, value):
         self.pop.budget_comboBox.clear()
         budgets = self.budget_system.getByCategory(value)
-        self.budgets = {f"{b.start_date} {b.name}":b for b in budgets}
+        self.budgets = {f"{b.start_date} {b.name}": b for b in budgets}
         self.pop.budget_comboBox.addItem("None")
         self.pop.budget_comboBox.addItems(self.budgets.keys())
 
@@ -46,17 +48,22 @@ class ExpenseUI(Observer):
         date = self.pop.date_entry.text()
         category = str(self.pop.category_comboBox.currentText())
         budget = str(self.pop.budget_comboBox.currentText())
-        amount = int(self.pop.amount_entry.text())
+
+        if(self.isfloat(self.pop.amount_entry.text()) == False):
+            self.pop.warning_label.setText(
+                "Input in amount section is not a number")
+
+        amount = float(self.pop.amount_entry.text())
         note = self.pop.note_entry.toPlainText()
         index_cat = self.pop.category_comboBox.currentIndex()
-        index_bud = self.pop.budget_comboBox.currentIndex()              
+        index_bud = self.pop.budget_comboBox.currentIndex()
         budget = self.budgets[budget] if budget in self.budgets else None
         self.dialog.close()
         expense = self.system.add(
-            category = category,amount=amount,date=date,note=note,budget=budget
+            category=category, amount=amount, date=date, note=note, budget=budget
         )
-        ex = ExpenseItem(expense.id ,self.lay,
-                         date, category, amount, note, index_cat, self.history_system,self.system, budget)
+        ex = ExpenseItem(expense.id, self.lay,
+                         date, category, amount, note, index_cat, self.history_system, self.system, budget)
         self.history_system.add(
             action="Expense", action_type="Create", description="You created a new expense")
 
@@ -66,9 +73,10 @@ class ExpenseUI(Observer):
     async def update(self, expenses: List[Expense]):
         self.clear_layout()
         for expense in expenses:
-            expense = ExpenseItem( expense_id=expense.id ,lay = self.lay , date = expense.date, category = expense.category,
-                                amount = expense.amount, note = expense.note, index_cat = expense_category_dropdown[expense.category],
-                                history_system=self.history_system, expense_system=self.system, budget=expense.budget)
+            expense = ExpenseItem(expense_id=expense.id, lay=self.lay, date=expense.date, category=expense.category,
+                                  amount=expense.amount, note=expense.note, index_cat=expense_category_dropdown[
+                                      expense.category],
+                                  history_system=self.history_system, expense_system=self.system, budget=expense.budget)
             expense.add()
             self.expenses.append(expense)
 
@@ -77,10 +85,20 @@ class ExpenseUI(Observer):
             expense.clear()
         self.expenses = []
 
-expense_category_dropdown = {"Food":0, "Entertainment":1, "Transport":2, "Education":3, "Healthcare":4, "Bill":5, "Saving":6, "Investment":7, "Shopping":8, "Utilities/Other":9}
+    def isfloat(self, num):
+        try:
+            float(num)
+            return True
+        except ValueError:
+            return False
+
+
+expense_category_dropdown = {"Food": 0, "Entertainment": 1, "Transport": 2, "Education": 3,
+                             "Healthcare": 4, "Bill": 5, "Saving": 6, "Investment": 7, "Shopping": 8, "Utilities/Other": 9}
+
 
 class ExpenseItem(QWidget):
-    def __init__(self,expense_id, lay: QVBoxLayout, date, category, amount, note, index_cat, history_system, expense_system, budget):
+    def __init__(self, expense_id, lay: QVBoxLayout, date, category, amount, note, index_cat, history_system, expense_system, budget):
         super(ExpenseItem, self).__init__()
         self.id = expense_id
         self.layout = lay
@@ -99,7 +117,8 @@ class ExpenseItem(QWidget):
         self.wid.date_label.setText(date)
         self.wid.category_label.setText(category)
         self.wid.amount_label.setText("฿{:,.2f}".format(amount))
-        if budget is not None: self.wid.budget_label.setText(budget.name)
+        if budget is not None:
+            self.wid.budget_label.setText(budget.name)
         self.wid.option_btn.clicked.connect(self.option)
 
     def option(self):
@@ -118,6 +137,7 @@ class ExpenseItem(QWidget):
     def edit_expense(self):
         self.dialog = QDialog(self)
         self.pop.setupUi(self.dialog)
+        self.dialog.setWindowTitle("Edit expense")
         self.pop.amount_entry.setText(str(self.amount))
         self.pop.category_comboBox.setCurrentIndex(self.index_cat)
         self.pop.note_entry.setPlainText(self.note)
@@ -146,12 +166,13 @@ class ExpenseItem(QWidget):
         self.history_system.add(
             action="Expense", action_type="Update", description="You updated your expense")
         self.expense_system.update(
-            expense_id = self.id ,date = self.date,category=self.category,amount=float(self.amount),note=self.note)
+            expense_id=self.id, date=self.date, category=self.category, amount=float(self.amount), note=self.note)
 
     def change_budget_index(self):
-        index = self.pop.budget_comboBox.findText(f"{self.budget.start_date} {self.budget.name}", Qt.MatchFixedString)
+        index = self.pop.budget_comboBox.findText(
+            f"{self.budget.start_date} {self.budget.name}", Qt.MatchFixedString)
         if index >= 0:
-            self.index_bud = index 
+            self.index_bud = index
             self.pop.budget_comboBox.setCurrentIndex(index)
 
     def cancel(self):
