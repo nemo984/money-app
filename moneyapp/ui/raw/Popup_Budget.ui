@@ -80,6 +80,7 @@ border: 1px solid black;
       <property name="font">
        <font>
         <pointsize>11</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -97,14 +98,17 @@ border: 1px solid black;
        </rect>
       </property>
      </widget>
-     <widget class="QLabel" name="label_6">
+     <widget class="QLabel" name="warning_label">
       <property name="geometry">
        <rect>
-        <x>180</x>
-        <y>160</y>
-        <width>211</width>
+        <x>190</x>
+        <y>290</y>
+        <width>231</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:red;</string>
       </property>
       <property name="text">
        <string/>
@@ -125,6 +129,7 @@ border: 1px solid black;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -141,6 +146,7 @@ border: 1px solid black;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -208,6 +214,7 @@ border: 1px solid black;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -224,6 +231,7 @@ border: 1px solid black;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -236,6 +244,7 @@ border: 1px solid black;
         <widget class="QDateEdit" name="startDate_entry">
          <property name="font">
           <font>
+           <weight>50</weight>
            <bold>false</bold>
           </font>
          </property>
@@ -252,6 +261,7 @@ border: 1px solid black;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>

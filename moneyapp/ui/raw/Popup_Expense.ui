@@ -63,6 +63,7 @@ border: 1px solid black;
       <property name="font">
        <font>
         <pointsize>11</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -85,6 +86,7 @@ border: 1px solid black;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -152,6 +154,7 @@ border: 1px solid black;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -174,6 +177,7 @@ border: 1px solid black;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -190,6 +194,7 @@ border: 1px solid black;
          <property name="font">
           <font>
            <pointsize>11</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -220,19 +225,6 @@ border: 1px solid black;
        </rect>
       </property>
      </widget>
-     <widget class="QLabel" name="label_6">
-      <property name="geometry">
-       <rect>
-        <x>190</x>
-        <y>160</y>
-        <width>201</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
      <widget class="QPushButton" name="confirm_btn">
       <property name="geometry">
        <rect>
@@ -244,6 +236,22 @@ border: 1px solid black;
       </property>
       <property name="text">
        <string>Confirm</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="warning_label">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>220</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:red;</string>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>
