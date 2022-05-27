@@ -31,11 +31,9 @@ class BudgetSystem(Observable):
         return self._budgets
 
     def getByID(self, budget_id) -> Budget:
-        try:
-            budget = Budget.get(Budget.id == budget_id)
-            return budget
-        except:
-            return None
+        budget = Budget.get_or_none(Budget.id == budget_id)
+        return budget
+
 
     def update(
         self,
