@@ -41,6 +41,24 @@ class BudgetSystem(Observable):
         budget = Budget.get_or_none(Budget.id == budget_id)
         return budget
 
+    def add_amount_used(self, budget_id, amount) -> Budget:
+        budget = self.getByID(budget_id)
+        if budget is None:
+            return
+        budget.amount_used += amount
+        budget.save()
+        self.get()
+        return budget
+    
+    def subtract_amount_used(self, budget_id, amount) -> Budget:
+        budget = self.getByID(budget_id)
+        if budget is None:
+            return
+        budget.amount_used -= amount
+        budget.save()
+        self.get()
+        return budget
+
     def update(
         self,
         budget_id: Budget,

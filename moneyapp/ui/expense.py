@@ -86,6 +86,9 @@ class ExpenseUI(Observer):
             expense.clear()
         self.expenses = []
 
+    def filter(self, value):
+        
+
     def isfloat(self, num):
         try:
             float(num)

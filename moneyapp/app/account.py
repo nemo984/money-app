@@ -38,10 +38,13 @@ class AccountSystem(Observable):
         self,
         account: Account,
         name: Optional[str],
+        password: Optional[str],
         profile_image_path: Optional[str] = None
     ) -> Account:
         if name:
             account.name = name
+        if password:
+            account.password = password
         if profile_image_path:
             with open(profile_image_path, 'rb') as file:
                 account.profile_image = file.read()

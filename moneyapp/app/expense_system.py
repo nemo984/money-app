@@ -26,7 +26,7 @@ class ExpenseSystem(Observable):
         self._expenses.append(expense)
         self.notify(self._expenses)
         if budget and budget_system:
-            budget_system.update(budget_id=budget.id, )
+            budget_system.add_amount_used(budget.id, expense.amount)
         return expense
 
     def get(self) -> List[Expense]:
@@ -45,19 +45,14 @@ class ExpenseSystem(Observable):
         category: Optional[str] = None,
         amount: Optional[float] = None,
         note: Optional[str] = None,
-        budget: Optional[Budget] = None,
     ) -> Expense:
         expense = self.getByID(expense_id)
         if expense is None:
             return
-        if budget:
-            expense.budget = budget
         if date:
             expense.date = date
         if category:
             expense.category = category
-        if amount:
-            expense.amount = amount
         if note:
             expense.note = note
         expense.save()
@@ -71,9 +66,11 @@ class ExpenseSystem(Observable):
                  .group_by(Expense.category))
         return {expense.category:expense.total for expense in rows}
 
-    def delete(self, expense_id):
+    def delete(self, expense_id, budget_system: BudgetSystem):
         expense = self.getByID(expense_id)
         if expense is None:
             return
+        if expense.budget is not None:
+            budget_system.subtract_amount_used(expense.budget.id, expense.amount)
         expense.delete_instance()
         self.get()
