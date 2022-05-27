@@ -43,7 +43,6 @@ class ExpenseUI(Observer):
         )
         ex = ExpenseItem(expense.id ,self.ui.verticalLayout_38,
                          date, category, amount, note, index_cat, index_bud, self.history_system,self.system)
-        ex.add()
         self.history_system.add(
             action="Expense", action_type="Create", description="You created a new expense")
 
@@ -51,6 +50,7 @@ class ExpenseUI(Observer):
         self.dialog.close()
 
     async def update(self, expenses: List[Expense]):
+        print(expenses)
         self.clear_layout()
         for expense in expenses:
             expense = ExpenseItem( expense_id=expense.id ,lay = self.lay , date = expense.date, category = expense.category,
