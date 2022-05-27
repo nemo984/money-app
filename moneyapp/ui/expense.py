@@ -100,7 +100,7 @@ class ExpenseItem(QWidget):
         self.wid.category_label.setText(category)
         self.wid.amount_label.setText("฿{:,.2f}".format(amount))
         self.wid.option_btn.clicked.connect(self.option)
-        self.index_bud = self.pop.budget_comboBox.FindStringExact(budget)
+        # self.index_bud = self.pop.budget_comboBox.FindStringExact(budget)
 
     def option(self):
         menu = QMenu()

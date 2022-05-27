@@ -28,7 +28,7 @@ class BudgetReportUI(Observer):
 class ExpenseReportUI(Observer):
     def __init__(self,ui,s: ExpenseSystem):
         self.ui = ui
-        self.lay = self.ui.verticalLayout_41
+        self.lay = self.ui.verticalLayout_18
         self.expense_system = s
         self.expenses = []
 
@@ -58,9 +58,9 @@ class ExpenseReport(QWidget):
         self.wid.setupUi(self)
         self.wid.category_label.setText(category)
         if category in b:
-            self.wid.amount_label.setText(b[category])          
+            self.wid.amount_label.setText("฿{:,.2f}".format(b[category]))          
         else:
-            self.wid.amount_label.setText(b[category])
+            self.wid.amount_label.setText("0")
         
 
     def clear(self):

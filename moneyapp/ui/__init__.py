@@ -12,6 +12,7 @@ from .income import IncomeUI
 from .expense import ExpenseUI
 from .history import HistoryUI
 from .setting import SettingUI
+from .overview import ExpenseReportUI
 from .uipy.Mono import Ui_MainWindow
 from PySide6.QtCore import *
 import os
@@ -43,10 +44,12 @@ class MoneyAppUI(QMainWindow):
         expense_ui = ExpenseUI(self.ui,expense_system, budget_system, history_system, self)
         history_ui = HistoryUI(self.ui,history_system, self)
         setting_ui = SettingUI(self.ui, account_system, self)
-        
+        expense_report_ui = ExpenseReportUI(self.ui, expense_system)
+
         budget_system.add_observer(budget_ui)
         income_system.add_observer(income_ui)
         expense_system.add_observer(expense_ui)
+        expense_system.add_observer(expense_report_ui)
         history_system.add_observer(history_ui)
 
         history_system.get()
