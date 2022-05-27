@@ -1,6 +1,7 @@
 from typing import Optional, List
 from .helpers import Observable
 from .model import Expense, Budget, Account
+from .budget_system import BudgetSystem
 from peewee import fn
 
 
@@ -16,6 +17,7 @@ class ExpenseSystem(Observable):
         amount: float,
         date,
         budget: Optional[Budget] = None,
+        budget_system: Optional[BudgetSystem] = None,
         note: Optional[str] = None,
     ) -> Expense:
         expense = Expense(owner=self.owner, category=category, date=date, budget=budget
@@ -23,6 +25,8 @@ class ExpenseSystem(Observable):
         expense.save()
         self._expenses.append(expense)
         self.notify(self._expenses)
+        if budget and budget_system:
+            budget_system.update(budget_id=budget.id, )
         return expense
 
     def get(self) -> List[Expense]:

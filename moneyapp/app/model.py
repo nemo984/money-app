@@ -35,6 +35,7 @@ class Budget(BaseModel):
     name = CharField()
     category = CharField()
     amount = DecimalField(14,2)
+    amount_used = DecimalField(14, 2, default=0)
     note = TextField(null=True)
     start_date = DateTimeField(default=datetime.now)
     end_date = DateTimeField(null=True)
