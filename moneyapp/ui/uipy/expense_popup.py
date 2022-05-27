@@ -120,12 +120,13 @@ class Ui_Dialog(object):
         self.note_entry = QTextEdit(self.frame)
         self.note_entry.setObjectName(u"note_entry")
         self.note_entry.setGeometry(QRect(210, 40, 161, 101))
-        self.label_6 = QLabel(self.frame)
-        self.label_6.setObjectName(u"label_6")
-        self.label_6.setGeometry(QRect(190, 160, 201, 21))
         self.confirm_btn = QPushButton(self.frame)
         self.confirm_btn.setObjectName(u"confirm_btn")
         self.confirm_btn.setGeometry(QRect(270, 260, 101, 31))
+        self.warning_label = QLabel(self.frame)
+        self.warning_label.setObjectName(u"warning_label")
+        self.warning_label.setGeometry(QRect(190, 220, 231, 21))
+        self.warning_label.setStyleSheet(u"color:red;")
 
         self.verticalLayout_2.addWidget(self.frame)
 
@@ -156,7 +157,7 @@ class Ui_Dialog(object):
 
         self.label_3.setText(QCoreApplication.translate("Dialog", u"Amount", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Date", None))
-        self.label_6.setText("")
         self.confirm_btn.setText(QCoreApplication.translate("Dialog", u"Confirm", None))
+        self.warning_label.setText("")
     # retranslateUi
 

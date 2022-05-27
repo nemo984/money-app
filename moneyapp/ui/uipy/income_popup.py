@@ -23,7 +23,7 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(433, 386)
+        Dialog.resize(433, 388)
         Dialog.setStyleSheet(u"#confirm_btn{\n"
 "background-color:#A7F0AE;\n"
 "border-radius: 10px;\n"
@@ -57,9 +57,6 @@ class Ui_Dialog(object):
         self.note_entry = QTextEdit(self.frame)
         self.note_entry.setObjectName(u"note_entry")
         self.note_entry.setGeometry(QRect(210, 40, 161, 101))
-        self.label_6 = QLabel(self.frame)
-        self.label_6.setObjectName(u"label_6")
-        self.label_6.setGeometry(QRect(180, 160, 211, 21))
         self.layoutWidget = QWidget(self.frame)
         self.layoutWidget.setObjectName(u"layoutWidget")
         self.layoutWidget.setGeometry(QRect(20, 11, 161, 291))
@@ -135,6 +132,10 @@ class Ui_Dialog(object):
         self.confirm_btn = QPushButton(self.frame)
         self.confirm_btn.setObjectName(u"confirm_btn")
         self.confirm_btn.setGeometry(QRect(290, 330, 101, 31))
+        self.warning_label = QLabel(self.frame)
+        self.warning_label.setObjectName(u"warning_label")
+        self.warning_label.setGeometry(QRect(190, 280, 231, 21))
+        self.warning_label.setStyleSheet(u"color:red;")
 
         self.verticalLayout_2.addWidget(self.frame)
 
@@ -148,7 +149,6 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
         self.cancel_btn.setText(QCoreApplication.translate("Dialog", u"Cancel", None))
         self.label_5.setText(QCoreApplication.translate("Dialog", u"Note(Optional)", None))
-        self.label_6.setText("")
         self.label.setText(QCoreApplication.translate("Dialog", u"Name", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"Category", None))
         self.category_comboBox.setItemText(0, QCoreApplication.translate("Dialog", u"Full-time", None))
@@ -166,5 +166,6 @@ class Ui_Dialog(object):
 
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Date", None))
         self.confirm_btn.setText(QCoreApplication.translate("Dialog", u"Confirm", None))
+        self.warning_label.setText("")
     # retranslateUi
 

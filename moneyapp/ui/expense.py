@@ -42,7 +42,6 @@ class ExpenseUI(Observer):
         self.pop.budget_comboBox.addItem("None")
         self.pop.budget_comboBox.addItems(self.budgets.keys())
 
-
     def close_dia(self):
         date = self.pop.date_entry.text()
         category = str(self.pop.category_comboBox.currentText())
@@ -56,8 +55,8 @@ class ExpenseUI(Observer):
         expense = self.system.add(
             category = category,amount=amount,date=date,note=note,budget=budget
         )
-        ex = ExpenseItem(expense.id ,self.ui.verticalLayout_38,
-                         date, category, amount, note, index_cat, index_bud, self.history_system,self.system, budget)
+        ex = ExpenseItem(expense.id ,self.lay,
+                         date, category, amount, note, index_cat, self.history_system,self.system, budget)
         self.history_system.add(
             action="Expense", action_type="Create", description="You created a new expense")
 
@@ -93,14 +92,15 @@ class ExpenseItem(QWidget):
         self.date = date
         self.history_system = history_system
         self.expense_system = expense_system
+        self.budget = budget
         self.budget_category = budget
 
         self.wid.setupUi(self)
         self.wid.date_label.setText(date)
         self.wid.category_label.setText(category)
         self.wid.amount_label.setText("฿{:,.2f}".format(amount))
+        if budget is not None: self.wid.budget_label.setText(budget.name)
         self.wid.option_btn.clicked.connect(self.option)
-        # self.index_bud = self.pop.budget_comboBox.FindStringExact(budget)
 
     def option(self):
         menu = QMenu()
@@ -120,7 +120,6 @@ class ExpenseItem(QWidget):
         self.pop.setupUi(self.dialog)
         self.pop.amount_entry.setText(str(self.amount))
         self.pop.category_comboBox.setCurrentIndex(self.index_cat)
-        self.pop.budget_comboBox.setCurrentIndex(self.index_bud)
         self.pop.note_entry.setPlainText(self.note)
         date = QDate.fromString(self.date, "dd/M/yyyy")
         self.pop.date_entry.setDate(date)
@@ -148,6 +147,12 @@ class ExpenseItem(QWidget):
             action="Expense", action_type="Update", description="You updated your expense")
         self.expense_system.update(
             expense_id = self.id ,date = self.date,category=self.category,amount=float(self.amount),note=self.note)
+
+    def change_budget_index(self):
+        index = self.pop.budget_comboBox.findText(f"{self.budget.start_date} {self.budget.name}", Qt.MatchFixedString)
+        if index >= 0:
+            self.index_bud = index 
+            self.pop.budget_comboBox.setCurrentIndex(index)
 
     def cancel(self):
         self.dialog.close()
