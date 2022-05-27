@@ -35,11 +35,17 @@ class BudgetUI(Observer):
     def close_dia(self):
         start_date = self.pop.startDate_entry.text()
         end_date = self.pop.endDate_entry.text()
+
+        if not self.pop.name_entry.text():
+            self.pop.warning_label.setText("No input in name section")
+            return
+
         name = self.pop.name_entry.text()
 
         if(self.isfloat(self.pop.amount_entry.text()) == False):
             self.pop.warning_label.setText(
                 "Input in amount section is not a number")
+            return
 
         amount = float(self.pop.amount_entry.text())
         index = self.pop.category_comboBox.currentIndex()

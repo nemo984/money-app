@@ -46,6 +46,7 @@ class IncomeUI(Observer):
 
         if not self.pop.name_entry.text():
             self.pop.warning_label.setText("No input in name section")
+            return
 
         name = self.pop.name_entry.text()
         category = str(self.pop.category_comboBox.currentText())
@@ -53,6 +54,7 @@ class IncomeUI(Observer):
         if(self.isfloat(self.pop.amount_entry.text()) == False):
             self.pop.warning_label.setText(
                 "Input in amount section is not a number")
+            return
 
         amount = int(self.pop.amount_entry.text())
         recurrence = str(self.pop.recurence_comboBox.currentText())

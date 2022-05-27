@@ -52,6 +52,7 @@ class ExpenseUI(Observer):
         if(self.isfloat(self.pop.amount_entry.text()) == False):
             self.pop.warning_label.setText(
                 "Input in amount section is not a number")
+            return
 
         amount = float(self.pop.amount_entry.text())
         note = self.pop.note_entry.toPlainText()
