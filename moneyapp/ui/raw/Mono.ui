@@ -273,6 +273,7 @@ background-color:transparent;
                <property name="font">
                 <font>
                  <pointsize>16</pointsize>
+                 <weight>50</weight>
                  <bold>false</bold>
                 </font>
                </property>
@@ -296,6 +297,7 @@ background-color:transparent;
                <property name="font">
                 <font>
                  <pointsize>16</pointsize>
+                 <weight>50</weight>
                  <bold>false</bold>
                 </font>
                </property>
@@ -341,6 +343,7 @@ background-color:transparent;
                <property name="font">
                 <font>
                  <pointsize>16</pointsize>
+                 <weight>50</weight>
                  <bold>false</bold>
                 </font>
                </property>
@@ -441,6 +444,7 @@ background-color:transparent;
                <property name="font">
                 <font>
                  <pointsize>18</pointsize>
+                 <weight>75</weight>
                  <bold>true</bold>
                 </font>
                </property>
@@ -461,7 +465,7 @@ background-color:transparent;
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>5</number>
          </property>
          <widget class="QWidget" name="page">
           <widget class="QFrame" name="frame">
@@ -654,6 +658,7 @@ background-color:transparent;
                  <property name="font">
                   <font>
                    <pointsize>12</pointsize>
+                   <weight>75</weight>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -669,6 +674,7 @@ background-color:transparent;
                     <property name="font">
                      <font>
                       <pointsize>12</pointsize>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -693,8 +699,8 @@ background-color:transparent;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>427</width>
-                    <height>143</height>
+                    <width>423</width>
+                    <height>132</height>
                    </rect>
                   </property>
                   <widget class="QWidget" name="notification_list" native="true">
@@ -772,6 +778,7 @@ background-color:transparent;
                        <property name="font">
                         <font>
                          <pointsize>12</pointsize>
+                         <weight>75</weight>
                          <bold>true</bold>
                         </font>
                        </property>
@@ -796,8 +803,8 @@ background-color:transparent;
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>387</width>
-                       <height>331</height>
+                       <width>383</width>
+                       <height>320</height>
                       </rect>
                      </property>
                      <layout class="QVBoxLayout" name="verticalLayout_42">
@@ -876,6 +883,7 @@ background-color:transparent;
                      <property name="font">
                       <font>
                        <pointsize>12</pointsize>
+                       <weight>75</weight>
                        <bold>true</bold>
                       </font>
                      </property>
@@ -933,8 +941,8 @@ background-color:transparent;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>100</width>
-                    <height>30</height>
+                    <width>898</width>
+                    <height>522</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_24">
@@ -968,6 +976,7 @@ background-color:transparent;
                  <property name="font">
                   <font>
                    <pointsize>12</pointsize>
+                   <weight>75</weight>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -1051,6 +1060,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="income_yearly">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1085,6 +1095,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="income_monthly">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1116,6 +1127,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="income_daily">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1147,6 +1159,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="income_weekly">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1232,6 +1245,7 @@ background-color:#A7F0AE;
                 <widget class="QLabel" name="income_list_header">
                  <property name="font">
                   <font>
+                   <weight>75</weight>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -1396,6 +1410,7 @@ background-color:#A7F0AE;
                 <widget class="QLabel" name="expense_list_header">
                  <property name="font">
                   <font>
+                   <weight>75</weight>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -1529,6 +1544,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="expense_yearly">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1563,6 +1579,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="expense_monthly">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1594,6 +1611,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="expense_daily">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1625,6 +1643,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="expense_weekly">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1912,7 +1931,7 @@ border-radius: 10px;
               <height>661</height>
              </rect>
             </property>
-            <widget class="QLineEdit" name="lineedit_new_password">
+            <widget class="QLineEdit" name="new_pwd_lineEdit">
              <property name="geometry">
               <rect>
                <x>50</x>
@@ -1921,14 +1940,20 @@ border-radius: 10px;
                <height>31</height>
               </rect>
              </property>
+             <property name="styleSheet">
+              <string notr="true">border: 1px solid black;</string>
+             </property>
+             <property name="inputMethodHints">
+              <set>Qt::ImhNone</set>
+             </property>
              <property name="text">
               <string/>
              </property>
              <property name="placeholderText">
-              <string>New password</string>
+              <string/>
              </property>
             </widget>
-            <widget class="QLineEdit" name="lineedit_confirm_new_password">
+            <widget class="QLineEdit" name="new_pwd_confirm_lineEdit">
              <property name="geometry">
               <rect>
                <x>50</x>
@@ -1937,11 +1962,14 @@ border-radius: 10px;
                <height>31</height>
               </rect>
              </property>
+             <property name="styleSheet">
+              <string notr="true">border: 1px solid black;</string>
+             </property>
              <property name="text">
               <string/>
              </property>
              <property name="placeholderText">
-              <string>Confirm new password</string>
+              <string/>
              </property>
             </widget>
             <widget class="QPushButton" name="save_setting_btn">
@@ -1960,22 +1988,6 @@ border-radius: 10px;
               <string>Save setting</string>
              </property>
             </widget>
-            <widget class="QLineEdit" name="lineedit_current_password">
-             <property name="geometry">
-              <rect>
-               <x>50</x>
-               <y>390</y>
-               <width>271</width>
-               <height>31</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="placeholderText">
-              <string>Current passsword</string>
-             </property>
-            </widget>
             <widget class="QLabel" name="label_7">
              <property name="geometry">
               <rect>
@@ -1988,6 +2000,7 @@ border-radius: 10px;
              <property name="font">
               <font>
                <pointsize>12</pointsize>
+               <weight>75</weight>
                <bold>true</bold>
               </font>
              </property>
@@ -2021,17 +2034,20 @@ border-radius: 10px;
               <string>Delete account</string>
              </property>
             </widget>
-            <widget class="QLabel" name="accountpicture_label">
+            <widget class="QLabel" name="new_pic_label">
              <property name="geometry">
               <rect>
-               <x>580</x>
-               <y>180</y>
+               <x>590</x>
+               <y>110</y>
                <width>141</width>
                <height>131</height>
               </rect>
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="scaledContents">
+              <bool>true</bool>
              </property>
             </widget>
             <widget class="QLabel" name="label_9">
@@ -2046,6 +2062,7 @@ border-radius: 10px;
              <property name="font">
               <font>
                <pointsize>12</pointsize>
+               <weight>75</weight>
                <bold>true</bold>
               </font>
              </property>
@@ -2056,8 +2073,8 @@ border-radius: 10px;
             <widget class="QPushButton" name="upload_pic_btn">
              <property name="geometry">
               <rect>
-               <x>580</x>
-               <y>370</y>
+               <x>600</x>
+               <y>260</y>
                <width>111</width>
                <height>41</height>
               </rect>
@@ -2070,7 +2087,7 @@ border-radius: 10px;
              <property name="geometry">
               <rect>
                <x>80</x>
-               <y>200</y>
+               <y>190</y>
                <width>181</width>
                <height>31</height>
               </rect>
@@ -2078,6 +2095,7 @@ border-radius: 10px;
              <property name="font">
               <font>
                <pointsize>12</pointsize>
+               <weight>75</weight>
                <bold>true</bold>
               </font>
              </property>
@@ -2093,6 +2111,76 @@ border-radius: 10px;
                <width>271</width>
                <height>31</height>
               </rect>
+             </property>
+             <property name="inputMask">
+              <string/>
+             </property>
+             <property name="placeholderText">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="setting_warning_label">
+             <property name="geometry">
+              <rect>
+               <x>330</x>
+               <y>330</y>
+               <width>241</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: red;</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label">
+             <property name="geometry">
+              <rect>
+               <x>50</x>
+               <y>110</y>
+               <width>111</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: black;</string>
+             </property>
+             <property name="text">
+              <string>New Username</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_2">
+             <property name="geometry">
+              <rect>
+               <x>50</x>
+               <y>230</y>
+               <width>111</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: black;</string>
+             </property>
+             <property name="text">
+              <string>New Password</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_3">
+             <property name="geometry">
+              <rect>
+               <x>50</x>
+               <y>300</y>
+               <width>141</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: black;</string>
+             </property>
+             <property name="text">
+              <string>Confirm New Password</string>
              </property>
             </widget>
            </widget>

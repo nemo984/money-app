@@ -141,9 +141,23 @@ class MoneyAppUI(QMainWindow):
         self.logout()
 
     def save_setting(self):
+        print("saving")
         name = self.ui.lineedit_new_name.text()
-        self.account_system.update(self.account,name)
-        self.ui.name_label.setText(name)
+        new_password = self.ui.new_pwd_lineEdit.text()
+        new_password_confirm = self.ui.new_pwd_confirm_lineEdit.text()
+        if (new_password != "" or new_password_confirm != "") and new_password != new_password_confirm:
+            self.ui.setting_warning_label.setText("Password does not match")
+            return
+
+        self.account_system.update(account=self.account, name=name, password=new_password)
+        self.ui.setting_warning_label.setText("")
+        if name != "":
+            self.ui.name_label.setText(name)
+            self.ui.lineedit_new_name.setText("")
+        if new_password != "":
+            self.ui.new_pwd_lineEdit.setText("")
+            self.ui.new_pwd_confirm_lineEdit.setText("")
+
 
 
 _staySignInChecked = "staySignInChecked"

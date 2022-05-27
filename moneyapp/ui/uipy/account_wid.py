@@ -40,7 +40,7 @@ class Ui_account_form(object):
         self.label_2.setGeometry(QRect(30, 80, 62, 16))
         self.name_label = QLabel(account_form)
         self.name_label.setObjectName(u"name_label")
-        self.name_label.setGeometry(QRect(30, 20, 58, 16))
+        self.name_label.setGeometry(QRect(30, 20, 201, 16))
         self.last_login_label = QLabel(account_form)
         self.last_login_label.setObjectName(u"last_login_label")
         self.last_login_label.setGeometry(QRect(30, 100, 141, 16))

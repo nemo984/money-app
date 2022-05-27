@@ -114,6 +114,7 @@ class Ui_Dialog(object):
 
         self.amount_entry = QLineEdit(self.layoutWidget)
         self.amount_entry.setObjectName(u"amount_entry")
+        self.amount_entry.setInputMethodHints(Qt.ImhDigitsOnly)
 
         self.verticalLayout.addWidget(self.amount_entry)
 

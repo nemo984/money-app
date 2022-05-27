@@ -224,7 +224,11 @@ border: 1px solid black;
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="amount_entry"/>
+        <widget class="QLineEdit" name="amount_entry">
+         <property name="inputMethodHints">
+          <set>Qt::ImhDigitsOnly</set>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_7">
