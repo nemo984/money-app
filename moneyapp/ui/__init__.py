@@ -7,6 +7,7 @@ from ..app.income_system import IncomeSystem
 from ..app.expense_system import ExpenseSystem
 from ..app.account import AccountSystem
 from ..app.history import HistorySystem
+from ..app.reminder import ReminderSystem
 from .budget import BudgetUI
 from .income import IncomeUI
 from .expense import ExpenseUI
@@ -27,6 +28,7 @@ class MoneyAppUI(QMainWindow):
         expense_system: ExpenseSystem,
         history_system: HistorySystem,
         account_system: AccountSystem,
+        reminder_system: ReminderSystem,
         parent = None
     ):
         super(MoneyAppUI, self).__init__(parent)
@@ -57,6 +59,7 @@ class MoneyAppUI(QMainWindow):
         budget_system.get()
         expense_system.get()
         income_system.get()
+        reminder_system.get()
 
         dic = expense_system.get_categories_total()
         print(dic)

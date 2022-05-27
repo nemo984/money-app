@@ -26,7 +26,8 @@ class MainApp:
         self.budget_system = BudgetSystem(owner=account)
         self.expense_system = ExpenseSystem(owner=account)
         self.history_system = HistorySystem(owner=account)
-        self.ui = MoneyAppUI(account, self.income_system, self.budget_system, self.expense_system, self.history_system, self.account_system)
+        self.reminder_system = ReminderSystem(owner=account)
+        self.ui = MoneyAppUI(account, self.income_system, self.budget_system, self.expense_system, self.history_system, self.account_system, self.reminder_system)
 
     def show(self):
         self.ui.show()
