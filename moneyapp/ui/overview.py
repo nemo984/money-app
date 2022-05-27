@@ -14,7 +14,7 @@ from PySide6.QtCore import *
 class ReminderUI(Observer):
     def __init__(self, ui, r: ReminderSystem):
         self.ui = ui
-        self.lay = self.ui.verticalLayout_41
+        self.lay = self.ui.verticalLayout_43
         self.reminder_system = r
         self.reminders = []
 
@@ -23,8 +23,8 @@ class ReminderUI(Observer):
         for reminder in reminders:
             reminder = ReminderReport(lay=self.lay,reminder_system=self.reminder_system, date=reminder.created_date, 
                                     heading=reminder.heading, description=reminder.message)
-            print(reminder.heading)
             reminder.add()
+            print(reminder.heading)
             self.reminders.append(reminder)
 
     def clear_layout(self):

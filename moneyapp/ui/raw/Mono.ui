@@ -593,7 +593,7 @@ background-color:transparent;
              <x>3</x>
              <y>409</y>
              <width>465</width>
-             <height>231</height>
+             <height>236</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -703,19 +703,11 @@ background-color:transparent;
                     <height>132</height>
                    </rect>
                   </property>
-                  <widget class="QWidget" name="notification_list" native="true">
-                   <property name="geometry">
-                    <rect>
-                     <x>0</x>
-                     <y>0</y>
-                     <width>421</width>
-                     <height>131</height>
-                    </rect>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true"/>
-                   </property>
-                  </widget>
+                  <layout class="QVBoxLayout" name="verticalLayout_43">
+                   <item>
+                    <widget class="QWidget" name="notification_list" native="true"/>
+                   </item>
+                  </layout>
                  </widget>
                 </widget>
                </item>

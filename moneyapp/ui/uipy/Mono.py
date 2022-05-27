@@ -308,7 +308,7 @@ class Ui_MainWindow(object):
 
         self.frame_4 = QFrame(self.page)
         self.frame_4.setObjectName(u"frame_4")
-        self.frame_4.setGeometry(QRect(3, 409, 465, 231))
+        self.frame_4.setGeometry(QRect(3, 409, 465, 236))
         sizePolicy3.setHeightForWidth(self.frame_4.sizePolicy().hasHeightForWidth())
         self.frame_4.setSizePolicy(sizePolicy3)
         self.frame_4.setMinimumSize(QSize(0, 0))
@@ -357,10 +357,13 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents_7 = QWidget()
         self.scrollAreaWidgetContents_7.setObjectName(u"scrollAreaWidgetContents_7")
         self.scrollAreaWidgetContents_7.setGeometry(QRect(0, 0, 423, 132))
+        self.verticalLayout_43 = QVBoxLayout(self.scrollAreaWidgetContents_7)
+        self.verticalLayout_43.setObjectName(u"verticalLayout_43")
         self.notification_list = QWidget(self.scrollAreaWidgetContents_7)
         self.notification_list.setObjectName(u"notification_list")
-        self.notification_list.setGeometry(QRect(0, 0, 421, 131))
-        self.notification_list.setStyleSheet(u"")
+
+        self.verticalLayout_43.addWidget(self.notification_list)
+
         self.scrollArea_7.setWidget(self.scrollAreaWidgetContents_7)
 
         self.verticalLayout_41.addWidget(self.scrollArea_7)
