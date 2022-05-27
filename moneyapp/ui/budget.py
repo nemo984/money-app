@@ -35,7 +35,6 @@ class BudgetUI(Observer):
         start_date = self.pop.startDate_entry.text()
         end_date = self.pop.endDate_entry.text()
         name = self.pop.name_entry.text()
-        print(self.pop.amount_entry.text())
         amount = float(self.pop.amount_entry.text())
         index = self.pop.category_comboBox.currentIndex()
         c = self.pop.category_comboBox.currentText()
@@ -88,14 +87,15 @@ class BudgetItem(QWidget):
         self.category = category
         self.name = name
 
+        
         self.wid.setupUi(self)
+        self.per = self.wid.progressBar.value()
         self.wid.name_label.setText(self.name)
         self.wid.category_label.setText(self.category)
         self.wid.amount.setText("฿{:,.2f}".format(amount))
         self.wid.end_date.setText("End Date:"+end_date)
         self.wid.start_date.setText("Start Date:"+start_date)
-        self.wid.progressBar.setValue(0)
-        self.wid.progressBar.setMaximum(amount)
+        #self.wid.progressBar.setMaximum(amount)
         self.wid.label_9.setText("Until you reach"+"฿{:,.2f}".format(amount))
         self.wid.more_btn.clicked.connect(self.option)
 
@@ -145,7 +145,7 @@ class BudgetItem(QWidget):
             "Until you reach"+"฿{:,.2f}".format(float(self.amount)))
         self.wid.end_date.setText("End Date: " + self.e_date)
         self.wid.start_date.setText("Start Date: " + self.s_date)
-
+        self.wid.progressBar.setValue(self.per + 20)
         self.dialog.close()
         self.budget_system.update(budget_id=self.id, name=self.name, amount=float(
             self.amount), start_date=self.s_date, end_date=self.e_date, note=self.note, category=self.category)
