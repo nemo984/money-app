@@ -1,6 +1,7 @@
 from typing import Optional, List
 from .helpers import Observable
 from .model import Expense, Budget, Account
+from peewee import fn
 
 
 class ExpenseSystem(Observable):
@@ -58,6 +59,14 @@ class ExpenseSystem(Observable):
         expense.save()
         self.get()
         return expense
+
+    def get_categories_total(self, from_date, end_date):
+        rows = (Expense
+                 .select(Expense.category, fn.Sum(Expense.amount).alias('total'))
+                 .where(Expense.date.between(from_date, end_date))
+                 .group_by(Expense.category))
+        for row in rows:
+            print(row.total)
 
     def delete(self, expense_id):
         expense = self.getByID(expense_id)
