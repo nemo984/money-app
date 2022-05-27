@@ -1,4 +1,6 @@
 import pickle
+from tkinter import Tk
+from tkinter.filedialog import askopenfilename
 from PySide6 import QtWidgets
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
@@ -93,6 +95,9 @@ class MoneyAppUI(QMainWindow):
 
         self.ui.setting_btn.clicked.connect(self.setting)
 
+        self.new_pic_path = None
+        self.ui.upload_pic_btn.clicked.connect(self.new_profile_pic)
+
     def logout(self):
         save_staySignIn()
         self.close()
@@ -148,8 +153,7 @@ class MoneyAppUI(QMainWindow):
         if (new_password != "" or new_password_confirm != "") and new_password != new_password_confirm:
             self.ui.setting_warning_label.setText("Password does not match")
             return
-
-        self.account_system.update(account=self.account, name=name, password=new_password)
+        self.account_system.update(account=self.account, name=name, password=new_password, profile_image_path=self.new_pic_path)
         self.ui.setting_warning_label.setText("")
         if name != "":
             self.ui.name_label.setText(name)
@@ -157,7 +161,17 @@ class MoneyAppUI(QMainWindow):
         if new_password != "":
             self.ui.new_pwd_lineEdit.setText("")
             self.ui.new_pwd_confirm_lineEdit.setText("")
-
+        if self.new_pic_path != "":
+            self.ui.profileImg_label.setPixmap(QPixmap(self.new_pic_path))
+            self.ui.new_pic_label.setPixmap(QPixmap())
+    
+    def new_profile_pic(self):
+        root = Tk()
+        root.withdraw()
+        self.new_pic_path = askopenfilename(title="Choose a Picture", filetypes=[('image files', ('.png', '.jpg'))])
+        root.update()
+        root.destroy()
+        self.ui.new_pic_label.setPixmap(QPixmap(self.new_pic_path))
 
 
 _staySignInChecked = "staySignInChecked"

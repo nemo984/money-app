@@ -465,7 +465,7 @@ background-color:transparent;
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>5</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="page">
           <widget class="QFrame" name="frame">
@@ -1992,9 +1992,9 @@ border-radius: 10px;
              <property name="geometry">
               <rect>
                <x>80</x>
-               <y>80</y>
+               <y>70</y>
                <width>191</width>
-               <height>21</height>
+               <height>31</height>
               </rect>
              </property>
              <property name="font">
@@ -2039,9 +2039,24 @@ border-radius: 10px;
               <rect>
                <x>590</x>
                <y>110</y>
-               <width>141</width>
-               <height>131</height>
+               <width>200</width>
+               <height>200</height>
               </rect>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>200</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>200</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">border: 1px solid black;</string>
              </property>
              <property name="text">
               <string/>
@@ -2053,10 +2068,10 @@ border-radius: 10px;
             <widget class="QLabel" name="label_9">
              <property name="geometry">
               <rect>
-               <x>560</x>
-               <y>80</y>
+               <x>580</x>
+               <y>60</y>
                <width>231</width>
-               <height>21</height>
+               <height>41</height>
               </rect>
              </property>
              <property name="font">
@@ -2073,8 +2088,8 @@ border-radius: 10px;
             <widget class="QPushButton" name="upload_pic_btn">
              <property name="geometry">
               <rect>
-               <x>600</x>
-               <y>260</y>
+               <x>630</x>
+               <y>320</y>
                <width>111</width>
                <height>41</height>
               </rect>
