@@ -18,6 +18,7 @@ class HistoryUI:
         self.ui.incomeDownBtn.clicked.connect(self.download_income)
         self.ui.expenseDownBtn.clicked.connect(self.download_expense)
         self.ui.budgetDownBtn.clicked.connect(self.download_budget)
+        self.header = ['Date', 'Type', 'Action', 'Description']
         
     async def update(self, histories):
         history_layout = self.ui.verticalLayout_39
@@ -56,7 +57,8 @@ class HistoryUI:
         with open(file_name, 'w') as fp:
             writer = csv.writer(fp)
             # write row of header names
-            writer.writerows(budgets)
+            writer.writerow(self.header)
+            
 
         for budget in budgets:
             pass
