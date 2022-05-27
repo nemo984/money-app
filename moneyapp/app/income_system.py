@@ -64,7 +64,7 @@ class IncomeSystem(Observable):
         self.get()
         return income
 
-    def delete(self, income: Income):
+    def delete(self, income_id):
         income = self.getByID(income_id)
         if income is None:
             return
