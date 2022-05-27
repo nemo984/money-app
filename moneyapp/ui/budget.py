@@ -10,15 +10,15 @@ from PySide6.QtCore import *
 
 
 class BudgetUI(Observer):
-    def __init__(self, ui, account, budget_system: BudgetSystem, history_system, parent):
+    def __init__(self, ui, account, budget_system: BudgetSystem, history_system,reminder_system, parent):
         self.ui = ui
         self.account = account
         self.system = budget_system
         self.history_system = history_system
+        self.reminder_system = reminder_system
         self.parent = parent
         self.pop = Ui_Dialog()
         self.ui.add_Budget.clicked.connect(self.add_budget)
-        self.parent = parent
         self.budgets = []
         self.budgets_layout = self.ui.verticalLayout_24
 
