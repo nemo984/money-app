@@ -57,7 +57,7 @@ class ExpenseUI(Observer):
             category = category,amount=amount,date=date,note=note,budget=budget
         )
         ex = ExpenseItem(expense.id ,self.ui.verticalLayout_38,
-                         date, category, amount, note, index_cat, index_bud, self.history_system,self.system,self.bu)
+                         date, category, amount, note, index_cat, index_bud, self.history_system,self.system, budget)
         self.history_system.add(
             action="Expense", action_type="Create", description="You created a new expense")
 
@@ -69,7 +69,7 @@ class ExpenseUI(Observer):
         for expense in expenses:
             expense = ExpenseItem( expense_id=expense.id ,lay = self.lay , date = expense.date, category = expense.category,
                                 amount = expense.amount, note = expense.note, index_cat = expense_category_dropdown[expense.category],
-                                index_bud = 0, history_system=self.history_system, expense_system=self.system)
+                                history_system=self.history_system, expense_system=self.system, budget=expense.budget)
             expense.add()
             self.expenses.append(expense)
 
@@ -81,25 +81,26 @@ class ExpenseUI(Observer):
 expense_category_dropdown = {"Food":0, "Entertainment":1, "Transport":2, "Education":3, "Healthcare":4, "Bill":5, "Saving":6, "Investment":7, "Shopping":8, "Utilities/Other":9}
 
 class ExpenseItem(QWidget):
-    def __init__(self,expense_id, lay: QVBoxLayout, date, category, amount, note, index_cat, index_bud, history_system, expense_system):
+    def __init__(self,expense_id, lay: QVBoxLayout, date, category, amount, note, index_cat, history_system, expense_system, budget):
         super(ExpenseItem, self).__init__()
         self.id = expense_id
         self.layout = lay
         self.wid = Ui_expense_form()
         self.pop = Ui_Dialog()
         self.index_cat = index_cat
-        self.index_bud = index_bud
         self.amount = amount
         self.note = note
         self.date = date
         self.history_system = history_system
         self.expense_system = expense_system
+        self.budget_category = budget
 
         self.wid.setupUi(self)
         self.wid.date_label.setText(date)
         self.wid.category_label.setText(category)
         self.wid.amount_label.setText("฿{:,.2f}".format(amount))
         self.wid.option_btn.clicked.connect(self.option)
+        self.index_bud = self.pop.budget_comboBox.FindStringExact(budget)
 
     def option(self):
         menu = QMenu()
