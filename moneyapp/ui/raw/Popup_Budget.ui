@@ -28,7 +28,7 @@ background-color:#A7F0AE;
 border-radius: 10px;
 border: 1px solid black;
 }
-#amount_entry,#note_entry,#name_entry,#endDate_entry,#startDate_entry,#category_comboBox{
+#amount_entry,#note_entry,#name_entry{
 border: 1px solid black;
 }
 </string>

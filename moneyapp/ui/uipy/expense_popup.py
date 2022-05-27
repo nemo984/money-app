@@ -24,13 +24,18 @@ class Ui_Dialog(object):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
         Dialog.resize(423, 322)
-        Dialog.setStyleSheet(u"#addExpense_btn{\n"
+        Dialog.setStyleSheet(u"#confirm_btn{\n"
 "background-color:#A7F0AE;\n"
 "border-radius: 10px;\n"
+"border: 1px solid black;\n"
 "}\n"
 "#cancel_btn{\n"
 "background-color:#A7F0AE;\n"
 "border-radius: 10px;\n"
+"border: 1px solid black;\n"
+"}\n"
+"#amount_entry,#note_entry,#budget_comboBox,#category_comboBox,#date_entry{\n"
+"border: 1px solid black;\n"
 "}\n"
 "")
         self.verticalLayout_2 = QVBoxLayout(Dialog)
@@ -117,7 +122,7 @@ class Ui_Dialog(object):
         self.note_entry.setGeometry(QRect(210, 40, 161, 101))
         self.label_6 = QLabel(self.frame)
         self.label_6.setObjectName(u"label_6")
-        self.label_6.setGeometry(QRect(180, 160, 211, 21))
+        self.label_6.setGeometry(QRect(190, 160, 201, 21))
         self.confirm_btn = QPushButton(self.frame)
         self.confirm_btn.setObjectName(u"confirm_btn")
         self.confirm_btn.setGeometry(QRect(270, 260, 101, 31))
