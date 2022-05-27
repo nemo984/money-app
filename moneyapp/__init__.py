@@ -5,6 +5,7 @@ from .app.budget_system import BudgetSystem
 from .app.income_system import IncomeSystem
 from .app.expense_system import ExpenseSystem
 from .app.history import HistorySystem
+from .app.reminder import ReminderSystem
 from .ui import MoneyAppUI
 from .ui.uipy.account import Ui_MainWindow 
 from .ui.uipy.account_wid import Ui_account_form
