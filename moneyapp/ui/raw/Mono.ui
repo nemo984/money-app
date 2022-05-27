@@ -273,6 +273,7 @@ background-color:transparent;
                <property name="font">
                 <font>
                  <pointsize>16</pointsize>
+                 <weight>50</weight>
                  <bold>false</bold>
                 </font>
                </property>
@@ -296,6 +297,7 @@ background-color:transparent;
                <property name="font">
                 <font>
                  <pointsize>16</pointsize>
+                 <weight>50</weight>
                  <bold>false</bold>
                 </font>
                </property>
@@ -341,6 +343,7 @@ background-color:transparent;
                <property name="font">
                 <font>
                  <pointsize>16</pointsize>
+                 <weight>50</weight>
                  <bold>false</bold>
                 </font>
                </property>
@@ -441,6 +444,7 @@ background-color:transparent;
                <property name="font">
                 <font>
                  <pointsize>18</pointsize>
+                 <weight>75</weight>
                  <bold>true</bold>
                 </font>
                </property>
@@ -654,6 +658,7 @@ background-color:transparent;
                  <property name="font">
                   <font>
                    <pointsize>12</pointsize>
+                   <weight>75</weight>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -669,6 +674,7 @@ background-color:transparent;
                     <property name="font">
                      <font>
                       <pointsize>12</pointsize>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -690,8 +696,8 @@ background-color:transparent;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>427</width>
-                    <height>143</height>
+                    <width>423</width>
+                    <height>132</height>
                    </rect>
                   </property>
                   <widget class="QWidget" name="notification_list" native="true">
@@ -766,6 +772,7 @@ background-color:transparent;
                        <property name="font">
                         <font>
                          <pointsize>12</pointsize>
+                         <weight>75</weight>
                          <bold>true</bold>
                         </font>
                        </property>
@@ -787,8 +794,8 @@ background-color:transparent;
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>387</width>
-                       <height>331</height>
+                       <width>383</width>
+                       <height>320</height>
                       </rect>
                      </property>
                     </widget>
@@ -862,6 +869,7 @@ background-color:transparent;
                      <property name="font">
                       <font>
                        <pointsize>12</pointsize>
+                       <weight>75</weight>
                        <bold>true</bold>
                       </font>
                      </property>
@@ -919,8 +927,8 @@ background-color:transparent;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>906</width>
-                    <height>535</height>
+                    <width>898</width>
+                    <height>522</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_24">
@@ -954,6 +962,7 @@ background-color:transparent;
                  <property name="font">
                   <font>
                    <pointsize>12</pointsize>
+                   <weight>75</weight>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -1037,6 +1046,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="income_yearly">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1071,6 +1081,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="income_monthly">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1102,6 +1113,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="income_daily">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1133,6 +1145,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="income_weekly">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1256,6 +1269,9 @@ background-color:#A7F0AE;
               <layout class="QVBoxLayout" name="verticalLayout_37">
                <item>
                 <widget class="QLineEdit" name="income_lineEdit">
+                 <property name="styleSheet">
+                  <string notr="true">border: 1px solid black;</string>
+                 </property>
                  <property name="placeholderText">
                   <string>Filter income</string>
                  </property>
@@ -1265,6 +1281,7 @@ background-color:#A7F0AE;
                 <widget class="QLabel" name="income_list_header">
                  <property name="font">
                   <font>
+                   <weight>75</weight>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -1411,6 +1428,9 @@ background-color:#A7F0AE;
               <layout class="QVBoxLayout" name="verticalLayout_26">
                <item>
                 <widget class="QLineEdit" name="expense_lineEdit">
+                 <property name="styleSheet">
+                  <string notr="true">border: 1px solid black;</string>
+                 </property>
                  <property name="placeholderText">
                   <string>Filter expense</string>
                  </property>
@@ -1420,6 +1440,7 @@ background-color:#A7F0AE;
                 <widget class="QLabel" name="expense_list_header">
                  <property name="font">
                   <font>
+                   <weight>75</weight>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -1547,6 +1568,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="expense_yearly">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1581,6 +1603,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="expense_monthly">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1612,6 +1635,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="expense_daily">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -1643,6 +1667,7 @@ background-color:#A7F0AE;
                    <widget class="QLabel" name="expense_weekly">
                     <property name="font">
                      <font>
+                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -2047,6 +2072,7 @@ border-radius: 10px;
              <property name="font">
               <font>
                <pointsize>12</pointsize>
+               <weight>75</weight>
                <bold>true</bold>
               </font>
              </property>
@@ -2105,6 +2131,7 @@ border-radius: 10px;
              <property name="font">
               <font>
                <pointsize>12</pointsize>
+               <weight>75</weight>
                <bold>true</bold>
               </font>
              </property>
@@ -2137,6 +2164,7 @@ border-radius: 10px;
              <property name="font">
               <font>
                <pointsize>12</pointsize>
+               <weight>75</weight>
                <bold>true</bold>
               </font>
              </property>

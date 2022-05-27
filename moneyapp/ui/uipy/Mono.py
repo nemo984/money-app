@@ -1,26 +1,26 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-# Form generated from reading UI file 'Mono.ui'
+## Form generated from reading UI file 'Mono.ui'
 ##
-# Created by: Qt User Interface Compiler version 6.2.2
+## Created by: Qt User Interface Compiler version 6.2.2
 ##
-# WARNING! All changes made in this file will be lost when recompiling UI file!
+## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-                            QMetaObject, QObject, QPoint, QRect,
-                            QSize, QTime, QUrl, Qt)
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
 from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-                           QFont, QFontDatabase, QGradient, QIcon,
-                           QImage, QKeySequence, QLinearGradient, QPainter,
-                           QPalette, QPixmap, QRadialGradient, QTransform)
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
-                               QHBoxLayout, QLabel, QLineEdit, QMainWindow,
-                               QPushButton, QScrollArea, QSizePolicy, QStackedWidget,
-                               QVBoxLayout, QWidget)
-from .resource_rc import *
-
+    QHBoxLayout, QLabel, QLineEdit, QMainWindow,
+    QPushButton, QScrollArea, QSizePolicy, QStackedWidget,
+    QVBoxLayout, QWidget)
+import resource_rc
+import resource_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -32,48 +32,48 @@ class Ui_MainWindow(object):
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setStyleSheet(u"*{\n"
-                                         " color:#000;\n"
-                                         " border:none;\n"
-                                         "}\n"
-                                         "#centralwidget{\n"
-                                         " background-color:#FFFFFF;\n"
-                                         "}\n"
-                                         "#leftMenu{\n"
-                                         " background-color:#D5E6F6;\n"
-                                         "}\n"
-                                         "QPushButton{\n"
-                                         " background-color:transparent;\n"
-                                         "}\n"
-                                         "#label{\n"
-                                         " color:#D5E6F6;\n"
-                                         "}\n"
-                                         "#Budget_widdget{\n"
-                                         "border: 1px solid black;\n"
-                                         " border-radius: 35px;\n"
-                                         "}\n"
-                                         "#Expanse_widdget{\n"
-                                         "border: 1px solid black;\n"
-                                         " border-radius: 35px;\n"
-                                         "}\n"
-                                         "#Notification_widdget{\n"
-                                         " border: 1px solid black;\n"
-                                         " border-radius: 35px;\n"
-                                         "}\n"
-                                         "#pie_widdget{\n"
-                                         " border-radius: 35px;\n"
-                                         " border: 1px solid black;\n"
-                                         "}\n"
-                                         "#add_Budget{\n"
-                                         "background-color:#A7F0AE;\n"
-                                         "border-radius: 25px;\n"
-                                         "}\n"
-                                         "#scrollArea{\n"
-                                         "background-color:transparent;\n"
-                                         "}\n"
-                                         "#Budget_lay{\n"
-                                         " border: 1px solid black;\n"
-                                         " border-radius: 30px;\n"
-                                         "}")
+" color:#000;\n"
+" border:none;\n"
+"}\n"
+"#centralwidget{\n"
+" background-color:#FFFFFF;\n"
+"}\n"
+"#leftMenu{\n"
+" background-color:#D5E6F6;\n"
+"}\n"
+"QPushButton{\n"
+" background-color:transparent;\n"
+"}\n"
+"#label{\n"
+" color:#D5E6F6;\n"
+"}\n"
+"#Budget_widdget{\n"
+"border: 1px solid black;\n"
+" border-radius: 35px;\n"
+"}\n"
+"#Expanse_widdget{\n"
+"border: 1px solid black;\n"
+" border-radius: 35px;\n"
+"}\n"
+"#Notification_widdget{\n"
+" border: 1px solid black;\n"
+" border-radius: 35px;\n"
+"}\n"
+"#pie_widdget{\n"
+" border-radius: 35px;\n"
+" border: 1px solid black;\n"
+"}\n"
+"#add_Budget{\n"
+"background-color:#A7F0AE;\n"
+"border-radius: 25px;\n"
+"}\n"
+"#scrollArea{\n"
+"background-color:transparent;\n"
+"}\n"
+"#Budget_lay{\n"
+" border: 1px solid black;\n"
+" border-radius: 30px;\n"
+"}")
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -97,8 +97,7 @@ class Ui_MainWindow(object):
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(
-            self.Profile.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(self.Profile.sizePolicy().hasHeightForWidth())
         self.Profile.setSizePolicy(sizePolicy)
         self.Profile.setFrameShape(QFrame.StyledPanel)
         self.Profile.setFrameShadow(QFrame.Raised)
@@ -109,8 +108,7 @@ class Ui_MainWindow(object):
         sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(
-            self.name_label.sizePolicy().hasHeightForWidth())
+        sizePolicy1.setHeightForWidth(self.name_label.sizePolicy().hasHeightForWidth())
         self.name_label.setSizePolicy(sizePolicy1)
         font = QFont()
         font.setPointSize(16)
@@ -120,12 +118,10 @@ class Ui_MainWindow(object):
 
         self.setting_btn = QPushButton(self.Profile)
         self.setting_btn.setObjectName(u"setting_btn")
-        sizePolicy1.setHeightForWidth(
-            self.setting_btn.sizePolicy().hasHeightForWidth())
+        sizePolicy1.setHeightForWidth(self.setting_btn.sizePolicy().hasHeightForWidth())
         self.setting_btn.setSizePolicy(sizePolicy1)
         icon = QIcon()
-        icon.addFile(u":/black/icon/White/settings.svg",
-                     QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u":/black/icon/White/settings.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.setting_btn.setIcon(icon)
         self.setting_btn.setIconSize(QSize(23, 23))
 
@@ -136,27 +132,24 @@ class Ui_MainWindow(object):
         sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy2.setHorizontalStretch(70)
         sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(
-            self.profileImg_label.sizePolicy().hasHeightForWidth())
+        sizePolicy2.setHeightForWidth(self.profileImg_label.sizePolicy().hasHeightForWidth())
         self.profileImg_label.setSizePolicy(sizePolicy2)
         self.profileImg_label.setMinimumSize(QSize(70, 70))
         self.profileImg_label.setMaximumSize(QSize(70, 70))
-        self.profileImg_label.setPixmap(
-            QPixmap(u":/black/icon/White/alert-octagon.svg"))
+        self.profileImg_label.setPixmap(QPixmap(u":/black/icon/White/alert-octagon.svg"))
         self.profileImg_label.setScaledContents(True)
 
         self.gridLayout.addWidget(self.profileImg_label, 0, 0, 2, 1)
 
-        self.verticalLayout_5.addWidget(
-            self.Profile, 0, Qt.AlignLeft | Qt.AlignTop)
+
+        self.verticalLayout_5.addWidget(self.Profile, 0, Qt.AlignLeft|Qt.AlignTop)
 
         self.frame_5 = QFrame(self.leftMenu_2)
         self.frame_5.setObjectName(u"frame_5")
         sizePolicy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(
-            self.frame_5.sizePolicy().hasHeightForWidth())
+        sizePolicy3.setHeightForWidth(self.frame_5.sizePolicy().hasHeightForWidth())
         self.frame_5.setSizePolicy(sizePolicy3)
         self.frame_5.setFrameShape(QFrame.StyledPanel)
         self.frame_5.setFrameShadow(QFrame.Raised)
@@ -168,8 +161,7 @@ class Ui_MainWindow(object):
         self.Overview_btn.setObjectName(u"Overview_btn")
         self.Overview_btn.setFont(font)
         icon1 = QIcon()
-        icon1.addFile(u":/black/icon/White/home.svg",
-                      QSize(), QIcon.Normal, QIcon.Off)
+        icon1.addFile(u":/black/icon/White/home.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.Overview_btn.setIcon(icon1)
         self.Overview_btn.setIconSize(QSize(23, 23))
 
@@ -182,8 +174,7 @@ class Ui_MainWindow(object):
         font1.setBold(False)
         self.Budget_btn.setFont(font1)
         icon2 = QIcon()
-        icon2.addFile(u":/black/icon/White/dollar-sign.svg",
-                      QSize(), QIcon.Normal, QIcon.Off)
+        icon2.addFile(u":/black/icon/White/dollar-sign.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.Budget_btn.setIcon(icon2)
         self.Budget_btn.setIconSize(QSize(23, 23))
 
@@ -193,8 +184,7 @@ class Ui_MainWindow(object):
         self.Income_btn.setObjectName(u"Income_btn")
         self.Income_btn.setFont(font1)
         icon3 = QIcon()
-        icon3.addFile(u":/black/icon/White/plus-circle.svg",
-                      QSize(), QIcon.Normal, QIcon.Off)
+        icon3.addFile(u":/black/icon/White/plus-circle.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.Income_btn.setIcon(icon3)
         self.Income_btn.setIconSize(QSize(23, 23))
 
@@ -204,8 +194,7 @@ class Ui_MainWindow(object):
         self.Expense_btn.setObjectName(u"Expense_btn")
         self.Expense_btn.setFont(font)
         icon4 = QIcon()
-        icon4.addFile(u":/black/icon/White/minus-circle.svg",
-                      QSize(), QIcon.Normal, QIcon.Off)
+        icon4.addFile(u":/black/icon/White/minus-circle.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.Expense_btn.setIcon(icon4)
         self.Expense_btn.setIconSize(QSize(23, 23))
 
@@ -215,16 +204,18 @@ class Ui_MainWindow(object):
         self.Analysis_btn.setObjectName(u"Analysis_btn")
         self.Analysis_btn.setFont(font1)
         icon5 = QIcon()
-        icon5.addFile(u":/black/icon/White/bar-chart.svg",
-                      QSize(), QIcon.Normal, QIcon.Off)
+        icon5.addFile(u":/black/icon/White/bar-chart.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.Analysis_btn.setIcon(icon5)
         self.Analysis_btn.setIconSize(QSize(23, 23))
 
         self.verticalLayout_7.addWidget(self.Analysis_btn)
 
+
         self.verticalLayout_5.addWidget(self.frame_5)
 
+
         self.verticalLayout_6.addWidget(self.leftMenu_2)
+
 
         self.horizontalLayout.addWidget(self.leftMenu)
 
@@ -249,8 +240,7 @@ class Ui_MainWindow(object):
         self.MenuButton.setObjectName(u"MenuButton")
         self.MenuButton.setMaximumSize(QSize(34, 34))
         icon6 = QIcon()
-        icon6.addFile(u":/Blue/icon/Blue/menu.svg",
-                      QSize(), QIcon.Normal, QIcon.Off)
+        icon6.addFile(u":/Blue/icon/Blue/menu.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.MenuButton.setIcon(icon6)
         self.MenuButton.setIconSize(QSize(53, 53))
 
@@ -265,8 +255,9 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.tab_level)
 
-        self.horizontalLayout_2.addWidget(
-            self.widget, 0, Qt.AlignLeft | Qt.AlignTop)
+
+        self.horizontalLayout_2.addWidget(self.widget, 0, Qt.AlignLeft|Qt.AlignTop)
+
 
         self.verticalLayout.addWidget(self.headerFrame)
 
@@ -278,8 +269,7 @@ class Ui_MainWindow(object):
         self.frame = QFrame(self.page)
         self.frame.setObjectName(u"frame")
         self.frame.setGeometry(QRect(3, 0, 481, 405))
-        sizePolicy.setHeightForWidth(
-            self.frame.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
         self.frame.setSizePolicy(sizePolicy)
         self.frame.setMinimumSize(QSize(0, 0))
         self.frame.setMaximumSize(QSize(16777215, 16777215))
@@ -314,13 +304,13 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_11.addWidget(self.pie_widdget)
 
+
         self.verticalLayout_19.addWidget(self.widget_8)
 
         self.frame_4 = QFrame(self.page)
         self.frame_4.setObjectName(u"frame_4")
         self.frame_4.setGeometry(QRect(3, 409, 465, 231))
-        sizePolicy3.setHeightForWidth(
-            self.frame_4.sizePolicy().hasHeightForWidth())
+        sizePolicy3.setHeightForWidth(self.frame_4.sizePolicy().hasHeightForWidth())
         self.frame_4.setSizePolicy(sizePolicy3)
         self.frame_4.setMinimumSize(QSize(0, 0))
         self.frame_4.setMaximumSize(QSize(16777215, 16777215))
@@ -358,15 +348,15 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_20.addWidget(self.label_6)
 
+
         self.verticalLayout_41.addWidget(self.frame_8)
 
         self.scrollArea_7 = QScrollArea(self.Notification_widdget)
         self.scrollArea_7.setObjectName(u"scrollArea_7")
         self.scrollArea_7.setWidgetResizable(True)
         self.scrollAreaWidgetContents_7 = QWidget()
-        self.scrollAreaWidgetContents_7.setObjectName(
-            u"scrollAreaWidgetContents_7")
-        self.scrollAreaWidgetContents_7.setGeometry(QRect(0, 0, 427, 143))
+        self.scrollAreaWidgetContents_7.setObjectName(u"scrollAreaWidgetContents_7")
+        self.scrollAreaWidgetContents_7.setGeometry(QRect(0, 0, 423, 132))
         self.notification_list = QWidget(self.scrollAreaWidgetContents_7)
         self.notification_list.setObjectName(u"notification_list")
         self.notification_list.setGeometry(QRect(0, 0, 421, 131))
@@ -374,13 +364,13 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_41.addWidget(self.scrollArea_7)
 
+
         self.verticalLayout_8.addWidget(self.Notification_widdget)
 
         self.frame_3 = QFrame(self.page)
         self.frame_3.setObjectName(u"frame_3")
         self.frame_3.setGeometry(QRect(490, 214, 441, 431))
-        sizePolicy.setHeightForWidth(
-            self.frame_3.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(self.frame_3.sizePolicy().hasHeightForWidth())
         self.frame_3.setSizePolicy(sizePolicy)
         self.frame_3.setFrameShape(QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Raised)
@@ -408,21 +398,22 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_21.addWidget(self.label_4)
 
+
         self.verticalLayout_18.addWidget(self.frame_7)
 
         self.scrollArea_6 = QScrollArea(self.Expanse_widdget)
         self.scrollArea_6.setObjectName(u"scrollArea_6")
         self.scrollArea_6.setWidgetResizable(True)
         self.scrollAreaWidgetContents_6 = QWidget()
-        self.scrollAreaWidgetContents_6.setObjectName(
-            u"scrollAreaWidgetContents_6")
-        self.scrollAreaWidgetContents_6.setGeometry(QRect(0, 0, 387, 331))
+        self.scrollAreaWidgetContents_6.setObjectName(u"scrollAreaWidgetContents_6")
+        self.scrollAreaWidgetContents_6.setGeometry(QRect(0, 0, 383, 320))
         self.scrollArea_6.setWidget(self.scrollAreaWidgetContents_6)
 
         self.verticalLayout_18.addWidget(self.scrollArea_6)
 
-        self.verticalLayout_4.addWidget(
-            self.Expanse_widdget, 0, Qt.AlignBottom)
+
+        self.verticalLayout_4.addWidget(self.Expanse_widdget, 0, Qt.AlignBottom)
+
 
         self.verticalLayout_10.addWidget(self.widget_4)
 
@@ -455,7 +446,9 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_4.addWidget(self.label_5)
 
+
         self.verticalLayout_2.addWidget(self.Budget_widdget)
+
 
         self.verticalLayout_3.addWidget(self.widget_2)
 
@@ -472,8 +465,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_22.setObjectName(u"verticalLayout_22")
         self.widget_3 = QWidget(self.frame_9)
         self.widget_3.setObjectName(u"widget_3")
-        sizePolicy3.setHeightForWidth(
-            self.widget_3.sizePolicy().hasHeightForWidth())
+        sizePolicy3.setHeightForWidth(self.widget_3.sizePolicy().hasHeightForWidth())
         self.widget_3.setSizePolicy(sizePolicy3)
         self.verticalLayout_23 = QVBoxLayout(self.widget_3)
         self.verticalLayout_23.setObjectName(u"verticalLayout_23")
@@ -481,9 +473,8 @@ class Ui_MainWindow(object):
         self.scrollArea.setObjectName(u"scrollArea")
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
-        self.scrollAreaWidgetContents.setObjectName(
-            u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 906, 535))
+        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 898, 522))
         self.verticalLayout_24 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_24.setObjectName(u"verticalLayout_24")
         self.budget_list = QWidget(self.scrollAreaWidgetContents)
@@ -494,6 +485,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
         self.verticalLayout_23.addWidget(self.scrollArea)
+
 
         self.verticalLayout_22.addWidget(self.widget_3)
 
@@ -509,34 +501,34 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_31.addWidget(self.add_Budget)
 
-        self.verticalLayout_22.addWidget(
-            self.widget_6, 0, Qt.AlignRight | Qt.AlignBottom)
+
+        self.verticalLayout_22.addWidget(self.widget_6, 0, Qt.AlignRight|Qt.AlignBottom)
 
         self.stackedWidget.addWidget(self.page_2)
         self.page_3 = QWidget()
         self.page_3.setObjectName(u"page_3")
         self.page_3.setStyleSheet(u"#incomeList_frame,#income_report_graph,#income_daily_frame,#income_weekly_frame,#income_monthly_frame,#income_yearly_frame {\n"
-                                  "border :1px solid black;\n"
-                                  "border-radius:20px\n"
-                                  "}\n"
-                                  "\n"
-                                  "#income_daily,#income_weekly,#income_monthly,#income_yearly,#frame_21 {\n"
-                                  "border-width:1px;\n"
-                                  "border-style: solid;\n"
-                                  " border-color: white white black white;\n"
-                                  "}\n"
-                                  "\n"
-                                  "#income_daily_value ,#income_weekly_value ,#income_monthly_value ,#income_yearly_value {\n"
-                                  "border-width: 1px; \n"
-                                  "border-style: solid;\n"
-                                  "border-color: black white white white;\n"
-                                  "}\n"
-                                  "\n"
-                                  "#add_income_button{\n"
-                                  "border :2px solid black;\n"
-                                  "border-radius:15px;\n"
-                                  "background-color:#A7F0AE;\n"
-                                  "}")
+"border :1px solid black;\n"
+"border-radius:20px\n"
+"}\n"
+"\n"
+"#income_daily,#income_weekly,#income_monthly,#income_yearly,#frame_21 {\n"
+"border-width:1px;\n"
+"border-style: solid;\n"
+" border-color: white white black white;\n"
+"}\n"
+"\n"
+"#income_daily_value ,#income_weekly_value ,#income_monthly_value ,#income_yearly_value {\n"
+"border-width: 1px; \n"
+"border-style: solid;\n"
+"border-color: black white white white;\n"
+"}\n"
+"\n"
+"#add_income_button{\n"
+"border :2px solid black;\n"
+"border-radius:15px;\n"
+"background-color:#A7F0AE;\n"
+"}")
         self.income_report_graph = QFrame(self.page_3)
         self.income_report_graph.setObjectName(u"income_report_graph")
         self.income_report_graph.setGeometry(QRect(10, 10, 942, 322))
@@ -571,6 +563,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_32.addWidget(self.income_yearly_value)
 
+
         self.gridLayout_8.addWidget(self.income_yearly_frame, 1, 1, 1, 1)
 
         self.income_monthly_frame = QFrame(self.totalIncome_frame)
@@ -591,6 +584,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_33.addWidget(self.income_monthly_value)
 
+
         self.gridLayout_8.addWidget(self.income_monthly_frame, 1, 0, 1, 1)
 
         self.income_daily_frame = QFrame(self.totalIncome_frame)
@@ -609,6 +603,7 @@ class Ui_MainWindow(object):
         self.income_daily_value.setObjectName(u"income_daily_value")
 
         self.verticalLayout_34.addWidget(self.income_daily_value)
+
 
         self.gridLayout_8.addWidget(self.income_daily_frame, 0, 0, 1, 1)
 
@@ -629,7 +624,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_35.addWidget(self.income_weekly_value)
 
+
         self.gridLayout_8.addWidget(self.income_weekly_frame, 0, 1, 1, 1)
+
 
         self.horizontalLayout_9.addWidget(self.totalIncome_frame)
 
@@ -676,6 +673,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_37.setObjectName(u"verticalLayout_37")
         self.income_lineEdit = QLineEdit(self.frame_21)
         self.income_lineEdit.setObjectName(u"income_lineEdit")
+        self.income_lineEdit.setStyleSheet(u"border: 1px solid black;")
 
         self.verticalLayout_37.addWidget(self.income_lineEdit)
 
@@ -685,6 +683,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_37.addWidget(self.income_list_header)
 
+
         self.verticalLayout_36.addWidget(self.frame_21, 0, Qt.AlignTop)
 
         self.frame_22 = QFrame(self.incomeList_frame)
@@ -692,8 +691,7 @@ class Ui_MainWindow(object):
         sizePolicy4 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy4.setHorizontalStretch(0)
         sizePolicy4.setVerticalStretch(1)
-        sizePolicy4.setHeightForWidth(
-            self.frame_22.sizePolicy().hasHeightForWidth())
+        sizePolicy4.setHeightForWidth(self.frame_22.sizePolicy().hasHeightForWidth())
         self.frame_22.setSizePolicy(sizePolicy4)
         self.frame_22.setMaximumSize(QSize(16777215, 16777215))
         self.frame_22.setFrameShape(QFrame.StyledPanel)
@@ -703,16 +701,14 @@ class Ui_MainWindow(object):
         self.add_income_button.setGeometry(QRect(880, 180, 31, 31))
         self.add_income_button.setStyleSheet(u"")
         icon7 = QIcon()
-        icon7.addFile(u":/black/icon/White/plus.svg",
-                      QSize(), QIcon.Normal, QIcon.Off)
+        icon7.addFile(u":/black/icon/White/plus.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.add_income_button.setIcon(icon7)
         self.scrollArea_5 = QScrollArea(self.frame_22)
         self.scrollArea_5.setObjectName(u"scrollArea_5")
         self.scrollArea_5.setGeometry(QRect(0, 0, 871, 231))
         self.scrollArea_5.setWidgetResizable(True)
         self.scrollAreaWidgetContents_4 = QWidget()
-        self.scrollAreaWidgetContents_4.setObjectName(
-            u"scrollAreaWidgetContents_4")
+        self.scrollAreaWidgetContents_4.setObjectName(u"scrollAreaWidgetContents_4")
         self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 871, 231))
         self.verticalLayout_40 = QVBoxLayout(self.scrollAreaWidgetContents_4)
         self.verticalLayout_40.setObjectName(u"verticalLayout_40")
@@ -729,34 +725,34 @@ class Ui_MainWindow(object):
         self.page_4 = QWidget()
         self.page_4.setObjectName(u"page_4")
         self.page_4.setStyleSheet(u"#expenseList_frame,#expense_report_graph,#expense_daily_frame,#expense_weekly_frame,#expense_monthly_frame,#expense_yearly_frame {\n"
-                                  "border :1px solid black;\n"
-                                  "border-radius:20px\n"
-                                  "}\n"
-                                  "\n"
-                                  "#expense_daily,#expense_weekly,#expense_monthly,#expense_yearly,#frame_19 {\n"
-                                  "border-width:1px;\n"
-                                  "border-style: solid; \n"
-                                  "border-color: white white black white;\n"
-                                  "}\n"
-                                  "\n"
-                                  "#expense_daily_value ,#expense_monthly_value ,#expense_yearly_value {\n"
-                                  "border-width: 1px;\n"
-                                  " border-style: solid;\n"
-                                  "border-color: black white white white;\n"
-                                  "}\n"
-                                  "\n"
-                                  "#expense_weekly_value {\n"
-                                  "border-width: 1px;\n"
-                                  "border-style: solid;\n"
-                                  "border-color: black white white white;\n"
-                                  "}\n"
-                                  "\n"
-                                  "#add_expense_button{\n"
-                                  "border :2px solid black;\n"
-                                  "border-radius:15px;\n"
-                                  "background-color:#A7F0AE;\n"
-                                  "}\n"
-                                  "")
+"border :1px solid black;\n"
+"border-radius:20px\n"
+"}\n"
+"\n"
+"#expense_daily,#expense_weekly,#expense_monthly,#expense_yearly,#frame_19 {\n"
+"border-width:1px;\n"
+"border-style: solid; \n"
+"border-color: white white black white;\n"
+"}\n"
+"\n"
+"#expense_daily_value ,#expense_monthly_value ,#expense_yearly_value {\n"
+"border-width: 1px;\n"
+" border-style: solid;\n"
+"border-color: black white white white;\n"
+"}\n"
+"\n"
+"#expense_weekly_value {\n"
+"border-width: 1px;\n"
+"border-style: solid;\n"
+"border-color: black white white white;\n"
+"}\n"
+"\n"
+"#add_expense_button{\n"
+"border :2px solid black;\n"
+"border-radius:15px;\n"
+"background-color:#A7F0AE;\n"
+"}\n"
+"")
         self.expenseList_frame = QFrame(self.page_4)
         self.expenseList_frame.setObjectName(u"expenseList_frame")
         self.expenseList_frame.setGeometry(QRect(10, 340, 942, 321))
@@ -773,6 +769,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_26.setObjectName(u"verticalLayout_26")
         self.expense_lineEdit = QLineEdit(self.frame_19)
         self.expense_lineEdit.setObjectName(u"expense_lineEdit")
+        self.expense_lineEdit.setStyleSheet(u"border: 1px solid black;")
 
         self.verticalLayout_26.addWidget(self.expense_lineEdit)
 
@@ -782,12 +779,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_26.addWidget(self.expense_list_header)
 
+
         self.verticalLayout_25.addWidget(self.frame_19, 0, Qt.AlignTop)
 
         self.frame_20 = QFrame(self.expenseList_frame)
         self.frame_20.setObjectName(u"frame_20")
-        sizePolicy4.setHeightForWidth(
-            self.frame_20.sizePolicy().hasHeightForWidth())
+        sizePolicy4.setHeightForWidth(self.frame_20.sizePolicy().hasHeightForWidth())
         self.frame_20.setSizePolicy(sizePolicy4)
         self.frame_20.setMaximumSize(QSize(16777215, 16777215))
         self.frame_20.setFrameShape(QFrame.StyledPanel)
@@ -802,8 +799,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setGeometry(QRect(0, 0, 871, 231))
         self.scrollArea_3.setWidgetResizable(True)
         self.scrollAreaWidgetContents_3 = QWidget()
-        self.scrollAreaWidgetContents_3.setObjectName(
-            u"scrollAreaWidgetContents_3")
+        self.scrollAreaWidgetContents_3.setObjectName(u"scrollAreaWidgetContents_3")
         self.scrollAreaWidgetContents_3.setGeometry(QRect(0, 0, 871, 231))
         self.verticalLayout_38 = QVBoxLayout(self.scrollAreaWidgetContents_3)
         self.verticalLayout_38.setObjectName(u"verticalLayout_38")
@@ -848,6 +844,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_27.addWidget(self.expense_yearly_value)
 
+
         self.gridLayout_7.addWidget(self.expense_yearly_frame, 1, 1, 1, 1)
 
         self.expense_monthly_frame = QFrame(self.totalExpense_frame)
@@ -868,6 +865,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_28.addWidget(self.expense_monthly_value)
 
+
         self.gridLayout_7.addWidget(self.expense_monthly_frame, 1, 0, 1, 1)
 
         self.expense_daily_frame = QFrame(self.totalExpense_frame)
@@ -886,6 +884,7 @@ class Ui_MainWindow(object):
         self.expense_daily_value.setObjectName(u"expense_daily_value")
 
         self.verticalLayout_29.addWidget(self.expense_daily_value)
+
 
         self.gridLayout_7.addWidget(self.expense_daily_frame, 0, 0, 1, 1)
 
@@ -906,7 +905,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_30.addWidget(self.expense_weekly_value)
 
+
         self.gridLayout_7.addWidget(self.expense_weekly_frame, 0, 1, 1, 1)
+
 
         self.horizontalLayout_8.addWidget(self.totalExpense_frame)
 
@@ -941,16 +942,16 @@ class Ui_MainWindow(object):
         self.page_5 = QWidget()
         self.page_5.setObjectName(u"page_5")
         self.page_5.setStyleSheet(u"#incomeDownBtn,#expenseDownBtn,#budgetDownBtn {border :1px solid black;border-radius:10px}\n"
-                                  "#searchHistory_lineEdit,#historyList {border :1px solid black}\n"
-                                  "#incomeDownBtn{\n"
-                                  "background-color:#A7F0AE;\n"
-                                  "}\n"
-                                  "#expenseDownBtn{\n"
-                                  "background-color:#A7F0AE;\n"
-                                  "}\n"
-                                  "#budgetDownBtn{\n"
-                                  "background-color:#A7F0AE;\n"
-                                  "}")
+"#searchHistory_lineEdit,#historyList {border :1px solid black}\n"
+"#incomeDownBtn{\n"
+"background-color:#A7F0AE;\n"
+"}\n"
+"#expenseDownBtn{\n"
+"background-color:#A7F0AE;\n"
+"}\n"
+"#budgetDownBtn{\n"
+"background-color:#A7F0AE;\n"
+"}")
         self.verticalLayout_12 = QVBoxLayout(self.page_5)
         self.verticalLayout_12.setObjectName(u"verticalLayout_12")
         self.frame_13 = QFrame(self.page_5)
@@ -969,16 +970,14 @@ class Ui_MainWindow(object):
         sizePolicy5 = QSizePolicy(QSizePolicy.Ignored, QSizePolicy.Fixed)
         sizePolicy5.setHorizontalStretch(0)
         sizePolicy5.setVerticalStretch(0)
-        sizePolicy5.setHeightForWidth(
-            self.searchHistory_lineEdit.sizePolicy().hasHeightForWidth())
+        sizePolicy5.setHeightForWidth(self.searchHistory_lineEdit.sizePolicy().hasHeightForWidth())
         self.searchHistory_lineEdit.setSizePolicy(sizePolicy5)
         self.scrollArea_4 = QScrollArea(self.frame_15)
         self.scrollArea_4.setObjectName(u"scrollArea_4")
         self.scrollArea_4.setGeometry(QRect(0, 50, 921, 251))
         self.scrollArea_4.setWidgetResizable(True)
         self.scrollAreaWidgetContents_5 = QWidget()
-        self.scrollAreaWidgetContents_5.setObjectName(
-            u"scrollAreaWidgetContents_5")
+        self.scrollAreaWidgetContents_5.setObjectName(u"scrollAreaWidgetContents_5")
         self.scrollAreaWidgetContents_5.setGeometry(QRect(0, 0, 921, 251))
         self.verticalLayout_39 = QVBoxLayout(self.scrollAreaWidgetContents_5)
         self.verticalLayout_39.setObjectName(u"verticalLayout_39")
@@ -990,6 +989,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidget(self.scrollAreaWidgetContents_5)
 
         self.gridLayout_2.addWidget(self.frame_15, 0, 0, 1, 1)
+
 
         self.verticalLayout_12.addWidget(self.frame_13)
 
@@ -1016,11 +1016,11 @@ class Ui_MainWindow(object):
         sizePolicy6 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Ignored)
         sizePolicy6.setHorizontalStretch(0)
         sizePolicy6.setVerticalStretch(0)
-        sizePolicy6.setHeightForWidth(
-            self.incomeDownBtn.sizePolicy().hasHeightForWidth())
+        sizePolicy6.setHeightForWidth(self.incomeDownBtn.sizePolicy().hasHeightForWidth())
         self.incomeDownBtn.setSizePolicy(sizePolicy6)
 
         self.verticalLayout_15.addWidget(self.incomeDownBtn)
+
 
         self.verticalLayout_14.addWidget(self.frame_18)
 
@@ -1032,11 +1032,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
         self.expenseDownBtn = QPushButton(self.frame_24)
         self.expenseDownBtn.setObjectName(u"expenseDownBtn")
-        sizePolicy6.setHeightForWidth(
-            self.expenseDownBtn.sizePolicy().hasHeightForWidth())
+        sizePolicy6.setHeightForWidth(self.expenseDownBtn.sizePolicy().hasHeightForWidth())
         self.expenseDownBtn.setSizePolicy(sizePolicy6)
 
         self.verticalLayout_16.addWidget(self.expenseDownBtn)
+
 
         self.verticalLayout_14.addWidget(self.frame_24)
 
@@ -1048,15 +1048,17 @@ class Ui_MainWindow(object):
         self.verticalLayout_17.setObjectName(u"verticalLayout_17")
         self.budgetDownBtn = QPushButton(self.frame_23)
         self.budgetDownBtn.setObjectName(u"budgetDownBtn")
-        sizePolicy6.setHeightForWidth(
-            self.budgetDownBtn.sizePolicy().hasHeightForWidth())
+        sizePolicy6.setHeightForWidth(self.budgetDownBtn.sizePolicy().hasHeightForWidth())
         self.budgetDownBtn.setSizePolicy(sizePolicy6)
 
         self.verticalLayout_17.addWidget(self.budgetDownBtn)
 
+
         self.verticalLayout_14.addWidget(self.frame_23)
 
+
         self.verticalLayout_13.addWidget(self.frame_17)
+
 
         self.verticalLayout_12.addWidget(self.frame_12)
 
@@ -1064,48 +1066,43 @@ class Ui_MainWindow(object):
         self.page_6 = QWidget()
         self.page_6.setObjectName(u"page_6")
         self.page_6.setStyleSheet(u"#upload_pic_btn {border :1px solid black;border-radius:10px}\n"
-                                  "#delete_acc_btn,#logout_btn,#save_setting_btn {border :1px solid black;}\n"
-                                  "#lineedit_confirm_new_password,#lineedit_current_password,#lineedit_new_password,#lineedit_new_name {border :1px solid black;}\n"
-                                  "#logout_btn{\n"
-                                  "background-color:#A7F0AE;\n"
-                                  "border-radius: 10px;\n"
-                                  "}\n"
-                                  "#save_setting_btn{\n"
-                                  "background-color:#68FF77;\n"
-                                  "border-radius: 10px;\n"
-                                  "}\n"
-                                  "#upload_pic_btn{\n"
-                                  "background-color:#A7F0AE;\n"
-                                  "border-radius:10px;\n"
-                                  "}\n"
-                                  "#delete_acc_btn{\n"
-                                  "background-color:#FF7C7C;\n"
-                                  "border-radius: 10px;\n"
-                                  "}")
+"#delete_acc_btn,#logout_btn,#save_setting_btn {border :1px solid black;}\n"
+"#lineedit_confirm_new_password,#lineedit_current_password,#lineedit_new_password,#lineedit_new_name {border :1px solid black;}\n"
+"#logout_btn{\n"
+"background-color:#A7F0AE;\n"
+"border-radius: 10px;\n"
+"}\n"
+"#save_setting_btn{\n"
+"background-color:#68FF77;\n"
+"border-radius: 10px;\n"
+"}\n"
+"#upload_pic_btn{\n"
+"background-color:#A7F0AE;\n"
+"border-radius:10px;\n"
+"}\n"
+"#delete_acc_btn{\n"
+"background-color:#FF7C7C;\n"
+"border-radius: 10px;\n"
+"}")
         self.scrollArea_2 = QScrollArea(self.page_6)
         self.scrollArea_2.setObjectName(u"scrollArea_2")
         self.scrollArea_2.setGeometry(QRect(0, 0, 951, 661))
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
-        self.scrollAreaWidgetContents_2.setObjectName(
-            u"scrollAreaWidgetContents_2")
+        self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
         self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 951, 661))
         self.lineedit_new_password = QLineEdit(self.scrollAreaWidgetContents_2)
         self.lineedit_new_password.setObjectName(u"lineedit_new_password")
         self.lineedit_new_password.setGeometry(QRect(50, 250, 271, 31))
-        self.lineedit_confirm_new_password = QLineEdit(
-            self.scrollAreaWidgetContents_2)
-        self.lineedit_confirm_new_password.setObjectName(
-            u"lineedit_confirm_new_password")
+        self.lineedit_confirm_new_password = QLineEdit(self.scrollAreaWidgetContents_2)
+        self.lineedit_confirm_new_password.setObjectName(u"lineedit_confirm_new_password")
         self.lineedit_confirm_new_password.setGeometry(QRect(50, 320, 271, 31))
         self.save_setting_btn = QPushButton(self.scrollAreaWidgetContents_2)
         self.save_setting_btn.setObjectName(u"save_setting_btn")
         self.save_setting_btn.setGeometry(QRect(420, 600, 101, 41))
         self.save_setting_btn.setAutoFillBackground(False)
-        self.lineedit_current_password = QLineEdit(
-            self.scrollAreaWidgetContents_2)
-        self.lineedit_current_password.setObjectName(
-            u"lineedit_current_password")
+        self.lineedit_current_password = QLineEdit(self.scrollAreaWidgetContents_2)
+        self.lineedit_current_password.setObjectName(u"lineedit_current_password")
         self.lineedit_current_password.setGeometry(QRect(50, 390, 271, 31))
         self.label_7 = QLabel(self.scrollAreaWidgetContents_2)
         self.label_7.setObjectName(u"label_7")
@@ -1139,6 +1136,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.stackedWidget)
 
+
         self.horizontalLayout.addWidget(self.mainbody)
 
         MainWindow.setCentralWidget(self.centralwidget)
@@ -1147,141 +1145,84 @@ class Ui_MainWindow(object):
 
         self.stackedWidget.setCurrentIndex(0)
 
+
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate(
-            "MainWindow", u"MainWindow", None))
-        self.name_label.setText(QCoreApplication.translate(
-            "MainWindow", u"TextLabel", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        self.name_label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.setting_btn.setText("")
         self.profileImg_label.setText("")
-        self.Overview_btn.setText(QCoreApplication.translate(
-            "MainWindow", u"Overview", None))
-        self.Budget_btn.setText(QCoreApplication.translate(
-            "MainWindow", u"Budget", None))
-        self.Income_btn.setText(QCoreApplication.translate(
-            "MainWindow", u"Income", None))
-        self.Expense_btn.setText(QCoreApplication.translate(
-            "MainWindow", u"Expense", None))
-        self.Analysis_btn.setText(QCoreApplication.translate(
-            "MainWindow", u"Analysis", None))
+        self.Overview_btn.setText(QCoreApplication.translate("MainWindow", u"Overview", None))
+        self.Budget_btn.setText(QCoreApplication.translate("MainWindow", u"Budget", None))
+        self.Income_btn.setText(QCoreApplication.translate("MainWindow", u"Income", None))
+        self.Expense_btn.setText(QCoreApplication.translate("MainWindow", u"Expense", None))
+        self.Analysis_btn.setText(QCoreApplication.translate("MainWindow", u"Analysis", None))
         self.MenuButton.setText("")
-        self.tab_level.setText(QCoreApplication.translate(
-            "MainWindow", u"Overview", None))
-        self.comboBox.setItemText(0, QCoreApplication.translate(
-            "MainWindow", u"All-Time", None))
-        self.comboBox.setItemText(
-            1, QCoreApplication.translate("MainWindow", u"Daily", None))
-        self.comboBox.setItemText(
-            2, QCoreApplication.translate("MainWindow", u"Weekly", None))
-        self.comboBox.setItemText(
-            3, QCoreApplication.translate("MainWindow", u"Monthly", None))
-        self.comboBox.setItemText(
-            4, QCoreApplication.translate("MainWindow", u"Yearly", None))
+        self.tab_level.setText(QCoreApplication.translate("MainWindow", u"Overview", None))
+        self.comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"All-Time", None))
+        self.comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Daily", None))
+        self.comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Weekly", None))
+        self.comboBox.setItemText(3, QCoreApplication.translate("MainWindow", u"Monthly", None))
+        self.comboBox.setItemText(4, QCoreApplication.translate("MainWindow", u"Yearly", None))
         self.comboBox.setItemText(5, "")
 
-        self.label_6.setText(QCoreApplication.translate(
-            "MainWindow", u"Notification", None))
-        self.label_4.setText(QCoreApplication.translate(
-            "MainWindow", u"Expense", None))
-        self.label_5.setText(QCoreApplication.translate(
-            "MainWindow", u"  Budget", None))
-        self.add_Budget.setText(QCoreApplication.translate(
-            "MainWindow", u"Create a new Budget", None))
-        self.income_yearly.setText(QCoreApplication.translate(
-            "MainWindow", u"Total income yearly:", None))
-        self.income_yearly_value.setText(
-            QCoreApplication.translate("MainWindow", u"416541343", None))
-        self.income_monthly.setText(QCoreApplication.translate(
-            "MainWindow", u"Total income monthly:", None))
-        self.income_monthly_value.setText(
-            QCoreApplication.translate("MainWindow", u"6545473654", None))
-        self.income_daily.setText(QCoreApplication.translate(
-            "MainWindow", u"Total income daily:", None))
-        self.income_daily_value.setText(
-            QCoreApplication.translate("MainWindow", u"13212312313", None))
-        self.income_weekly.setText(QCoreApplication.translate(
-            "MainWindow", u"Total income weekly:", None))
-        self.income_weekly_value.setText(
-            QCoreApplication.translate("MainWindow", u"13215431", None))
-        self.income_dropdown.setItemText(
-            0, QCoreApplication.translate("MainWindow", u"Daily", None))
-        self.income_dropdown.setItemText(
-            1, QCoreApplication.translate("MainWindow", u"Weekly", None))
-        self.income_dropdown.setItemText(
-            2, QCoreApplication.translate("MainWindow", u"Monthly", None))
-        self.income_dropdown.setItemText(
-            3, QCoreApplication.translate("MainWindow", u"Yearly", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Notification", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Expense", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"  Budget", None))
+        self.add_Budget.setText(QCoreApplication.translate("MainWindow", u"Create a new Budget", None))
+        self.income_yearly.setText(QCoreApplication.translate("MainWindow", u"Total income yearly:", None))
+        self.income_yearly_value.setText(QCoreApplication.translate("MainWindow", u"416541343", None))
+        self.income_monthly.setText(QCoreApplication.translate("MainWindow", u"Total income monthly:", None))
+        self.income_monthly_value.setText(QCoreApplication.translate("MainWindow", u"6545473654", None))
+        self.income_daily.setText(QCoreApplication.translate("MainWindow", u"Total income daily:", None))
+        self.income_daily_value.setText(QCoreApplication.translate("MainWindow", u"13212312313", None))
+        self.income_weekly.setText(QCoreApplication.translate("MainWindow", u"Total income weekly:", None))
+        self.income_weekly_value.setText(QCoreApplication.translate("MainWindow", u"13215431", None))
+        self.income_dropdown.setItemText(0, QCoreApplication.translate("MainWindow", u"Daily", None))
+        self.income_dropdown.setItemText(1, QCoreApplication.translate("MainWindow", u"Weekly", None))
+        self.income_dropdown.setItemText(2, QCoreApplication.translate("MainWindow", u"Monthly", None))
+        self.income_dropdown.setItemText(3, QCoreApplication.translate("MainWindow", u"Yearly", None))
 
-        self.income_lineEdit.setPlaceholderText(
-            QCoreApplication.translate("MainWindow", u"Filter income", None))
-        self.income_list_header.setText(
-            QCoreApplication.translate("MainWindow", u"income list", None))
+        self.income_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Filter income", None))
+        self.income_list_header.setText(QCoreApplication.translate("MainWindow", u"income list", None))
         self.add_income_button.setText("")
-        self.expense_lineEdit.setPlaceholderText(
-            QCoreApplication.translate("MainWindow", u"Filter expense", None))
-        self.expense_list_header.setText(
-            QCoreApplication.translate("MainWindow", u"expense list", None))
+        self.expense_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Filter expense", None))
+        self.expense_list_header.setText(QCoreApplication.translate("MainWindow", u"expense list", None))
         self.add_expense_button.setText("")
-        self.expense_yearly.setText(QCoreApplication.translate(
-            "MainWindow", u"Total expense yearly:", None))
-        self.expense_yearly_value.setText(
-            QCoreApplication.translate("MainWindow", u"416541343", None))
-        self.expense_monthly.setText(QCoreApplication.translate(
-            "MainWindow", u"Total expense monthly:", None))
-        self.expense_monthly_value.setText(
-            QCoreApplication.translate("MainWindow", u"6545473654", None))
-        self.expense_daily.setText(QCoreApplication.translate(
-            "MainWindow", u"Total expense daily:", None))
-        self.expense_daily_value.setText(
-            QCoreApplication.translate("MainWindow", u"13212312313", None))
-        self.expense_weekly.setText(QCoreApplication.translate(
-            "MainWindow", u"Total expense weekly:", None))
-        self.expense_weekly_value.setText(
-            QCoreApplication.translate("MainWindow", u"13215431", None))
-        self.expense_dropdown.setItemText(
-            0, QCoreApplication.translate("MainWindow", u"Daily", None))
-        self.expense_dropdown.setItemText(
-            1, QCoreApplication.translate("MainWindow", u"Weekly", None))
-        self.expense_dropdown.setItemText(
-            2, QCoreApplication.translate("MainWindow", u"Monthly", None))
-        self.expense_dropdown.setItemText(
-            3, QCoreApplication.translate("MainWindow", u"Yearly", None))
+        self.expense_yearly.setText(QCoreApplication.translate("MainWindow", u"Total expense yearly:", None))
+        self.expense_yearly_value.setText(QCoreApplication.translate("MainWindow", u"416541343", None))
+        self.expense_monthly.setText(QCoreApplication.translate("MainWindow", u"Total expense monthly:", None))
+        self.expense_monthly_value.setText(QCoreApplication.translate("MainWindow", u"6545473654", None))
+        self.expense_daily.setText(QCoreApplication.translate("MainWindow", u"Total expense daily:", None))
+        self.expense_daily_value.setText(QCoreApplication.translate("MainWindow", u"13212312313", None))
+        self.expense_weekly.setText(QCoreApplication.translate("MainWindow", u"Total expense weekly:", None))
+        self.expense_weekly_value.setText(QCoreApplication.translate("MainWindow", u"13215431", None))
+        self.expense_dropdown.setItemText(0, QCoreApplication.translate("MainWindow", u"Daily", None))
+        self.expense_dropdown.setItemText(1, QCoreApplication.translate("MainWindow", u"Weekly", None))
+        self.expense_dropdown.setItemText(2, QCoreApplication.translate("MainWindow", u"Monthly", None))
+        self.expense_dropdown.setItemText(3, QCoreApplication.translate("MainWindow", u"Yearly", None))
 
         self.searchHistory_lineEdit.setInputMask("")
         self.searchHistory_lineEdit.setText("")
-        self.searchHistory_lineEdit.setPlaceholderText(
-            QCoreApplication.translate("MainWindow", u"Filter history", None))
-        self.incomeDownBtn.setText(QCoreApplication.translate(
-            "MainWindow", u"Download Income History", None))
-        self.expenseDownBtn.setText(QCoreApplication.translate(
-            "MainWindow", u"Download Expense History", None))
-        self.budgetDownBtn.setText(QCoreApplication.translate(
-            "MainWindow", u"Download Budget History", None))
+        self.searchHistory_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Filter history", None))
+        self.incomeDownBtn.setText(QCoreApplication.translate("MainWindow", u"Download Income History", None))
+        self.expenseDownBtn.setText(QCoreApplication.translate("MainWindow", u"Download Expense History", None))
+        self.budgetDownBtn.setText(QCoreApplication.translate("MainWindow", u"Download Budget History", None))
         self.lineedit_new_password.setText("")
-        self.lineedit_new_password.setPlaceholderText(
-            QCoreApplication.translate("MainWindow", u"New password", None))
+        self.lineedit_new_password.setPlaceholderText(QCoreApplication.translate("MainWindow", u"New password", None))
         self.lineedit_confirm_new_password.setText("")
-        self.lineedit_confirm_new_password.setPlaceholderText(
-            QCoreApplication.translate("MainWindow", u"Confirm new password", None))
-        self.save_setting_btn.setText(QCoreApplication.translate(
-            "MainWindow", u"Save setting", None))
+        self.lineedit_confirm_new_password.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Confirm new password", None))
+        self.save_setting_btn.setText(QCoreApplication.translate("MainWindow", u"Save setting", None))
         self.lineedit_current_password.setText("")
-        self.lineedit_current_password.setPlaceholderText(
-            QCoreApplication.translate("MainWindow", u"Current passsword", None))
-        self.label_7.setText(QCoreApplication.translate(
-            "MainWindow", u"Change Username", None))
-        self.logout_btn.setText(QCoreApplication.translate(
-            "MainWindow", u"Logout", None))
-        self.delete_acc_btn.setText(QCoreApplication.translate(
-            "MainWindow", u"Delete account", None))
+        self.lineedit_current_password.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Current passsword", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Change Username", None))
+        self.logout_btn.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
+        self.delete_acc_btn.setText(QCoreApplication.translate("MainWindow", u"Delete account", None))
         self.accountpicture_label.setText("")
-        self.label_9.setText(QCoreApplication.translate(
-            "MainWindow", u"Change profile picture", None))
-        self.upload_pic_btn.setText(QCoreApplication.translate(
-            "MainWindow", u"Upload picture", None))
-        self.label_8.setText(QCoreApplication.translate(
-            "MainWindow", u"Change password", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Change profile picture", None))
+        self.upload_pic_btn.setText(QCoreApplication.translate("MainWindow", u"Upload picture", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Change password", None))
     # retranslateUi
+
