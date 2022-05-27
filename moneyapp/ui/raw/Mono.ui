@@ -800,6 +800,11 @@ background-color:transparent;
                        <height>331</height>
                       </rect>
                      </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_42">
+                      <item>
+                       <widget class="QWidget" name="expense_report_list" native="true"/>
+                      </item>
+                     </layout>
                     </widget>
                    </widget>
                   </item>
@@ -928,8 +933,8 @@ background-color:transparent;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>100</width>
-                    <height>30</height>
+                    <width>906</width>
+                    <height>535</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_24">
