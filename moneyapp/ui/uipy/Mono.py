@@ -15,10 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
                            QFont, QFontDatabase, QGradient, QIcon,
                            QImage, QKeySequence, QLinearGradient, QPainter,
                            QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QDateEdit, QFrame,
-                               QGridLayout, QHBoxLayout, QLabel, QLineEdit,
-                               QMainWindow, QPushButton, QScrollArea, QSizePolicy,
-                               QStackedWidget, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
+                               QHBoxLayout, QLabel, QLineEdit, QMainWindow,
+                               QPushButton, QScrollArea, QSizePolicy, QStackedWidget,
+                               QVBoxLayout, QWidget)
 from .resource_rc import *
 
 
@@ -318,7 +318,7 @@ class Ui_MainWindow(object):
 
         self.frame_4 = QFrame(self.page)
         self.frame_4.setObjectName(u"frame_4")
-        self.frame_4.setGeometry(QRect(3, 411, 481, 239))
+        self.frame_4.setGeometry(QRect(3, 409, 465, 231))
         sizePolicy3.setHeightForWidth(
             self.frame_4.sizePolicy().hasHeightForWidth())
         self.frame_4.setSizePolicy(sizePolicy3)
@@ -340,9 +340,10 @@ class Ui_MainWindow(object):
         self.Notification_widdget.setObjectName(u"Notification_widdget")
         self.Notification_widdget.setMinimumSize(QSize(445, 207))
         self.Notification_widdget.setMaximumSize(QSize(445, 207))
+        self.verticalLayout_41 = QVBoxLayout(self.Notification_widdget)
+        self.verticalLayout_41.setObjectName(u"verticalLayout_41")
         self.frame_8 = QFrame(self.Notification_widdget)
         self.frame_8.setObjectName(u"frame_8")
-        self.frame_8.setGeometry(QRect(10, 0, 141, 41))
         font3 = QFont()
         font3.setPointSize(12)
         font3.setBold(True)
@@ -357,11 +358,27 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_20.addWidget(self.label_6)
 
+        self.verticalLayout_41.addWidget(self.frame_8)
+
+        self.scrollArea_7 = QScrollArea(self.Notification_widdget)
+        self.scrollArea_7.setObjectName(u"scrollArea_7")
+        self.scrollArea_7.setWidgetResizable(True)
+        self.scrollAreaWidgetContents_7 = QWidget()
+        self.scrollAreaWidgetContents_7.setObjectName(
+            u"scrollAreaWidgetContents_7")
+        self.scrollAreaWidgetContents_7.setGeometry(QRect(0, 0, 427, 143))
+        self.notification_list = QWidget(self.scrollAreaWidgetContents_7)
+        self.notification_list.setObjectName(u"notification_list")
+        self.notification_list.setGeometry(QRect(0, 0, 421, 131))
+        self.scrollArea_7.setWidget(self.scrollAreaWidgetContents_7)
+
+        self.verticalLayout_41.addWidget(self.scrollArea_7)
+
         self.verticalLayout_8.addWidget(self.Notification_widdget)
 
         self.frame_3 = QFrame(self.page)
         self.frame_3.setObjectName(u"frame_3")
-        self.frame_3.setGeometry(QRect(490, 214, 455, 436))
+        self.frame_3.setGeometry(QRect(490, 214, 441, 431))
         sizePolicy.setHeightForWidth(
             self.frame_3.sizePolicy().hasHeightForWidth())
         self.frame_3.setSizePolicy(sizePolicy)
@@ -377,9 +394,10 @@ class Ui_MainWindow(object):
         self.Expanse_widdget.setObjectName(u"Expanse_widdget")
         self.Expanse_widdget.setMinimumSize(QSize(405, 395))
         self.Expanse_widdget.setMaximumSize(QSize(405, 395))
+        self.verticalLayout_18 = QVBoxLayout(self.Expanse_widdget)
+        self.verticalLayout_18.setObjectName(u"verticalLayout_18")
         self.frame_7 = QFrame(self.Expanse_widdget)
         self.frame_7.setObjectName(u"frame_7")
-        self.frame_7.setGeometry(QRect(20, 0, 111, 41))
         self.frame_7.setFrameShape(QFrame.StyledPanel)
         self.frame_7.setFrameShadow(QFrame.Raised)
         self.verticalLayout_21 = QVBoxLayout(self.frame_7)
@@ -390,7 +408,21 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_21.addWidget(self.label_4)
 
-        self.verticalLayout_4.addWidget(self.Expanse_widdget)
+        self.verticalLayout_18.addWidget(self.frame_7)
+
+        self.scrollArea_6 = QScrollArea(self.Expanse_widdget)
+        self.scrollArea_6.setObjectName(u"scrollArea_6")
+        self.scrollArea_6.setWidgetResizable(True)
+        self.scrollAreaWidgetContents_6 = QWidget()
+        self.scrollAreaWidgetContents_6.setObjectName(
+            u"scrollAreaWidgetContents_6")
+        self.scrollAreaWidgetContents_6.setGeometry(QRect(0, 0, 387, 331))
+        self.scrollArea_6.setWidget(self.scrollAreaWidgetContents_6)
+
+        self.verticalLayout_18.addWidget(self.scrollArea_6)
+
+        self.verticalLayout_4.addWidget(
+            self.Expanse_widdget, 0, Qt.AlignBottom)
 
         self.verticalLayout_10.addWidget(self.widget_4)
 
@@ -642,11 +674,10 @@ class Ui_MainWindow(object):
         self.frame_21.setFrameShadow(QFrame.Raised)
         self.verticalLayout_37 = QVBoxLayout(self.frame_21)
         self.verticalLayout_37.setObjectName(u"verticalLayout_37")
-        self.income_date = QDateEdit(self.frame_21)
-        self.income_date.setObjectName(u"income_date")
-        self.income_date.setFont(font4)
+        self.income_lineEdit = QLineEdit(self.frame_21)
+        self.income_lineEdit.setObjectName(u"income_lineEdit")
 
-        self.verticalLayout_37.addWidget(self.income_date)
+        self.verticalLayout_37.addWidget(self.income_lineEdit)
 
         self.income_list_header = QLabel(self.frame_21)
         self.income_list_header.setObjectName(u"income_list_header")
@@ -740,11 +771,10 @@ class Ui_MainWindow(object):
         self.frame_19.setFrameShadow(QFrame.Raised)
         self.verticalLayout_26 = QVBoxLayout(self.frame_19)
         self.verticalLayout_26.setObjectName(u"verticalLayout_26")
-        self.expense_date = QDateEdit(self.frame_19)
-        self.expense_date.setObjectName(u"expense_date")
-        self.expense_date.setFont(font4)
+        self.expense_lineEdit = QLineEdit(self.frame_19)
+        self.expense_lineEdit.setObjectName(u"expense_lineEdit")
 
-        self.verticalLayout_26.addWidget(self.expense_date)
+        self.verticalLayout_26.addWidget(self.expense_lineEdit)
 
         self.expense_list_header = QLabel(self.frame_19)
         self.expense_list_header.setObjectName(u"expense_list_header")
@@ -1087,9 +1117,9 @@ class Ui_MainWindow(object):
         self.delete_acc_btn = QPushButton(self.scrollAreaWidgetContents_2)
         self.delete_acc_btn.setObjectName(u"delete_acc_btn")
         self.delete_acc_btn.setGeometry(QRect(30, 600, 101, 41))
-        self.acc_picture_here = QLabel(self.scrollAreaWidgetContents_2)
-        self.acc_picture_here.setObjectName(u"acc_picture_here")
-        self.acc_picture_here.setGeometry(QRect(580, 180, 141, 131))
+        self.accountpicture_label = QLabel(self.scrollAreaWidgetContents_2)
+        self.accountpicture_label.setObjectName(u"accountpicture_label")
+        self.accountpicture_label.setGeometry(QRect(580, 180, 141, 131))
         self.label_9 = QLabel(self.scrollAreaWidgetContents_2)
         self.label_9.setObjectName(u"label_9")
         self.label_9.setGeometry(QRect(560, 80, 231, 21))
@@ -1185,9 +1215,13 @@ class Ui_MainWindow(object):
         self.income_dropdown.setItemText(
             3, QCoreApplication.translate("MainWindow", u"Yearly", None))
 
+        self.income_lineEdit.setPlaceholderText(
+            QCoreApplication.translate("MainWindow", u"Filter income", None))
         self.income_list_header.setText(
             QCoreApplication.translate("MainWindow", u"income list", None))
         self.add_income_button.setText("")
+        self.expense_lineEdit.setPlaceholderText(
+            QCoreApplication.translate("MainWindow", u"Filter expense", None))
         self.expense_list_header.setText(
             QCoreApplication.translate("MainWindow", u"expense list", None))
         self.add_expense_button.setText("")
@@ -1243,7 +1277,7 @@ class Ui_MainWindow(object):
             "MainWindow", u"Logout", None))
         self.delete_acc_btn.setText(QCoreApplication.translate(
             "MainWindow", u"Delete account", None))
-        self.acc_picture_here.setText("")
+        self.accountpicture_label.setText("")
         self.label_9.setText(QCoreApplication.translate(
             "MainWindow", u"Change profile picture", None))
         self.upload_pic_btn.setText(QCoreApplication.translate(

@@ -587,9 +587,9 @@ background-color:transparent;
            <property name="geometry">
             <rect>
              <x>3</x>
-             <y>411</y>
-             <width>481</width>
-             <height>239</height>
+             <y>409</y>
+             <width>465</width>
+             <height>231</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -648,43 +648,66 @@ background-color:transparent;
                 <height>207</height>
                </size>
               </property>
-              <widget class="QFrame" name="frame_8">
-               <property name="geometry">
-                <rect>
-                 <x>10</x>
-                 <y>0</y>
-                 <width>141</width>
-                 <height>41</height>
-                </rect>
-               </property>
-               <property name="font">
-                <font>
-                 <pointsize>12</pointsize>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_20">
-                <item>
-                 <widget class="QLabel" name="label_6">
-                  <property name="font">
-                   <font>
-                    <pointsize>12</pointsize>
-                    <bold>true</bold>
-                   </font>
+              <layout class="QVBoxLayout" name="verticalLayout_41">
+               <item>
+                <widget class="QFrame" name="frame_8">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_20">
+                  <item>
+                   <widget class="QLabel" name="label_6">
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Notification</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QScrollArea" name="scrollArea_7">
+                 <property name="widgetResizable">
+                  <bool>true</bool>
+                 </property>
+                 <widget class="QWidget" name="scrollAreaWidgetContents_7">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>427</width>
+                    <height>143</height>
+                   </rect>
                   </property>
-                  <property name="text">
-                   <string>Notification</string>
-                  </property>
+                  <widget class="QWidget" name="notification_list" native="true">
+                   <property name="geometry">
+                    <rect>
+                     <x>0</x>
+                     <y>0</y>
+                     <width>421</width>
+                     <height>131</height>
+                    </rect>
+                   </property>
+                  </widget>
                  </widget>
-                </item>
-               </layout>
-              </widget>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </item>
            </layout>
@@ -694,8 +717,8 @@ background-color:transparent;
             <rect>
              <x>490</x>
              <y>214</y>
-             <width>455</width>
-             <height>436</height>
+             <width>441</width>
+             <height>431</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -714,7 +737,7 @@ background-color:transparent;
             <item>
              <widget class="QWidget" name="widget_4" native="true">
               <layout class="QVBoxLayout" name="verticalLayout_4">
-               <item>
+               <item alignment="Qt::AlignBottom">
                 <widget class="QWidget" name="Expanse_widdget" native="true">
                  <property name="minimumSize">
                   <size>
@@ -728,37 +751,50 @@ background-color:transparent;
                    <height>395</height>
                   </size>
                  </property>
-                 <widget class="QFrame" name="frame_7">
-                  <property name="geometry">
-                   <rect>
-                    <x>20</x>
-                    <y>0</y>
-                    <width>111</width>
-                    <height>41</height>
-                   </rect>
-                  </property>
-                  <property name="frameShape">
-                   <enum>QFrame::StyledPanel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Raised</enum>
-                  </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_21">
-                   <item>
-                    <widget class="QLabel" name="label_4">
-                     <property name="font">
-                      <font>
-                       <pointsize>12</pointsize>
-                       <bold>true</bold>
-                      </font>
-                     </property>
-                     <property name="text">
-                      <string>Expense</string>
+                 <layout class="QVBoxLayout" name="verticalLayout_18">
+                  <item>
+                   <widget class="QFrame" name="frame_7">
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_21">
+                     <item>
+                      <widget class="QLabel" name="label_4">
+                       <property name="font">
+                        <font>
+                         <pointsize>12</pointsize>
+                         <bold>true</bold>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Expense</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QScrollArea" name="scrollArea_6">
+                    <property name="widgetResizable">
+                     <bool>true</bool>
+                    </property>
+                    <widget class="QWidget" name="scrollAreaWidgetContents_6">
+                     <property name="geometry">
+                      <rect>
+                       <x>0</x>
+                       <y>0</y>
+                       <width>387</width>
+                       <height>331</height>
+                      </rect>
                      </property>
                     </widget>
-                   </item>
-                  </layout>
-                 </widget>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
                </item>
               </layout>
@@ -1219,11 +1255,9 @@ background-color:#A7F0AE;
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_37">
                <item>
-                <widget class="QDateEdit" name="income_date">
-                 <property name="font">
-                  <font>
-                   <bold>true</bold>
-                  </font>
+                <widget class="QLineEdit" name="income_lineEdit">
+                 <property name="placeholderText">
+                  <string>Filter income</string>
                  </property>
                 </widget>
                </item>
@@ -1376,11 +1410,9 @@ background-color:#A7F0AE;
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_26">
                <item>
-                <widget class="QDateEdit" name="expense_date">
-                 <property name="font">
-                  <font>
-                   <bold>true</bold>
-                  </font>
+                <widget class="QLineEdit" name="expense_lineEdit">
+                 <property name="placeholderText">
+                  <string>Filter expense</string>
                  </property>
                 </widget>
                </item>
@@ -2048,7 +2080,7 @@ border-radius: 10px;
               <string>Delete account</string>
              </property>
             </widget>
-            <widget class="QLabel" name="acc_picture_here">
+            <widget class="QLabel" name="accountpicture_label">
              <property name="geometry">
               <rect>
                <x>580</x>
