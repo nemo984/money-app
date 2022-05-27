@@ -57,7 +57,7 @@ class ExpenseUI(Observer):
             category = category,amount=amount,date=date,note=note,budget=budget
         )
         ex = ExpenseItem(expense.id ,self.ui.verticalLayout_38,
-                         date, category, amount, note, index_cat, index_bud, self.history_system,self.system,self.bu)
+                         date, category, amount, note, index_cat, index_bud, self.history_system,self.system)
         self.history_system.add(
             action="Expense", action_type="Create", description="You created a new expense")
 
