@@ -31,16 +31,23 @@ class ExpenseReportUI(Observer):
         self.lay = self.ui.verticalLayout_18
         self.expense_system = s
         self.expenses = []
-        self.category = {"Food", "Entertainment", "Transport", "Education", "Healthcare", "Bill", "Saving", "Investment", "Shopping","Utilities/Other"}
+        self.category = {"Food":u":/black/icon/White/volume-1.svg", 
+                        "Entertainment":u":/black/icon/White/volume-1.svg", 
+                        "Transport":u":/black/icon/White/volume-1.svg", 
+                        "Education":u":/black/icon/White/volume-1.svg", 
+                        "Healthcare":u":/black/icon/White/volume-1.svg", 
+                        "Bill":u":/black/icon/White/volume-1.svg",
+                        "Saving":u":/black/icon/White/volume-1.svg", 
+                        "Investment":u":/black/icon/White/volume-1.svg", 
+                        "Shopping":u":/black/icon/White/volume-1.svg",
+                        "Utilities/Other":u":/black/icon/White/volume-1.svg"}
         
-
-
     async def update(self, expenses: List[Expense]):
         self.clear_layout()
         b = self.expense_system.get_categories_total()
-        for expense in expenses:
-            amount = b[expense.category] if expense.category in b else 0
-            expense = ExpenseReport( expense_id=expense.id ,lay = self.lay , category = expense.category,
+        for category, icon_path in self.category.items():
+            amount = b[category] if category in b else 0
+            expense = ExpenseReport(lay = self.lay , category = category, icon_path=icon_path,
                                 amount=amount, expense_system = self.expense_system)
             expense.add() 
             self.expenses.append(expense)
@@ -51,9 +58,8 @@ class ExpenseReportUI(Observer):
         self.expenses = []
 
 class ExpenseReport(QWidget):
-    def __init__(self,expense_id, lay: QVBoxLayout, category, amount, expense_system):
+    def __init__(self, lay: QVBoxLayout, icon_path, category, amount, expense_system):
         super(ExpenseReport, self).__init__()
-        self.id = expense_id
         self.layout = lay
         self.wid = Ui_Form()
         self.expense_system = expense_system
@@ -61,8 +67,7 @@ class ExpenseReport(QWidget):
         self.category = category
         self.wid.setupUi(self)
         self.wid.category_label.setText(category)
-        self.wid.icon_label.setPixmap(
-            QPixmap(u":/black/icon/White/volume-1.svg"))
+        self.wid.icon_label.setPixmap(QPixmap(icon_path))
         self.wid.amount_label.setText("฿{:,.2f}".format(amount))          
         
 
