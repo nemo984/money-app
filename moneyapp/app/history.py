@@ -25,6 +25,10 @@ class HistorySystem(Observable):
         self.notify(self._history)
         return self._history
 
+    def getByType(self, typeStr:str):
+        histories = ActionHistory.select().where(ActionHistory.action == typeStr)
+        return list(histories)
+
 
     def filter(self, query: str):
         if query == "":

@@ -4,14 +4,20 @@ from ..app.history import HistorySystem
 from .uipy.history_wid import Ui_history_form
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
+from tkinter import Tk
+from tkinter.filedialog import asksaveasfilename
+import csv
 
 class HistoryUI:
     def __init__(self, ui, s: HistorySystem, parent):
         self.ui = ui
         self.parent = parent
         self.system = s
-        self.ui.searchHistory_lineEdit.textEdited.connect(self.filter_history)
         self.current = []
+        self.ui.searchHistory_lineEdit.textEdited.connect(self.filter_history)
+        self.ui.incomeDownBtn.clicked.connect(self.download_income)
+        self.ui.expenseDownBtn.clicked.connect(self.download_expense)
+        self.ui.budgetDownBtn.clicked.connect(self.download_budget)
         
     async def update(self, histories):
         history_layout = self.ui.verticalLayout_39
@@ -25,6 +31,39 @@ class HistoryUI:
 
     def filter_history(self, text):
         self.system.filter(text)
+
+    def download_income(self):
+        saveFilePath = self.get_save_file()
+        if not saveFilePath:
+            return
+        incomes = self.system.getByType("Income")
+        for income in incomes:
+            pass
+
+    def download_expense(self):
+        saveFilePath = self.get_save_file()
+        if not saveFilePath:
+            return
+        expenses = self.system.getByType("Expense")
+        for expense in expenses:
+            pass
+
+    def download_budget(self):
+        saveFilePath = self.get_save_file()
+        if not saveFilePath:
+            return
+        budgets = self.system.getByType("Budget")
+        for budget in budgets:
+            pass
+
+    def get_save_file(self):
+        formats = [('Comma Separated values', '*.csv'), ]
+        root = Tk()
+        root.withdraw()
+        saveFilePath = asksaveasfilename(parent=root, filetypes=formats, title="Save as...")
+        root.update()
+        root.destroy()
+        return saveFilePath
 
     def clear_layout(self):
         for history in self.current:
