@@ -120,6 +120,8 @@ class ExpenseItem(QWidget):
         self.wid.amount_label.setText("฿{:,.2f}".format(amount))
         if budget is not None:
             self.wid.budget_label.setText(budget.name)
+        if budget is None:
+            self.wid.budget_label.setText("")
         self.wid.option_btn.clicked.connect(self.option)
 
     def option(self):
