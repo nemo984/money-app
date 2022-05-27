@@ -38,8 +38,6 @@ class ExpenseReportUI(Observer):
             expense.add()
             self.expenses.append(expense)
 
-expense_category_dropdown = {"Food":0, "Entertainment":1, "Transport":2, "Education":3, "Healthcare":4, "Bill":5, "Saving":6, "Investment":7, "Shopping":8, "Utilities/Other":9}
-
 class ExpenseReport(QWidget):
     def __init__(self,expense_id, lay: QVBoxLayout, category, amount):
         super(ExpenseReport, self).__init__()
@@ -56,5 +54,5 @@ class ExpenseReport(QWidget):
 
 
     def add(self):
-        self.layout.insertWidget(0, self)
+        self.layout.insertWidget(0,self)
 

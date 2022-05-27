@@ -75,7 +75,7 @@ class ExpenseUI(Observer):
     def clear_layout(self):
         for expense in self.expenses:
             expense.clear()
-        self.expense = []
+        self.expenses = []
 
 expense_category_dropdown = {"Food":0, "Entertainment":1, "Transport":2, "Education":3, "Healthcare":4, "Bill":5, "Saving":6, "Investment":7, "Shopping":8, "Utilities/Other":9}
 
