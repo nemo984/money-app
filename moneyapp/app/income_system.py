@@ -29,16 +29,26 @@ class IncomeSystem(Observable):
         self._incomes = list(self.owner.incomes_ordered)
         self.notify(self._incomes)
         return self._incomes
+        
+    def getByID(self, income_id) -> Income:
+        try:
+            income = Income.get(Income.id == income_id)
+            return income
+        except:
+            return None
 
     def update(
         self,
-        income: Income,
+        income_id: int,
         name: Optional[str] = None,
         category: Optional[str] = None,
         amount: Optional[float] = None,
         frequency: Optional[int] = None,
         note: Optional[str] = None,
     ) -> Income:
+        income = self.getByID(income_id)
+        if income is None:
+            return
         if name:
             income.name = name
         if category:
@@ -55,5 +65,8 @@ class IncomeSystem(Observable):
         return income
 
     def delete(self, income: Income):
+        income = self.getByID(income_id)
+        if income is None:
+            return
         income.delete_instance()
         self.get()

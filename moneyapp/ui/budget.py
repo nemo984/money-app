@@ -45,7 +45,6 @@ class BudgetUI(Observer):
             category=c, name=name, amount=amount, start_date=start_date, end_date=end_date)
         b = BudgetItem(budget_id=budget.id, budget_system=self.system, history_system=self.history_system, lay=self.budgets_layout, amount=amount, category=c,
                        end_date=end_date, index=index, note=note, name=name, start_date=start_date)
-        # b.add()
         self.history_system.add(
             action="Budget", action_type="Create", description="You created a budget")
 

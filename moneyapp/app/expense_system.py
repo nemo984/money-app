@@ -28,14 +28,24 @@ class ExpenseSystem(Observable):
         self.notify(self._expenses)
         return self._expenses
 
+    def getByID(self, expense_id) -> Expense:
+        try:
+            expense = Expense.get(Expense.id == expense_id)
+            return expense
+        except:
+            return None
+
     def update(
         self,
-        expense: Expense,
+        expense_id: int,
         date,
         category: Optional[str] = None,
         amount: Optional[float] = None,
         note: Optional[str] = None,
     ) -> Expense:
+        expense = self.getByID(expense_id)
+        if expense is None:
+            return
         if date:
             expense.date = date
         if category:
@@ -48,7 +58,9 @@ class ExpenseSystem(Observable):
         self.get()
         return expense
 
-    def delete(self, expense: Expense):
-        owner = expense.owner
+    def delete(self, expense_id):
+        expense = self.getByID(expense_id)
+        if expense is None:
+            return
         expense.delete_instance()
         self.get()
