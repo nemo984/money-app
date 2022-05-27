@@ -17,6 +17,8 @@ class ExpenseUI(Observer):
         self.system = s
         self.history_system = history_system
         self.pop = Ui_Dialog()
+        self.lay = self.ui.verticalLayout_38
+        self.expenses = []
         self.ui.add_expense_button.clicked.connect(self.add_expense)
 
     def add_expense(self):
@@ -42,8 +44,20 @@ class ExpenseUI(Observer):
     def close(self):
         self.dialog.close()
 
-    async def update(self, expense: List[Expense]):
-        pass
+    async def update(self, expenses: List[Expense]):
+        self.clear_layout()
+        for expense in expenses:
+            item = QListWidgetItem()
+            expense = ExpenseItem( lay = self.lay , date = expense.date, category = expense.category,
+             amount = expense.amount, note = expense.note, index_cat, index_bud)
+            budget.add()
+            self.budgets.append(budget)
+
+    def clear_layout(self):
+        for budget in self.budgets:
+            budget.clear()
+        self.budgets = []
+
 
 
 class ExpenseItem(QWidget):
