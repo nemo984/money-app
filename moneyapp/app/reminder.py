@@ -5,10 +5,11 @@ from .model import Reminder, Account
 
 
 class ReminderSystem(Observable):
-    def __init__(self, owner):
+    def __init__(self, owner, history_system):
         super().__init__()
         self._reminders = []
         self.owner = owner
+        self.history_system = history_system
 
     def add(
         self,

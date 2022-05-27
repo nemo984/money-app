@@ -5,10 +5,12 @@ from .model import Budget, Account
 import decimal
 
 class BudgetSystem(Observable):
-    def __init__(self, owner: Account):
+    def __init__(self, owner: Account, reminder_system, history_system):
         super().__init__()
         self.owner = owner
         self._budgets = []
+        self.reminder_system = reminder_system
+        self.history_system = history_system
 
     def add(
         self,
@@ -24,6 +26,8 @@ class BudgetSystem(Observable):
         budget.save()
         self._budgets.append(budget)
         self.notify(self._budgets)
+        self.history_system.add(
+            action="Budget", action_type="Create", description="You created a budget")
         return budget
 
     def get(self) -> List[Budget]:
@@ -49,6 +53,10 @@ class BudgetSystem(Observable):
         budget.amount_used += decimal.Decimal(amount)
         budget.save()
         self.get()
+        #TODO: reminder add check
+        percent = (budget.amount_used / budget.amount) * 100
+        if percent > 50:
+            self.reminder_system.add(heading=f"Budget '{budget.name}'", message="This budget hits 50%")
         return budget
     
     def subtract_amount_used(self, budget_id, amount) -> Budget:
@@ -87,6 +95,8 @@ class BudgetSystem(Observable):
             budget.note = note
         budget.save()
         self.get()
+        self.history_system.add(
+            action="Budget", action_type="Update", description="You updated a budget")
         return budget
 
     def delete(self, budget_id: int):
@@ -94,4 +104,6 @@ class BudgetSystem(Observable):
         if budget is None:
             return
         budget.delete_instance()
+        self.history_system.add(
+            action="Budget", action_type="Delete", description="You deleted a budget")
         self.get()

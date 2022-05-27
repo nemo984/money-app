@@ -11,12 +11,11 @@ from PySide6.QtCore import *
 
 class ExpenseUI(Observer):
 
-    def __init__(self, ui, s: ExpenseSystem, budget_system, history_system, parent):
+    def __init__(self, ui, s: ExpenseSystem, budget_system, parent):
         self.ui = ui
         self.parent = parent
         self.system = s
         self.budget_system = budget_system
-        self.history_system = history_system
         self.expenses = []
         self.pop = Ui_Dialog()
         self.lay = self.ui.verticalLayout_38
@@ -61,12 +60,11 @@ class ExpenseUI(Observer):
         budget = self.budgets[budget] if budget in self.budgets else None
         self.dialog.close()
         expense = self.system.add(
-            category=category, amount=amount, date=date, note=note, budget=budget, budget_system=self.budget_system
+            category=category, amount=amount, date=date, note=note, budget=budget
         )
         ex = ExpenseItem(expense.id, self.lay,
-                         date, category, amount, note, index_cat, self.history_system, self.system, self.budget_system, budget)
-        self.history_system.add(
-            action="Expense", action_type="Create", description="You created a new expense")
+                         date, category, amount, note, index_cat, self.system, budget)
+
 
     def close(self):
         self.dialog.close()
@@ -77,7 +75,7 @@ class ExpenseUI(Observer):
             expense = ExpenseItem(expense_id=expense.id, lay=self.lay, date=expense.date, category=expense.category,
                                   amount=expense.amount, note=expense.note, index_cat=expense_category_dropdown[
                                       expense.category],
-                                  history_system=self.history_system, expense_system=self.system, budget_system=self.budget_system, budget=expense.budget)
+                                  expense_system=self.system, budget=expense.budget)
             expense.add()
             self.expenses.append(expense)
 
@@ -102,7 +100,7 @@ expense_category_dropdown = {"Food": 0, "Entertainment": 1, "Transport": 2, "Edu
 
 
 class ExpenseItem(QWidget):
-    def __init__(self, expense_id, lay: QVBoxLayout, date, category, amount, note, index_cat, history_system, expense_system, budget_system, budget):
+    def __init__(self, expense_id, lay: QVBoxLayout, date, category, amount, note, index_cat, expense_system, budget):
         super(ExpenseItem, self).__init__()
         self.id = expense_id
         self.layout = lay
@@ -112,7 +110,6 @@ class ExpenseItem(QWidget):
         self.amount = amount
         self.note = note
         self.date = date
-        self.history_system = history_system
         self.expense_system = expense_system
         self.budget = budget
         self.budget_category = budget
@@ -170,8 +167,7 @@ class ExpenseItem(QWidget):
         self.date = self.pop.date_entry.text()
 
         self.dialog.close()
-        self.history_system.add(
-            action="Expense", action_type="Update", description="You updated your expense")
+
         self.expense_system.update(
             expense_id=self.id, date=self.date, category=self.category, amount=float(self.amount), note=self.note)
 
@@ -191,9 +187,8 @@ class ExpenseItem(QWidget):
     def delete(self):
         self.layout.removeWidget(self)
         self.deleteLater()
-        self.expense_system.delete(self.id, budget_system=self.budget_system)
-        self.history_system.add(
-            action="Expense", action_type="Delete", description="You deleted your expense")
+        self.expense_system.delete(self.id)
+
 
     def clear(self):
         self.layout.removeWidget(self)

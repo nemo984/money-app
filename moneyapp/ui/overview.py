@@ -15,13 +15,15 @@ class ReminderUI(Observer):
     def __init__(self, ui, r: ReminderSystem):
         self.ui = ui
         self.lay = self.ui.verticalLayout_41
-        self.riminder_system = r
+        self.reminder_system = r
         self.reminders = []
 
     async def update(self, reminders: List[Reminder]):
         self.clear_layout()
         for reminder in reminders:
-            reminder = ReminderReport(lay=self.lay,reminder_system=self.riminder_system,ui=self.ui)
+            reminder = ReminderReport(lay=self.lay,reminder_system=self.reminder_system, date=reminder.created_date, 
+                                    heading=reminder.heading, description=reminder.message)
+            print(reminder.heading)
             reminder.add()
             self.reminders.append(reminder)
 
@@ -31,22 +33,26 @@ class ReminderUI(Observer):
         self.reminders = []
 
 class ReminderReport(QWidget):
-    def __init__(self, lay: QVBoxLayout, reminder_system,ui):
+    def __init__(self, lay: QVBoxLayout, reminder_system, date, heading, description):
         super(ReminderReport, self).__init__()
         self.layout = lay
-        self.ui = ui
+        self.date = date
+        self.heading = heading
+        self.description = description
         self.wid = Ui_Reminder()
         self.reminder_system = reminder_system
         self.wid.setupUi(self)
-        print(self,reminder_system.get())
-
+        self.wid.date_label.setText(str(date))
+        self.wid.action_label.setText(heading)
+        self.wid.description_label.setText(description)
 
     def clear(self):
         self.layout.removeWidget(self)
         self.deleteLater()
 
     def add(self):
-        self.layout.insertWidget(-1, self)
+        print("inserto!")
+        self.layout.insertWidget(0, self)
 
 
 class IncomeReportUI(Observer):
@@ -93,8 +99,6 @@ class ExpenseReportUI(Observer):
                 expenses_categories.append((category, self.category[i][1], amount))
                 i += 1
             
-            print(expenses_categories)
-
             expense = ExpenseReport(lay=self.lay, expense_system=self.expense_system, expense_categories=expenses_categories)
             expense.add()
             self.expenses.append(expense)

@@ -14,12 +14,12 @@ from .budget import BudgetUI
 from .income import IncomeUI
 from .expense import ExpenseUI
 from .history import HistoryUI
-from .setting import SettingUI
-from .overview import ExpenseReportUI
+from .overview import ExpenseReportUI, ReminderUI
 from .uipy.Mono import Ui_MainWindow
 from PySide6.QtCore import *
 import os
 from datetime import datetime, timedelta
+
 
 class MoneyAppUI(QMainWindow):
     def __init__(
@@ -31,7 +31,7 @@ class MoneyAppUI(QMainWindow):
         history_system: HistorySystem,
         account_system: AccountSystem,
         reminder_system: ReminderSystem,
-        parent = None
+        parent=None
     ):
         super(MoneyAppUI, self).__init__(parent)
         self.parent = parent
@@ -46,18 +46,20 @@ class MoneyAppUI(QMainWindow):
         pixmap = QPixmap.fromImage(qimg)
         self.ui.profileImg_label.setPixmap(pixmap)
 
-        budget_ui = BudgetUI(self.ui, account, budget_system, history_system,reminder_system, self)
-        income_ui = IncomeUI(self.ui, income_system, history_system, self)
-        expense_ui = ExpenseUI(self.ui,expense_system, budget_system, history_system, self)
-        history_ui = HistoryUI(self.ui,history_system, self)
-        setting_ui = SettingUI(self.ui, account_system, self)
+        budget_ui = BudgetUI(
+            self.ui, account, budget_system, self)
+        income_ui = IncomeUI(self.ui, income_system, self)
+        expense_ui = ExpenseUI(self.ui, expense_system, budget_system, self)
+        history_ui = HistoryUI(self.ui, history_system, self)
         expense_report_ui = ExpenseReportUI(self.ui, expense_system)
+        reminder_ui = ReminderUI(self.ui, reminder_system)
 
         budget_system.add_observer(budget_ui)
         income_system.add_observer(income_ui)
         expense_system.add_observer(expense_ui)
         expense_system.add_observer(expense_report_ui)
         history_system.add_observer(history_ui)
+        reminder_system.add_observer(reminder_ui)
 
         history_system.get()
         budget_system.get()
@@ -140,7 +142,7 @@ class MoneyAppUI(QMainWindow):
     def closeEvent(self, event):
         if self.parent:
             self.parent.close()
-    
+
     def delete_account(self):
         self.account_system.delete(self.account)
         self.logout()
@@ -153,7 +155,8 @@ class MoneyAppUI(QMainWindow):
         if (new_password != "" or new_password_confirm != "") and new_password != new_password_confirm:
             self.ui.setting_warning_label.setText("Password does not match")
             return
-        self.account_system.update(account=self.account, name=name, password=new_password, profile_image_path=self.new_pic_path)
+        self.account_system.update(account=self.account, name=name,
+                                   password=new_password, profile_image_path=self.new_pic_path)
         self.ui.setting_warning_label.setText("")
         if name != "":
             self.ui.name_label.setText(name)
@@ -164,11 +167,12 @@ class MoneyAppUI(QMainWindow):
         if self.new_pic_path != "":
             self.ui.profileImg_label.setPixmap(QPixmap(self.new_pic_path))
             self.ui.new_pic_label.setPixmap(QPixmap())
-    
+
     def new_profile_pic(self):
         root = Tk()
         root.withdraw()
-        self.new_pic_path = askopenfilename(title="Choose a Picture", filetypes=[('image files', ('.png', '.jpg'))])
+        self.new_pic_path = askopenfilename(title="Choose a Picture", filetypes=[
+                                            ('image files', ('.png', '.jpg'))])
         root.update()
         root.destroy()
         self.ui.new_pic_label.setPixmap(QPixmap(self.new_pic_path))
@@ -178,13 +182,15 @@ _staySignInChecked = "staySignInChecked"
 _account_id = "account_id"
 _last_tab = "last_tab"
 
+
 def load_id():
     try:
         with open('signin.pickle', 'rb') as f:
             return pickle.load(f)
     except FileNotFoundError:
         save_staySignIn()
-        return {_staySignInChecked:False, _account_id:-1, _last_tab: -1}
+        return {_staySignInChecked: False, _account_id: -1, _last_tab: -1}
+
 
 def save_staySignIn(staySignInChecked: bool = False, account_id: int = -1, last_tab: int = -1):
     staySignInChecked = load_id(

@@ -3,10 +3,11 @@ from .helpers import Observable
 from .model import Income, Account 
 
 class IncomeSystem(Observable):
-    def __init__(self, owner):
+    def __init__(self, owner, history_system):
         super().__init__()
         self.owner = owner
         self._incomes = []
+        self.history_system = history_system
 
     def add(
         self,
@@ -23,6 +24,8 @@ class IncomeSystem(Observable):
         income.save()
         self._incomes.append(income)
         self.notify(self._incomes)
+        self.history_system.add(
+            action="Income", action_type="Create", description="You created a income")
         return income
 
     def get(self) -> List[Income]:
@@ -59,6 +62,8 @@ class IncomeSystem(Observable):
 
         income.save()
         self.get()
+        self.history_system.add(
+            action="Income", action_type="Update", description="You updated a income")
         return income
 
     def delete(self, income_id):
@@ -67,3 +72,5 @@ class IncomeSystem(Observable):
             return
         income.delete_instance()
         self.get()
+        self.history_system.add(
+            action="Income", action_type="Delete", description="You deleted a income")

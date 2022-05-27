@@ -23,11 +23,11 @@ class MainApp:
         self.parent = parent
         self.account_system = AccountSystem()
         account = self.account_system.getByID(account_id)
-        self.income_system = IncomeSystem(owner=account)
-        self.budget_system = BudgetSystem(owner=account)
-        self.expense_system = ExpenseSystem(owner=account)
         self.history_system = HistorySystem(owner=account)
-        self.reminder_system = ReminderSystem(owner=account)
+        self.reminder_system = ReminderSystem(owner=account, history_system=self.history_system)
+        self.income_system = IncomeSystem(owner=account, history_system=self.history_system)
+        self.budget_system = BudgetSystem(owner=account, reminder_system=self.reminder_system, history_system=self.history_system)
+        self.expense_system = ExpenseSystem(owner=account, budget_system=self.budget_system, history_system=self.history_system)
         self.ui = MoneyAppUI(account, self.income_system, self.budget_system, self.expense_system, self.history_system, self.account_system, self.reminder_system)
 
     def show(self):

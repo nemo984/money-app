@@ -20,11 +20,10 @@ freTorec = {0: "one-time", 1: "daily",
 
 class IncomeUI(Observer):
 
-    def __init__(self, ui, income_system: IncomeSystem, history_system, parent):
+    def __init__(self, ui, income_system: IncomeSystem,parent):
         self.ui = ui
         self.parent = parent
         self.system = income_system
-        self.history_system = history_system
         self.pop = Ui_Dialog()
         self.ui.add_income_button.clicked.connect(self.add_income)
         self.parent = parent
@@ -64,10 +63,9 @@ class IncomeUI(Observer):
         self.dialog.close()
         income = self.system.add(name=name, category=category, amount=amount,
                                  date=date, note=note, frequency=income_recurrence_dropdown[recurrence])
-        inc = IncomeItem(income_id=income.id, income_system=self.system, history_system=self.history_system, lay=self.incomes_layout, date=date,
+        inc = IncomeItem(income_id=income.id, income_system=self.system, lay=self.incomes_layout, date=date,
                          name=name, category=category, amount=amount, recurrence=recurrence, note=note, index_cat=index_cat, index_rec=index_rec)
-        self.history_system.add(
-            action="Income", action_type="Create", description="You created a income")
+
 
     def close(self):
         self.dialog.close()
@@ -131,7 +129,7 @@ class IncomeUI(Observer):
             item = QListWidgetItem()
             print("Category: ", income.category)
             print("Recurrence: ", income.frequency_day)
-            income = IncomeItem(income_id=income.id, income_system=self.system, history_system=self.history_system, lay=self.incomes_layout, date=income.date,
+            income = IncomeItem(income_id=income.id, income_system=self.system, lay=self.incomes_layout, date=income.date,
                                 name=income.name, category=income.category, amount=income.amount, recurrence=freTorec[
                                     income.frequency_day], note=income.note,
                                 index_cat=income_category_dropdown[income.category], index_rec=income_recurrence_dropdown2[freTorec[income.frequency_day]])
@@ -152,11 +150,10 @@ class IncomeUI(Observer):
 
 
 class IncomeItem(QWidget):
-    def __init__(self, income_id, income_system, history_system, lay: QVBoxLayout, date, name, category, amount, recurrence, note, index_cat, index_rec):
+    def __init__(self, income_id, income_system, lay: QVBoxLayout, date, name, category, amount, recurrence, note, index_cat, index_rec):
         super(IncomeItem, self).__init__()
         self.id = income_id
         self.income_system = income_system
-        self.history_system = history_system
         self.layout = lay
         self.wid = Ui_income_form()
         self.pop = Ui_Dialog()
@@ -226,8 +223,7 @@ class IncomeItem(QWidget):
         self.income_system.update(income_id=self.id, name=self.name, category=self.category, amount=float(
             self.amount), frequency=income_recurrence_dropdown[self.recurrence], note=self.note)
 
-        self.history_system.add(
-            action="Income", action_type="Update", description="You updated a income")
+
 
     def cancel(self):
         self.dialog.close()
@@ -239,8 +235,7 @@ class IncomeItem(QWidget):
         self.layout.removeWidget(self)
         self.deleteLater()
         self.income_system.delete(self.id)
-        self.history_system.add(
-            action="Income", action_type="Delete", description="You deleted a income")
+
 
     def clear(self):
         self.layout.removeWidget(self)

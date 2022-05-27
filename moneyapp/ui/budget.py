@@ -10,12 +10,10 @@ from PySide6.QtCore import *
 
 
 class BudgetUI(Observer):
-    def __init__(self, ui, account, budget_system: BudgetSystem, history_system,reminder_system, parent):
+    def __init__(self, ui, account, budget_system: BudgetSystem, parent):
         self.ui = ui
         self.account = account
         self.system = budget_system
-        self.history_system = history_system
-        self.reminder_system = reminder_system
         self.parent = parent
         self.pop = Ui_Dialog()
         self.ui.add_Budget.clicked.connect(self.add_budget)
@@ -54,10 +52,9 @@ class BudgetUI(Observer):
         self.dialog.close()
         budget = self.system.add(
             category=c, name=name, amount=amount, start_date=start_date, end_date=end_date)
-        b = BudgetItem(budget_id=budget.id, budget_system=self.system, history_system=self.history_system, lay=self.budgets_layout, amount=amount, category=c,
+        b = BudgetItem(budget_id=budget.id, budget_system=self.system,lay=self.budgets_layout, amount=amount, category=c,
                        end_date=end_date, index=index, note=note, name=name, start_date=start_date, amount_used=budget.amount_used)
-        self.history_system.add(
-            action="Budget", action_type="Create", description="You created a budget")
+
 
     def close(self):
         self.dialog.close()
@@ -66,7 +63,7 @@ class BudgetUI(Observer):
         self.clear_layout()
         for budget in budgets:
             progress_value = (budget.amount_used / budget.amount) * 100
-            budget = BudgetItem(budget_id=budget.id, budget_system=self.system, history_system=self.history_system, lay=self.budgets_layout, name=budget.name,
+            budget = BudgetItem(budget_id=budget.id, budget_system=self.system, lay=self.budgets_layout, name=budget.name,
                                 category=budget.category, index=budget_category_dropdown[budget.category],
                                 amount=budget.amount, amount_used=budget.amount_used, start_date=budget.start_date, end_date=budget.end_date,
                                 note=budget.note)
@@ -91,11 +88,10 @@ budget_category_dropdown = {"Food": 0, "Entertainment": 1, "Transport": 2, "Educ
 
 
 class BudgetItem(QWidget):
-    def __init__(self, budget_id, budget_system, history_system, lay: QVBoxLayout, category, name, amount, amount_used, start_date, end_date, index, note,):
+    def __init__(self, budget_id, budget_system, lay: QVBoxLayout, category, name, amount, amount_used, start_date, end_date, index, note,):
         super(BudgetItem, self).__init__()
         self.id = budget_id
         self.budget_system = budget_system
-        self.history_system = history_system
         self.layout = lay
         self.wid = Ui_Form()
         self.pop = Ui_Dialog()
@@ -169,8 +165,7 @@ class BudgetItem(QWidget):
         self.dialog.close()
         self.budget_system.update(budget_id=self.id, name=self.name, amount=float(
             self.amount), start_date=self.s_date, end_date=self.e_date, note=self.note, category=self.category)
-        self.history_system.add(
-            action="Budget", action_type="Update", description="You updated a budget")
+
 
     def add(self):
         self.layout.insertWidget(0, self)
@@ -179,8 +174,7 @@ class BudgetItem(QWidget):
         self.layout.removeWidget(self)
         self.deleteLater()
         self.budget_system.delete(self.id)
-        self.history_system.add(
-            action="Budget", action_type="Delete", description="You deleted a budget")
+
 
     def clear(self):
         self.layout.removeWidget(self)

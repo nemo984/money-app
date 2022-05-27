@@ -6,10 +6,12 @@ from peewee import fn
 
 
 class ExpenseSystem(Observable):
-    def __init__(self, owner):
+    def __init__(self, owner, budget_system, history_system):
         super().__init__()
         self.owner = owner
         self._expenses = []
+        self.budget_system = budget_system
+        self.history_system = history_system
 
     def add(
         self,
@@ -17,16 +19,16 @@ class ExpenseSystem(Observable):
         amount: float,
         date,
         budget: Optional[Budget] = None,
-        budget_system: Optional[BudgetSystem] = None,
         note: Optional[str] = None,
     ) -> Expense:
         expense = Expense(owner=self.owner, category=category, date=date, budget=budget
                           ,amount=amount, note=note)
         expense.save()
         self._expenses.append(expense)
+        if budget: self.budget_system.add_amount_used(budget.id, expense.amount)
         self.notify(self._expenses)
-        if budget and budget_system:
-            budget_system.add_amount_used(budget.id, expense.amount)
+        self.history_system.add(
+            action="Expense", action_type="Create", description="You created a new expense")
         return expense
 
     def get(self) -> List[Expense]:
@@ -57,6 +59,8 @@ class ExpenseSystem(Observable):
             expense.note = note
         expense.save()
         self.get()
+        self.history_system.add(
+            action="Expense", action_type="Update", description="You updated your expense")
         return expense
 
     def get_categories_total(self):
@@ -66,11 +70,13 @@ class ExpenseSystem(Observable):
                  .group_by(Expense.category))
         return {expense.category:expense.total for expense in rows}
 
-    def delete(self, expense_id, budget_system: BudgetSystem):
+    def delete(self, expense_id):
         expense = self.getByID(expense_id)
         if expense is None:
             return
         if expense.budget is not None:
-            budget_system.subtract_amount_used(expense.budget.id, expense.amount)
+            self.budget_system.subtract_amount_used(expense.budget.id, expense.amount)
         expense.delete_instance()
         self.get()
+        self.history_system.add(
+            action="Expense", action_type="Delete", description="You deleted your expense")
