@@ -3,7 +3,7 @@ from .helpers import Observable
 from .model import Expense, Budget, Account
 from .budget_system import BudgetSystem
 from peewee import fn
-
+from datetime import datetime, timedelta
 
 class ExpenseSystem(Observable):
     def __init__(self, owner, budget_system, history_system):
@@ -83,6 +83,25 @@ class ExpenseSystem(Observable):
                 #  .where(Expense.date.between(from_date, to_date))
                  .group_by(Expense.category))
         return {expense.category:expense.total for expense in rows}
+
+    def get_expenses_total(self):
+        results = {}
+        daily = datetime.today()
+        weekly = daily - timedelta(weeks=1)
+        monthly = daily - timedelta(weeks=4)
+        yearly = daily - timedelta(weeks=52)
+        print("Yearly: ", yearly)
+        print("Today: ", daily)
+        for expense in self._expenses:
+            date = datetime.strptime(expense.date, '%d/%m/%Y').date()
+            if date >= daily.date():
+                pass
+            if date >= weekly.date():
+                pass
+            if date >= monthly.date():
+                pass
+            if date >= yearly.date():
+                pass
 
     def delete(self, expense_id):
         expense = self.getByID(expense_id)

@@ -82,6 +82,7 @@ class ExpenseUI(Observer):
         self.dialog.close()
 
     async def update(self, expenses: List[Expense]):
+        self.system.get_expenses_total()
         self.clear_layout()
         for expense in expenses:
             expense = ExpenseItem(expense_id=expense.id, lay=self.lay, date=expense.date, category=expense.category,
