@@ -22,6 +22,8 @@ class ExpenseUI(Observer):
         self.ui.add_expense_button.clicked.connect(self.add_expense)
         self.parent = parent
         self.budgets = {}
+        self.ui.expense_lineEdit.textEdited.connect(self.filter_expenses)
+
 
     def add_expense(self):
         self.dialog = QDialog(self.parent)

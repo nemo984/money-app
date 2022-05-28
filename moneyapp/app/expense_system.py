@@ -40,6 +40,20 @@ class ExpenseSystem(Observable):
         expense = Expense.get_or_none(Expense.id == expense_id)
         return expense
 
+    def filter(self, query: str):
+        if query == "":
+            return self.get()
+
+        filtered_expenses = []
+        for expense in self._expenses:
+            currency = "฿{:,.2f}".format(expense.amount)
+            budget_name = expense.budget.name if expense.budget else "" 
+            s = f"{expense.date}{expense.category}{currency}{expense.category}{budget_name}"
+            if query in s:
+                filtered_expenses.append(expense)
+        self.notify(filtered_expenses)
+        return filtered_expenses
+
     def update(
         self,
         expense_id: int,
