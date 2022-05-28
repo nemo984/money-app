@@ -105,7 +105,6 @@ class BudgetSystem(Observable):
         budget = self.getByID(budget_id)
         if budget is None:
             return
+        self.history_system.add_delete("Budget", f"Deleted budget name '{budget.name}'")
         budget.delete_instance()
-        self.history_system.add(
-            action="Budget", action_type="Delete", description="You deleted a budget")
         self.get()
