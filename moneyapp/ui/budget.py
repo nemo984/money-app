@@ -45,9 +45,19 @@ class BudgetUI(Observer):
                 "Input in amount section is not a number")
             return
         
+        if(self.isNegative(self.pop.amount_entry.text()) == True):
+            self.pop.warning_label.setText(
+                "amount cannot be negative")
+            return
+        
         if(self.Stringlen(self.pop.name_entry.text()) == False):
             self.pop.warning_label.setText(
                 "Name should be between 0-24 character")
+            return
+
+        if(self.Maximun(self.pop.amount_entry.text()) == False):
+            self.pop.warning_label.setText(
+                "the Maximun of amount is 1 trillion")
             return
         
 
@@ -94,6 +104,19 @@ class BudgetUI(Observer):
             return False
         else:
             return True
+    
+    def isNegative(self,num):
+        if float(num) < 0:
+            return True
+        else:
+            return False
+    
+    def Maximun(self,num):
+        if float(num) > 1000000000000:
+            return False
+        else:
+            return True
+    
 
 
 budget_category_dropdown = {"Food": 0, "Entertainment": 1, "Transport": 2, "Education": 3,
