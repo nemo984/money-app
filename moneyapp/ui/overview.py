@@ -153,20 +153,17 @@ class DonutChartUI(Observer):
         self.currentText = text
         if self.currentText == "Expense":
             expenses_categories = self.expense_system.get_categories_total()
-            self.expenses_donut_chart(expenses_categories)
+            self.donut_chart(expenses_categories)
         else:
-            incomes_categories = self.income_system.get_incomes_total()
-            self.incomes_donut_chart(incomes_categories)
+            incomes_categories = self.income_system.get_categories_total()
+            print(incomes_categories)
+            self.donut_chart(incomes_categories)
 
-    def expenses_donut_chart(self, expenses):
+    def donut_chart(self, data):
         self.series.clear()
-        for category, value in expenses.items():
+        for category, value in data.items():
             self.series.append(category, value)
 
-    def incomes_donut_chart(self, incomes):
-        self.series.clear()
-        for category, value in incomes.items():
-            self.series.append(category, value)
  
 
 class ExpenseReport(QWidget):

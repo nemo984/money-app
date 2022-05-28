@@ -63,6 +63,15 @@ class IncomeSystem(Observable):
                     results[recc] += float(income.amount) * times[i] 
         return results
 
+    def get_categories_total(self):
+        categories = {"Full-time": 0, "Part-time": 0, "Passive": 0, "Other": 0}
+        recurrence_multiplier = {"daily": 30, "weekly": 4, "monthly": 1, "yearly": 30/365}
+        for income in self._incomes:
+            amount = 0 
+            if income.recurrence in recurrence_multiplier:
+                categories[income.category] += float(income.amount) * recurrence_multiplier[income.recurrence]
+        return categories
+
     def update(
         self,
         income_id: int,
