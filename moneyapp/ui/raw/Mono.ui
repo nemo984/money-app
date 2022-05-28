@@ -679,13 +679,13 @@ background-color:transparent;
                <property name="geometry">
                 <rect>
                  <x>20</x>
-                 <y>50</y>
+                 <y>40</y>
                  <width>411</width>
-                 <height>271</height>
+                 <height>151</height>
                 </rect>
                </property>
                <property name="styleSheet">
-                <string notr="true">background-color:transparent;</string>
+                <string notr="true">background-color:#fff;</string>
                </property>
                <property name="widgetResizable">
                 <bool>true</bool>
@@ -696,7 +696,7 @@ background-color:transparent;
                   <x>0</x>
                   <y>0</y>
                   <width>411</width>
-                  <height>271</height>
+                  <height>151</height>
                  </rect>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_43">

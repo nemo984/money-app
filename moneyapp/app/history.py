@@ -47,7 +47,7 @@ class HistorySystem(Observable):
         filtered_history = []
         for history in self._history:
             date = history.created_date.strftime("%m/%d/%Y, %H:%M:%S")
-            s = f"{date}{history.action}{history.action_type}{history.description}"
+            s = f"{date}{history.action}{history.action_type}{history.brief_description}"
             if query in s:
                 filtered_history.append(history)
         self.notify(filtered_history)

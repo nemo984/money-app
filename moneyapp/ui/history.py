@@ -84,14 +84,14 @@ class HistoryItem(QWidget):
         self.layout = lay
         self.date = date
         self.type_str = type_str
-        self.action = self.action
+        self.action = action
         self.brief_description = brief_description
         self.long_description = long_description
         self.wid = Ui_history_form()
         self.wid.setupUi(self)
         self.wid.date_label.setText(date.strftime("%m/%d/%Y, %H:%M:%S"))
         self.wid.type_label.setText(self.type_str)
-        self.wid.action_label.setText(self.action_type)
+        self.wid.action_label.setText(self.action)
         self.wid.description_label.setText(self.brief_description)
         self.wid.option_btn.clicked.connect(self.option)
 
@@ -129,7 +129,7 @@ class HistoryInfoPopUp(QDialog):
         self.parent = parent
         self.date = date
         self.type = type_str
-        self.action = self.action
+        self.action = action
         self.brief_description = brief_description
         self.long_description = long_description
         self.dialog = QDialog(self.parent)

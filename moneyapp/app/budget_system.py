@@ -26,7 +26,7 @@ class BudgetSystem(Observable):
         budget.save()
         self._budgets.append(budget)
         self.notify(self._budgets)
-        self.history_system.add_create("Budget", f"You created a budget '{name}' for {category} category", 
+        self.history_system.add_create("Budget", f"You created a budget '{name}'", 
         f"You created a budget name '{name}' for {category} category with an amount of {amount}, start date of {start_date} and end date of {end_date}")
         return budget
 
@@ -106,14 +106,13 @@ class BudgetSystem(Observable):
             budget.note = note
         budget.save()
         self.get()
-        self.history_system.add_update("Budget", f"You updated the '{budget.name}' budget", f"You updated the '{budget.name}' budget." + change_str)
+        self.history_system.add_update("Budget", f"You updated the '{budget.name}' budget", f"You updated the '{budget.name}' budget. " + change_str)
         return budget
 
     def delete(self, budget_id: int):
         budget = self.getByID(budget_id)
         if budget is None:
             return
-        self.history_system.add_delete("Budget", f"You deleted the '{budget.name}' budget", f"You deleted the '{budget.name}' budget that have \
-        {budget.category} category with an amount of {budget.amount}")
+        self.history_system.add_delete("Budget", f"You deleted the '{budget.name}' budget", f"You deleted the '{budget.name}' budget that have {budget.category} category with an amount of {budget.amount}")
         budget.delete_instance()
         self.get()
