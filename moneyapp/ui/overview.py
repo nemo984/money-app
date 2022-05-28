@@ -152,11 +152,12 @@ class DonutChartUI(Observer):
     def change_chart(self, text):
         self.currentText = text
         if self.currentText == "Expense":
+            self.chart.setTitle("Total expenses amount on each catagories")
             expenses_categories = self.expense_system.get_categories_total()
             self.donut_chart(expenses_categories)
         else:
+            self.chart.setTitle("Monthly incomes amount on each categories")
             incomes_categories = self.income_system.get_categories_total()
-            print(incomes_categories)
             self.donut_chart(incomes_categories)
 
     def donut_chart(self, data):
