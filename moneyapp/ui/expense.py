@@ -36,7 +36,8 @@ class ExpenseUI(Observer):
         self.chart.setAnimationOptions(QChart.SeriesAnimations)
         self.chart.legend().setVisible(True)
         self.chart.legend().setAlignment(Qt.AlignRight)
- 
+        self.chart.setTitle("Total expenses amount distribution on each catagories ")
+
         self.chartview = QChartView(self.chart)
         self.chartview.setRenderHint(QPainter.Antialiasing)
         self.ui.pie_widdget.setContentsMargins(0, 0, 0, 0)
@@ -45,6 +46,7 @@ class ExpenseUI(Observer):
         lay.addWidget(self.chartview)
 
     def change_graph(self, expenses_catagories):
+        print(expenses_catagories)
         self.series.clear()
         for category, amount in expenses_catagories.items():
             if amount != 0: 
@@ -121,7 +123,7 @@ class ExpenseUI(Observer):
         
         data = self.system.get_expenses_total()
         self.change_total_expenses(data)
-        self.change_graph(data)
+        self.change_graph(self.system.get_categories_total())
 
     def change_total_expenses(self, data):
         self.ui.expense_daily_value.setText("฿{:,.2f}".format(data["daily"]))

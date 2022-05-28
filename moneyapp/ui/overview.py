@@ -20,6 +20,7 @@ class ReminderUI(Observer):
         self.reminders = []
 
     async def update(self, reminders: List[Reminder]):
+        print(reminders)
         self.clear_layout()
         for reminder in reminders:
             reminder = ReminderReport(reminder_id=reminder.id, lay=self.lay,reminder_system=self.reminder_system, date=reminder.created_date, 
@@ -177,11 +178,11 @@ class DonutChartUI(Observer):
     def change_chart(self, text):
         self.currentText = text
         if self.currentText == "Expense":
-            self.chart.setTitle("Total expenses amount on each catagories")
+            self.chart.setTitle("Total expenses amount distribution on each catagories ")
             expenses_categories = self.expense_system.get_categories_total()
             self.donut_chart(expenses_categories)
         else:
-            self.chart.setTitle("Monthly incomes amount on each categories")
+            self.chart.setTitle("Monthly incomes amount distribution on each categories")
             incomes_categories = self.income_system.get_categories_total()
             self.donut_chart(incomes_categories)
 

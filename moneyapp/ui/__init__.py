@@ -119,7 +119,7 @@ class MoneyAppUI(QMainWindow):
 
     def switch_tab(self):
         tabs = {"Overview": 0, "Budget": 1,
-                "Income": 2, "Expense": 3, "Analysis": 4}
+                "Income": 2, "Expense": 3, "History": 4}
         self.prev_tab.setStyleSheet("background-color: transparent")
         text = self.sender().text()
         if text in tabs:

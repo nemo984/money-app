@@ -133,7 +133,7 @@ class HistoryInfoPopUp(QDialog):
         self.brief_description = brief_description
         self.long_description = long_description
         self.dialog = QDialog(self.parent)
-        self.dialog.setWindowTitle("History info")
+        self.dialog.setWindowTitle("History Info")
         self.popup = Ui_History_Info_Form()
         self.popup.setupUi(self.dialog)
         self.popup.date_label.setText(str(self.date))

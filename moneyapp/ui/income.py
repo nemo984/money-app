@@ -39,7 +39,8 @@ class IncomeUI(Observer):
         self.chart.setAnimationOptions(QChart.SeriesAnimations)
         self.chart.legend().setVisible(True)
         self.chart.legend().setAlignment(Qt.AlignRight)
- 
+        self.chart.setTitle("Monthly incomes amount distribution on each categories")
+
         self.chartview = QChartView(self.chart)
         self.chartview.setRenderHint(QPainter.Antialiasing)
         self.ui.pie_widdget.setContentsMargins(0, 0, 0, 0)
