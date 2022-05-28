@@ -9,7 +9,7 @@ class BaseModel(Model):
         database = database
 
 class Account(BaseModel):
-    name = CharField(unique=True)
+    name = CharField()
     password = CharField(max_length=30)
     profile_image = BlobField(null=True)
     created_date = DateTimeField(default=datetime.now)

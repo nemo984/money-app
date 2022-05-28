@@ -95,10 +95,10 @@ class ExpenseUI(Observer):
         self.change_total_expenses(data)
 
     def change_total_expenses(self, data):
-        self.ui.expense_daily_value.setText("฿{:,.2f}".format(float(data["daily"])))
-        self.ui.expense_weekly_value.setText("฿{:,.2f}".format(float(data["weekly"])))
-        self.ui.expense_monthly_value.setText("฿{:,.2f}".format(float(data["monthly"])))
-        self.ui.expense_yearly_value.setText("฿{:,.2f}".format(float(data["yearly"])))
+        self.ui.expense_daily_value.setText("฿{:,.2f}".format(data["daily"]))
+        self.ui.expense_weekly_value.setText("฿{:,.2f}".format(data["weekly"]))
+        self.ui.expense_monthly_value.setText("฿{:,.2f}".format(data["monthly"]))
+        self.ui.expense_yearly_value.setText("฿{:,.2f}".format(data["yearly"]))
 
     def clear_layout(self):
         for expense in self.expenses:
