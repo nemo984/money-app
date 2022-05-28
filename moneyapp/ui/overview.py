@@ -12,9 +12,6 @@ from PySide6.QtGui import *
 from PySide6.QtCore import *
 from PySide6.QtCharts import *
 
-
-
-
 class ReminderUI(Observer):
     def __init__(self, ui, r: ReminderSystem):
         self.ui = ui
@@ -23,8 +20,6 @@ class ReminderUI(Observer):
         self.reminders = []
 
     async def update(self, reminders: List[Reminder]):
-        if not is_reminders(reminders):
-            return
         self.clear_layout()
         for reminder in reminders:
             reminder = ReminderReport(reminder_id=reminder.id, lay=self.lay,reminder_system=self.reminder_system, date=reminder.created_date, 
@@ -36,15 +31,6 @@ class ReminderUI(Observer):
         for reminder in self.reminders:
             reminder.clear()
         self.reminders = []
-
-def is_reminders(data):
-    if len(data) > 0:
-        try:
-            a = data[0].heading
-            return True
-        except AttributeError:
-            return False
-
 
 class ReminderReport(QWidget):
     def __init__(self, reminder_id, lay: QVBoxLayout, reminder_system, date, heading, description, budget):
@@ -89,6 +75,9 @@ class ReminderReport(QWidget):
     def delete(self):
         self.reminder_system.delete(self.id)
         self.clear()
+    
+    def set_budget(self, budget):
+        self.budget = budget
 
 class ReminderInfoPopUp(QDialog):
     def __init__(self, date, heading, description, budget, parent=None):
