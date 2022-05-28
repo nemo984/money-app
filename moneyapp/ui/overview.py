@@ -71,12 +71,20 @@ class ReminderReport(QWidget):
         menu.exec(QCursor.pos())
 
     def show_info(self):
-        pass 
+        popup = ReminderInfoPopUp(self.date, self.heading, self.description, self.budget) 
     
     def delete(self):
         self.reminder_system.delete(self.id)
         self.clear()
 
+class ReminderInfoPopUp(QDialog):
+    def __init__(self, date, heading, description, budget, parent=None):
+        super(ReminderInfoPopUp, self).__init__(parent)
+        self.parent = parent
+        self.date = date
+        self.heading = heading
+        self.description = description
+        self.budget = budget
 
 class ExpenseReportUI(Observer):
     def __init__(self, ui, s: ExpenseSystem):
