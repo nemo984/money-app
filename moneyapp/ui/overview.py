@@ -4,6 +4,7 @@ from ..app.helpers import Observer
 from ..app.model import *
 from .uipy.overview_wid import Ui_Form
 from .uipy.notification_wid import Ui_Form as Ui_Reminder
+from .uipy.reminder_info_popup import Ui_Form as Ui_Reminder_Info_Form
 from ..app.expense_system import ExpenseSystem
 from ..app.reminder import ReminderSystem
 from PySide6.QtWidgets import *
@@ -59,15 +60,23 @@ class ReminderReport(QWidget):
 
     def option(self):
         menu = QMenu()
+        self.info = QAction('Info', self)
+        self.info.setData('Info')
+        self.info.triggered.connect(self.show_info)
         self.delete_action = QAction('Delete', self)
         self.delete_action.setData('Delete')
         self.delete_action.triggered.connect(self.delete)
+        menu.addAction(self.info)
         menu.addAction(self.delete_action)
         menu.exec(QCursor.pos())
 
+    def show_info(self):
+        pass 
+    
     def delete(self):
         self.reminder_system.delete(self.id)
         self.clear()
+
 
 class ExpenseReportUI(Observer):
     def __init__(self, ui, s: ExpenseSystem):

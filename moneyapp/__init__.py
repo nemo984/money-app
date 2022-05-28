@@ -102,6 +102,7 @@ class AccountWindow(QMainWindow):
             return
         account = self.ui.account_listWidget.itemWidget(items[0])
         self.login_pop = LoginPopUp(account, self.ui.staySignIn_checkBox.isChecked(), self)
+        self.login_pop.setWindowTitle("Enter Password")
         self.login_pop.show()
 
     def upload_pic(self):
@@ -125,7 +126,6 @@ class AccountWindow(QMainWindow):
             return
 
         createdAccount = self.system.add(name=name, password=password, profile_image_path=self.imageFilePath)
-        #use account details from the createdAccount
         accountItem = AccountItem(id=createdAccount.id, name=name, created_date=createdAccount.created_date, last_login=createdAccount.created_date, 
                                   hash_pwd=createdAccount.password, imageFilePath=self.imageFilePath)
         self.add_account(accountItem)
