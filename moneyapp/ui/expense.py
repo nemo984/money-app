@@ -7,7 +7,7 @@ from .uipy.expense_wid import Ui_expense_form
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from PySide6.QtCore import *
-
+from PySide6.QtCharts import *
 
 class ExpenseUI(Observer):
 
@@ -24,6 +24,34 @@ class ExpenseUI(Observer):
         self.budgets = {}
         self.ui.expense_lineEdit.textEdited.connect(self.filter_expenses)
 
+        self.currentText = "Expense"
+        self.series = QPieSeries()
+        self.series.setHoleSize(0.35)
+        self.series.setLabelsVisible(True)
+        self.series.setLabelsPosition(QPieSlice.LabelInsideHorizontal)
+
+        self.chart = QChart()
+        self.chart.legend().hide()
+        self.chart.addSeries(self.series)
+        self.chart.setAnimationOptions(QChart.SeriesAnimations)
+        self.chart.legend().setVisible(True)
+        self.chart.legend().setAlignment(Qt.AlignRight)
+ 
+        self.chartview = QChartView(self.chart)
+        self.chartview.setRenderHint(QPainter.Antialiasing)
+        self.ui.pie_widdget.setContentsMargins(0, 0, 0, 0)
+        lay = QHBoxLayout(self.ui.expense_graph_container)
+        lay.setContentsMargins(0, 0, 0, 0)
+        lay.addWidget(self.chartview)
+
+    def change_graph(self, expenses_catagories):
+        self.series.clear()
+        for category, amount in expenses_catagories.items():
+            if amount != 0: 
+                self.series.append(category, amount)
+
+        for slice in self.series.slices():
+            slice.setLabel(f"{slice.label()} {100 * slice.percentage():.2f}%")
 
     def add_expense(self):
         self.dialog = QDialog(self.parent)
@@ -75,7 +103,7 @@ class ExpenseUI(Observer):
             category=category, amount=amount, date=date, note=note, budget=budget
         )
         ex = ExpenseItem(expense.id, self.lay,
-                         date, category, amount, note, index_cat, self.system, budget)
+                         date, category, amount, note, index_cat, self.system, budget, budget_system=self.budget_system)
 
 
     def close_popup(self):
@@ -87,12 +115,13 @@ class ExpenseUI(Observer):
             expense = ExpenseItem(expense_id=expense.id, lay=self.lay, date=expense.date, category=expense.category,
                                   amount=expense.amount, note=expense.note, index_cat=expense_category_dropdown[
                                       expense.category],
-                                  expense_system=self.system, budget=expense.budget)
+                                  expense_system=self.system, budget=expense.budget, budget_system=self.budget_system)
             expense.add()
             self.expenses.append(expense)
         
         data = self.system.get_expenses_total()
         self.change_total_expenses(data)
+        self.change_graph(data)
 
     def change_total_expenses(self, data):
         self.ui.expense_daily_value.setText("฿{:,.2f}".format(data["daily"]))
@@ -134,20 +163,22 @@ expense_category_dropdown = {"Food": 0, "Entertainment": 1, "Transport": 2, "Edu
 
 
 class ExpenseItem(QWidget):
-    def __init__(self, expense_id, lay: QVBoxLayout, date, category, amount, note, index_cat, expense_system, budget):
+    def __init__(self, expense_id, lay: QVBoxLayout, date, category, amount, note, index_cat, expense_system, budget, budget_system):
         super(ExpenseItem, self).__init__()
         self.id = expense_id
         self.layout = lay
         self.wid = Ui_expense_form()
         self.pop = Ui_Dialog()
+        self.budget_system = budget_system
         self.index_cat = index_cat
         self.amount = amount
         self.note = note
         self.date = date
         self.expense_system = expense_system
         self.budget = budget
-        self.budget_category = budget
-
+        self.category = category
+        self.budget_category = budget.name if budget is not None else None
+        
         self.wid.setupUi(self)
         self.wid.date_label.setText(date)
         self.wid.category_label.setText(category)
@@ -177,14 +208,24 @@ class ExpenseItem(QWidget):
         self.dialog.setWindowTitle("Edit expense")
         self.pop.amount_entry.setText(str(self.amount))
         self.pop.category_comboBox.setCurrentIndex(self.index_cat)
-        if self.budget: self.pop.budget_comboBox.setCurrentText(self.budget.name)
         self.pop.note_entry.setPlainText(self.note)
         date = QDate.fromString(self.date, "dd/M/yyyy")
         self.pop.date_entry.setDate(date)
         self.date = self.pop.date_entry.text()
         self.pop.confirm_btn.clicked.connect(self.confirm_edit)
         self.pop.cancel_btn.clicked.connect(self.cancel)
+        self.pop.category_comboBox.currentTextChanged.connect(
+            self.category_change)
+        self.category_change(self.category)
+        if self.budget: self.pop.budget_comboBox.setCurrentText(self.budget.name)
         self.dialog.show()
+
+    def category_change(self, value):
+        self.pop.budget_comboBox.clear()
+        budgets = self.budget_system.getByCategory(value)
+        self.budgets = {f"{b.start_date} {b.name}": b for b in budgets}
+        self.pop.budget_comboBox.addItem("None")
+        self.pop.budget_comboBox.addItems(self.budgets.keys())
 
     def confirm_edit(self):
         if(self.isfloat(self.pop.amount_entry.text()) == False):

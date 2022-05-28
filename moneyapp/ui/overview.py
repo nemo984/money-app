@@ -23,7 +23,7 @@ class ReminderUI(Observer):
         self.clear_layout()
         for reminder in reminders:
             reminder = ReminderReport(reminder_id=reminder.id, lay=self.lay,reminder_system=self.reminder_system, date=reminder.created_date, 
-                                    heading=reminder.heading, description=reminder.message)
+                                    heading=reminder.heading, description=reminder.message, budget=reminder.budget)
             reminder.add()
             self.reminders.append(reminder)
 
@@ -33,13 +33,14 @@ class ReminderUI(Observer):
         self.reminders = []
 
 class ReminderReport(QWidget):
-    def __init__(self, reminder_id, lay: QVBoxLayout, reminder_system, date, heading, description):
+    def __init__(self, reminder_id, lay: QVBoxLayout, reminder_system, date, heading, description, budget):
         super(ReminderReport, self).__init__()
         self.id = reminder_id
         self.layout = lay
         self.date = date
         self.heading = heading
         self.description = description
+        self.budget = budget
         self.wid = Ui_Reminder()
         self.reminder_system = reminder_system
         self.wid.setupUi(self)
@@ -47,6 +48,7 @@ class ReminderReport(QWidget):
         self.wid.action_label.setText(heading)
         self.wid.description_label.setText(description)
         self.wid.option_btn.clicked.connect(self.option)
+        print(self.budget.name, self.budget.category, self.budget.amount, self.budget.amount_used, self.budget.note)
 
     def clear(self):
         self.layout.removeWidget(self)
@@ -66,19 +68,6 @@ class ReminderReport(QWidget):
     def delete(self):
         self.reminder_system.delete(self.id)
         self.clear()
-
-class IncomeReportUI(Observer):
-    async def update(self, incomes: List[Income]):
-        print("Incomes updated: Updating incomes' report")
-        for income in incomes:
-            print(f"{income.created_date} {income.owner} {income.category} {income.amount} {income.frequency_day} {income.note}")
-        print("================")
-
-
-class BudgetReportUI(Observer):
-    async def update(self, budgets: List[Budget]):
-        pass
-
 
 class ExpenseReportUI(Observer):
     def __init__(self, ui, s: ExpenseSystem):
@@ -148,6 +137,7 @@ class DonutChartUI(Observer):
         lay = QHBoxLayout(self.ui.pie_widdget)
         lay.setContentsMargins(0, 0, 0, 0)
         lay.addWidget(self.chartview)
+        
     async def update(self, _):
         self.change_chart(self.currentText)
 
@@ -163,16 +153,12 @@ class DonutChartUI(Observer):
             self.donut_chart(incomes_categories)
 
     def donut_chart(self, data):
-        print(data)
         self.series.clear()
         for category, value in data.items():
             if value != 0: self.series.append(category, value)
 
         for slice in self.series.slices():
             slice.setLabel(f"{slice.label()} {100 * slice.percentage():.2f}%")
- 
-            
-
  
 
 class ExpenseReport(QWidget):

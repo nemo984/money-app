@@ -8,6 +8,7 @@ from .inputCheck import *
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from PySide6.QtCore import *
+from PySide6.QtCharts import *
 
 income_category_dropdown = {"Full-time": 0,
                             "Part-time": 1, "Passive": 2, "Other": 3}
@@ -26,7 +27,34 @@ class IncomeUI(Observer):
         self.parent = parent
         self.incomes = []
         self.incomes_layout = self.ui.verticalLayout_40
-        self.ui.income_lineEdit.textEdited.connect(self.filter_incomes)
+        self.ui.income_lineEdit.textEdited.connect(self.filter_incomes)        
+        self.series = QPieSeries()
+        self.series.setHoleSize(0.35)
+        self.series.setLabelsVisible(True)
+        self.series.setLabelsPosition(QPieSlice.LabelInsideHorizontal)
+
+        self.chart = QChart()
+        self.chart.legend().hide()
+        self.chart.addSeries(self.series)
+        self.chart.setAnimationOptions(QChart.SeriesAnimations)
+        self.chart.legend().setVisible(True)
+        self.chart.legend().setAlignment(Qt.AlignRight)
+ 
+        self.chartview = QChartView(self.chart)
+        self.chartview.setRenderHint(QPainter.Antialiasing)
+        self.ui.pie_widdget.setContentsMargins(0, 0, 0, 0)
+        lay = QHBoxLayout(self.ui.income_graph_container)
+        lay.setContentsMargins(0, 0, 0, 0)
+        lay.addWidget(self.chartview)
+
+    def change_graph(self, incomes_catagories):
+        self.series.clear()
+        for category, amount in incomes_catagories.items():
+            if amount != 0: 
+                self.series.append(category, amount)
+
+        for slice in self.series.slices():
+            slice.setLabel(f"{slice.label()} {100 * slice.percentage():.2f}%")
 
     def add_income(self):
         self.dialog = QDialog(self.parent)
@@ -142,6 +170,7 @@ class IncomeUI(Observer):
 
         data = self.system.get_incomes_total()
         self.change_total_incomes(data)
+        self.change_graph(self.system.get_categories_total())
 
     def change_total_incomes(self, data):
         self.ui.income_daily_value.setText("฿{:,.2f}".format(data["daily"]))

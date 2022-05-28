@@ -65,6 +65,7 @@ class Income(BaseModel):
 
 class Reminder(BaseModel):
     owner = ForeignKeyField(Account, backref='reminders')
+    budget = ForeignKeyField(Budget, backref='reminders')
     heading = CharField(max_length=50)
     message = CharField()
     read = BooleanField(default=False)

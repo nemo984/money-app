@@ -15,10 +15,11 @@ class ReminderSystem(Observable):
         self,
         heading: str,
         message: str,
+        budget,
     ) -> Reminder:
         if self.exists(heading, message):
             return
-        reminder = Reminder(owner=self.owner, heading=heading, message=message)
+        reminder = Reminder(owner=self.owner, heading=heading, message=message, budget=budget)
         reminder.save()
         self._reminders.append(reminder)
         self.notify(self._reminders)

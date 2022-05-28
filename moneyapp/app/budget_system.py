@@ -54,11 +54,11 @@ class BudgetSystem(Observable):
         budget.save()
         self.get()
         print("Threshold2: ", self.owner.budget_reminder_threshold2)
-        if budget.progress_value > self.owner.budget_reminder_threshold1:
-            self.reminder_system.add(heading=f"Budget '{budget.name}'", message=f"This budget hits {self.owner.budget_reminder_threshold1}%")
-        elif budget.progress_value > self.owner.budget_reminder_threshold2:
+        if budget.progress_value > self.owner.budget_reminder_threshold2:
+            self.reminder_system.add(heading=f"'{budget.name}'", message=f"This budget hits {self.owner.budget_reminder_threshold2}%", budget=budget)
+        elif budget.progress_value > self.owner.budget_reminder_threshold1:
             print('Trtying to add')
-            self.reminder_system.add(heading=f"Budget '{budget.name}'", message=f"This budget hits {self.owner.budget_reminder_threshold2}%")
+            self.reminder_system.add(heading=f"'{budget.name}'", message=f"This budget hits {self.owner.budget_reminder_threshold1}%", budget=budget)
         return budget
     
     def subtract_amount_used(self, budget_id, amount) -> Budget:

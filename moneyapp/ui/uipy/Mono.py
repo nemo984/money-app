@@ -632,9 +632,9 @@ class Ui_MainWindow(object):
         self.frame_16.setObjectName(u"frame_16")
         self.frame_16.setFrameShape(QFrame.StyledPanel)
         self.frame_16.setFrameShadow(QFrame.Raised)
-        self.income_pie = QWidget(self.frame_16)
-        self.income_pie.setObjectName(u"income_pie")
-        self.income_pie.setGeometry(QRect(10, 9, 441, 281))
+        self.income_graph_container = QWidget(self.frame_16)
+        self.income_graph_container.setObjectName(u"income_graph_container")
+        self.income_graph_container.setGeometry(QRect(10, 9, 441, 281))
 
         self.horizontalLayout_9.addWidget(self.frame_16)
 
@@ -900,9 +900,9 @@ class Ui_MainWindow(object):
         self.frame_10.setObjectName(u"frame_10")
         self.frame_10.setFrameShape(QFrame.StyledPanel)
         self.frame_10.setFrameShadow(QFrame.Raised)
-        self.expense_line = QWidget(self.frame_10)
-        self.expense_line.setObjectName(u"expense_line")
-        self.expense_line.setGeometry(QRect(10, 10, 441, 281))
+        self.expense_graph_container = QWidget(self.frame_10)
+        self.expense_graph_container.setObjectName(u"expense_graph_container")
+        self.expense_graph_container.setGeometry(QRect(10, 10, 441, 281))
 
         self.horizontalLayout_8.addWidget(self.frame_10)
 

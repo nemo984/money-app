@@ -1175,7 +1175,7 @@ background-color:#A7F0AE;
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
               </property>
-              <widget class="QWidget" name="income_pie" native="true">
+              <widget class="QWidget" name="income_graph_container" native="true">
                <property name="geometry">
                 <rect>
                  <x>10</x>
@@ -1659,7 +1659,7 @@ background-color:#A7F0AE;
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
               </property>
-              <widget class="QWidget" name="expense_line" native="true">
+              <widget class="QWidget" name="expense_graph_container" native="true">
                <property name="geometry">
                 <rect>
                  <x>10</x>
