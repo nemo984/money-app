@@ -1,6 +1,7 @@
 from typing import Optional, List
 from .helpers import Observable
-from .model import Income, Account 
+from .model import Income, Account
+from datetime import datetime, timedelta
 
 class IncomeSystem(Observable):
     def __init__(self, owner, history_system):
@@ -32,7 +33,7 @@ class IncomeSystem(Observable):
         self._incomes = list(self.owner.incomes_ordered)
         self.notify(self._incomes)
         return self._incomes
-        
+
     def getByID(self, income_id) -> Income:
         income = Income.get_or_none(Income.id == income_id)
         return income
@@ -49,6 +50,14 @@ class IncomeSystem(Observable):
                 filtered_incomes.append(income)
         self.notify(filtered_incomes)
         return filtered_incomes
+
+    def get_incomes_total(self) -> dict:
+        results = {"daily": 0, "weekly": 0, "monthly": 0, "yearly": 0}
+        for income in self._incomes:
+            recurrence = income.recurrence
+            if recurrence in results:
+                results[recurrence] += income.amount
+        return results
 
     def update(
         self,

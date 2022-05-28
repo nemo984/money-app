@@ -158,6 +158,15 @@ class IncomeUI(Observer):
             income.add()
             self.incomes.append(income)
 
+        data = self.system.get_incomes_total()
+        self.change_total_incomes(data)
+
+    def change_total_incomes(self, data):
+        self.ui.income_daily_value.setText("฿{:,.2f}".format(data["daily"]))
+        self.ui.income_weekly_value.setText("฿{:,.2f}".format(data["weekly"]))
+        self.ui.income_monthly_value.setText("฿{:,.2f}".format(data["monthly"]))
+        self.ui.income_yearly_value.setText("฿{:,.2f}".format(data["yearly"]))
+
     def filter_incomes(self, text):
         self.system.filter(text)
 
