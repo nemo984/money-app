@@ -229,3 +229,26 @@ class ExpenseReport(QWidget):
     def add(self):
         self.layout.insertWidget(-1, self)
 
+class BudgetReportUI(Observer):
+    def __init__(self, ui):
+        self.ui = ui
+        self.ui.num_budgets_total_label.setText("0")
+        self.ui.num_budgets_catagories_label.setText("0/10")
+        self.ui.budgets_amount_total_label.setText("฿{:,.2f}".format(0))
+        self.ui.budgets_used_total_label.setText("฿{:,.2f}".format(0))
+    
+    async def update(self, budgets):
+        total_budgets_num = 0
+        categories = set()
+        total_budgets_categories = 0
+        total_budgets_amount = 0
+        total_budgets_amount_used = 0
+        for budget in budgets:
+            total_budgets_num += 1
+            total_budgets_amount += float(budget.amount)
+            total_budgets_amount_used += float(budget.amount_used)
+            categories.add(budget.category)
+        self.ui.num_budgets_total_label.setText(str(total_budgets_num))
+        self.ui.num_budgets_catagories_label.setText(f"{len(categories)}/10")
+        self.ui.budgets_amount_total_label.setText("฿{:,.2f}".format(total_budgets_amount))
+        self.ui.budgets_used_total_label.setText("฿{:,.2f}".format(total_budgets_amount_used))

@@ -14,7 +14,7 @@ from .budget import BudgetUI
 from .income import IncomeUI
 from .expense import ExpenseUI
 from .history import HistoryUI
-from .overview import ExpenseReportUI, ReminderUI, DonutChartUI
+from .overview import ExpenseReportUI, ReminderUI, DonutChartUI, BudgetReportUI
 from .uipy.Mono import Ui_MainWindow
 from PySide6.QtCore import *
 import os
@@ -54,8 +54,10 @@ class MoneyAppUI(QMainWindow):
         expense_report_ui = ExpenseReportUI(self.ui, expense_system)
         reminder_ui = ReminderUI(self.ui, reminder_system)
         overview_donut_chart = DonutChartUI(self.ui, expense_system, income_system)
+        overview_budget = BudgetReportUI(self.ui)
 
         budget_system.add_observer(budget_ui)
+        budget_system.add_observer(overview_budget)
         income_system.add_observer(income_ui)
         income_system.add_observer(overview_donut_chart)
         expense_system.add_observer(expense_ui)
@@ -108,7 +110,6 @@ class MoneyAppUI(QMainWindow):
     def logout(self):
         save_staySignIn()
         self.close()
-        self.parent.show()
 
     def setting(self):
         self.prev_tab.setStyleSheet("background-color: transparent")

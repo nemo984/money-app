@@ -880,31 +880,137 @@ background-color:transparent;
                    </item>
                   </layout>
                  </widget>
-                 <widget class="QScrollArea" name="scrollArea_8">
+                 <widget class="QLabel" name="label_15">
                   <property name="geometry">
                    <rect>
-                    <x>10</x>
+                    <x>20</x>
                     <y>50</y>
-                    <width>391</width>
-                    <height>101</height>
+                    <width>191</width>
+                    <height>16</height>
                    </rect>
                   </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color:transparent;</string>
+                  <property name="font">
+                   <font>
+                    <pointsize>9</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
                   </property>
-                  <property name="widgetResizable">
-                   <bool>true</bool>
+                  <property name="text">
+                   <string>Total Number of Budgets:</string>
                   </property>
-                  <widget class="QWidget" name="scrollAreaWidgetContents_8">
-                   <property name="geometry">
-                    <rect>
-                     <x>0</x>
-                     <y>0</y>
-                     <width>391</width>
-                     <height>101</height>
-                    </rect>
-                   </property>
-                  </widget>
+                 </widget>
+                 <widget class="QLabel" name="num_budgets_total_label">
+                  <property name="geometry">
+                   <rect>
+                    <x>220</x>
+                    <y>50</y>
+                    <width>161</width>
+                    <height>16</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>TextLabel</string>
+                  </property>
+                 </widget>
+                 <widget class="QLabel" name="budgets_amount_total_label">
+                  <property name="geometry">
+                   <rect>
+                    <x>200</x>
+                    <y>110</y>
+                    <width>201</width>
+                    <height>16</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>TextLabel</string>
+                  </property>
+                 </widget>
+                 <widget class="QLabel" name="label_21">
+                  <property name="geometry">
+                   <rect>
+                    <x>20</x>
+                    <y>140</y>
+                    <width>151</width>
+                    <height>21</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>9</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Total Budgets Used:</string>
+                  </property>
+                 </widget>
+                 <widget class="QLabel" name="label_28">
+                  <property name="geometry">
+                   <rect>
+                    <x>20</x>
+                    <y>110</y>
+                    <width>171</width>
+                    <height>16</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>9</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Total Budgets Amount:</string>
+                  </property>
+                 </widget>
+                 <widget class="QLabel" name="num_budgets_catagories_label">
+                  <property name="geometry">
+                   <rect>
+                    <x>220</x>
+                    <y>80</y>
+                    <width>101</width>
+                    <height>21</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>TextLabel</string>
+                  </property>
+                 </widget>
+                 <widget class="QLabel" name="label_30">
+                  <property name="geometry">
+                   <rect>
+                    <x>20</x>
+                    <y>80</y>
+                    <width>201</width>
+                    <height>18</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>9</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Total Budgets Catagories:</string>
+                  </property>
+                 </widget>
+                 <widget class="QLabel" name="budgets_used_total_label">
+                  <property name="geometry">
+                   <rect>
+                    <x>200</x>
+                    <y>140</y>
+                    <width>181</width>
+                    <height>21</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>TextLabel</string>
+                  </property>
                  </widget>
                 </widget>
                </item>

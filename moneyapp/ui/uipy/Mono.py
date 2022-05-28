@@ -444,15 +444,37 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_4.addWidget(self.label_5)
 
-        self.scrollArea_8 = QScrollArea(self.Budget_widdget)
-        self.scrollArea_8.setObjectName(u"scrollArea_8")
-        self.scrollArea_8.setGeometry(QRect(10, 50, 391, 101))
-        self.scrollArea_8.setStyleSheet(u"background-color:transparent;")
-        self.scrollArea_8.setWidgetResizable(True)
-        self.scrollAreaWidgetContents_8 = QWidget()
-        self.scrollAreaWidgetContents_8.setObjectName(u"scrollAreaWidgetContents_8")
-        self.scrollAreaWidgetContents_8.setGeometry(QRect(0, 0, 391, 101))
-        self.scrollArea_8.setWidget(self.scrollAreaWidgetContents_8)
+        self.label_15 = QLabel(self.Budget_widdget)
+        self.label_15.setObjectName(u"label_15")
+        self.label_15.setGeometry(QRect(20, 50, 191, 16))
+        font4 = QFont()
+        font4.setPointSize(9)
+        font4.setBold(True)
+        self.label_15.setFont(font4)
+        self.num_budgets_total_label = QLabel(self.Budget_widdget)
+        self.num_budgets_total_label.setObjectName(u"num_budgets_total_label")
+        self.num_budgets_total_label.setGeometry(QRect(220, 50, 161, 16))
+        self.budgets_amount_total_label = QLabel(self.Budget_widdget)
+        self.budgets_amount_total_label.setObjectName(u"budgets_amount_total_label")
+        self.budgets_amount_total_label.setGeometry(QRect(200, 110, 201, 16))
+        self.label_21 = QLabel(self.Budget_widdget)
+        self.label_21.setObjectName(u"label_21")
+        self.label_21.setGeometry(QRect(20, 140, 151, 21))
+        self.label_21.setFont(font4)
+        self.label_28 = QLabel(self.Budget_widdget)
+        self.label_28.setObjectName(u"label_28")
+        self.label_28.setGeometry(QRect(20, 110, 171, 16))
+        self.label_28.setFont(font4)
+        self.num_budgets_catagories_label = QLabel(self.Budget_widdget)
+        self.num_budgets_catagories_label.setObjectName(u"num_budgets_catagories_label")
+        self.num_budgets_catagories_label.setGeometry(QRect(220, 80, 101, 21))
+        self.label_30 = QLabel(self.Budget_widdget)
+        self.label_30.setObjectName(u"label_30")
+        self.label_30.setGeometry(QRect(20, 80, 201, 18))
+        self.label_30.setFont(font4)
+        self.budgets_used_total_label = QLabel(self.Budget_widdget)
+        self.budgets_used_total_label.setObjectName(u"budgets_used_total_label")
+        self.budgets_used_total_label.setGeometry(QRect(200, 140, 181, 21))
 
         self.verticalLayout_2.addWidget(self.Budget_widdget)
 
@@ -559,9 +581,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_32.setObjectName(u"verticalLayout_32")
         self.income_yearly = QLabel(self.income_yearly_frame)
         self.income_yearly.setObjectName(u"income_yearly")
-        font4 = QFont()
-        font4.setBold(True)
-        self.income_yearly.setFont(font4)
+        font5 = QFont()
+        font5.setBold(True)
+        self.income_yearly.setFont(font5)
 
         self.verticalLayout_32.addWidget(self.income_yearly)
 
@@ -582,7 +604,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_33.setObjectName(u"verticalLayout_33")
         self.income_monthly = QLabel(self.income_monthly_frame)
         self.income_monthly.setObjectName(u"income_monthly")
-        self.income_monthly.setFont(font4)
+        self.income_monthly.setFont(font5)
 
         self.verticalLayout_33.addWidget(self.income_monthly)
 
@@ -602,7 +624,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_34.setObjectName(u"verticalLayout_34")
         self.income_daily = QLabel(self.income_daily_frame)
         self.income_daily.setObjectName(u"income_daily")
-        self.income_daily.setFont(font4)
+        self.income_daily.setFont(font5)
 
         self.verticalLayout_34.addWidget(self.income_daily)
 
@@ -622,7 +644,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_35.setObjectName(u"verticalLayout_35")
         self.income_weekly = QLabel(self.income_weekly_frame)
         self.income_weekly.setObjectName(u"income_weekly")
-        self.income_weekly.setFont(font4)
+        self.income_weekly.setFont(font5)
 
         self.verticalLayout_35.addWidget(self.income_weekly)
 
@@ -669,7 +691,7 @@ class Ui_MainWindow(object):
 
         self.income_list_header = QLabel(self.frame_21)
         self.income_list_header.setObjectName(u"income_list_header")
-        self.income_list_header.setFont(font4)
+        self.income_list_header.setFont(font5)
 
         self.verticalLayout_37.addWidget(self.income_list_header)
 
@@ -767,7 +789,7 @@ class Ui_MainWindow(object):
 
         self.expense_list_header = QLabel(self.frame_19)
         self.expense_list_header.setObjectName(u"expense_list_header")
-        self.expense_list_header.setFont(font4)
+        self.expense_list_header.setFont(font5)
 
         self.verticalLayout_26.addWidget(self.expense_list_header)
 
@@ -829,7 +851,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_27.setObjectName(u"verticalLayout_27")
         self.expense_yearly = QLabel(self.expense_yearly_frame)
         self.expense_yearly.setObjectName(u"expense_yearly")
-        self.expense_yearly.setFont(font4)
+        self.expense_yearly.setFont(font5)
 
         self.verticalLayout_27.addWidget(self.expense_yearly)
 
@@ -850,7 +872,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_28.setObjectName(u"verticalLayout_28")
         self.expense_monthly = QLabel(self.expense_monthly_frame)
         self.expense_monthly.setObjectName(u"expense_monthly")
-        self.expense_monthly.setFont(font4)
+        self.expense_monthly.setFont(font5)
 
         self.verticalLayout_28.addWidget(self.expense_monthly)
 
@@ -870,7 +892,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.expense_daily = QLabel(self.expense_daily_frame)
         self.expense_daily.setObjectName(u"expense_daily")
-        self.expense_daily.setFont(font4)
+        self.expense_daily.setFont(font5)
 
         self.verticalLayout_29.addWidget(self.expense_daily)
 
@@ -890,7 +912,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_30.setObjectName(u"verticalLayout_30")
         self.expense_weekly = QLabel(self.expense_weekly_frame)
         self.expense_weekly.setObjectName(u"expense_weekly")
-        self.expense_weekly.setFont(font4)
+        self.expense_weekly.setFont(font5)
 
         self.verticalLayout_30.addWidget(self.expense_weekly)
 
@@ -1205,6 +1227,14 @@ class Ui_MainWindow(object):
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Reminder", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Expense", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Budget", None))
+        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Total Number of Budgets:", None))
+        self.num_budgets_total_label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.budgets_amount_total_label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label_21.setText(QCoreApplication.translate("MainWindow", u"Total Budgets Used:", None))
+        self.label_28.setText(QCoreApplication.translate("MainWindow", u"Total Budgets Amount:", None))
+        self.num_budgets_catagories_label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label_30.setText(QCoreApplication.translate("MainWindow", u"Total Budgets Catagories:", None))
+        self.budgets_used_total_label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.add_Budget.setText(QCoreApplication.translate("MainWindow", u"Create a new Budget", None))
         self.income_yearly.setText(QCoreApplication.translate("MainWindow", u"Total income yearly:", None))
         self.income_yearly_value.setText(QCoreApplication.translate("MainWindow", u"416541343", None))
