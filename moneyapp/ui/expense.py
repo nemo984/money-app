@@ -1,6 +1,4 @@
 from typing import List
-
-from sympy import false
 from ..app.helpers import Observer
 from ..app.model import Expense
 from ..app.expense_system import ExpenseSystem

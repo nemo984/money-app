@@ -39,7 +39,9 @@ class AccountSystem(Observable):
         account: Account,
         name: Optional[str],
         password: Optional[str],
-        profile_image_path: Optional[str] = None
+        profile_image_path: Optional[str] = None,
+        reminder_threshold1: Optional[int] = None,
+        reminder_threshold2: Optional[int] = None,
     ) -> Account:
         if name:
             account.name = name
@@ -48,6 +50,10 @@ class AccountSystem(Observable):
         if profile_image_path:
             with open(profile_image_path, 'rb') as file:
                 account.profile_image = file.read()
+        if reminder_threshold1:
+            account.budget_reminder_threshold1 = reminder_threshold1
+        if reminder_threshold2:
+            account.budget_reminder_threshold2 = reminder_threshold2
         account.save()
         self.get()
         return account

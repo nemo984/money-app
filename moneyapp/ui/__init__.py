@@ -97,8 +97,10 @@ class MoneyAppUI(QMainWindow):
 
         self.ui.setting_btn.clicked.connect(self.setting)
 
-        self.new_pic_path = None
+        self.new_pic_path = ""
         self.ui.upload_pic_btn.clicked.connect(self.new_profile_pic)
+        self.ui.current_reminder_threshold_label.setText(f"(Current: {self.account.budget_reminder_threshold1}%)")
+        self.ui.current_reminder_threshold2_label.setText(f"(Current: {self.account.budget_reminder_threshold2}%)")
 
     def logout(self):
         save_staySignIn()
@@ -152,11 +154,31 @@ class MoneyAppUI(QMainWindow):
         name = self.ui.lineedit_new_name.text()
         new_password = self.ui.new_pwd_lineEdit.text()
         new_password_confirm = self.ui.new_pwd_confirm_lineEdit.text()
+        new_reminder_threshold1 = self.ui.new_reminder_threshold_lineEdit.text()
+        new_reminder_threshold2 = self.ui.new_reminder_threshold2_lineEdit.text()
         if (new_password != "" or new_password_confirm != "") and new_password != new_password_confirm:
             self.ui.setting_warning_label.setText("Password does not match")
             return
+
+        def verify_threshold(n, warning_label):
+            try:
+                n = int(n)
+                if n not in range(0, 101):
+                    warning_label.setText("Input is not within 0-100")
+                    return None
+                return n 
+            except TypeError:
+                warning_label.setText("Input is not a number")
+                return None
+
+        if new_reminder_threshold1 != "":
+            new_reminder_threshold1 = verify_threshold(new_reminder_threshold1, self.ui.setting_budget_warning_label)
+        if new_reminder_threshold2 != "":
+            new_reminder_threshold2 = verify_threshold(new_reminder_threshold2, self.ui.setting_budget_warning_label_2)
+
         self.account_system.update(account=self.account, name=name,
-                                   password=new_password, profile_image_path=self.new_pic_path)
+                                   password=new_password, profile_image_path=self.new_pic_path, 
+                                   reminder_threshold1=new_reminder_threshold1, reminder_threshold2=new_reminder_threshold2)
         self.ui.setting_warning_label.setText("")
         if name != "":
             self.ui.name_label.setText(name)
@@ -167,6 +189,13 @@ class MoneyAppUI(QMainWindow):
         if self.new_pic_path != "":
             self.ui.profileImg_label.setPixmap(QPixmap(self.new_pic_path))
             self.ui.new_pic_label.setPixmap(QPixmap())
+        if new_reminder_threshold1 != "":
+            self.ui.current_reminder_threshold_label.setText(f"(Current: {new_reminder_threshold1}%)")
+            self.ui.new_reminder_threshold_lineEdit.setText("")
+        if new_reminder_threshold2 != "":
+            self.ui.current_reminder_threshold2_label.setText(f"(Current: {new_reminder_threshold2}%)")
+            self.ui.new_reminder_threshold2_lineEdit.setText("")
+        
 
     def new_profile_pic(self):
         root = Tk()
