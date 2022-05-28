@@ -32,7 +32,7 @@ class Account(BaseModel):
         return self.reminders.order_by(Reminder.created_date.desc())
 
 class Budget(BaseModel):
-    owner = ForeignKeyField(Account, backref='budgets')
+    owner = ForeignKeyField(Account, backref='budgets',  on_delete="CASCADE")
     name = CharField()
     category = CharField()
     amount = DecimalField(14,2)
@@ -46,15 +46,15 @@ class Budget(BaseModel):
         return (self.amount_used / self.amount) * 100
 
 class Expense(BaseModel):
-    owner = ForeignKeyField(Account, backref = 'expenses')
-    budget = ForeignKeyField(Budget, backref='expenses', null=True)
+    owner = ForeignKeyField(Account, backref = 'expenses', on_delete="CASCADE")
+    budget = ForeignKeyField(Budget, backref='expenses', null=True, on_delete='SET NULL')
     category = CharField()
     amount = DecimalField(14,2)
     note = TextField(null=True)
     date = DateTimeField(default=datetime.now)
 
 class Income(BaseModel):
-    owner = ForeignKeyField(Account, backref='incomes')
+    owner = ForeignKeyField(Account, backref='incomes', on_delete="CASCADE")
     name = CharField()
     category = CharField()
     amount = DecimalField(14,2)
@@ -64,24 +64,25 @@ class Income(BaseModel):
     updated_date = DateTimeField(null=True)
 
 class Reminder(BaseModel):
-    owner = ForeignKeyField(Account, backref='reminders')
-    budget = ForeignKeyField(Budget, backref='reminders')
+    owner = ForeignKeyField(Account, backref='reminders', on_delete="CASCADE")
+    budget = ForeignKeyField(Budget, backref='reminders', on_delete='SET NULL', null=True)
     heading = CharField(max_length=50)
     message = CharField()
     read = BooleanField(default=False)
     created_date = DateTimeField(default=datetime.now)
 
 class AccountMonthlyIncome(BaseModel):
-    owner = ForeignKeyField(Account, backref='monthly_incomes')
+    owner = ForeignKeyField(Account, backref='monthly_incomes', on_delete="CASCADE")
     amount = DecimalField(14,2)
     month = IntegerField()
 
 class ActionHistory(BaseModel):
-    owner = ForeignKeyField(Account, backref='history')
+    owner = ForeignKeyField(Account, backref='history', on_delete="CASCADE")
     created_date = DateTimeField(default=datetime.now)
     action_type = CharField()
     action = CharField(max_length=20)
-    description = CharField(max_length=70)    
+    brief_description = CharField()    
+    long_description = CharField(null=True)    
 
 # if config.config['testing']:
     # database.init(':memory:')

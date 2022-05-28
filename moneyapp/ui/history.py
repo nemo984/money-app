@@ -26,7 +26,7 @@ class HistoryUI:
         for history in histories:
             item = QListWidgetItem()
             account = HistoryItem(id=history.id, history_system=self.system, lay=history_layout, date=history.created_date, action=history.action, action_type=history.action_type, 
-                                description=history.description)
+                                description=history.brief_description)
             account.add()
             self.current.append(account)
 

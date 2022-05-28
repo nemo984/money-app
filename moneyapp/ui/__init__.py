@@ -56,7 +56,6 @@ class MoneyAppUI(QMainWindow):
         overview_donut_chart = DonutChartUI(self.ui, expense_system, income_system)
 
         budget_system.add_observer(budget_ui)
-        budget_system.add_observer(reminder_ui)
         income_system.add_observer(income_ui)
         income_system.add_observer(overview_donut_chart)
         expense_system.add_observer(expense_ui)

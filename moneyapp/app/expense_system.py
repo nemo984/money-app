@@ -68,6 +68,8 @@ class ExpenseSystem(Observable):
             expense.date = date
         if category:
             expense.category = category
+        if amount:
+            expense.amount = amount
         if note:
             expense.note = note
         expense.save()

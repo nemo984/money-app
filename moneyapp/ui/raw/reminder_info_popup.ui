@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>245</height>
+    <height>172</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,105 +16,263 @@
   <widget class="QLabel" name="date_label">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>50</x>
      <y>10</y>
-     <width>101</width>
-     <height>16</height>
+     <width>311</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>Date</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="title_label">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>50</y>
-     <width>371</width>
-     <height>16</height>
+     <x>107</x>
+     <y>51</y>
+     <width>281</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>Budget Title</string>
+    <string>T</string>
    </property>
   </widget>
   <widget class="QLabel" name="remaining_label">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>110</y>
-     <width>321</width>
-     <height>31</height>
+     <x>140</x>
+     <y>150</y>
+     <width>241</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>Budget Remaining:</string>
+    <string>T</string>
    </property>
   </widget>
   <widget class="QLabel" name="title_label_2">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>30</y>
-     <width>55</width>
-     <height>16</height>
+     <x>50</x>
+     <y>31</y>
+     <width>331</width>
+     <height>20</height>
     </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
    </property>
    <property name="text">
-    <string>Title</string>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEdit">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>160</y>
-     <width>381</width>
-     <height>81</height>
-    </rect>
-   </property>
-   <property name="readOnly">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>140</y>
-     <width>71</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Budget Note</string>
+    <string>T</string>
    </property>
   </widget>
   <widget class="QLabel" name="start_date_label">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>70</y>
-     <width>211</width>
-     <height>16</height>
+     <x>141</x>
+     <y>71</y>
+     <width>251</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>Budget Start Date</string>
+    <string>T</string>
    </property>
   </widget>
   <widget class="QLabel" name="end_date_label">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>90</y>
-     <width>171</width>
-     <height>16</height>
+     <x>137</x>
+     <y>91</y>
+     <width>251</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>Budget End Date</string>
+    <string>T</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>31</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Date:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>31</y>
+     <width>31</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Title:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>51</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Budget Title:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>71</y>
+     <width>131</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Budget Start Date:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>91</y>
+     <width>111</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Budget End Date:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>150</y>
+     <width>131</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Budget Remaining:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>110</y>
+     <width>91</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Budget Total:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="total_budget">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>110</y>
+     <width>231</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>T</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>130</y>
+     <width>91</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Budget Used:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="used_label">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>130</y>
+     <width>251</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
    </property>
   </widget>
  </widget>
