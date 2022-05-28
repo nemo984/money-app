@@ -82,7 +82,6 @@ class ExpenseUI(Observer):
         self.dialog.close()
 
     async def update(self, expenses: List[Expense]):
-        self.system.get_expenses_total()
         self.clear_layout()
         for expense in expenses:
             expense = ExpenseItem(expense_id=expense.id, lay=self.lay, date=expense.date, category=expense.category,
@@ -91,6 +90,15 @@ class ExpenseUI(Observer):
                                   expense_system=self.system, budget=expense.budget)
             expense.add()
             self.expenses.append(expense)
+        
+        data = self.system.get_expenses_total()
+        self.change_total_expenses(data)
+
+    def change_total_expenses(self, data):
+        self.ui.expense_daily_value.setText("฿{:,.2f}".format(float(data["daily"])))
+        self.ui.expense_weekly_value.setText("฿{:,.2f}".format(float(data["weekly"])))
+        self.ui.expense_monthly_value.setText("฿{:,.2f}".format(float(data["monthly"])))
+        self.ui.expense_yearly_value.setText("฿{:,.2f}".format(float(data["yearly"])))
 
     def clear_layout(self):
         for expense in self.expenses:

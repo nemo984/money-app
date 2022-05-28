@@ -84,8 +84,8 @@ class ExpenseSystem(Observable):
                  .group_by(Expense.category))
         return {expense.category:expense.total for expense in rows}
 
-    def get_expenses_total(self):
-        results = {}
+    def get_expenses_total(self) -> dict:
+        results = {"daily": 0, "weekly": 0, "monthly": 0, "yearly": 0}
         daily = datetime.today()
         weekly = daily - timedelta(weeks=1)
         monthly = daily - timedelta(weeks=4)
@@ -95,13 +95,15 @@ class ExpenseSystem(Observable):
         for expense in self._expenses:
             date = datetime.strptime(expense.date, '%d/%m/%Y').date()
             if date >= daily.date():
-                pass
+                print(expense.amount)
+                results["daily"] += expense.amount
             if date >= weekly.date():
-                pass
+                results["weekly"] += expense.amount
             if date >= monthly.date():
-                pass
+                results["monthly"] += expense.amount
             if date >= yearly.date():
-                pass
+                results["yearly"] += expense.amount
+        return results
 
     def delete(self, expense_id):
         expense = self.getByID(expense_id)
