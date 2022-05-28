@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>162</height>
+    <height>170</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,24 +26,11 @@
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="title_label">
+  <widget class="QLabel" name="brief">
    <property name="geometry">
     <rect>
-     <x>97</x>
+     <x>117</x>
      <y>51</y>
-     <width>291</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="remaining_label">
-   <property name="geometry">
-    <rect>
-     <x>125</x>
-     <y>111</y>
      <width>271</width>
      <height>20</height>
     </rect>
@@ -52,12 +39,12 @@
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="title_label_2">
+  <widget class="QLabel" name="Action">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>60</x>
      <y>31</y>
-     <width>331</width>
+     <width>321</width>
      <height>20</height>
     </rect>
    </property>
@@ -66,32 +53,6 @@
      <horstretch>0</horstretch>
      <verstretch>0</verstretch>
     </sizepolicy>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="start_date_label">
-   <property name="geometry">
-    <rect>
-     <x>121</x>
-     <y>71</y>
-     <width>271</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="end_date_label">
-   <property name="geometry">
-    <rect>
-     <x>117</x>
-     <y>91</y>
-     <width>271</width>
-     <height>20</height>
-    </rect>
    </property>
    <property name="text">
     <string/>
@@ -120,7 +81,7 @@
     <rect>
      <x>11</x>
      <y>31</y>
-     <width>31</width>
+     <width>51</width>
      <height>16</height>
     </rect>
    </property>
@@ -130,7 +91,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Title:</string>
+    <string>Action:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -138,7 +99,7 @@
     <rect>
      <x>11</x>
      <y>51</y>
-     <width>81</width>
+     <width>101</width>
      <height>16</height>
     </rect>
    </property>
@@ -148,7 +109,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Budget Title:</string>
+    <string>brief_description:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
@@ -166,74 +127,17 @@
     </font>
    </property>
    <property name="text">
-    <string>Budget Start Date:</string>
+    <string>Long description</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>11</x>
-     <y>91</y>
-     <width>101</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Budget End Date:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>11</x>
-     <y>111</y>
-     <width>111</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Budget Remaining:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_7">
+  <widget class="QTextEdit" name="textEdit">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>130</y>
-     <width>81</width>
-     <height>16</height>
+     <y>90</y>
+     <width>381</width>
+     <height>71</height>
     </rect>
-   </property>
-   <property name="font">
-    <font>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Budget Total:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="total_budget">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>130</y>
-     <width>281</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
    </property>
   </widget>
  </widget>
