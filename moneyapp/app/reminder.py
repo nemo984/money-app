@@ -39,7 +39,7 @@ class ReminderSystem(Observable):
 
     def update(self, reminder_id) -> Reminder:
         reminder = self.getByID(reminder_id)
-        if reminder is not None:
+        if reminder is None:
             return
         reminder.read = True
         reminder.save()
@@ -48,8 +48,7 @@ class ReminderSystem(Observable):
 
     def delete(self, reminder_id):
         reminder = self.getByID(reminder_id)
-        print(reminder)
-        if reminder is not None:
+        if reminder is None:
             return
         reminder.delete_instance()
         self.get()

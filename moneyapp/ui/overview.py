@@ -63,7 +63,6 @@ class ReminderReport(QWidget):
         menu.exec(QCursor.pos())
 
     def delete(self):
-        print(self.id)
         self.reminder_system.delete(self.id)
         self.clear()
 
