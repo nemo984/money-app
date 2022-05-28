@@ -9,6 +9,7 @@ from ..app.reminder import ReminderSystem
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from PySide6.QtCore import *
+from PySide6.QtCharts import *
 
 
 class ReminderUI(Observer):
@@ -116,7 +117,28 @@ class ExpenseReportUI(Observer):
             expense = ExpenseReport(lay=self.lay, expense_system=self.expense_system, expense_categories=expenses_categories)
             expense.add()
             self.expenses.append(expense)
-
+        self.donut_chart(b)
+    def donut_chart(self,expense):
+        series = QPieSeries()
+        series.setHoleSize(0.35)
+        for i in expense:
+            series.append(expense[i][0], expense[i][1])
+ 
+        chart = QChart()
+        chart.legend().hide()
+        chart.addSeries(series)
+ 
+        chart.setAnimationOptions(QChart.SeriesAnimations)
+        chart.setTitle("Expense Example")
+        chart.setTheme(QChart.ChartThemeBlueCerulean)
+ 
+ 
+ 
+        chartview = QChartView(chart)
+        chartview.setRenderHint(QPainter.Antialiasing)
+ 
+ 
+        self.ui.pie_widdget.setCentralWidget(chartview)
 
     def clear_layout(self):
         for expense in self.expenses:
@@ -157,3 +179,4 @@ class ExpenseReport(QWidget):
 
     def add(self):
         self.layout.insertWidget(-1, self)
+
