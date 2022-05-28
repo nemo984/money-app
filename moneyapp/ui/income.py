@@ -26,6 +26,7 @@ class IncomeUI(Observer):
         self.parent = parent
         self.incomes = []
         self.incomes_layout = self.ui.verticalLayout_40
+        self.ui.income_lineEdit.textEdited.connect(self.filter_incomes)
 
     def add_income(self):
         self.dialog = QDialog(self.parent)
@@ -158,6 +159,9 @@ class IncomeUI(Observer):
                                 index_cat=income_category_dropdown[income.category], index_rec=income_recurrence_dropdown[income.recurrence])
             income.add()
             self.incomes.append(income)
+
+    def filter_incomes(self, text):
+        self.system.filter(text)
 
     def clear_layout(self):
         for income in self.incomes:

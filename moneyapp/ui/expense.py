@@ -94,8 +94,8 @@ class ExpenseUI(Observer):
             expense.clear()
         self.expenses = []
 
-    def filter(self, value):
-        pass
+    def filter_expenses(self, text):
+        self.system.filter(text)
 
     def isfloat(self, num):
         try:

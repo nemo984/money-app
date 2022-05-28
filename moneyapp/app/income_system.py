@@ -37,6 +37,19 @@ class IncomeSystem(Observable):
         income = Income.get_or_none(Income.id == income_id)
         return income
 
+    def filter(self, query: str):
+        if query == "":
+            return self.get()
+
+        filtered_incomes = []
+        for income in self._incomes:
+            currency = "฿{:,.2f}".format(income.amount)
+            s = f"{income.date}{income.name}{income.category}{currency}{income.recurrence}"
+            if query in s:
+                filtered_incomes.append(income)
+        self.notify(filtered_incomes)
+        return filtered_incomes
+
     def update(
         self,
         income_id: int,

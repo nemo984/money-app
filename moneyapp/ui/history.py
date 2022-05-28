@@ -40,7 +40,6 @@ class HistoryUI:
         incomes = self.system.getByType("Income")
         self.write(file_name, incomes)
 
-
     def download_expense(self):
         file_name = self.get_save_file()
         if not file_name:
