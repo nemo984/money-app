@@ -180,6 +180,28 @@ class BudgetItem(QWidget):
         self.dialog.show()
 
     def confirm_edit(self):
+        if not self.pop.name_entry.text():
+            self.pop.warning_label.setText("No input in name section")
+            return
+        if(self.isfloat(self.pop.amount_entry.text()) == False):
+            self.pop.warning_label.setText(
+                "Input in amount section is not a number")
+            return
+        
+        if(self.isNegative(self.pop.amount_entry.text()) == True):
+            self.pop.warning_label.setText(
+                "amount cannot be negative")
+            return
+        
+        if(self.Stringlen(self.pop.name_entry.text()) == False):
+            self.pop.warning_label.setText(
+                "Name should be between 0-24 character")
+            return
+
+        if(self.Maximun(self.pop.amount_entry.text()) == False):
+            self.pop.warning_label.setText(
+                "the Maximun of amount is 1 trillion")
+            return
         self.name = self.pop.name_entry.text()
         self.amount = self.pop.amount_entry.text()
         self.note = self.pop.note_entry.toPlainText()
@@ -214,3 +236,29 @@ class BudgetItem(QWidget):
     def clear(self):
         self.layout.removeWidget(self)
         self.deleteLater()
+
+    def isfloat(self, num):
+        try:
+            float(num)
+            return True
+        except ValueError:
+            return False
+    
+    def Stringlen(self,string):
+        l = len(string)
+        if l > 24 or l < 0:
+            return False
+        else:
+            return True
+    
+    def isNegative(self,num):
+        if float(num) < 0:
+            return True
+        else:
+            return False
+    
+    def Maximun(self,num):
+        if float(num) > 1000000000000:
+            return False
+        else:
+            return True
