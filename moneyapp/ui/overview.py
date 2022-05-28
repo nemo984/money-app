@@ -20,8 +20,9 @@ class ReminderUI(Observer):
 
     async def update(self, reminders: List[Reminder]):
         self.clear_layout()
+        print("Fff: ", self.reminder_system.getByID(1))
         for reminder in reminders:
-            reminder = ReminderReport(lay=self.lay,reminder_system=self.reminder_system, date=reminder.created_date, 
+            reminder = ReminderReport(reminder_id=reminder.id, lay=self.lay,reminder_system=self.reminder_system, date=reminder.created_date, 
                                     heading=reminder.heading, description=reminder.message)
             reminder.add()
             print(reminder.heading)
@@ -33,8 +34,9 @@ class ReminderUI(Observer):
         self.reminders = []
 
 class ReminderReport(QWidget):
-    def __init__(self, lay: QVBoxLayout, reminder_system, date, heading, description):
+    def __init__(self, reminder_id, lay: QVBoxLayout, reminder_system, date, heading, description):
         super(ReminderReport, self).__init__()
+        self.id = reminder_id
         self.layout = lay
         self.date = date
         self.heading = heading
@@ -45,15 +47,27 @@ class ReminderReport(QWidget):
         self.wid.date_label.setText(str(date))
         self.wid.action_label.setText(heading)
         self.wid.description_label.setText(description)
+        self.wid.option_btn.clicked.connect(self.option)
 
     def clear(self):
         self.layout.removeWidget(self)
         self.deleteLater()
 
     def add(self):
-        print("inserto!")
         self.layout.insertWidget(0, self)
 
+    def option(self):
+        menu = QMenu()
+        self.delete_action = QAction('Delete', self)
+        self.delete_action.setData('Delete')
+        self.delete_action.triggered.connect(self.delete)
+        menu.addAction(self.delete_action)
+        menu.exec(QCursor.pos())
+
+    def delete(self):
+        print(self.id)
+        self.reminder_system.delete(self.id)
+        self.clear()
 
 class IncomeReportUI(Observer):
     async def update(self, incomes: List[Income]):

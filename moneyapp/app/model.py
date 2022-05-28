@@ -13,7 +13,8 @@ class Account(BaseModel):
     password = CharField(max_length=30)
     profile_image = BlobField(null=True)
     created_date = DateTimeField(default=datetime.now)
-
+    budget_reminder_threshold1 = IntegerField(default=50)
+    budget_reminder_threshold2 = IntegerField(default=80)
     @property
     def expenses_ordered(self):
         return self.expenses.order_by(Expense.date.desc())
@@ -39,6 +40,10 @@ class Budget(BaseModel):
     note = TextField(null=True)
     start_date = DateTimeField(default=datetime.now)
     end_date = DateTimeField(null=True)
+
+    @property
+    def progress_value(self):
+        return (self.amount_used / self.amount) * 100
 
 class Expense(BaseModel):
     owner = ForeignKeyField(Account, backref = 'expenses')

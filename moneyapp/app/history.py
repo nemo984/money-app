@@ -29,7 +29,6 @@ class HistorySystem(Observable):
         histories = ActionHistory.select().where(ActionHistory.action == typeStr)
         return list(histories)
 
-
     def filter(self, query: str):
         if query == "":
             return self.get()
