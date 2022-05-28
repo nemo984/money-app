@@ -4,6 +4,7 @@ from ..app.model import Expense
 from ..app.expense_system import ExpenseSystem
 from .uipy.expense_popup import Ui_Dialog
 from .uipy.expense_wid import Ui_expense_form
+from .inputCheck import *
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from PySide6.QtCore import *
@@ -23,7 +24,6 @@ class ExpenseUI(Observer):
         self.parent = parent
         self.budgets = {}
         self.ui.expense_lineEdit.textEdited.connect(self.filter_expenses)
-
 
     def add_expense(self):
         self.dialog = QDialog(self.parent)
@@ -50,17 +50,17 @@ class ExpenseUI(Observer):
         category = str(self.pop.category_comboBox.currentText())
         budget = str(self.pop.budget_comboBox.currentText())
 
-        if(self.isfloat(self.pop.amount_entry.text()) == False):
+        if(check.isfloat(self.pop.amount_entry.text()) == False):
             self.pop.warning_label.setText(
                 "Input in amount section is not a number")
             return
-        
-        if(self.Maximun(self.pop.amount_entry.text()) == False):
+
+        if(check.Maximun(self.pop.amount_entry.text()) == False):
             self.pop.warning_label.setText(
                 "the Maximun of amount is 1 trillion")
             return
 
-        if(self.isNegative(self.pop.amount_entry.text()) == True):
+        if(check.isNegative(self.pop.amount_entry.text()) == True):
             self.pop.warning_label.setText(
                 "amount cannot be negative")
             return
@@ -76,7 +76,6 @@ class ExpenseUI(Observer):
         )
         ex = ExpenseItem(expense.id, self.lay,
                          date, category, amount, note, index_cat, self.system, budget)
-
 
     def close(self):
         self.dialog.close()
@@ -99,26 +98,6 @@ class ExpenseUI(Observer):
 
     def filter_expenses(self, text):
         self.system.filter(text)
-
-    def isfloat(self, num):
-        try:
-            float(num)
-            return True
-        except ValueError:
-            return False
-    
-    def isNegative(self,num):
-        if float(num) < 0:
-            return True
-        else:
-            return False
-    
-    def Maximun(self,num):
-        if float(num) > 1000000000000:
-            return False
-        else:
-            return True
-
 
 
 expense_category_dropdown = {"Food": 0, "Entertainment": 1, "Transport": 2, "Education": 3,
@@ -169,7 +148,8 @@ class ExpenseItem(QWidget):
         self.dialog.setWindowTitle("Edit expense")
         self.pop.amount_entry.setText(str(self.amount))
         self.pop.category_comboBox.setCurrentIndex(self.index_cat)
-        if self.budget: self.pop.budget_comboBox.setCurrentText(self.budget.name)
+        if self.budget:
+            self.pop.budget_comboBox.setCurrentText(self.budget.name)
         self.pop.note_entry.setPlainText(self.note)
         date = QDate.fromString(self.date, "dd/M/yyyy")
         self.pop.date_entry.setDate(date)
@@ -214,7 +194,6 @@ class ExpenseItem(QWidget):
         self.layout.removeWidget(self)
         self.deleteLater()
         self.expense_system.delete(self.id)
-
 
     def clear(self):
         self.layout.removeWidget(self)
