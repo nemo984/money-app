@@ -96,24 +96,7 @@ class ExpenseReportUI(Observer):
                          ("Investment", ":/category/icon/category/Investment.svg"),
                          ("Shopping", ":/category/icon/category/shopping-.svg"),
                          ("Utilities/Other", ":/category/icon/category/other.svg")]
-        self.series = QPieSeries()
-        self.series.setHoleSize(0.35)
 
-        self.chart = QChart()
-        self.chart.legend().hide()
-        self.chart.addSeries(self.series)
- 
-        self.chart.setAnimationOptions(QChart.SeriesAnimations)
-        self.chart.setTitle("Expense Example")
- 
-        self.chartview = QChartView(self.chart)
-        self.chartview.setRenderHint(QPainter.Antialiasing)
- 
-        self.ui.pie_widdget.setContentsMargins(0, 0, 0, 0)
-        lay = QHBoxLayout(self.ui.pie_widdget)
-        lay.setContentsMargins(0, 0, 0, 0)
-        lay.addWidget(self.chartview)
-        self.donut_chart(self.expense_system.get_categories_total())
 
     async def update(self, expenses: List[Expense]):
         self.clear_layout()
@@ -132,21 +115,59 @@ class ExpenseReportUI(Observer):
             expense = ExpenseReport(lay=self.lay, expense_system=self.expense_system, expense_categories=expenses_categories)
             expense.add()
             self.expenses.append(expense)
-        self.donut_chart(b)
-
-    def donut_chart(self,expense):
-        self.series.clear()
-        for category, value in expense.items():
-            self.series.append(category, value)
-        
- 
-
 
     def clear_layout(self):
         for expense in self.expenses:
             expense.clear()
         self.expenses = []
 
+class DonutChartUI(Observer):
+    def __init__(self, ui, expense_system, income_system):
+        self.ui = ui
+        self.expense_system = expense_system
+        self.income_system = income_system
+        self.ui.categories_total_comboBox.currentTextChanged.connect(self.change_chart)
+        self.currentText = "Expense"
+        self.series = QPieSeries()
+        self.series.setHoleSize(0.35)
+
+        self.chart = QChart()
+        self.chart.legend().hide()
+        self.chart.addSeries(self.series)
+ 
+        self.chart.setAnimationOptions(QChart.SeriesAnimations)
+        self.chart.setTitle("Expense Example")
+ 
+        self.chartview = QChartView(self.chart)
+        self.chartview.setRenderHint(QPainter.Antialiasing)
+ 
+        self.ui.pie_widdget.setContentsMargins(0, 0, 0, 0)
+        lay = QHBoxLayout(self.ui.pie_widdget)
+        lay.setContentsMargins(0, 0, 0, 0)
+        lay.addWidget(self.chartview)
+
+    async def update(self, _):
+        self.change_chart(self.currentText)
+
+    def change_chart(self, text):
+        self.currentText = text
+        if self.currentText == "Expense":
+            expenses_categories = self.expense_system.get_categories_total()
+            self.expenses_donut_chart(expenses_categories)
+        else:
+            incomes_categories = self.income_system.get_incomes_total()
+            self.incomes_donut_chart(incomes_categories)
+
+    def expenses_donut_chart(self, expenses):
+        self.series.clear()
+        for category, value in expenses.items():
+            self.series.append(category, value)
+
+    def incomes_donut_chart(self, incomes):
+        self.series.clear()
+        for category, value in incomes.items():
+            self.series.append(category, value)
+ 
 
 class ExpenseReport(QWidget):
     # (category, amount, icon_path)

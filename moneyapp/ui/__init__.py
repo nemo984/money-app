@@ -14,7 +14,7 @@ from .budget import BudgetUI
 from .income import IncomeUI
 from .expense import ExpenseUI
 from .history import HistoryUI
-from .overview import ExpenseReportUI, ReminderUI
+from .overview import ExpenseReportUI, ReminderUI, DonutChartUI
 from .uipy.Mono import Ui_MainWindow
 from PySide6.QtCore import *
 import os
@@ -53,11 +53,14 @@ class MoneyAppUI(QMainWindow):
         history_ui = HistoryUI(self.ui, history_system, self)
         expense_report_ui = ExpenseReportUI(self.ui, expense_system)
         reminder_ui = ReminderUI(self.ui, reminder_system)
+        overview_donut_chart = DonutChartUI(self.ui, expense_system, income_system)
 
         budget_system.add_observer(budget_ui)
         income_system.add_observer(income_ui)
+        income_system.add_observer(overview_donut_chart)
         expense_system.add_observer(expense_ui)
         expense_system.add_observer(expense_report_ui)
+        expense_system.add_observer(overview_donut_chart)
         history_system.add_observer(history_ui)
         reminder_system.add_observer(reminder_ui)
 
