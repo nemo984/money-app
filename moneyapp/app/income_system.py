@@ -53,10 +53,14 @@ class IncomeSystem(Observable):
 
     def get_incomes_total(self) -> dict:
         results = {"daily": 0, "weekly": 0, "monthly": 0, "yearly": 0}
+        multiplier = {"daily": (1, 7, 30, 365), "weekly": (1/7, 1, 30/7, 365/7), "monthly": (1/30, 7/30, 1, 365/30 ), 
+                      "yearly": (1/365, 7/365, 30/365, 1)}
         for income in self._incomes:
             recurrence = income.recurrence
             if recurrence in results:
-                results[recurrence] += income.amount
+                times = multiplier[recurrence]
+                for i, recc in enumerate(multiplier.keys()):
+                    results[recc] += float(income.amount) * times[i] 
         return results
 
     def update(
