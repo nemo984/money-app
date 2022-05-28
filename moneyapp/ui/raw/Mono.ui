@@ -1243,7 +1243,7 @@ background-color:#A7F0AE;
                   <string notr="true">border: 1px solid black;</string>
                  </property>
                  <property name="placeholderText">
-                  <string>Filter income</string>
+                  <string>Filter incomes</string>
                  </property>
                 </widget>
                </item>
@@ -1256,7 +1256,7 @@ background-color:#A7F0AE;
                   </font>
                  </property>
                  <property name="text">
-                  <string>income list</string>
+                  <string>Incomes</string>
                  </property>
                 </widget>
                </item>
@@ -1408,7 +1408,7 @@ background-color:#A7F0AE;
                   <string notr="true">border: 1px solid black;</string>
                  </property>
                  <property name="placeholderText">
-                  <string>Filter expense</string>
+                  <string>Filter expenses</string>
                  </property>
                 </widget>
                </item>
@@ -1421,7 +1421,7 @@ background-color:#A7F0AE;
                   </font>
                  </property>
                  <property name="text">
-                  <string>expense list</string>
+                  <string>Expenses</string>
                  </property>
                 </widget>
                </item>
@@ -1748,7 +1748,7 @@ background-color:#A7F0AE;
                   <string/>
                  </property>
                  <property name="placeholderText">
-                  <string>Filter history</string>
+                  <string>Filter histories</string>
                  </property>
                 </widget>
                 <widget class="QScrollArea" name="scrollArea_4">
