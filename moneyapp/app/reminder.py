@@ -16,11 +16,17 @@ class ReminderSystem(Observable):
         heading: str,
         message: str,
     ) -> Reminder:
+        if self.exists(heading, message):
+            return
         reminder = Reminder(owner=self.owner, heading=heading, message=message)
         reminder.save()
         self._reminders.append(reminder)
         self.notify(self._reminders)
         return reminder
+
+    def exists(self, heading, message) -> bool:
+        reminder = Reminder.get_or_none(Reminder.heading == heading, Reminder.message == message)
+        return reminder is not None
 
     def get(self) -> List[Reminder]:
         self._reminders = list(self.owner.reminders_ordered)
@@ -31,7 +37,6 @@ class ReminderSystem(Observable):
         reminder = Reminder.get_or_none(Reminder.id == reminder_id)
         return reminder
 
-
     def update(self, reminder_id) -> Reminder:
         reminder = self.getByID(reminder_id)
         if reminder is not None:
@@ -40,3 +45,11 @@ class ReminderSystem(Observable):
         reminder.save()
         self.get()
         return reminder
+
+    def delete(self, reminder_id):
+        reminder = self.getByID(reminder_id)
+        print(reminder)
+        if reminder is not None:
+            return
+        reminder.delete_instance()
+        self.get()

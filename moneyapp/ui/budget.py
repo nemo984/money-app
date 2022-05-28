@@ -62,7 +62,6 @@ class BudgetUI(Observer):
     async def update(self, budgets: List[Budget]):
         self.clear_layout()
         for budget in budgets:
-            progress_value = (budget.amount_used / budget.amount) * 100
             budget = BudgetItem(budget_id=budget.id, budget_system=self.system, lay=self.budgets_layout, name=budget.name,
                                 category=budget.category, index=budget_category_dropdown[budget.category],
                                 amount=budget.amount, amount_used=budget.amount_used, start_date=budget.start_date, end_date=budget.end_date,
@@ -104,7 +103,7 @@ class BudgetItem(QWidget):
         self.name = name
 
         self.wid.setupUi(self)
-        self.progress_value = (amount_used / amount) * 100
+        self.progress_value = (amount_used / amount) * 100 if amount_used < amount else 100
         self.wid.progressBar.setValue(self.progress_value)
         self.wid.name_label.setText(self.name)
         self.wid.category_label.setText(self.category)
