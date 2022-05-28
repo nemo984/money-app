@@ -59,6 +59,16 @@ class IncomeUI(Observer):
             self.pop.warning_label.setText(
                 "Name should be between 0-24 character")
             return
+        
+        if(self.Maximun(self.pop.amount_entry.text()) == False):
+            self.pop.warning_label.setText(
+                "the Maximun of amount is 1 trillion")
+            return
+
+        if(self.isNegative(self.pop.amount_entry.text()) == True):
+            self.pop.warning_label.setText(
+                "amount cannot be negative")
+            return
         amount = int(self.pop.amount_entry.text())
         recurrence = str(self.pop.recurence_comboBox.currentText())
         note = self.pop.note_entry.toPlainText()
@@ -77,6 +87,18 @@ class IncomeUI(Observer):
     def Stringlen(self,string):
         l = len(string)
         if l > 24 or l < 0:
+            return False
+        else:
+            return True
+    
+    def isNegative(self,num):
+        if float(num) < 0:
+            return True
+        else:
+            return False
+    
+    def Maximun(self,num):
+        if float(num) > 1000000000000:
             return False
         else:
             return True

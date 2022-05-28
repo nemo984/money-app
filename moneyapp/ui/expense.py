@@ -52,6 +52,16 @@ class ExpenseUI(Observer):
             self.pop.warning_label.setText(
                 "Input in amount section is not a number")
             return
+        
+        if(self.Maximun(self.pop.amount_entry.text()) == False):
+            self.pop.warning_label.setText(
+                "the Maximun of amount is 1 trillion")
+            return
+
+        if(self.isNegative(self.pop.amount_entry.text()) == True):
+            self.pop.warning_label.setText(
+                "amount cannot be negative")
+            return
 
         amount = float(self.pop.amount_entry.text())
         note = self.pop.note_entry.toPlainText()
@@ -94,6 +104,17 @@ class ExpenseUI(Observer):
         except ValueError:
             return False
     
+    def isNegative(self,num):
+        if float(num) < 0:
+            return True
+        else:
+            return False
+    
+    def Maximun(self,num):
+        if float(num) > 1000000000000:
+            return False
+        else:
+            return True
 
 
 
