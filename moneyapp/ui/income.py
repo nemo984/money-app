@@ -55,6 +55,10 @@ class IncomeUI(Observer):
                 "Input in amount section is not a number")
             return
 
+        if(self.Stringlen(self.pop.name_entry.text()) == False):
+            self.pop.warning_label.setText(
+                "Name should be between 0-24 character")
+            return
         amount = int(self.pop.amount_entry.text())
         recurrence = str(self.pop.recurence_comboBox.currentText())
         note = self.pop.note_entry.toPlainText()
@@ -69,6 +73,13 @@ class IncomeUI(Observer):
 
     def close(self):
         self.dialog.close()
+    
+    def Stringlen(self,string):
+        l = len(string)
+        if l > 24 or l < 0:
+            return False
+        else:
+            return True
 
     # Income: 100 / frequency_day
     # Every 10 day -> (100 * 10) / frequency_day

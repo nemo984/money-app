@@ -44,6 +44,12 @@ class BudgetUI(Observer):
             self.pop.warning_label.setText(
                 "Input in amount section is not a number")
             return
+        
+        if(self.Stringlen(self.pop.name_entry.text()) == False):
+            self.pop.warning_label.setText(
+                "Name should be between 0-24 character")
+            return
+        
 
         amount = float(self.pop.amount_entry.text())
         index = self.pop.category_comboBox.currentIndex()
@@ -81,6 +87,13 @@ class BudgetUI(Observer):
             return True
         except ValueError:
             return False
+    
+    def Stringlen(self,string):
+        l = len(string)
+        if l > 24 or l < 0:
+            return False
+        else:
+            return True
 
 
 budget_category_dropdown = {"Food": 0, "Entertainment": 1, "Transport": 2, "Education": 3,
