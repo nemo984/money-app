@@ -154,6 +154,7 @@ class DonutChartUI(Observer):
 
     def donut_chart(self, data):
         self.series.clear()
+        print(data)
         for category, value in data.items():
             if value != 0: self.series.append(category, value)
 
