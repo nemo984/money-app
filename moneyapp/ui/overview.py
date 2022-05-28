@@ -130,22 +130,24 @@ class DonutChartUI(Observer):
         self.currentText = "Expense"
         self.series = QPieSeries()
         self.series.setHoleSize(0.35)
+        self.series.setLabelsVisible(True)
+        self.series.setLabelsPosition(QPieSlice.LabelInsideHorizontal)
 
         self.chart = QChart()
         self.chart.legend().hide()
+
         self.chart.addSeries(self.series)
  
         self.chart.setAnimationOptions(QChart.SeriesAnimations)
-        self.chart.setTitle("Expense Example")
+        self.chart.legend().setVisible(True)
+        self.chart.legend().setAlignment(Qt.AlignRight)
  
         self.chartview = QChartView(self.chart)
         self.chartview.setRenderHint(QPainter.Antialiasing)
- 
         self.ui.pie_widdget.setContentsMargins(0, 0, 0, 0)
         lay = QHBoxLayout(self.ui.pie_widdget)
         lay.setContentsMargins(0, 0, 0, 0)
         lay.addWidget(self.chartview)
-
     async def update(self, _):
         self.change_chart(self.currentText)
 
@@ -161,9 +163,15 @@ class DonutChartUI(Observer):
             self.donut_chart(incomes_categories)
 
     def donut_chart(self, data):
+        print(data)
         self.series.clear()
         for category, value in data.items():
-            self.series.append(category, value)
+            if value != 0: self.series.append(category, value)
+
+        for slice in self.series.slices():
+            slice.setLabel(f"{slice.label()} {100 * slice.percentage():.2f}%")
+ 
+            
 
  
 
