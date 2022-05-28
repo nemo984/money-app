@@ -27,7 +27,7 @@ class BudgetSystem(Observable):
         self._budgets.append(budget)
         self.notify(self._budgets)
         self.history_system.add(
-            action="Budget", action_type="Create", description="You created a budget")
+            action="Budget", action_type="Create", brief_description="You created a budget")
         return budget
 
     def get(self) -> List[Budget]:

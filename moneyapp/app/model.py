@@ -82,7 +82,7 @@ class ActionHistory(BaseModel):
     action_type = CharField()
     action = CharField(max_length=20)
     brief_description = CharField()    
-    long_description = CharField(null=True)    
+    long_description = CharField()    
 
 # if config.config['testing']:
     # database.init(':memory:')

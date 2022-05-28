@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>170</height>
+    <height>228</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,35 +16,35 @@
   <widget class="QLabel" name="date_label">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>10</y>
-     <width>311</width>
-     <height>20</height>
+     <x>60</x>
+     <y>0</y>
+     <width>291</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string/>
+    <string>sfsf</string>
    </property>
   </widget>
-  <widget class="QLabel" name="brief">
+  <widget class="QLabel" name="brief_description_label">
    <property name="geometry">
     <rect>
-     <x>117</x>
-     <y>51</y>
-     <width>271</width>
+     <x>130</x>
+     <y>70</y>
+     <width>261</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string/>
+    <string>fdffa</string>
    </property>
   </widget>
-  <widget class="QLabel" name="Action">
+  <widget class="QLabel" name="type_label">
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>31</y>
-     <width>321</width>
+     <y>30</y>
+     <width>311</width>
      <height>20</height>
     </rect>
    </property>
@@ -55,20 +55,21 @@
     </sizepolicy>
    </property>
    <property name="text">
-    <string/>
+    <string>dfdf</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
-     <width>31</width>
-     <height>16</height>
+     <y>5</y>
+     <width>41</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="font">
     <font>
+     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -81,38 +82,21 @@
     <rect>
      <x>11</x>
      <y>31</y>
-     <width>51</width>
+     <width>41</width>
      <height>16</height>
     </rect>
    </property>
    <property name="font">
     <font>
+     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
    <property name="text">
-    <string>Action:</string>
+    <string>Type:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>11</x>
-     <y>51</y>
-     <width>101</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>brief_description:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
      <x>11</x>
@@ -123,21 +107,85 @@
    </property>
    <property name="font">
     <font>
+     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
    <property name="text">
-    <string>Long description</string>
+    <string>Brief description:</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit">
+  <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>90</y>
-     <width>381</width>
-     <height>71</height>
+     <width>111</width>
+     <height>16</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Long description:</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="long_description_textEdit">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>110</y>
+     <width>381</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 1px solid black;</string>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>51</y>
+     <width>51</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Action:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="action_label">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>50</y>
+     <width>301</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="text">
+    <string>dffd</string>
    </property>
   </widget>
  </widget>

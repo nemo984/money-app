@@ -2,6 +2,7 @@ from typing import List
 from ..app.model import ActionHistory
 from ..app.history import HistorySystem
 from .uipy.history_wid import Ui_history_form
+from .uipy.history_info_popup import Ui_Form as Ui_History_Info_Form
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from tkinter import Tk
@@ -25,8 +26,8 @@ class HistoryUI:
         self.clear_layout()
         for history in histories:
             item = QListWidgetItem()
-            account = HistoryItem(id=history.id, history_system=self.system, lay=history_layout, date=history.created_date, action=history.action, action_type=history.action_type, 
-                                description=history.brief_description)
+            account = HistoryItem(id=history.id, history_system=self.system, lay=history_layout, date=history.created_date, type_str=history.action, action=history.action_type, 
+                                brief_description=history.brief_description, long_description=history.long_description)
             account.add()
             self.current.append(account)
 
@@ -76,17 +77,22 @@ class HistoryUI:
         self.current = []
 
 class HistoryItem(QWidget):
-    def __init__(self, id, history_system, lay: QVBoxLayout, date, action, action_type, description):
+    def __init__(self, id, history_system, lay: QVBoxLayout, date, type_str, action, brief_description, long_description):
         super(HistoryItem, self).__init__()
         self.id = id
         self.history_system = history_system
         self.layout = lay
+        self.date = date
+        self.type_str = type_str
+        self.action = self.action
+        self.brief_description = brief_description
+        self.long_description = long_description
         self.wid = Ui_history_form()
         self.wid.setupUi(self)
         self.wid.date_label.setText(date.strftime("%m/%d/%Y, %H:%M:%S"))
-        self.wid.type_label.setText(action)
-        self.wid.action_label.setText(action_type)
-        self.wid.description_label.setText(description)
+        self.wid.type_label.setText(self.type_str)
+        self.wid.action_label.setText(self.action_type)
+        self.wid.description_label.setText(self.brief_description)
         self.wid.option_btn.clicked.connect(self.option)
 
     def option(self):
@@ -97,13 +103,13 @@ class HistoryItem(QWidget):
         self.delete_action = QAction('Delete', self)
         self.delete_action.setData('Delete')
         self.delete_action.triggered.connect(self.delete)
-        #TODO: delete from database
         menu.addAction(self.info)
         menu.addAction(self.delete_action)
         menu.exec(QCursor.pos())
 
     def more_info(self):
-        print("More info")
+        popup = HistoryInfoPopUp(date=self.date, type_str=self.type_str, action=self.action, brief_description=self.brief_description,
+                                long_description=self.long_description, parent=self)
 
     def add(self):
         self.layout.insertWidget(0,self)
@@ -116,3 +122,23 @@ class HistoryItem(QWidget):
     def clear(self):
         self.layout.removeWidget(self)
         self.deleteLater()
+
+class HistoryInfoPopUp(QDialog):
+    def __init__(self, date, type_str, action, brief_description, long_description, parent=None):
+        super(HistoryInfoPopUp, self).__init__(parent)
+        self.parent = parent
+        self.date = date
+        self.type = type_str
+        self.action = self.action
+        self.brief_description = brief_description
+        self.long_description = long_description
+        self.dialog = QDialog(self.parent)
+        self.dialog.setWindowTitle("History info")
+        self.popup = Ui_History_Info_Form()
+        self.popup.setupUi(self.dialog)
+        self.popup.date_label.setText(str(self.date))
+        self.popup.type_label.setText(self.type)
+        self.popup.action_label.setText(self.action)
+        self.popup.brief_description_label.setText(self.brief_description)
+        self.popup.long_description_textEdit.setText(self.long_description)        
+        self.dialog.show()

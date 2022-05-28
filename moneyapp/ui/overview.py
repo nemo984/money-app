@@ -87,12 +87,6 @@ class ReminderInfoPopUp(QDialog):
         self.heading = heading
         self.description = description
         self.budget = budget
-        if self.budget is None:
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Information)
-            msg.setText("This is a message box")
-            return
-
         self.dialog = QDialog(self.parent)
         self.dialog.setWindowTitle("Reminder info")
         self.popup = Ui_Reminder_Info_Form()
