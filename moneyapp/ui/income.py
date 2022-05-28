@@ -11,13 +11,12 @@ from PySide6.QtCore import *
 income_category_dropdown = {"Full-time": 0,
                             "Part-time": 1, "Passive": 2, "Other": 3}
 income_recurrence_dropdown = {"one-time": 0,
-                               "daily": 1, "weekly": 2, "monthly": 3, "yearly": 4}
-
+                              "daily": 1, "weekly": 2, "monthly": 3, "yearly": 4}
 
 
 class IncomeUI(Observer):
 
-    def __init__(self, ui, income_system: IncomeSystem,parent):
+    def __init__(self, ui, income_system: IncomeSystem, parent):
         self.ui = ui
         self.parent = parent
         self.system = income_system
@@ -57,7 +56,7 @@ class IncomeUI(Observer):
             self.pop.warning_label.setText(
                 "Name should be between 0-24 character")
             return
-        
+
         if(self.Maximun(self.pop.amount_entry.text()) == False):
             self.pop.warning_label.setText(
                 "the Maximun of amount is 1 trillion")
@@ -78,24 +77,23 @@ class IncomeUI(Observer):
         inc = IncomeItem(income_id=income.id, income_system=self.system, lay=self.incomes_layout, date=date,
                          name=name, category=category, amount=amount, recurrence=recurrence, note=note, index_cat=index_cat, index_rec=index_rec)
 
-
     def close(self):
         self.dialog.close()
-    
-    def Stringlen(self,string):
+
+    def Stringlen(self, string):
         l = len(string)
         if l > 24 or l < 0:
             return False
         else:
             return True
-    
-    def isNegative(self,num):
+
+    def isNegative(self, num):
         if float(num) < 0:
             return True
         else:
             return False
-    
-    def Maximun(self,num):
+
+    def Maximun(self, num):
         if float(num) > 1000000000000:
             return False
         else:
@@ -231,6 +229,30 @@ class IncomeItem(QWidget):
         self.dialog.show()
 
     def confirm_edit(self):
+        if not self.pop.name_entry.text():
+            self.pop.warning_label.setText("No input in name section")
+            return
+
+        if(self.isfloat(self.pop.amount_entry.text()) == False):
+            self.pop.warning_label.setText(
+                "Input in amount section is not a number")
+            return
+
+        if(self.Stringlen(self.pop.name_entry.text()) == False):
+            self.pop.warning_label.setText(
+                "Name should be between 0-24 character")
+            return
+
+        if(self.Maximun(self.pop.amount_entry.text()) == False):
+            self.pop.warning_label.setText(
+                "the Maximun of amount is 1 trillion")
+            return
+
+        if(self.isNegative(self.pop.amount_entry.text()) == True):
+            self.pop.warning_label.setText(
+                "amount cannot be negative")
+            return
+
         self.date = self.pop.date_entry.text()
         self.amount = self.pop.amount_entry.text()
         self.category = str(self.pop.category_comboBox.currentText())
@@ -259,7 +281,32 @@ class IncomeItem(QWidget):
         self.deleteLater()
         self.income_system.delete(self.id)
 
-
     def clear(self):
         self.layout.removeWidget(self)
         self.deleteLater()
+
+    def isfloat(self, num):
+        try:
+            float(num)
+            return True
+        except ValueError:
+            return False
+
+    def Stringlen(self, string):
+        l = len(string)
+        if l > 24 or l < 0:
+            return False
+        else:
+            return True
+
+    def isNegative(self, num):
+        if float(num) < 0:
+            return True
+        else:
+            return False
+
+    def Maximun(self, num):
+        if float(num) > 1000000000000:
+            return False
+        else:
+            return True
