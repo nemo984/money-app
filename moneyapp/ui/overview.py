@@ -37,18 +37,18 @@ class ReminderReport(QWidget):
         super(ReminderReport, self).__init__()
         self.id = reminder_id
         self.layout = lay
-        self.date = date
+        self.date = date.strftime("%m/%d/%Y")
+        self.datetime = date
         self.heading = heading
         self.description = description
         self.budget = budget
         self.wid = Ui_Reminder()
         self.reminder_system = reminder_system
         self.wid.setupUi(self)
-        self.wid.date_label.setText(str(date))
+        self.wid.date_label.setText(self.date)
         self.wid.action_label.setText(heading)
         self.wid.description_label.setText(description)
         self.wid.option_btn.clicked.connect(self.option)
-        print(self.budget.name, self.budget.category, self.budget.amount, self.budget.amount_used, self.budget.note)
 
     def clear(self):
         self.layout.removeWidget(self)
@@ -70,7 +70,7 @@ class ReminderReport(QWidget):
         menu.exec(QCursor.pos())
 
     def show_info(self):
-        popup = ReminderInfoPopUp(self.date, self.heading, self.description, self.budget,self) 
+        popup = ReminderInfoPopUp(self.datetime, self.heading, self.description, self.budget,self) 
     
     def delete(self):
         self.reminder_system.delete(self.id)
@@ -87,18 +87,24 @@ class ReminderInfoPopUp(QDialog):
         self.heading = heading
         self.description = description
         self.budget = budget
+        if self.budget is None:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setText("This is a message box")
+            return
 
         self.dialog = QDialog(self.parent)
         self.dialog.setWindowTitle("Reminder info")
         self.popup = Ui_Reminder_Info_Form()
         self.popup.setupUi(self.dialog)
         self.popup.date_label.setText(str(self.date))
-        self.popup.title_label.setText(self.description)
-        self.popup.title_label_2.setText(self.heading)
+        self.popup.title_label.setText(self.budget.name)
+        self.popup.title_label_2.setText(self.description)
+        self.popup.used_label.setText("฿{:,.2f}".format(self.budget.amount_used))
         self.popup.start_date_label.setText(str(self.budget.start_date))
         self.popup.end_date_label.setText(str(self.budget.end_date))
-        self.popup.remaining_label.setText(str(self.budget.amount - self.budget.amount_used))
-        self.popup.total_budget.setText(str(self.budget.amount))
+        self.popup.remaining_label.setText("฿{:,.2f}".format(self.budget.amount - self.budget.amount_used))
+        self.popup.total_budget.setText("฿{:,.2f}".format(self.budget.amount))
         self.dialog.show()
     
 

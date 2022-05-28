@@ -256,7 +256,7 @@ class ExpenseItem(QWidget):
         self.date = self.pop.date_entry.text()
 
         self.dialog.close()
-
+        
         self.expense_system.update(
             expense_id=self.id, date=self.date, category=self.category, amount=float(self.amount), note=self.note)
 
