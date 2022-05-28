@@ -23,7 +23,9 @@ class ReminderSystem(Observable):
         reminder.save()
         self._reminders.append(reminder)
         self.notify(self._reminders)
-        self.history_system.add_create("Reminder", f"Reminder for '{budget.name}' that says {message}")
+        self.history_system.add_create("Reminder", f"Budget '{budget.name}' hits {budget.progress_value}%", 
+        f"A new reminder was created for reaching {budget.progress_value} for the budget '{budget.name}'. The budget is for the \
+        {budget.category} category. The total budget is {budget.amount} and the amount used is {budget.amount_used}")
         return reminder
 
     def exists(self, heading, message) -> bool:
@@ -52,6 +54,6 @@ class ReminderSystem(Observable):
         reminder = self.getByID(reminder_id)
         if reminder is None:
             return
-        self.history_system.add_delete("Reminder", f"You deleted a reminder for '{reminder.budget.name}'")
+        self.history_system.add_delete("Reminder", f"You deleted a reminder for '{reminder.budget.name}'", "")
         reminder.delete_instance()
         self.get()

@@ -26,8 +26,8 @@ class BudgetSystem(Observable):
         budget.save()
         self._budgets.append(budget)
         self.notify(self._budgets)
-        self.history_system.add(
-            action="Budget", action_type="Create", brief_description="You created a budget")
+        self.history_system.add_create("Budget", f"You created a budget '{name}' for {category} category", 
+        f"You created a budget name '{name}' for {category} category with an amount of {amount}, start date of {start_date} and end date of {end_date}")
         return budget
 
     def get(self) -> List[Budget]:
@@ -53,12 +53,14 @@ class BudgetSystem(Observable):
         budget.amount_used += decimal.Decimal(amount)
         budget.save()
         self.get()
-        print("Threshold2: ", self.owner.budget_reminder_threshold2)
+
+        def remind_budget(threshold):
+            self.reminder_system.add(heading=f"'{budget.name}'", message=f"This budget hits {threshold}%", budget=budget)
         if budget.progress_value > self.owner.budget_reminder_threshold2:
-            self.reminder_system.add(heading=f"'{budget.name}'", message=f"This budget hits {self.owner.budget_reminder_threshold2}%", budget=budget)
+            remind_budget(self.owner.budget_reminder_threshold2)
         elif budget.progress_value > self.owner.budget_reminder_threshold1:
-            print('Trtying to add')
-            self.reminder_system.add(heading=f"'{budget.name}'", message=f"This budget hits {self.owner.budget_reminder_threshold1}%", budget=budget)
+            remind_budget(self.owner.budget_reminder_threshold1)
+
         return budget
     
     def subtract_amount_used(self, budget_id, amount) -> Budget:
@@ -81,30 +83,37 @@ class BudgetSystem(Observable):
         note: Optional[str] = None,
     ) -> Budget:
         budget = self.getByID(budget_id)
+        change_str = ""
         if budget is None:
             return
         if name:
+            change_str += f"You change the name from '{budget.name}' to '{name}'. "
             budget.name = name
         if start_date:
+            change_str += f"You change the start date from '{budget.start_date}' to '{start_date}'. "
             budget.start_date = start_date
         if category:
+            change_str += f"You change the category from '{budget.category}' to '{category}'. "
             budget.category = category
         if amount:
+            change_str += f"You change the amount from '{budget.amount}' to '{amount}'. "
             budget.amount = amount
         if end_date:
+            change_str += f"You change the end date from '{budget.end_date}' to '{end_date}'. "
             budget.end_date = end_date
         if note:
+            change_str += f"You change the note from '{budget.note}' to '{note}'. "
             budget.note = note
         budget.save()
         self.get()
-        self.history_system.add(
-            action="Budget", action_type="Update", description="You updated a budget")
+        self.history_system.add_update("Budget", f"You updated the '{budget.name}' budget", f"You updated the '{budget.name}' budget." + change_str)
         return budget
 
     def delete(self, budget_id: int):
         budget = self.getByID(budget_id)
         if budget is None:
             return
-        self.history_system.add_delete("Budget", f"Deleted budget name '{budget.name}'")
+        self.history_system.add_delete("Budget", f"You deleted the '{budget.name}' budget", f"You deleted the '{budget.name}' budget that have \
+        {budget.category} category with an amount of {budget.amount}")
         budget.delete_instance()
         self.get()

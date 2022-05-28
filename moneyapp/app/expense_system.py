@@ -27,7 +27,10 @@ class ExpenseSystem(Observable):
         self._expenses.append(expense)
         if budget: self.budget_system.add_amount_used(budget.id, expense.amount)
         self.notify(self._expenses)
-        self.history_system.add_create("Expense", f"Created an expense with amount of {amount}")
+        
+        budget_name = "None" if budget is None else budget.name
+        self.history_system.add_create("Expense", f"You created an expense of {amount} amount", 
+        f"You created an expense of {amount} amount, category={category}, budget name ={budget_name}")
         return expense
 
     def get(self) -> List[Expense]:
@@ -62,19 +65,24 @@ class ExpenseSystem(Observable):
         note: Optional[str] = None,
     ) -> Expense:
         expense = self.getByID(expense_id)
+        change_str = ""
         if expense is None:
             return
         if date:
+            change_str += f"You change the start date from '{expense.date}' to '{date}'. "
             expense.date = date
         if category:
+            change_str += f"You change the category from '{expense.category}' to '{category}'. "
             expense.category = category
         if amount:
+            change_str += f"You change the amount from '{expense.amount}' to '{amount}'. "
             expense.amount = amount
         if note:
+            change_str += f"You change the note from '{expense.note}' to '{note}'. "
             expense.note = note
         expense.save()
         self.get()
-        self.history_system.add_update("Expense", "You updated an expense")
+        self.history_system.add_update("Expense", "You updated an expense", change_str)
         return expense
 
     def get_categories_total(self):
@@ -108,7 +116,10 @@ class ExpenseSystem(Observable):
             return
         if expense.budget is not None:
             self.budget_system.subtract_amount_used(expense.budget.id, expense.amount)
+
+        budget_name = "None" if expense.budget is None else expense.budget.name
+        note = expense.note if expense.note is not None else "" 
+        self.history_system.add_delete("Expense", "You deleted an expense", 
+        f"You deleted an expense that have an amount of {expense.amount}, category={expense.category}, budget name = {budget_name}, note={note}")
         expense.delete_instance()
         self.get()
-        self.history_system.add(
-            action="Expense", action_type="Delete", description="You deleted your expense")

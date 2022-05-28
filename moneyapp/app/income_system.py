@@ -25,8 +25,8 @@ class IncomeSystem(Observable):
         income.save()
         self._incomes.append(income)
         self.notify(self._incomes)
-        self.history_system.add(
-            action="Income", action_type="Create", description="You created a income")
+        self.history_system.add_create("Income", f"You created an income named '{name}'", 
+        f"You created an income named '{name}', category = {category}, amount= {amount}, recurrence = {recurrence}")
         return income
 
     def get(self) -> List[Income]:
@@ -82,30 +82,35 @@ class IncomeSystem(Observable):
         note: Optional[str] = None,
     ) -> Income:
         income = self.getByID(income_id)
+        change_str = ""
         if income is None:
             return
         if name:
+            change_str += f"You change the name from '{income.name}' to '{name}'. "
             income.name = name
         if category:
+            change_str += f"You change the category from '{income.category}' to '{category}'. "
             income.category = category
         if amount:
+            change_str += f"You change the amount from '{income.amount}' to '{amount}'. "
             income.amount = amount
         if recurrence:
+            change_str += f"You change the recurrence from '{income.recurrence}' to '{recurrence}'. "
             income.recurrence = recurrence
         if note:
+            change_str += f"You change the note from '{income.note}' to '{note}'. "
             income.note = note
-
         income.save()
         self.get()
-        self.history_system.add(
-            action="Income", action_type="Update", description="You updated a income")
+        self.history_system.add_update("Income", f"You updated the income named '{income.name}'", 
+        f"You updated the income named '{income.name}'. " + change_str)
         return income
 
     def delete(self, income_id):
         income = self.getByID(income_id)
         if income is None:
             return
+        self.history_system.add_delete("Income",  f"You deleted the income named '{income.name}'", 
+        f"You deleted the income named '{income.name}' that have category={income.category}, amount={income.amount}, recurrence={income.recurrence}")
         income.delete_instance()
         self.get()
-        self.history_system.add(
-            action="Income", action_type="Delete", description="You deleted a income")

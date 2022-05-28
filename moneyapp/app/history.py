@@ -12,22 +12,23 @@ class HistorySystem(Observable):
         self,
         action: str,
         action_type: str,
-        brief_description: str
+        brief_description: str,
+        long_description: str,
     ) -> ActionHistory:
-        history = ActionHistory(owner=self.owner, action=action, action_type=action_type, brief_description=brief_description)
+        history = ActionHistory(owner=self.owner, action=action, action_type=action_type, brief_description=brief_description, long_description=long_description)
         history.save()
         self._history.append(history)
         self.notify(self._history)
         return history
 
-    def add_create(self, type_str, description):
-        return self.add(action=type_str, action_type="Create", brief_description=description)
+    def add_create(self, type_str, brief_description, long_description):
+        return self.add(action=type_str, action_type="Create", brief_description=brief_description, long_description=long_description)
 
-    def add_update(self, type_str, description):
-        return self.add(action=type_str, action_type="Create", brief_description=description)
+    def add_update(self, type_str, brief_description, long_description):
+        return self.add(action=type_str, action_type="Update", brief_description=brief_description, long_description=long_description)
     
-    def add_delete(self, type_str, description):
-        return self.add(action=type_str, action_type="Delete", brief_description=description)
+    def add_delete(self, type_str, brief_description, long_description):
+        return self.add(action=type_str, action_type="Delete", brief_description=brief_description, long_description=long_description)
         
 
     def get(self) -> List[ActionHistory]:
