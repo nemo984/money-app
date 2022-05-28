@@ -1,24 +1,23 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-# Form generated from reading UI file 'notification_wid.ui'
+## Form generated from reading UI file 'notification_wid.ui'
 ##
-# Created by: Qt User Interface Compiler version 6.2.2
+## Created by: Qt User Interface Compiler version 6.2.2
 ##
-# WARNING! All changes made in this file will be lost when recompiling UI file!
+## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-                            QMetaObject, QObject, QPoint, QRect,
-                            QSize, QTime, QUrl, Qt)
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
 from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-                           QFont, QFontDatabase, QGradient, QIcon,
-                           QImage, QKeySequence, QLinearGradient, QPainter,
-                           QPalette, QPixmap, QRadialGradient, QTransform)
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QLabel, QPushButton, QSizePolicy,
-                               QWidget)
+    QWidget)
 from .resource_rc import *
-
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -41,8 +40,7 @@ class Ui_Form(object):
         self.option_btn.setGeometry(QRect(370, 10, 21, 21))
         self.option_btn.setStyleSheet(u"background-color:transparent;")
         icon = QIcon()
-        icon.addFile(u":/black/icon/White/more-vertical.svg",
-                     QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u":/black/icon/White/more-vertical.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.option_btn.setIcon(icon)
         self.option_btn.setIconSize(QSize(20, 20))
 
@@ -53,11 +51,9 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.date_label.setText(
-            QCoreApplication.translate("Form", u"22/2/2222", None))
-        self.action_label.setText(
-            QCoreApplication.translate("Form", u"Budget", None))
-        self.description_label.setText(QCoreApplication.translate(
-            "Form", u"Expense exceed budget", None))
+        self.date_label.setText(QCoreApplication.translate("Form", u"22/2/2222", None))
+        self.action_label.setText(QCoreApplication.translate("Form", u"Budget", None))
+        self.description_label.setText(QCoreApplication.translate("Form", u"Expense exceed budget", None))
         self.option_btn.setText("")
     # retranslateUi
+

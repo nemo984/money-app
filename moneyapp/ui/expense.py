@@ -166,7 +166,7 @@ class ExpenseItem(QWidget):
         self.dialog.setWindowTitle("Edit expense")
         self.pop.amount_entry.setText(str(self.amount))
         self.pop.category_comboBox.setCurrentIndex(self.index_cat)
-        self.pop.budget_comboBox.setCurrentText(self.budget.name)
+        if self.budget: self.pop.budget_comboBox.setCurrentText(self.budget.name)
         self.pop.note_entry.setPlainText(self.note)
         date = QDate.fromString(self.date, "dd/M/yyyy")
         self.pop.date_entry.setDate(date)

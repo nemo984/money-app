@@ -55,7 +55,7 @@ class Ui_expense_form(object):
         self.option_btn.setIcon(icon)
         self.budget_label = QLabel(expense_form)
         self.budget_label.setObjectName(u"budget_label")
-        self.budget_label.setGeometry(QRect(430, 15, 361, 21))
+        self.budget_label.setGeometry(QRect(430, 15, 351, 21))
         self.budget_label.setFont(font)
 
         self.retranslateUi(expense_form)

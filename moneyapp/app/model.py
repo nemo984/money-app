@@ -58,7 +58,7 @@ class Income(BaseModel):
     name = CharField()
     category = CharField()
     amount = DecimalField(14,2)
-    frequency_day = IntegerField(null=True)
+    recurrence = CharField(null=True)
     note = TextField(null=True)
     date = DateTimeField(default=datetime.now)
     updated_date = DateTimeField(null=True)

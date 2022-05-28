@@ -10,12 +10,9 @@ from PySide6.QtCore import *
 
 income_category_dropdown = {"Full-time": 0,
                             "Part-time": 1, "Passive": 2, "Other": 3}
-income_recurrence_dropdown2 = {"one-time": 0,
-                               "daily": 1, "weekly": 2, "monthly": 3, "yearly": 4}
 income_recurrence_dropdown = {"one-time": 0,
-                              "daily": 1, "weekly": 7, "monthly": 30, "yearly": 365}
-freTorec = {0: "one-time", 1: "daily",
-            7: "weekly", 30: "monthly", 365: "yearly"}
+                               "daily": 1, "weekly": 2, "monthly": 3, "yearly": 4}
+
 
 
 class IncomeUI(Observer):
@@ -70,13 +67,13 @@ class IncomeUI(Observer):
                 "amount cannot be negative")
             return
         amount = int(self.pop.amount_entry.text())
-        recurrence = str(self.pop.recurence_comboBox.currentText())
+        recurrence = self.pop.recurence_comboBox.currentText()
         note = self.pop.note_entry.toPlainText()
         index_cat = self.pop.category_comboBox.currentIndex()
         index_rec = self.pop.recurence_comboBox.currentIndex()
         self.dialog.close()
         income = self.system.add(name=name, category=category, amount=amount,
-                                 date=date, note=note, frequency=income_recurrence_dropdown[recurrence])
+                                 date=date, note=note, recurrence=recurrence)
         inc = IncomeItem(income_id=income.id, income_system=self.system, lay=self.incomes_layout, date=date,
                          name=name, category=category, amount=amount, recurrence=recurrence, note=note, index_cat=index_cat, index_rec=index_rec)
 
@@ -132,7 +129,6 @@ class IncomeUI(Observer):
     # incomes = [[January, 30000], [January, 2500], [Feb, 20000]]
 
     async def update(self, incomes: List[Income]):
-        print("Incomes updated: Updating income page UI")
 
         # n = 28
         # total = 0
@@ -155,17 +151,11 @@ class IncomeUI(Observer):
         # Month 1 : 32500
         # Month 2 : 52500
 
-        print("================")
         self.clear_layout()
         for income in incomes:
-            print(income.frequency_day)
-            item = QListWidgetItem()
-            print("Category: ", income.category)
-            print("Recurrence: ", income.frequency_day)
             income = IncomeItem(income_id=income.id, income_system=self.system, lay=self.incomes_layout, date=income.date,
-                                name=income.name, category=income.category, amount=income.amount, recurrence=freTorec[
-                                    income.frequency_day], note=income.note,
-                                index_cat=income_category_dropdown[income.category], index_rec=income_recurrence_dropdown2[freTorec[income.frequency_day]])
+                                name=income.name, category=income.category, amount=income.amount, recurrence=income.recurrence, note=income.note,
+                                index_cat=income_category_dropdown[income.category], index_rec=income_recurrence_dropdown[income.recurrence])
             income.add()
             self.incomes.append(income)
 
@@ -237,26 +227,22 @@ class IncomeItem(QWidget):
         self.dialog.show()
 
     def confirm_edit(self):
-        date = self.pop.date_entry.text()
-        amount = self.pop.amount_entry.text()
-        category = str(self.pop.category_comboBox.currentText())
-        recurrence = str(self.pop.recurence_comboBox.currentText())
-        self.wid.amount_label.setText("฿{:,.2f}".format(float(amount)))
-        self.wid.date_label.setText(date)
-        self.wid.category_label.setText(category)
-        self.wid.recurrence_label.setText(recurrence)
-        self.name = self.pop.name_entry.text()
+        self.date = self.pop.date_entry.text()
         self.amount = self.pop.amount_entry.text()
+        self.category = str(self.pop.category_comboBox.currentText())
+        self.recurrence = str(self.pop.recurence_comboBox.currentText())
+        self.wid.amount_label.setText("฿{:,.2f}".format(float(self.amount)))
+        self.wid.date_label.setText(self.date)
+        self.wid.category_label.setText(self.category)
+        self.wid.recurrence_label.setText(self.recurrence)
+        self.name = self.pop.name_entry.text()
         self.note = self.pop.note_entry.toPlainText()
         self.category = str(self.pop.category_comboBox.currentText())
         self.index_cat = self.pop.category_comboBox.currentIndex()
         self.index_rec = self.pop.recurence_comboBox.currentIndex()
-        self.date = self.pop.date_entry.text()
         self.dialog.close()
         self.income_system.update(income_id=self.id, name=self.name, category=self.category, amount=float(
-            self.amount), frequency=income_recurrence_dropdown[self.recurrence], note=self.note)
-
-
+            self.amount), recurrence=self.recurrence, note=self.note)
 
     def cancel(self):
         self.dialog.close()

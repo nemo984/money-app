@@ -16,11 +16,11 @@ class IncomeSystem(Observable):
         amount: float,
         date,
         note: Optional[str] = None,
-        frequency: Optional[int] = None,
+        recurrence: Optional[str] = None,
     ) -> Income:
         income = Income(owner=self.owner, name=name, category=category, date=date,
                         amount=amount, note=note,
-                        frequency_day=frequency)
+                        recurrence=recurrence)
         income.save()
         self._incomes.append(income)
         self.notify(self._incomes)
@@ -43,7 +43,7 @@ class IncomeSystem(Observable):
         name: Optional[str] = None,
         category: Optional[str] = None,
         amount: Optional[float] = None,
-        frequency: Optional[int] = None,
+        recurrence: Optional[str] = None,
         note: Optional[str] = None,
     ) -> Income:
         income = self.getByID(income_id)
@@ -55,8 +55,8 @@ class IncomeSystem(Observable):
             income.category = category
         if amount:
             income.amount = amount
-        if frequency:
-            income.frequency_day = frequency
+        if recurrence:
+            income.recurrence = recurrence
         if note:
             income.note = note
 
