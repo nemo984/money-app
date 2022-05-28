@@ -20,12 +20,10 @@ class ReminderUI(Observer):
 
     async def update(self, reminders: List[Reminder]):
         self.clear_layout()
-        print("Fff: ", self.reminder_system.getByID(1))
         for reminder in reminders:
             reminder = ReminderReport(reminder_id=reminder.id, lay=self.lay,reminder_system=self.reminder_system, date=reminder.created_date, 
                                     heading=reminder.heading, description=reminder.message)
             reminder.add()
-            print(reminder.heading)
             self.reminders.append(reminder)
 
     def clear_layout(self):
