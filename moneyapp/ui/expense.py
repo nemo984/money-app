@@ -81,7 +81,6 @@ class ExpenseUI(Observer):
         self.dialog.close()
 
     async def update(self, expenses: List[Expense]):
-        self.system.get_expenses_total()
         self.clear_layout()
         for expense in expenses:
             expense = ExpenseItem(expense_id=expense.id, lay=self.lay, date=expense.date, category=expense.category,
@@ -90,6 +89,15 @@ class ExpenseUI(Observer):
                                   expense_system=self.system, budget=expense.budget)
             expense.add()
             self.expenses.append(expense)
+        
+        data = self.system.get_expenses_total()
+        self.change_total_expenses(data)
+
+    def change_total_expenses(self, data):
+        self.ui.expense_daily_value.setText("฿{:,.2f}".format(data["daily"]))
+        self.ui.expense_weekly_value.setText("฿{:,.2f}".format(data["weekly"]))
+        self.ui.expense_monthly_value.setText("฿{:,.2f}".format(data["monthly"]))
+        self.ui.expense_yearly_value.setText("฿{:,.2f}".format(data["yearly"]))
 
     def clear_layout(self):
         for expense in self.expenses:
@@ -159,6 +167,20 @@ class ExpenseItem(QWidget):
         self.dialog.show()
 
     def confirm_edit(self):
+        if(self.isfloat(self.pop.amount_entry.text()) == False):
+            self.pop.warning_label.setText(
+                "Input in amount section is not a number")
+            return
+        
+        if(self.Maximun(self.pop.amount_entry.text()) == False):
+            self.pop.warning_label.setText(
+                "the Maximun of amount is 1 trillion")
+            return
+
+        if(self.isNegative(self.pop.amount_entry.text()) == True):
+            self.pop.warning_label.setText(
+                "amount cannot be negative")
+            return
         date = self.pop.date_entry.text()
         amount = self.pop.amount_entry.text()
         category = str(self.pop.category_comboBox.currentText())
@@ -198,3 +220,22 @@ class ExpenseItem(QWidget):
     def clear(self):
         self.layout.removeWidget(self)
         self.deleteLater()
+
+    def isfloat(self, num):
+        try:
+            float(num)
+            return True
+        except ValueError:
+            return False
+    
+    def isNegative(self,num):
+        if float(num) < 0:
+            return True
+        else:
+            return False
+    
+    def Maximun(self,num):
+        if float(num) > 1000000000000:
+            return False
+        else:
+            return True
