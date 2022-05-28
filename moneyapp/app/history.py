@@ -20,6 +20,16 @@ class HistorySystem(Observable):
         self.notify(self._history)
         return history
 
+    def add_create(self, type_str, description):
+        return self.add(action=type_str, action_type="Create", description=description)
+
+    def add_update(self, type_str, description):
+        return self.add(action=type_str, action_type="Create", description=description)
+    
+    def add_delete(self, type_str, description):
+        return self.add(action=type_str, action_type="Delete", description=description)
+        
+
     def get(self) -> List[ActionHistory]:
         self._history = list(self.owner.history)
         self.notify(self._history)

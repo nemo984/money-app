@@ -27,8 +27,7 @@ class ExpenseSystem(Observable):
         self._expenses.append(expense)
         if budget: self.budget_system.add_amount_used(budget.id, expense.amount)
         self.notify(self._expenses)
-        self.history_system.add(
-            action="Expense", action_type="Create", description="You created a new expense")
+        self.history_system.add_create("Expense", f"Created an expense with amount of {amount}")
         return expense
 
     def get(self) -> List[Expense]:
@@ -73,8 +72,7 @@ class ExpenseSystem(Observable):
             expense.note = note
         expense.save()
         self.get()
-        self.history_system.add(
-            action="Expense", action_type="Update", description="You updated your expense")
+        self.history_system.add_update("Expense", "You updated an expense")
         return expense
 
     def get_categories_total(self):
