@@ -72,6 +72,7 @@ class ReminderReport(QWidget):
 
     def show_info(self):
         popup = ReminderInfoPopUp(self.date, self.heading, self.description, self.budget) 
+        popup.show()
     
     def delete(self):
         self.reminder_system.delete(self.id)
@@ -85,6 +86,20 @@ class ReminderInfoPopUp(QDialog):
         self.heading = heading
         self.description = description
         self.budget = budget
+
+        self.dialog = QDialog(self)
+        self.popup = Ui_Reminder_Info_Form()
+        self.popup.setupUi(self.dialog)
+        self.popup.date_label.setText("Date " + str(self.date))
+        self.popup.title_label.setText("Title " + self.description)
+        self.popup.title_label_2.setText("Budget "+ self.heading)
+        self.popup.start_date_label.setText("Start Date "+ str(self.budget.start_date))
+        self.popup.end_date_label.setText("end Date "+str(self.budget.end_date))
+        self.popup.remaining_label.setText("Budget remaining " + str(self.budget.amount - self.budget.amount_used))
+        self.popup.textEdit.setText(self.budget.note)
+    
+    def open(self):
+        self.dialog.show()
 
 class ExpenseReportUI(Observer):
     def __init__(self, ui, s: ExpenseSystem):
