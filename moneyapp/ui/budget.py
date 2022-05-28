@@ -4,6 +4,7 @@ from ..app.model import Budget
 from ..app.budget_system import BudgetSystem
 from .uipy.budget_popup import Ui_Dialog
 from .uipy.budget_wid import Ui_Form
+from .inputCheck import *
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from PySide6.QtCore import *
@@ -40,26 +41,25 @@ class BudgetUI(Observer):
 
         name = self.pop.name_entry.text()
 
-        if(self.isfloat(self.pop.amount_entry.text()) == False):
+        if(check.isfloat(self.pop.amount_entry.text()) == False):
             self.pop.warning_label.setText(
                 "Input in amount section is not a number")
             return
-        
-        if(self.isNegative(self.pop.amount_entry.text()) == True):
+
+        if(check.isNegative(self.pop.amount_entry.text()) == True):
             self.pop.warning_label.setText(
                 "amount cannot be negative")
             return
-        
-        if(self.Stringlen(self.pop.name_entry.text()) == False):
+
+        if(check.Stringlen(self.pop.name_entry.text()) == False):
             self.pop.warning_label.setText(
                 "Name should be between 0-24 character")
             return
 
-        if(self.Maximun(self.pop.amount_entry.text()) == False):
+        if(check.Maximun(self.pop.amount_entry.text()) == False):
             self.pop.warning_label.setText(
                 "the Maximun of amount is 1 trillion")
             return
-        
 
         amount = float(self.pop.amount_entry.text())
         index = self.pop.category_comboBox.currentIndex()
@@ -68,9 +68,8 @@ class BudgetUI(Observer):
         self.dialog.close()
         budget = self.system.add(
             category=c, name=name, amount=amount, start_date=start_date, end_date=end_date)
-        b = BudgetItem(budget_id=budget.id, budget_system=self.system,lay=self.budgets_layout, amount=amount, category=c,
+        b = BudgetItem(budget_id=budget.id, budget_system=self.system, lay=self.budgets_layout, amount=amount, category=c,
                        end_date=end_date, index=index, note=note, name=name, start_date=start_date, amount_used=budget.amount_used)
-
 
     def close(self):
         self.dialog.close()
@@ -89,33 +88,6 @@ class BudgetUI(Observer):
         for budget in self.budgets:
             budget.clear()
         self.budgets = []
-
-    def isfloat(self, num):
-        try:
-            float(num)
-            return True
-        except ValueError:
-            return False
-    
-    def Stringlen(self,string):
-        l = len(string)
-        if l > 24 or l < 0:
-            return False
-        else:
-            return True
-    
-    def isNegative(self,num):
-        if float(num) < 0:
-            return True
-        else:
-            return False
-    
-    def Maximun(self,num):
-        if float(num) > 1000000000000:
-            return False
-        else:
-            return True
-    
 
 
 budget_category_dropdown = {"Food": 0, "Entertainment": 1, "Transport": 2, "Education": 3,
@@ -139,14 +111,16 @@ class BudgetItem(QWidget):
         self.name = name
 
         self.wid.setupUi(self)
-        self.progress_value = (amount_used / amount) * 100 if amount_used < amount else 100
+        self.progress_value = (amount_used / amount) * \
+            100 if amount_used < amount else 100
         self.wid.progressBar.setValue(self.progress_value)
         self.wid.name_label.setText(self.name)
         self.wid.category_label.setText(self.category)
         self.wid.amount.setText("Total Budget: ฿{:,.2f}".format(amount))
         self.wid.end_date.setText("End Date:"+end_date)
         self.wid.start_date.setText("Start Date:"+start_date)
-        self.wid.label_9.setText("You have used "+"฿{:,.2f}".format(amount_used) + ", Remaining: "+"฿{:,.2f}".format(amount - amount_used))
+        self.wid.label_9.setText("You have used "+"฿{:,.2f}".format(
+            amount_used) + ", Remaining: "+"฿{:,.2f}".format(amount - amount_used))
         self.wid.more_btn.clicked.connect(self.option)
 
     def option(self):
@@ -183,22 +157,22 @@ class BudgetItem(QWidget):
         if not self.pop.name_entry.text():
             self.pop.warning_label.setText("No input in name section")
             return
-        if(self.isfloat(self.pop.amount_entry.text()) == False):
+        if(check.isfloat(self.pop.amount_entry.text()) == False):
             self.pop.warning_label.setText(
                 "Input in amount section is not a number")
             return
-        
-        if(self.isNegative(self.pop.amount_entry.text()) == True):
+
+        if(check.isNegative(self.pop.amount_entry.text()) == True):
             self.pop.warning_label.setText(
                 "amount cannot be negative")
             return
-        
-        if(self.Stringlen(self.pop.name_entry.text()) == False):
+
+        if(check.Stringlen(self.pop.name_entry.text()) == False):
             self.pop.warning_label.setText(
                 "Name should be between 0-24 character")
             return
 
-        if(self.Maximun(self.pop.amount_entry.text()) == False):
+        if(check.Maximun(self.pop.amount_entry.text()) == False):
             self.pop.warning_label.setText(
                 "the Maximun of amount is 1 trillion")
             return
@@ -223,7 +197,6 @@ class BudgetItem(QWidget):
         self.budget_system.update(budget_id=self.id, name=self.name, amount=float(
             self.amount), start_date=self.s_date, end_date=self.e_date, note=self.note, category=self.category)
 
-
     def add(self):
         self.layout.insertWidget(0, self)
 
@@ -232,33 +205,6 @@ class BudgetItem(QWidget):
         self.deleteLater()
         self.budget_system.delete(self.id)
 
-
     def clear(self):
         self.layout.removeWidget(self)
         self.deleteLater()
-
-    def isfloat(self, num):
-        try:
-            float(num)
-            return True
-        except ValueError:
-            return False
-    
-    def Stringlen(self,string):
-        l = len(string)
-        if l > 24 or l < 0:
-            return False
-        else:
-            return True
-    
-    def isNegative(self,num):
-        if float(num) < 0:
-            return True
-        else:
-            return False
-    
-    def Maximun(self,num):
-        if float(num) > 1000000000000:
-            return False
-        else:
-            return True

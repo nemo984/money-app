@@ -4,6 +4,7 @@ from ..app.model import Income
 from ..app.income_system import IncomeSystem
 from .uipy.income_popup import Ui_Dialog
 from .uipy.income_wid import Ui_income_form
+from .inputCheck import *
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from PySide6.QtCore import *
@@ -47,22 +48,22 @@ class IncomeUI(Observer):
         name = self.pop.name_entry.text()
         category = str(self.pop.category_comboBox.currentText())
 
-        if(self.isfloat(self.pop.amount_entry.text()) == False):
+        if(check.isfloat(self.pop.amount_entry.text()) == False):
             self.pop.warning_label.setText(
                 "Input in amount section is not a number")
             return
 
-        if(self.Stringlen(self.pop.name_entry.text()) == False):
+        if(check.Stringlen(self.pop.name_entry.text()) == False):
             self.pop.warning_label.setText(
                 "Name should be between 0-24 character")
             return
 
-        if(self.Maximun(self.pop.amount_entry.text()) == False):
+        if(check.Maximun(self.pop.amount_entry.text()) == False):
             self.pop.warning_label.setText(
                 "the Maximun of amount is 1 trillion")
             return
 
-        if(self.isNegative(self.pop.amount_entry.text()) == True):
+        if(check.isNegative(self.pop.amount_entry.text()) == True):
             self.pop.warning_label.setText(
                 "amount cannot be negative")
             return
@@ -79,25 +80,6 @@ class IncomeUI(Observer):
 
     def close(self):
         self.dialog.close()
-
-    def Stringlen(self, string):
-        l = len(string)
-        if l > 24 or l < 0:
-            return False
-        else:
-            return True
-
-    def isNegative(self, num):
-        if float(num) < 0:
-            return True
-        else:
-            return False
-
-    def Maximun(self, num):
-        if float(num) > 1000000000000:
-            return False
-        else:
-            return True
 
     # Income: 100 / frequency_day
     # Every 10 day -> (100 * 10) / frequency_day
@@ -158,6 +140,15 @@ class IncomeUI(Observer):
             income.add()
             self.incomes.append(income)
 
+        data = self.system.get_incomes_total()
+        self.change_total_incomes(data)
+
+    def change_total_incomes(self, data):
+        self.ui.income_daily_value.setText("฿{:,.2f}".format(data["daily"]))
+        self.ui.income_weekly_value.setText("฿{:,.2f}".format(data["weekly"]))
+        self.ui.income_monthly_value.setText("฿{:,.2f}".format(data["monthly"]))
+        self.ui.income_yearly_value.setText("฿{:,.2f}".format(data["yearly"]))
+
     def filter_incomes(self, text):
         self.system.filter(text)
 
@@ -165,13 +156,6 @@ class IncomeUI(Observer):
         for income in self.incomes:
             income.clear()
         self.incomes = []
-
-    def isfloat(self, num):
-        try:
-            float(num)
-            return True
-        except ValueError:
-            return False
 
 
 class IncomeItem(QWidget):
@@ -233,22 +217,22 @@ class IncomeItem(QWidget):
             self.pop.warning_label.setText("No input in name section")
             return
 
-        if(self.isfloat(self.pop.amount_entry.text()) == False):
+        if(check.isfloat(self.pop.amount_entry.text()) == False):
             self.pop.warning_label.setText(
                 "Input in amount section is not a number")
             return
 
-        if(self.Stringlen(self.pop.name_entry.text()) == False):
+        if(check.Stringlen(self.pop.name_entry.text()) == False):
             self.pop.warning_label.setText(
                 "Name should be between 0-24 character")
             return
 
-        if(self.Maximun(self.pop.amount_entry.text()) == False):
+        if(check.Maximun(self.pop.amount_entry.text()) == False):
             self.pop.warning_label.setText(
                 "the Maximun of amount is 1 trillion")
             return
 
-        if(self.isNegative(self.pop.amount_entry.text()) == True):
+        if(check.isNegative(self.pop.amount_entry.text()) == True):
             self.pop.warning_label.setText(
                 "amount cannot be negative")
             return
@@ -284,29 +268,3 @@ class IncomeItem(QWidget):
     def clear(self):
         self.layout.removeWidget(self)
         self.deleteLater()
-
-    def isfloat(self, num):
-        try:
-            float(num)
-            return True
-        except ValueError:
-            return False
-
-    def Stringlen(self, string):
-        l = len(string)
-        if l > 24 or l < 0:
-            return False
-        else:
-            return True
-
-    def isNegative(self, num):
-        if float(num) < 0:
-            return True
-        else:
-            return False
-
-    def Maximun(self, num):
-        if float(num) > 1000000000000:
-            return False
-        else:
-            return True

@@ -167,14 +167,15 @@ class MoneyAppUI(QMainWindow):
                     warning_label.setText("Input is not within 0-100")
                     return None
                 return n 
-            except TypeError:
+            except (TypeError, ValueError):
+                print("error")
                 warning_label.setText("Input is not a number")
                 return None
 
         if new_reminder_threshold1 != "":
-            new_reminder_threshold1 = verify_threshold(new_reminder_threshold1, self.ui.setting_budget_warning_label)
+            new_reminder_threshold1 = verify_threshold(new_reminder_threshold1, self.ui.setting_budget_warning_label_2)
         if new_reminder_threshold2 != "":
-            new_reminder_threshold2 = verify_threshold(new_reminder_threshold2, self.ui.setting_budget_warning_label_2)
+            new_reminder_threshold2 = verify_threshold(new_reminder_threshold2, self.ui.setting_budget_warning_label)
 
         self.account_system.update(account=self.account, name=name,
                                    password=new_password, profile_image_path=self.new_pic_path, 
@@ -189,12 +190,14 @@ class MoneyAppUI(QMainWindow):
         if self.new_pic_path != "":
             self.ui.profileImg_label.setPixmap(QPixmap(self.new_pic_path))
             self.ui.new_pic_label.setPixmap(QPixmap())
-        if new_reminder_threshold1 != "":
+        if new_reminder_threshold1 != "" and new_reminder_threshold1 is not None:
             self.ui.current_reminder_threshold_label.setText(f"(Current: {new_reminder_threshold1}%)")
             self.ui.new_reminder_threshold_lineEdit.setText("")
-        if new_reminder_threshold2 != "":
+            self.ui.setting_budget_warning_label_2.setText("")
+        if new_reminder_threshold2 != "" and new_reminder_threshold2 is not None:
             self.ui.current_reminder_threshold2_label.setText(f"(Current: {new_reminder_threshold2}%)")
             self.ui.new_reminder_threshold2_lineEdit.setText("")
+            self.ui.setting_budget_warning_label.setText("")
         
 
     def new_profile_pic(self):
