@@ -80,7 +80,7 @@ class ExpenseSystem(Observable):
     def get_categories_total(self):
         rows = (Expense
                  .select(Expense.category.alias('category'), fn.Sum(Expense.amount).alias('total'))
-                #  .where(Expense.date.between(from_date, to_date))
+                 .where(Expense.owner == self.owner)
                  .group_by(Expense.category))
         return {expense.category:expense.total for expense in rows}
 

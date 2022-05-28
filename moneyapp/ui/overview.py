@@ -96,6 +96,24 @@ class ExpenseReportUI(Observer):
                          ("Investment", ":/category/icon/category/Investment.svg"),
                          ("Shopping", ":/category/icon/category/shopping-.svg"),
                          ("Utilities/Other", ":/category/icon/category/other.svg")]
+        self.series = QPieSeries()
+        self.series.setHoleSize(0.35)
+
+        self.chart = QChart()
+        self.chart.legend().hide()
+        self.chart.addSeries(self.series)
+ 
+        self.chart.setAnimationOptions(QChart.SeriesAnimations)
+        self.chart.setTitle("Expense Example")
+ 
+        self.chartview = QChartView(self.chart)
+        self.chartview.setRenderHint(QPainter.Antialiasing)
+ 
+        self.ui.pie_widdget.setContentsMargins(0, 0, 0, 0)
+        lay = QHBoxLayout(self.ui.pie_widdget)
+        lay.setContentsMargins(0, 0, 0, 0)
+        lay.addWidget(self.chartview)
+        self.donut_chart(self.expense_system.get_categories_total())
 
     async def update(self, expenses: List[Expense]):
         self.clear_layout()
@@ -115,27 +133,14 @@ class ExpenseReportUI(Observer):
             expense.add()
             self.expenses.append(expense)
         self.donut_chart(b)
+
     def donut_chart(self,expense):
-        series = QPieSeries()
-        series.setHoleSize(0.35)
-        for i in expense:
-            series.append(expense[i][0], expense[i][1])
+        self.series.clear()
+        for category, value in expense.items():
+            self.series.append(category, value)
+        
  
-        chart = QChart()
-        chart.legend().hide()
-        chart.addSeries(series)
- 
-        chart.setAnimationOptions(QChart.SeriesAnimations)
-        chart.setTitle("Expense Example")
-        chart.setTheme(QChart.ChartThemeBlueCerulean)
- 
- 
- 
-        chartview = QChartView(chart)
-        chartview.setRenderHint(QPainter.Antialiasing)
- 
- 
-        self.ui.pie_widdget.setCentralWidget(chartview)
+
 
     def clear_layout(self):
         for expense in self.expenses:
