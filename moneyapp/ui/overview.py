@@ -71,7 +71,7 @@ class ReminderReport(QWidget):
         menu.exec(QCursor.pos())
 
     def show_info(self):
-        popup = ReminderInfoPopUp(self.date, self.heading, self.description, self.budget) 
+        popup = ReminderInfoPopUp(self.date, self.heading, self.description, self.budget,self) 
         popup.show()
     
     def delete(self):
@@ -87,7 +87,8 @@ class ReminderInfoPopUp(QDialog):
         self.description = description
         self.budget = budget
 
-        self.dialog = QDialog(self)
+        self.dialog = QDialog(self.parent)
+        self.dialog.setWindowTitle("Reminder info")
         self.popup = Ui_Reminder_Info_Form()
         self.popup.setupUi(self.dialog)
         self.popup.date_label.setText("Date " + str(self.date))
