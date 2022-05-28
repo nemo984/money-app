@@ -1,4 +1,6 @@
 from typing import List
+
+from sympy import false
 from ..app.helpers import Observer
 from ..app.model import Expense
 from ..app.expense_system import ExpenseSystem
@@ -93,6 +95,8 @@ class ExpenseUI(Observer):
             return True
         except ValueError:
             return False
+    
+
 
 
 expense_category_dropdown = {"Food": 0, "Entertainment": 1, "Transport": 2, "Education": 3,
