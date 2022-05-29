@@ -67,16 +67,13 @@ class AccountWindow(QMainWindow):
         self.ui.staySignIn_checkBox.setChecked(True)
         if account_id == -1:
             return False
-        # TODO: pass in with account_id, last_tab
         self.dialog = MainApp(account_id=account_id, parent=self)
         self.dialog.show()
         self.hide()
         return True
 
     def load_accounts(self):
-        # mock accounts
         accounts = self.system.get()
-        print(accounts)
         for acc in accounts:
             item = QListWidgetItem()
             account = AccountItem(id=acc.id, name=acc.name, created_date=acc.created_date, last_login=acc.created_date,
@@ -169,7 +166,6 @@ class AccountItem(QWidget):
         return self.id
 
     def login(self, password) -> bool:
-        # hash the given pwd
         return self.hash_pwd == password
 
 
@@ -191,7 +187,6 @@ class LoginPopUp(QDialog):
         if self.account.login(self.pwd_lineEdit.text().strip()):
             save_staySignIn(account_id=self.account.id,
                             last_tab=-1, staySignInChecked=self.stayLoggedIn)
-            # also pass in the account details
             self.dialog = MainApp(account_id=self.account.id, parent=self)
             self.dialog.show()
             self.hide()

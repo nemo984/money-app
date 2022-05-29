@@ -84,9 +84,7 @@ class ActionHistory(BaseModel):
     brief_description = CharField()    
     long_description = CharField()    
 
-# if config.config['testing']:
-    # database.init(':memory:')
-# else:
-database.init('local2.db')
+
+database.init('local.db')
 
 database.create_tables([Account, Expense, Budget, Income, Reminder, ActionHistory])

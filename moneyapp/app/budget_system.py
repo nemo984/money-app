@@ -40,7 +40,7 @@ class BudgetSystem(Observable):
         return self._budgets
 
     def getByCategory(self, category: str) -> List[Budget]:
-        categories = Budget.select().where(Budget.category == category)
+        categories = Budget.select().where(Budget.category == category, Budget.owner == self.owner)
         return list(categories)
 
     def getByID(self, budget_id) -> Budget:

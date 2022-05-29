@@ -46,7 +46,6 @@ class ExpenseUI(Observer):
         lay.addWidget(self.chartview)
 
     def change_graph(self, expenses_catagories):
-        print(expenses_catagories)
         self.series.clear()
         for category, amount in expenses_catagories.items():
             if amount != 0: 
@@ -71,7 +70,6 @@ class ExpenseUI(Observer):
     def category_change(self, value):
         self.pop.budget_comboBox.clear()
         budgets = self.budget_system.getByCategory(value)
-        print(budgets)
         self.budgets = {f"{b.start_date} {b.name}": b for b in budgets}
         self.pop.budget_comboBox.addItem("None")
         self.pop.budget_comboBox.addItems(self.budgets.keys())

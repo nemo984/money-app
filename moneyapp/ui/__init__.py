@@ -155,7 +155,6 @@ class MoneyAppUI(QMainWindow):
         self.logout()
 
     def save_setting(self):
-        print("saving")
         name = self.ui.lineedit_new_name.text()
         new_password = self.ui.new_pwd_lineEdit.text()
         new_password_confirm = self.ui.new_pwd_confirm_lineEdit.text()
@@ -173,7 +172,6 @@ class MoneyAppUI(QMainWindow):
                     return None
                 return n 
             except (TypeError, ValueError):
-                print("error")
                 warning_label.setText("Input is not a number")
                 return None
 
