@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'notification_wid.ui'
+## Form generated from reading UI file 'reminder_wid.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.2
 ##
@@ -23,9 +23,7 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(400, 40)
-        Form.setMinimumSize(QSize(400, 0))
-        Form.setMaximumSize(QSize(400, 40))
+        Form.resize(400, 41)
         self.date_label = QLabel(Form)
         self.date_label.setObjectName(u"date_label")
         self.date_label.setGeometry(QRect(10, 10, 71, 21))
@@ -34,7 +32,7 @@ class Ui_Form(object):
         self.action_label.setGeometry(QRect(90, 10, 61, 21))
         self.description_label = QLabel(Form)
         self.description_label.setObjectName(u"description_label")
-        self.description_label.setGeometry(QRect(160, 10, 191, 21))
+        self.description_label.setGeometry(QRect(150, 10, 191, 21))
         self.option_btn = QPushButton(Form)
         self.option_btn.setObjectName(u"option_btn")
         self.option_btn.setGeometry(QRect(370, 10, 21, 21))

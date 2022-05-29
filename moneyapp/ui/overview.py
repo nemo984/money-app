@@ -3,7 +3,7 @@ from typing import List
 from ..app.helpers import Observer
 from ..app.model import *
 from .uipy.overview_wid import Ui_Form
-from .uipy.notification_wid import Ui_Form as Ui_Reminder
+from .uipy.reminder_wid import Ui_Form as Ui_Reminder
 from .uipy.reminder_info_popup import Ui_Form as Ui_Reminder_Info_Form
 from ..app.expense_system import ExpenseSystem
 from ..app.reminder import ReminderSystem
