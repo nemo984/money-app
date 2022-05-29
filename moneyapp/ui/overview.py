@@ -20,7 +20,6 @@ class ReminderUI(Observer):
         self.reminders = []
 
     async def update(self, reminders: List[Reminder]):
-        print(reminders)
         self.clear_layout()
         for reminder in reminders:
             reminder = ReminderReport(reminder_id=reminder.id, lay=self.lay,reminder_system=self.reminder_system, date=reminder.created_date, 
@@ -192,7 +191,6 @@ class DonutChartUI(Observer):
 
     def donut_chart(self, data):
         self.series.clear()
-        print(data)
         for category, value in data.items():
             if value != 0: self.series.append(category, value)
 
@@ -201,7 +199,6 @@ class DonutChartUI(Observer):
  
 
 class ExpenseReport(QWidget):
-    # (category, amount, icon_path)
     def __init__(self, lay: QVBoxLayout, expense_system, expense_categories):
         super(ExpenseReport, self).__init__()
         self.layout = lay
