@@ -76,9 +76,6 @@ class MoneyAppUI(QMainWindow):
         income_system.get()
         reminder_system.get()
 
-        dic = expense_system.get_categories_total()
-        print(dic)
-
         self.ui.Overview_btn.clicked.connect(self.switch_tab)
         self.ui.Overview_btn.setStyleSheet("""
         QPushButton {
