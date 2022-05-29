@@ -53,8 +53,11 @@ class ReminderSystem(Observable):
         reminder = self.getByID(reminder_id)
         if reminder is None:
             return
-        self.history_system.add_delete("Reminder", f"You deleted a reminder for '{reminder.budget.name}'", 
-        f"You deleted a reminder for '{reminder.budget.name}' that have category={reminder.budget.category}, amount={reminder.budget.amount}, start date={reminder.budget.start_date}, end date={reminder.budget.end_date}")
+        budget_name =  "None" if not reminder.budget else reminder.budget.name
+        long_description = ""
+        if reminder.budget is not None:
+            long_description =  f"You deleted a reminder for '{reminder.budget.name}' that have category={reminder.budget.category}, amount={reminder.budget.amount}, start date={reminder.budget.start_date}, end date={reminder.budget.end_date}"
+        self.history_system.add_delete("Reminder", f"You deleted a reminder for '{budget_name}'", long_description)
         reminder.delete_instance()
         self.get()
 

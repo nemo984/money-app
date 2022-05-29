@@ -74,6 +74,9 @@ class ExpenseSystem(Observable):
             change_str += f"You change the category from '{expense.category}' to '{category}'. "
             expense.category = category
         if amount:
+            if expense.budget: 
+                self.budget_system.subtract_amount_used(expense.budget.id, expense.amount)
+                self.budget_system.add_amount_used(expense.budget.id, amount)
             change_str += f"You change the amount from '{expense.amount}' to '{amount}'. "
             expense.amount = amount
         if note:
