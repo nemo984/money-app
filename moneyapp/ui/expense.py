@@ -112,6 +112,12 @@ class ExpenseUI(Observer):
         self.dialog.close()
 
     async def update(self, expenses: List[Expense]):
+        self.update_list(expenses)
+        data = self.system.get_expenses_total()
+        self.change_total_expenses(data)
+        self.change_graph(self.system.get_categories_total())
+
+    def update_list(self, expenses):
         self.clear_layout()
         for expense in expenses:
             expense = ExpenseItem(expense_id=expense.id, lay=self.lay, date=expense.date, category=expense.category,
@@ -120,10 +126,6 @@ class ExpenseUI(Observer):
                                   expense_system=self.system, budget=expense.budget, budget_system=self.budget_system)
             expense.add()
             self.expenses.append(expense)
-        
-        data = self.system.get_expenses_total()
-        self.change_total_expenses(data)
-        self.change_graph(self.system.get_categories_total())
 
     def change_total_expenses(self, data):
         self.ui.expense_daily_value.setText("฿{:,.2f}".format(data["daily"]))
@@ -137,7 +139,9 @@ class ExpenseUI(Observer):
         self.expenses = []
 
     def filter_expenses(self, text):
-        self.system.filter(text)
+        filtered_expenses = self.system.filter(text)
+        self.update_list(filtered_expenses)
+
 
     def isfloat(self, num):
         try:

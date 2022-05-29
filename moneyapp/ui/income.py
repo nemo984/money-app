@@ -111,6 +111,12 @@ class IncomeUI(Observer):
         self.dialog.close()
 
     async def update(self, incomes: List[Income]):
+        self.update_list(incomes)
+        data = self.system.get_incomes_total()
+        self.change_total_incomes(data)
+        self.change_graph(self.system.get_categories_total())
+
+    def update_list(self, incomes):
         self.clear_layout()
         for income in incomes:
             income = IncomeItem(income_id=income.id, income_system=self.system, lay=self.incomes_layout, date=income.date,
@@ -119,10 +125,6 @@ class IncomeUI(Observer):
             income.add()
             self.incomes.append(income)
 
-        data = self.system.get_incomes_total()
-        self.change_total_incomes(data)
-        self.change_graph(self.system.get_categories_total())
-
     def change_total_incomes(self, data):
         self.ui.income_daily_value.setText("฿{:,.2f}".format(data["daily"]))
         self.ui.income_weekly_value.setText("฿{:,.2f}".format(data["weekly"]))
@@ -130,7 +132,8 @@ class IncomeUI(Observer):
         self.ui.income_yearly_value.setText("฿{:,.2f}".format(data["yearly"]))
 
     def filter_incomes(self, text):
-        self.system.filter(text)
+        filtered_incomes = self.system.filter(text)
+        self.update_list(filtered_incomes)
 
     def clear_layout(self):
         for income in self.incomes:

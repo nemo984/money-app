@@ -44,7 +44,7 @@ class ExpenseSystem(Observable):
 
     def filter(self, query: str):
         if query == "":
-            return self.get()
+            return self._expenses
 
         filtered_expenses = []
         for expense in self._expenses:
@@ -53,7 +53,6 @@ class ExpenseSystem(Observable):
             s = f"{expense.date}{expense.category}{currency}{expense.category}{budget_name}"
             if query in s:
                 filtered_expenses.append(expense)
-        self.notify(filtered_expenses)
         return filtered_expenses
 
     def update(

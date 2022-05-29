@@ -33,14 +33,13 @@ class IncomeSystem(Observable):
         self._incomes = list(self.owner.incomes_ordered)
         self.notify(self._incomes)
         return self._incomes
-
     def getByID(self, income_id) -> Income:
         income = Income.get_or_none(Income.id == income_id)
         return income
 
     def filter(self, query: str):
         if query == "":
-            return self.get()
+            return self._incomes
 
         filtered_incomes = []
         for income in self._incomes:
@@ -48,7 +47,6 @@ class IncomeSystem(Observable):
             s = f"{income.date}{income.name}{income.category}{currency}{income.recurrence}"
             if query in s:
                 filtered_incomes.append(income)
-        self.notify(filtered_incomes)
         return filtered_incomes
 
     def get_incomes_total(self) -> dict:
