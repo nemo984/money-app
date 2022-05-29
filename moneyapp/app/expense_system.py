@@ -6,7 +6,7 @@ from peewee import fn
 from datetime import datetime, timedelta
 
 class ExpenseSystem(Observable):
-    def __init__(self, owner, budget_system, history_system):
+    def __init__(self, owner, budget_system=None, history_system=None):
         super().__init__()
         self.owner = owner
         self._expenses = []
@@ -83,6 +83,13 @@ class ExpenseSystem(Observable):
         self.get()
         self.history_system.add_update("Expense", "You updated an expense", change_str)
         return expense
+
+    def remove_budget(self, budget):
+        q = (Expense
+                .update({Expense.budget: None})
+                .where(Expense.budget == budget))
+        q.execute()
+
 
     def get_categories_total(self):
         rows = (Expense

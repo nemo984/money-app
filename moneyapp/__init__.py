@@ -29,20 +29,15 @@ class MainApp:
             owner=account, history_system=self.history_system)
         self.income_system = IncomeSystem(
             owner=account, history_system=self.history_system)
+        self.expense_system_budget = ExpenseSystem(account)
         self.budget_system = BudgetSystem(
-            owner=account, reminder_system=self.reminder_system, history_system=self.history_system)
-        self.expense_system = ExpenseSystem(
-            owner=account, budget_system=self.budget_system, history_system=self.history_system)
+            owner=account, reminder_system=self.reminder_system, expense_system=self.expense_system_budget, history_system=self.history_system)
+        self.expense_system = ExpenseSystem(owner=account, budget_system=self.budget_system, history_system=self.history_system)
         self.ui = MoneyAppUI(account, self.income_system, self.budget_system, self.expense_system,
-                             self.history_system, self.account_system, self.reminder_system)
+                             self.history_system, self.account_system, self.reminder_system, self.expense_system_budget)
 
     def show(self):
         self.ui.show()
-
-    # def closeEvent(self, event):
-    #     if self.parent:
-    #         self.parent.close()
-
 
 class AccountWindow(QMainWindow):
     def __init__(self, parent=None):

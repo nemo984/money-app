@@ -5,11 +5,12 @@ from .model import Budget, Account
 import decimal
 
 class BudgetSystem(Observable):
-    def __init__(self, owner: Account, reminder_system, history_system):
+    def __init__(self, owner: Account, reminder_system, expense_system, history_system):
         super().__init__()
         self.owner = owner
         self._budgets = []
         self.reminder_system = reminder_system
+        self.expense_system = expense_system
         self.history_system = history_system
 
     def add(
@@ -114,5 +115,7 @@ class BudgetSystem(Observable):
         if budget is None:
             return
         self.history_system.add_delete("Budget", f"You deleted the '{budget.name}' budget", f"You deleted the '{budget.name}' budget that have {budget.category} category with an amount of {budget.amount}")
+        self.reminder_system.remove_budget(budget)
+        self.expense_system.remove_budget(budget)
         budget.delete_instance()
         self.get()

@@ -57,3 +57,9 @@ class ReminderSystem(Observable):
         f"You deleted a reminder for '{reminder.budget.name}' that have category={reminder.budget.category}, amount={reminder.budget.amount}, start date={reminder.budget.start_date}, end date={reminder.budget.end_date}")
         reminder.delete_instance()
         self.get()
+
+    def remove_budget(self, budget):
+        q = (Reminder
+                .update({Reminder.budget: None})
+                .where(Reminder.budget == budget))
+        q.execute()

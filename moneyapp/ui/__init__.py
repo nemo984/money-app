@@ -31,6 +31,7 @@ class MoneyAppUI(QMainWindow):
         history_system: HistorySystem,
         account_system: AccountSystem,
         reminder_system: ReminderSystem,
+        expense_system_budget,
         parent=None
     ):
         super(MoneyAppUI, self).__init__(parent)
@@ -63,6 +64,9 @@ class MoneyAppUI(QMainWindow):
         expense_system.add_observer(expense_ui)
         expense_system.add_observer(expense_report_ui)
         expense_system.add_observer(overview_donut_chart)
+        expense_system_budget.add_observer(expense_ui)
+        expense_system_budget.add_observer(expense_report_ui)
+        expense_system_budget.add_observer(overview_donut_chart)
         history_system.add_observer(history_ui)
         reminder_system.add_observer(reminder_ui)
 

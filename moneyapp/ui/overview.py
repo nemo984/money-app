@@ -93,8 +93,12 @@ class ReminderInfoPopUp(QDialog):
         self.popup = Ui_Reminder_Info_Form()
         self.popup.setupUi(self.dialog)
         self.popup.date_label.setText(str(self.date))
-        self.popup.title_label.setText(self.budget.name)
         self.popup.title_label_2.setText(self.description)
+        if not self.budget:
+            self.popup.title_label.setText("Budget is deleted")
+            self.dialog.show()
+            return
+        self.popup.title_label.setText(self.budget.name)
         self.popup.used_label.setText("฿{:,.2f}".format(self.budget.amount_used))
         self.popup.start_date_label.setText(str(self.budget.start_date))
         self.popup.end_date_label.setText(str(self.budget.end_date))

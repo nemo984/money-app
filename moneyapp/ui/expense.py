@@ -71,6 +71,7 @@ class ExpenseUI(Observer):
     def category_change(self, value):
         self.pop.budget_comboBox.clear()
         budgets = self.budget_system.getByCategory(value)
+        print(budgets)
         self.budgets = {f"{b.start_date} {b.name}": b for b in budgets}
         self.pop.budget_comboBox.addItem("None")
         self.pop.budget_comboBox.addItems(self.budgets.keys())
